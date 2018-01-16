@@ -1,0 +1,217 @@
+\chapter{Rotation of a Rigid Object About a Fixed Axis}
+    \hi{Rigid Objects}
+        \par A \impt{rigid object} is one that is \impt{nondeformable} - that is, the relative
+        locations of all particles of which the object is composed remain constant.
+        \par In dealing with a rotating object, analysis is greatly simplified by assuming that
+        the object is rigid.
+        \par When a rigid object rotates about a fixed axis, every particle of the object
+        moves in a circle whose center is the axis of rotation.
+
+    \hi{Angular Position, Velocity, and Acceleration}
+        \hiiBEGIN{Angular Position}
+            \hiii{Angular position}
+            \par The \impt{angular position} of the rigid object is the angle $\theta$ between
+            \impt{a reference line} on the object and a fixed reference line in space.
+
+            \hiii{Angular displacement}:
+            \begin{equation}
+                \Delta \theta = \theta_{f} - \theta_{i}
+            \end{equation}
+        \hiiEND
+
+        \hiiBEGIN{Angular Speed \& Velocity}
+            \hiii{Average Angular Speed}
+                \begin{equation}
+                    \avg{\omega} = \dfrac{\Delta \theta}{\Delta t}
+                \end{equation}
+            \hiii{Instantaneous Angular Speed}
+                \begin{equation}
+                    \omega = \dfrac{d \theta}{dt}
+                \end{equation}
+            \hiii{Angular Velocity}
+                \par Angular velocity is a vector quantity. Its magnitude is the angular speed
+                and its direction is determined using the \impt{right hand rule}.
+        \hiiEND
+
+        \hiiBEGIN{Angular Acceleration}
+            \hiii{Average Angular Acceleration}
+                \begin{equation}
+                    \avg{\alpha} = \dfrac{\Delta \omega}{\Delta t}
+                \end{equation}
+            \hiii{Instantaneous Angular Speed}
+                \begin{equation}
+                    \alpha = \dfrac{d \omega}{dt}
+                \end{equation}
+        \hiiEND
+
+    \hi{Rotational Motion with Constant Angular Acceleration}
+        \begin{equation}
+            \omega_{f} = \omega_{i} + \alpha t
+        \end{equation}
+        \begin{equation}
+            \theta_{f} = \theta_{i} + \omega_{i}t + \dfrac{1}{2}\alpha t^{2}
+        \end{equation}
+        \begin{equation}
+            \omega_{f}^2 = \omega_{i}^2 + 2\alpha(\theta_{f} - \theta_{i})
+        \end{equation}
+        \begin{equation}
+            \theta_{f} = \theta_{i} + \dfrac{1}{2}(\omega_{i} + \omega_{f})t
+        \end{equation}
+
+    \hi{Angular and Linear Quantities}
+        \hii{Velocity}
+            \begin{equation}
+                v = \dfrac{ds}{dt} = r \dfrac{d \theta}{dt} = r \omega
+            \end{equation}
+            in which:
+            \begin{itemize}
+                \item $r$: perpendicular distance to the specified axis
+            \end{itemize}
+
+        \hiiBEGIN{Acceleration}
+            \hiii{Tangential Acceleration}
+                \begin{equation}
+                    a_{t} = \dfrac{dv}{dt} = r \dfrac{d \omega}{dt} = r \alpha
+                \end{equation}
+            \hiii{Centripetal Acceleration}
+                \begin{equation}
+                    a_{c} = \dfrac{v^{2}}{r} = r \omega^{2}
+                \end{equation}
+            \hiii{Total Linear Acceleration}
+                \begin{equation}
+                    a = \sqrt{a_{t}^2 + a_{c}^2} = \sqrt{(r \alpha)^{2} + (r \omega^{2})^{2}} = r \sqrt{\alpha^{2} + \omega^{4}}
+                \end{equation}
+        \hiiEND
+
+    \hi{Rotational Kinetic Energy}
+        \par When an object is rotating, each of its particle has kinetic energy determined by its
+        mass and tangential speed.
+        \begin{equation}
+            K_{i} = \dfrac{1}{2} m_{i}v_{i}^{2}
+        \end{equation}
+        \par The total kinetic energy of the object:
+        \begin{equation} \label{eq:rke}
+            \sum K = \SUM{_{i} K_{i}} = \SUM{\dfrac{1}{2} m_{i}v_{i}^{2}}
+            = \SUM{\dfrac{1}{2} m_{i}r_{i}^{2} \omega_{i}^{2}}
+            = \dfrac{1}{2} \omega_{i}^{2} \SUM{m_{i}r_{i}^{2}}
+        \end{equation}
+        \par The equation \eqref{eq:rke} can be simplify by defining a new quantity: the
+        \impt{moment of inertia}.
+        \begin{equation}
+            I = \SUM{_{i} m_{i}r_{i}^{2}}
+        \end{equation}
+        \begin{equation}
+            \sum K = \dfrac{1}{2} I \omega^{2}
+        \end{equation}
+
+    \hi{Calculation of Moments of Inertia}
+        \hii{The General Way}
+            \par If the extended rigid object is divided into many small volume elements:
+            \begin{equation}
+                I = \lim_{\Delta m_{i} \to 0} \SUM{r_{i}^{2} \Delta m_{i}}
+                = \INT{r^{2} dm}
+            \end{equation}
+            \par We also have:
+            \begin{flalign*}
+                & \rho = \dfrac{m}{V} \\
+                \ra & \rho = \dfrac{dm}{dV} \\
+                \ra & dm = \rho dV 
+            \end{flalign*}
+            in which: $\rho$ is the \impt{volumetric mass density}
+            \par Therefore:
+            \begin{equation}
+                I = \INT{\rho r^{2} dV}
+            \end{equation}
+        \hii{More Complicated Cases}
+            \par It is relatively easy to calculate the moments of inertia of objects with:
+                \begin{itemize}
+                    \item Simple geometry.
+                    \item The \impt{rotation axis} coincide with an \item{axis of symmetry}.
+                \end{itemize}
+            \par To calculate the moment of inertia about an arbitrary axis, one can use
+            the \impt{parallel-axis theorem}, also known as \impt{Huygens - Steiner} theorem:
+            \par \textit{Suppose the moment of inertia about an axis through the center of
+            mass of an object is $I_{CM}$. The moment of inertia about any axis parallel to
+            and a distance $D$ away from this axis is:}
+            \begin{equation}
+                I = I_{CM} + MD^{2}
+            \end{equation}
+            in which:
+            \begin{itemize}
+                \item $I$: moment of inertia about the arbitrary axis
+                \item $I_{CM}$: moment of inertia about the parallel axis containing
+                    the center of mass
+                \item $M$: total mass of the object
+                \item $D$: distance between the two axes
+            \end{itemize}
+                
+    \hi{Torque}
+        \hii{Torque - Definition \& Magnitude}
+            \begin{itemize}
+                \item \impt{Torque}, \impt{moment}, or \impt{moment of force} is
+                rotational force.
+                \item Notation: $\tau$ or $M$.
+                \item The \impt{magnitude} of torque depends on three quantities:
+                    \begin{itemize}
+                        \item The force applied $F$
+                        \item The length $r$ of the lever arm connecting the axis to
+                            the point of force application $r$
+                        \item The angle $\theta$ between the force vector and the lever arm
+                    \end{itemize}
+                \begin{equation}
+                    \tau = r \times F = |r||F|sin \theta
+                \end{equation}
+            \end{itemize}
+
+        \hii{Torque and Angular Acceleration}
+            \par Consider a particle of mass $m$ rotating in a circle of radius $r$
+            under the influence of a tangential force $F_{t}$ and a radial force
+            $F_{r}$.
+            \par The magnitude of torque about the center of the circle due to $F_{t}$:
+            \begin{align*}
+                \tau = F_{t} \mul r = ma_{t}r
+            \end{align*}
+            \par The magnitude of tangential acceleration:
+            \begin{align*}
+                a_{t} = \omega r
+            \end{align*}
+            \par Therefore:
+            \begin{equation} \label{eq:torq_n_momentOfInertia}
+                \tau = m \omega r^{2} = I \alpha
+            \end{equation}
+
+    \hi{Work, Power, and Energy in Rotational Motion}
+        \hii{Power}
+        \par \textit{Note that only the $F_{t}$ component does work and the $F_{c}$ component
+        does not.}
+        \par The work done by a force $F$ on an object as it rotates through a very small
+        distance $ds = rd\theta$ is:
+        \begin{align*}
+            dW & = F_{t} \mul ds = (F \sin \theta) r d \theta
+        \end{align*}
+        \begin{equation}
+            \ra dW = \tau d \theta 
+        \end{equation}
+        \begin{align*}
+            \ra \dfrac{dW}{dt} = \tau \dfrac{d \theta}{dt}
+        \end{align*}
+        \begin{equation}
+            \ra P = \tau \omega 
+        \end{equation}
+
+        \hii{Work - Kinetic Energy Theorem for Rotational Motion}
+            \par According to the \eqref{eq:torq_n_momentOfInertia} equation:
+            \begin{align*}
+                \tau = I \omega \\
+                \ra \tau & = I \dfrac{d\omega}{dt} \\
+                & = I \dfrac{d \theta}{dt} \dfrac{d \omega}{d \theta} \\
+                & = I \omega \dfrac{d \omega}{d \theta} \\
+                \ra \tau d \theta & = I \omega d \omega \\
+                \ra dW & = I \omega d \omega
+            \end{align*}
+            \begin{equation}
+                \ra W = \INT{_{\omega_{i}}^{\omega_{f}} I \omega d \omega}
+                = \dfrac{1}{2} I \omega_{f}^{2} - \dfrac{1}{2} I \omega_{i}^{2}
+            \end{equation}
+            \par This is the equation of the \impt{Work - Kinetic energy theorem for rotational
+            motion}.

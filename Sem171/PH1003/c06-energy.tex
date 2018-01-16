@@ -1,0 +1,78 @@
+\chapter{Energy and Energy Transfer}
+    \hi{System and Environment}
+        \par In physics, a \impt{physical system} is a portion of the physical universe chosen for
+        analysis. Everything outside the system is known as the environment. The environment
+        is ignored except for its effects on the system.
+
+    \hi{The Scalar Product of Two Vectors}
+        \par The \impt{scalar product}, or \impt{dot product} of any two vectors $\vt{a}$ and
+        $\vt{b}$ is a scalar quantity equal to the product of the magnitudes of the two vectors
+        and the cosine of the angle $\theta$ between them.
+        \begin{equation*}
+            \vt{a} \mul \vt{b} = |\vt{a}||\vt{b}|\cos \theta
+        \end{equation*}
+
+    \hi{Work done by a Constant Force}
+        \par The \impt{work} $W$ done on a system by an agent exerting a constant force on the system
+        is the dot product of the magnitude $F$ of the force, the magnitude $\Delta r$ of the
+        displacement of the point of application of the force, and $\cos \theta$, where $\theta$ is
+        the angle between the force and displacement vectors:
+        \begin{equation}
+            W = \vt{F} \mul \vt{r} = F \Delta r \cos \theta
+        \end{equation}
+        in which:
+        \begin{itemize}
+            \item $W$: work done by the agent $[J]$ or $[N \mul m]$
+            \item $F$: force exerted by the agent [N]
+            \item $r$: magnitude of the displacement [m]
+            \item $\theta$: angle between the force and displacement vector [rad]
+        \end{itemize}
+
+    \hi{Work Done by a Varying Force}
+        \par The total work done by the net force $ \sum F_{x}$ as the particle moves from $r_{i}$
+        to $r_{f}$:
+        \begin{equation} \label{eq:work01}
+            \sum W = \INT{_{x_{i}}^{x_{f}} \sum \vt{F}d\vt{r}}
+        \end{equation}
+
+    \hi{Kinetic Energy}
+        \par \impt{Kinetic energy} $K$ of a particle of mass $m$ moving with a speed $v$ is defined
+        as:
+        \begin{equation} \label{eq:kinetic01}
+            K = \dfrac{1}{2}mv^{2}
+        \end{equation}
+
+    \hi{Kinetic Energy and the Work-Kinetic Energy Theorem}
+        \par Based on the equation \eqref{eq:work01}, we have:
+        \begin{align*}
+            \begin{split}
+                \sum W & = \INT{_{x_{i}}^{x_{f}} \sum Fdx} \\
+                & = \INT{_{x_{i}}^{x_{f}} \sum madx} \mbox{\qquad (the Second Newton's law)} \\
+                & = \INT{_{x_{i}}^{x_{f}} \sum m \dfrac{dv}{dt}dx} \\
+                & = \INT{_{v_{i}}^{v_{f}} \sum mvdv} \\
+                & = \dfrac{1}{2}mv_{f}^{2} - \dfrac{1}{2}mv_{i}^{2} \\
+            \end{split}
+        \end{align*}
+        \par In combination with the equation \eqref{eq:kinetic01}, we conclude that:
+        \begin{equation}
+            \sum W = K_{f} - K_{i} = \Delta K \\
+        \end{equation}
+
+    \hi{Isolated and Nonisolated System}
+        \par If a system does not interact with its environment, it is an \impt{isolated system}.
+        \par On the other hand, if the system is acted on by various forces, resulting in a change
+        in its kinetic energy, it is a \impt{nonisolated system}. 
+        \par The energy associated with an object's temperature is called \impt{internal energy}. 
+        If positive work has been done on an object but there is no increase in the object's
+        kinetic energy, then the energy has been transformed into internal energy. In this case, the
+        work-kinetic energy theorem cannot be applied.
+
+    \hi{Power}
+        \hii{Average Power}
+            \begin{equation}
+                \avg{P} = \dfrac{W}{t}
+            \end{equation}
+        \hii{Instantaneous Power}
+            \begin{equation}
+                P = \dfrac{dW}{dt} = F \mul \dfrac{dr}{dt} = F \mul v
+            \end{equation}

@@ -1,0 +1,49 @@
+\chapter{Applications of Integration}
+
+\hi{Area between two curves}
+    \par The area between two curves $f(x)$ and $g(x)$ and between
+    $x = a$ and $x = b$ is:
+    \begin{eqbox}
+        A = \INT{_{a}^{b} |f(x) - g(x)| dx}
+    \end{eqbox}
+
+\hi{Volume of Solid of Revolution}
+    \par Let $S$ be a solid be a solid lies between $x = a$ and $x = b$.
+    If the cross-sectional area of $S$ in the plane $P_{x}$, through $x$
+    and perpendicular to the $x$-axis, is $A(x)$, where $A$ is a continuous
+    function, then the volume of $S$ is:
+    \begin{eqbox}
+        V = \INT{_{a}^{b} A(x) dx}
+    \end{eqbox}
+    \par The volume of the solid obtained by rotating about the x-axis the
+    graph of the function $f(x)$ between $x = a$ and $x = b$ is:
+    \begin{eqbox}
+        V = \pi \INT{_{a}^{b} |f^{2}(x)| dx}
+    \end{eqbox}
+
+\hi{Volume of Cylindrical Shells}
+    \par The volume of the solid obtained by rotating about the y-axis the
+    graph of the function $f(x)$ between $x = a$ and $x = b$ $(0 \leq a < b)$ is:
+    \begin{eqbox}
+        V = 2 \pi \INT{_{a}^{b} x f(x) dx}
+    \end{eqbox}
+
+\hi{Mean Value of a Function on an interval}
+    \par \textbf{The mean value theorem:} If $f$ is continuous on the interval
+    $[a, b]$, then there exists a number $c$ in $[a, b]$ such that:
+    \begin{eqbox}
+        M = f(c) = f_{ave} = \frac{1}{b - a} \INT{_{a}^{b} f(x) dx}
+    \end{eqbox}
+
+\hi{Arc Length}
+    \par If $f'(x)$ is continuous on the interval $[a, b]$, then the length of the
+    curve $f(x)$ from $a$ to $b$ is:
+    \begin{eqbox}
+        L = \INT{_{a}^{b} \sqrt{1 + [f'(x)]^{2}} dx}
+    \end{eqbox}
+
+\hi{Area of Surface of Revolution}
+    \begin{eqbox}
+        A = 2 \pi \INT{_{a}^{b} f(x) \sqrt{1 + [f'(x)]^{2}} dx}
+    \end{eqbox}
+    

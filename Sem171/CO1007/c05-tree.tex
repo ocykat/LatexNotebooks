@@ -1,0 +1,183 @@
+\chapter{Trees}
+
+\hi{Introduction to Trees}
+    \hiiBEGIN{Trees}
+        \hiii{Definition}
+            \par A \impt{tree} is a connected graph with \textit{no simple circuits}.
+        \hiii{Theorem}
+            \par An undirected graph is a tree if and only if there is a unique simple path between
+            any two of its vertices.
+    \hiiEND
+    \hiiBEGIN{Rooted Trees}
+        \hiii{Definition}
+            \par A \impt{rooted tree} is a in which one vertex has been designated as the root
+            and every edge is directed away from the root.
+        \hiii{Terminology}
+            \begin{itemize}
+                \item If $v$ is a vertex in $T$ other than the root, the \impt{parent} of $v$ is
+                    the \textit{unique} vertex $u$ such that there is a \impt{directed edge} from
+                    $u$ to $v$.
+                \item When $u$ is the parent of $v$, $v$ is called a \impt{child} of $u$.
+                \item Vertices with the same parent are called \impt{siblings}.
+                \item The \impt{ancestors} of a vertex other than the root are the vertices
+                    in the path from the root to this vertex, excluding the vertex itself and
+                    including the root.
+                \item The \impt{descendants} of a vertex $v$ are those vertices that have $v$ as
+                    an ancestor.
+                \item A vertex of a rooted tree is called a \impt{leaf} if it has no children.
+                \item Vertices that have children are called internal vertices.
+                \item If $a$ is a vertex in a tree, the \impt{subtree} with $a$ as its root is
+                    the subgraph of the tree consisting of $a$ and its descendants and all edges
+                    incident to these descendants.
+            \end{itemize}
+        \hiii{m-ary Tree}
+            \par A rooted tree is called an \impt{$m$-ary tree} if every internal vertex has no
+            more than $m$ children. The tree is called a \impt{full $m$-ary tree} if every vertex
+            has exactly $m$ children. An $m$-ary tree with $m = 2$ is called a \impt{binary tree}.
+            \begin{center}
+                \begin{tikzpicture}
+                    \node[nn] (A) at (0,0) {A};
+                    \node[nn] (B) at (-4, -1.5) {B}
+                        edge[from] (A)
+                    ;
+                    \node[nn] (C) at (4, -1.5) {C}
+                        edge[from] (A)
+                    ;
+                    \node[nn] (D) at (-6, -3.5) {D}
+                        edge[from] (B)
+                    ;
+                    \node[nn] (E) at (-2, -3.5) {E}
+                        edge[from] (B)
+                    ;
+                    \node[nn] (F) at (2, -3.5) {F}
+                        edge[from] (C)
+                    ;
+                    \node[nn] (G) at (6, -3.5) {G}
+                        edge[from] (C)
+                    ;
+                \end{tikzpicture}
+            \end{center}
+        \hiii{Ordered Rooted Trees}
+            \par An \impt{ordered rooted tree} is a rooted tree where the children of each
+            internal vertex are ordered. Ordered rooted tree are drawn so that \text{the
+            children of each internal vertex are shown in order from left to right}.
+    \hiiEND
+
+    \hiiBEGIN{Properties of Trees}
+        \hiiiBEGIN{Relationship between the number of vertices and the number of edges}
+            \hiv{Theorem}
+                \par A tree with $n$ vertices has $n - 1$ edges.
+            \hiv{Proof}
+                \par To prove the theorem, we use mathematical induction.
+                \begin{itemize}
+                    \item \textbf{Basis step}: When $n = 1$, a tree with one vertex has no edges.
+                        The theorem is true.
+                    \item \textbf{Inductive hypothesis}: Every tree with $k$ vertices has $k - 1$
+                        edges $(k \in \mathbb{Z})$.
+                    \item Suppose a tree $T$ has $k + 1$ vertices and that $v$ is a leaf of $T$,
+                        and let $w$ be the parent of $v$. Removing from $T$ the vertex $v$ and the
+                        edge connecting $w$ to $v$ produces a tree $T'$ with $k$ vertices and
+                        $k - 1$ edges. Therefore, $T$ has $k$ edges.
+                \end{itemize}
+        \hiiiEND
+        \hiiiBEGIN{Counting in full $m-$ary tree}
+            \hiv{Theorem 1}
+                \par A full $m-$ary tree with $i$ internal vertices contains $n = mi + 1$
+                vertices.
+            \hiv{Proof for theorem 1}
+                \par Every vertex, except the root, is the child of an internal vertex. Because
+                each of the $i$ internal vertices has $m$ children, there are $mi$ vertices
+                in the tree other than the root. Therefore, the tree contains $n = mi + 1$ vertices.
+            \hiv{Theorem 2}
+                \par A full $m-$ary with:
+                \begin{itemize}
+                    \item $n$ vertices has $i = \dfrac{n - 1}{m}$ internal vertices and
+                        $l = \dfrac{(m - 1)n + 1}{m}$ leaves.
+                    \item $i$ internal vertices has $n = mi + 1$ vertices and $l = (m - 1)i + 1$
+                        leaves.
+                    \item $l$ leaves has $n = \dfrac{ml - 1}{m - 1}$ vertices and
+                        $i = \dfrac{l - 1}{m - 1}$ internal vertices.
+                \end{itemize}
+            \hiv{Proof for theorem 2}
+                \begin{itemize}
+                    \item \textbf{Proposition 1}: \\
+                        Based on the theorem 1, we have $i = \dfrac{n - 1}{m}$. \\
+                        Thus, $l = n - i = \dfrac{(m - 1)n + 1}{m}$.
+                    \item \textbf{Proposition 2}: Based on the theorem 1, we have $n = mi + 1$.
+                        Then:
+                        \begin{align*}
+                            l = n - i = (mi + 1) - i = (m - 1)i + 1
+                        \end{align*}
+                    \item \textbf{Proposition 3}: Based on the theorem 1 and 2, we have:
+                        \begin{align*}
+                            & l = \frac{(m - 1)n + 1}{m}
+                            \deduce n = \frac{ml - 1}{m - 1} \\
+                            & l = (m - 1)i + 1
+                            \deduce i = \frac{l - 1}{m - 1}
+                        \end{align*}
+                \end{itemize}
+        \hiiiEND
+        
+        \hiiiBEGIN{Balanced $m-$ary tree}
+            \hiv{Terminology}
+                \begin{itemize}
+                    \item The \impt{level} of a vertex $v$ in a rooted tree is the length of the
+                        unique path from the root to this vertex. The level of the root is defined
+                        to be zero.
+                    \item The \impt{height} of a rooted tree is the maximum of the levels of
+                        vertices.
+                \end{itemize}
+            \hiv{Balanced $m-$ary tree}
+                \par A rooted $m-$ary tree of height $h$ is \impt{balanced} if all leaves are at
+                levels $h$ or $h - 1$.
+        \hiiiEND
+
+        \hiii{Bound for the number of leaves in an $m-$ary tree}
+            \hiv{Theorem}
+                \par There are at most $m^{h}$ leaves in an $m-$ary tree of height $h$.
+            \hiv{Proof}
+                \par Mathematical induction:
+                \begin{itemize}
+                    \item \textbf{Basis step}: For $h = 1$, the tree has one root and it has at
+                        most $m$ children.
+                    \item \textbf{Inductive hypothesis}: Every tree with the height $h = k$ has
+                        at most $m^{k}$ leaves.
+                    \item Let $T$ be a tree with $h = k$. To create a tree $T'$ from $T$ with
+                        $h = k + 1$, we add children to the leaves of $T$. Each leaves of $T$ can
+                        have at most $m$ children. Therefore, $T'$ has at most
+                        $m^{k} \cdot m = m^{k + 1}$ leaves.
+                \end{itemize}
+            \hiv{Corollary}
+                \par If an $m-$ary tree of height $h$ has $l$ leaves, then $h \geq \ceil{\log_{m}l}$.
+                The $=$ sign happens when the tree is full and balanced.
+    \hiiEND
+
+\hi{Applications of Tree}
+    \hii{Binary Search Trees (BST)}
+    \hiiBEGIN{Decision Tree}
+        \hiii{Theorem on Sorting Algorithm}
+            \par A sorting algorithm based on binary comparisons requires at least 
+            $\ceil{\log(n!)}$ comparisons.
+            \par \impt{Corollary}: The number of comparisons used by a sorting algorithm
+            to sort $n$ elements based on binary comparisons is $\Omega(n\log n)$
+    \hiiEND
+
+\hi{Traversal Algorithms}
+
+\hi{Spanning Trees}
+    \hii{Definition}
+        \par Let $G$ be a simple graph. A spanning tree of G is a subgraph of G that is a
+        tree containing \impt{every vertex} of G.
+    \hii{Theorem}
+        \par A simple graph is \impt{connected} if and only if it has a \impt{spanning
+        tree}.
+    \hii{Depth-First Search - DFS}
+    \hii{Breadth-First Search - BFS}
+    \hii{Backtracking}
+
+\hi{Minimum Spanning Tree}
+    \hii{Definition}
+        \par A minimum spanning tree in a \impt{connected weighted graph} is a
+        spanning tree that has the \impt{smallest possible sum of weights} of its edges.
+    \hii{Prim's MST Algorithm}
+    \hii{Kruskal's MST Algorithm}

@@ -1,0 +1,78 @@
+\chapter{Gauss's Law}
+\hi{Electric Flux}
+    \hii{Electric Flux for Uniform Electric Field}
+        \par \impt{Electric flux} is propotional to the number of electric field lines
+        of a uniform electric field penetrating some surface \textit{perpendicularly}.
+        \begin{equation}
+            \Phi_{E} = \vt{E} \cdot \vt{A} = EA\cos(90 \degree) = EA
+        \end{equation}
+        where:
+        \begin{itemize}
+            \item $\Phi_{E}$: electric flux $[N \cdot m^{2} / C]$
+            \item $E$: electric field $[N / C]$
+            \item $A$: the area of the surface $[m^{2}]$
+        \end{itemize}
+        \par If the surface is not perpendicular to the electric field, the flux through it
+        equals:
+        \begin{equation}
+            \Phi_{E} = \vt{E} \cdot \vt {A} = EA\cos(\vt{E}, \vt{A}) = EA\cos(\theta)
+        \end{equation}
+    \hii{Electric Flux for Nonuniform Electric Field}
+        \par In a general case where the electric field is not uniform, consider a general surface
+        divided up into a large number of small elements each of area $\Dt A$. The electric flux
+        through each element is:
+        \begin{align*}
+            \Dt \Phi_{E} = E_{i} \Dt A_{i} \cos(\theta_{i})
+        \end{align*}
+        \par If we let the number of elements approaches infinity, the sum of electric flux is the
+        integral:
+        \begin{equation}
+            \sum \Phi_{E} = \lim_{\Dt A_{i} \to 0} \sum E_{i} \cdot \Dt A_{i} = \INT{E \cdot dA}
+        \end{equation}
+    \hii{Electric Flux through a closed surface}
+        \par A \impt{closed surface} (or \impt{gaussian surface}) is defined as one that divides
+        space into an inside and outside region, so that one cannot move from one region to the
+        other without crossing the surface.
+        \par The \impt{net flux} through the surface is proportional to the net number of lines
+        \impt{leaving} the surface.
+        \begin{equation} \label{eq:eflux}
+            \Phi_{E} = \OINT{E \cdot dA} = \OINT{E_{n}dA}
+        \end{equation}
+        \par Sign:
+        \begin{itemize}
+            \item $\Phi_{E leave} > 0$
+            \item $\Phi_{E enter} < 0$
+        \end{itemize}
+
+\hi{Gauss's Law}
+    \hii{Mathematical Analysis}
+        \par \textit{Consider a positive point charge $q$ located at the center of a sphere of
+        radius $r$}.
+        \par The field lines are directed radially outward and hence are perpendicular to the
+        surface at every point on the surface. Thus, the magnitude of the electric field everywhere
+        on the surface of the sphere is:
+        \begin{align*}
+            E = \frac{k_{e}q}{r^{2}}
+        \end{align*}
+        \par Also, according to the equation \eqref{eq:eflux}:
+        \begin{equation} \label{eq:eflux}
+            \Phi_{E} = \OINT{E \cdot dA} = E \OINT{dA}
+        \end{equation}
+        \par Because $E$ is the same for every point, it can be moved out of the integral.
+        \par The surface is spherical:
+        \begin{equation}
+            \Phi_{E} = E \OINT{dA} = \frac{kq}{r^{2}} \cdot (4 \pi r^{2})
+            = 4 \pi kq = \frac{q}{\epsilon_{0}}
+        \end{equation}
+        \par The net flux through any closed surface surrounding a point charge $q$ is given by
+            $q / \epsilon_{0}$ and is \textit{independent of the shape of the surface.}
+        \par The electric field due to many charges is the vector sum of the electric fields produced
+        by the individual charges.
+        \begin{align*}
+            \OINT{E \cdot dA} = \OINT{\SUM{_{i = 1}^{n} E_{i}} \cdot dA}
+        \end{align*}
+    \hii{Gauss's Law}
+        \par \textit{The net flux through any closed surface is}
+        \begin{eqbox}
+            \Phi_{E} = \OINT{E \cdot dA} = \frac{q_{in}}{\epsilon_{0}}
+        \end{eqbox}

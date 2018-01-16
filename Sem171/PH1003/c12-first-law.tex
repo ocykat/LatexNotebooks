@@ -1,0 +1,176 @@
+\chapter{Heat and the First Law of Thermodynamics}
+
+\hi{Terminology}
+
+\hi{Heat and Internal Energy}
+    \hii{Internal Energy}
+        \impt{Internal Energy} is all the energy of a system that is associated with
+        its microscopic components - atoms and molecules - when viewed from a
+        reference frame at rest with respect to the center of mass of the system.
+
+    \hiiBEGIN{Heat}
+        \hiii{Definition}
+            \par \impt{Heat} is defined as the transfer of energy across the
+            \textit{boundary} of a system due to a temperature difference between
+            the system and its surroundings.
+        \hiii{Units}
+            \par $1 cal$ is defined as the amount of energy transfer necessary to raise 
+            the temperature of $1g$ of water from $14.5 \degree C$ to $15.5 \degree C$.
+            \begin{align*}
+                1 Cal = 1000 cal
+            \end{align*}
+            \par Heat is also measured in \impt{joules}.
+            \begin{align*}
+                1 cal = 4.186 J
+            \end{align*}
+        \hiii{The Mechanical Equivalent of Heat}
+            \par We have already found that whenever friction is present in a
+            mechanical system, some mechanical energy is lost. In other words,
+            mechanical energy is not conserved in the presence of nonconservative force.
+            \par The lost energy is transformed into internal energy.
+            \par Read the \textit{Joule's experiment}.
+    \hiiEND
+
+\hi{Specific Heat and Calorimetry}
+    \hii{Heat capacity}
+        \par The \impt{heat capacity} $C$ of a particular sample of a substance is
+        defined as the amount of energy needed to raise the temperature of that sample by
+        $1 \degree C$.
+        \begin{equation}
+            Q = C \Dt T
+        \end{equation}
+    \hii{Specific heat}
+        \par The \impt{specific heat} $c$ of a substance is the heat capacity per unit mass.
+        \begin{equation}
+            Q = mc \Dt T
+        \end{equation}
+    \hiiBEGIN{Calorimetry}
+        \hiii{Technique of Calorimetry}
+            \par One technique for measuring specific heat involves heating a sample to 
+            some known mass $m_{x}$ and temperature $T_{x}$, placing it in a vessel 
+            containing water of known mass $m_{w}$ and temperature $T_{w} < T_{x}$, and
+            measuring the temperature of the water after equilibrium has been reached.
+            \par This technique is called \impt{calorimetry}, and the devices in which
+            this energy tranfer occurs are called \impt{calorimeters}.
+        \hiii{Applying Conservation of Energy to Calorimetry}
+            \par Applying the theory of Conservation of Energy:
+            \begin{equation}
+                Q_{hot} + Q_{cold} = 0
+            \end{equation}
+            or
+            \begin{equation} \label{eq:calorimetry}
+                Q_{hot} = - Q_{cold}
+            \end{equation}
+            \par From the equation \eqref{eq:calorimetry}, we have:
+            \begin{align*}
+                m_{x}c_{x}(T_{x} - T_{f}) = m_{w}c_{w}(T_{f} - T_{w})
+            \end{align*}
+            in which $T_{f}$ is the final temperature of the equilibrium.
+    \hiiEND
+
+\hi{Latent Heat}
+    \par \impt{Latent heat} is thermal energy released or absorbed, by a body or a
+    thermodynamic system, during a constant-temperature process - usually a first-order
+    phase transition.
+    \par When the physical characteristics of a substance change from one form to
+    another, such change is commonly referred to as \impt{phase change}. Common phase
+    changes are:
+    \begin{itemize}
+        \item Solid to liquid and vice versa. 
+        \item Liquid to gas and vice versa. 
+        \item Change in the crystalline structure of a solid.
+    \end{itemize}
+    \par The energy required to change the phase of a given mass $m$ of a pure substance is:
+    \begin{equation}
+        Q = \pm mL
+    \end{equation}
+    in which: $L$ is the latent heat.
+    \par \impt{Latent heat of fusion} $L_{f}$ is the term used when the phase change is
+    from solid
+    to liquid.
+    \par \impt{Latent heat of vaporization} $L_{v}$ is the term used when the phase
+    change is from liquid to gas.
+
+\hi{Work and Heat in Thermodynamic Processes}
+    \hiiBEGIN{Work}
+        \hiii{Experiment}
+            \par Consider a gas container in a cylinder fitted with a movable piston. At
+            equilibrium, the gas occupies a volume $V$ and exerts a uniform pressure $P$
+            on the cylinder's walls and on the piston.
+            \par If the piston has a cross-sectional area $A$, the force exerted by the
+            gas on the piston is $F = PA$.
+            \par Assume that the piston is pushed inward and and the gas is compressed
+            \impt{quasi-statically} (slowly enough to allow the system to remain in
+            thermal equilibrium all the time). As the piston is pushed downward, the 
+            instantaneous work done is:
+            \begin{equation}
+                dW = \vt{F} \cdot dr = -F \hat{j} \cdot dy \hat{j} = -Fdy = -PAdy = -PdV
+            \end{equation}
+            \par Therefore:
+            \begin{eqbox}
+                W = - \INT{_{V_{i}}^{V_{f}} PdV}
+            \end{eqbox}
+            where $W$ is the \textbf{work done on the system}.
+        \hiii{Result}
+            \par \textit{The work done on a gas in a quasi-static process that takes the
+            gas from an initial state to a final state is the negative of the area under 
+            the curve on a $PV$ diagram, evaluated between the initial and final states.}
+            \par Therefore, $W$ \impt{depends on the particular path taken}.
+    \hiiEND
+    \hii{Heat}
+        \par Like work done, energy transfer by heat also \impt{depends on the particular
+        path taken}
+        \par Read page 617.
+
+\hi{The First Law of Thermodynamics}
+    \par The change in internal energy can be expressed as:
+    \begin{eqbox}
+        \Dt E_{int} = Q + W
+    \end{eqbox}
+    \par While $Q$ and $W$ are dependent of the path, $E_{int}$ is not dependent of the
+    path. It is a state variable.
+
+\hi{Some Applications of the First Law of Thermodynamics}
+    \hii{Adiabatic process}
+        \par An \impt{adiabatic process} is one during which \impt{no energy enters or
+        leaves the system by heat}.
+        \begin{equation}
+            \Dt E_{int} = W
+        \end{equation}
+        \par An adiabatic process can be achieved through:
+        \begin{itemize}
+            \item insulating the walls of the system
+            \item performing the process rapidly, so that there is negligible time for energy to tranfer by heat.
+        \end{itemize}
+    \hii{Isobaric process}
+        \par A process that \impt{occurs at a constant pressure} is called an
+        \impt{isobaric process}.
+        \begin{equation}
+            \Dt E_{int} = Q + W = Q - W_{sys} = Q - P \Dt V
+        \end{equation}
+    \hii{Isovolumetric process}
+        \par A process that takes place at a constant volume is called an
+        \impt{isovolumetric process}.
+        \par In such a process, the value of the work done is zero.
+        \begin{equation}
+            \Dt E_{int} = Q
+        \end{equation}
+    \hii{Isothermal process}
+        \par A process that occurs at a constant temperature is called an \impt{isothermal
+        process}.
+        \par Since the internal energy of an ideal gas is a function of temperature only, 
+        in a isothermal process:
+        \begin{equation}
+            \Dt E = Q + W = 0
+        \end{equation}
+        or
+        \begin{equation}
+            Q = -W
+        \end{equation}
+    \hii{Isothermal Expansion of an Ideal Gas}
+        \begin{flalign*}
+            W = - \INT{_{V_{i}}^{V_{f}} PdV}
+            = - \INT{_{V_{i}}^{V_{f}} \frac{nRT}{V} dV}
+            = - nRT \INT{_{V_{i}}^{V_{f}} \frac{dv}{V}}
+            = nRT\ln\Big(\frac{V_{i}}{V_{f}}\Big)
+        \end{flalign*}

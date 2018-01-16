@@ -1,0 +1,168 @@
+\chapter{Integrals}
+
+\hi{The Area Problem}
+    \par The \impt{area} $A$ of the region $S$ that lies under the graph of the continuous function
+    $f$ is the limit of the sum of the areas of approximating rectangles:
+    \begin{equation}
+        A = \lim_{n \to \infty} R_{n} = \lim_{n \to \infty} [f(x_{1}) \Dt x + f(x_{2}) \Dt x
+        + \ldots + f(x_{n}) \Dt x]
+    \end{equation}
+    \par Let us say we divide the region $S$ under the graph into infinitely small rectangles, 
+    each with the width of $\Dt x$. Because the rectangles are too small, we can omit the
+    difference between the length of the left and right sides of the rectangles. Therefore, we
+    can choose any point $x_{i}^{*}$ (called \impt{sample point}) in each subinterval corresponding
+    to a rectangle.
+    \begin{equation}
+        A = \lim_{n \to \infty} R_{n} = \lim_{n \to \infty} [f(x_{1}^{*}) \Dt x + f(x_{2}^{*}) \Dt x
+        + \ldots + f(x_{n}^{*}) \Dt x]
+    \end{equation}
+    \par The sum can be rewritten using the summation notation:
+    \begin{equation}
+        A = \lim_{n \to \infty} \SUM{_{i}^{n} f(x_{i}^{*}) \Dt x}
+    \end{equation}
+    \par The sum is also known as the \impt{Riemann sum}.
+
+\hi{Definite Integral}
+    \hii{Definition}
+        \par If $f$ is a function defined for $a \leq x \leq b$, we divide the interval $[a, b]$
+        into $n$ subintervals of equal width $\Dt x = (b - a)/n$. We let $x_{0} (= a), x_{1}, x_{2},
+        \ldots, x_{n} (= b)$ be the endpoints of these subintervals and we let $x_{1}^{*}, x_{2}^{*},
+        \ldots, x_{n}^{*}$ be any \impt{sample points} in these subintervals, so $x_{i}^{*}$ lies in
+        the $i^{th}$ subinterval $[x_{i - 1}, x_{i}]$. Then the definite integral of $f$ from
+        $a$ to $b$ is:
+        \begin{equation}
+            \INT{_{a}^{b} f(x) dx} = \lim_{n \to \infty} \SUM{_{i = 1}^{n} f(x_{i}^{*}) \Dt x}
+        \end{equation}
+        given that \impt{this limit exists} and gives the same value for all possible choice of
+        sample points. If it does exist, we say that $f$ is \impt{integrable} on $[a, b]$.
+    \hii{Terminology}
+        \begin{itemize}
+            \item The symbol $\int$ was introduced by Leibniz and is called an \impt{integral sign},
+                which is in fact an elongated $S$.
+            \item In the definite integral notation $\INT{_{a}^{b} f(x)}$, $f(x)$ is called the
+                \impt{integrand}, and
+            \item $a$ and $b$ are called the \impt{limits of integration}.
+            \item $a$ is called the \impt{lower limit}.
+            \item $b$ is called the \impt{upper limit}.
+            \item The procedure of calculating an integral is called \impt{integration}.
+        \end{itemize}
+    \hii{Variable of integration}
+        \par The definite integral $\INT{_{a}^{b} f(x)}$ does not depend on $x$. In fact, any letter
+        can be in place of $x$ without changing the value of the integral.
+        \begin{equation}
+            \INT{_{a}^{b} f(x) dx} = \INT{_{a}^{b} f(t) dt}
+        \end{equation}
+    \hii{Theorem on the existance of integrals}
+        \par If $f$ is continuous on $[a, b]$, or if $f$ has only a finite number of \impt{jump
+        discontinuities}, then $f$ is integrable on $[a, b]$; that is, the definite integral
+        $\INT{_{a}^{b} f(x)}$ exists.
+    \hii{Theorem on the integral from $a$ to $b$}
+        \par If $f$ is integrable on $[a, b]$, then
+        \begin{equation}
+            \INT{_{a}^{b} f(x)dx} = \lim_{n \to \infty} \SUM{_{i = 1}^{n} f(x_{i}) \Dt x}
+        \end{equation}
+        where $\Dt x = \dfrac{b - a}{n}$ and $x_{i} = a + i \Dt x$
+    \hii{Properties of Definite Integral}
+        \begin{align*}
+            \mitemize
+            & \mitem \INT{_{a}^{b} f(x)dx} = - \INT{_{b}^{a} f(x)dx} \\
+            & \mitem \INT{_{a}^{a} f(x)dx} = 0 \\
+            & \mitem \INT{_{a}^{b} [f(x) \pm g(x)]dx}
+                = \INT{_{a}^{b} f(x)dx} \pm \INT{_{a}^{b} g(x)dx} \\
+            & \mitem \INT{_{a}^{b} cf(x)dx}
+                = c\INT{_{a}^{b} f(x)dx} \mbox{ where $c$ is any constant} \\
+            & \mitem \INT{_{a}^{b} f(x)dx} = \INT{_{a}^{c} f(x)dx} + \INT{_{c}^{b} f(x)dx} \\
+        \end{align*}
+
+\hi{The Fundamental Theorem of Calculus}
+    \hii{The Fundamental Theorem of Calculus - Part 1}
+        \par If $f$ is continuous on $[a, b]$, then the function $g$ defined by
+        \begin{equation}
+            g(x) = \INT{_{a}^{x} f(t)dt} \qquad a \leq x \leq b
+        \end{equation}
+        is continuous on $[a, b]$ and differentiable on $(a, b)$, and $g'(x) = f(x)$.
+
+    \hii{The Fundamental Theorem of Calculus - Part 2}
+        \par If $f$ is continuous of $[a, b]$, then
+        \begin{equation}
+            \INT{_{a}^{b} f(x)dx} = F(b) - F(a)
+        \end{equation}
+        where $F$ is any antiderivative of $f$, that is, a function such that $F' = f$.
+
+\hi{Indefinite Integrals and the Net Change Theorem}
+    \hii{Indefinite Integrals}
+        \begin{equation}
+            \INT{f(x)dx} = F(x) \mbox{ means } F'(x) = f(x)
+        \end{equation}
+        \par Difference between definite and indefinite integrals:
+        \begin{itemize}
+            \item A \impt{definite integral} is a \impt{number}.
+            \item An \impt{indefinite integral} is a \impt{function} (or family of functions).
+        \end{itemize}
+    \hii{Formulas of Indefinite Integrals}
+        \begin{align}
+            \mitemize
+            & \mitem \INT{0 dx} = C \\
+            & \mitem \INT{xdx} = x + C \\
+            & \mitem \INT{x^{\alpha}dx} = \frac{x^{\alpha + 1}}{\alpha + 1} + C \\
+            & \mitem \INT{\frac{dx}{x}} = ln(|x|) + C \\
+            & \mitem \INT{a^{x}dx} = \frac{a^{x}}{ln(a)} + C \qquad (a > 0, a \neq 1) \\
+            & \mitem \INT{e^{x}dx} = e^{x} + C \\
+            & \mitem \INT{\sin(x)dx} = - \cos(x) + C \\
+            & \mitem \INT{\cos(x)dx} = \tan(x) + C \\
+            & \mitem \INT{\frac{dx}{\cos^{2}x}} = \tan(x) + C \\
+            & \mitem \INT{\frac{dx}{\sin^{2}x}} = - \cot(x) + C \\
+            & \mitem \INT{\frac{dx}{\sqrt{1 - x^{2}}}} = \arcsin(x) \\
+            & \mitem \INT{\frac{dx}{1 + x^{2}}} = \arctan(x) + C \\
+            & \mitem \INT{\sinh(x)dx} = \cosh(x) + C \\
+            & \mitem \INT{\cosh(x)dx} = \sinh(x) + C \\
+            & \mitem \INT{\frac{dx}{cosh^{2}x}} = \tanh(x) + C \\
+            & \mitem \INT{\frac{dx}{sinh^{2}x}} = - \coth(x) + C \\
+            & \mitem \INT{\frac{dx}{x^{2} - a^{2}}}
+                = \frac{1}{2a} ln\big|\frac{x - a}{x + a}\big| + C \\
+            & \mitem \INT{\frac{dx}{x^{2} + a^{2}}} = ln|x + \sqrt{x^{2} + a}| + C
+        \end{align}
+    \hii{The Substitution Rule for Indefinite Integrals}
+        \par If $u = g(x)$ is a differentiable function whose range is an interval $I$ and $f$ is
+        continuous on $I$, then:
+        \begin{equation}
+            \INT{f(g(x)) \cdot g'(x)dx} = \INT{f(u)du}
+        \end{equation}
+    \hii{The Substitution Rule for Definite Integrals}
+        \par If $g'$ is continuous on $[a, b]$ and $f$ is continuous on the range of $u = g(x)$,
+        then
+        \begin{equation}
+            \INT{_{a}^{b} f(g(x)) \cdot g'(x)dx} = \INT{_{g(a)}^{g(b)} f(u) du}
+        \end{equation}
+    \hii{Symmetry}
+        \par Suppose $f$ is continuous on $[-a, a]$.
+        \begin{itemize}
+            \item If $f$ is even $[f(-x) = f(x)]$, then
+                $\INT{_{-a}^{a} f(x)dx} = 2 \INT{_{0}^{a} f(x)dx}$
+            \item If $f$ is even $[f(-x) = -f(x)]$, then
+                $\INT{_{-a}^{a} f(x)dx} = 0$
+        \end{itemize}
+
+\begin{align*}
+    &I = \INT{\sqrt{a^{2} - x^{2}}} \\
+    &\mbox{Let } x = a\sin(t) \leftarrow t = arcsin(\dfrac{x}{a}) \qquad (t \in \big[\dfrac{-\pi}{2}, \dfrac{\pi}{2}\big]) \\
+\end{align*}
+\begin{align*}
+    &I &= \INT{\sqrt{a^{2}(1 - \sin^{2}(t)}} \\
+    &&= \INT{a|\cos(t)|} \\
+\end{align*}
+
+\begin{align*}
+    &I = \INT{\dfrac{dx}{\sqrt{ax^{2} + bx + c}}}
+\end{align*}
+\begin{itemize}
+    \item $a > 0$
+        \begin{align*}
+            &I = \INT{\dfrac{du}{\sqrt{u^2 + a^{2}}}}
+        \end{align*}
+    \item $a < 0$
+        \begin{align*}
+            &I = \INT{\dfrac{du}{\sqrt{a^2 - u^{2}}}}
+        \end{align*}
+
+\end{itemize}

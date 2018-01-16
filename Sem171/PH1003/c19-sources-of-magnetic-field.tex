@@ -1,0 +1,61 @@
+\chapter{Sources of magnetic field}
+
+\hi{The Biot-Savart Law}
+    \par While performing an experiment on the force exerted by an electric current on a nearby
+    magnet, Biot and Savart came up with the Biot-Savart Law:
+    \par \textit{The magnetic field $dB$ at a point $P$ associated with a length $ds$ of a wire
+    carrying a steady current $I$}:
+    \begin{equation}
+        dB = \frac{\mu_{0}}{4\pi} \frac{Id\textbf{s}\hat{r}}{r^{2}}
+    \end{equation}
+    where
+    \begin{itemize}
+        \item $B$: magnetic field \quad $[T]$
+        \item $\mu_{0}$: permeability of free space \quad $(4 \pi \cdot 10^{-7} Tm/A)$
+        \item $I$: the electric current \quad $[A]$
+        \item $s$: the length of the conductor \quad $[m]$
+        \item $r$: the distance from $ds$ to $P$ \quad $[m]$
+    \end{itemize}
+    \par By integration, we obtain:
+    \begin{equation}
+        B = \frac{\mu_{0}I}{4\pi} \INT{\frac{d\textbf{s}\hat{r}}{r^{2}}}
+    \end{equation}
+    \par \textbf{Example:} Consider a thin straight wire carrying a constant current $I$ and placed
+    along the $x$ axis. Determine the magnitude and direction of the magnetic field at point P due to
+    this current.
+    \begin{flalign*}
+        & \bullet d\textbf{s} \hat{r} = dx \sin(\vt{s}, \vt{r}) \hat{B} \mendl
+        & \mbox{We also have:} \mendl
+        & d\textbf{B} = \frac{\mu_{0}I}{4\pi} \frac{Id\textbf{s}\hat{r}}{r^{2}}\mendl
+        & \ra d\textbf{B} = dB\hat{B}
+            = \frac{\mu_{0}I}{4\pi} \frac{dx \sin(\vt{s}, \vt{r}) \hat{B}}{r^{2}} \mendl
+        & \ra dB = \frac{\mu_{0}I}{4\pi} \frac{dx \sin(\vt{s}, \vt{r})}{r^{2}} \mendl
+        &  = \frac{\mu_{0}I}{4\pi} \frac{dx \sin(\theta)}{r^{2}} \mendl
+    \end{flalign*}
+    \begin{flalign*}
+        & \bullet \mbox{Let a = d(P, Ox)}\mendl
+        & x = -a \cot(\theta) \mendl
+        & \ra dx = \frac{a}{\sin^{2}(\theta)} d\theta \mendl
+        & r = \frac{a}{\sin(\theta)}\mendl
+        & \ra dB = \frac{\mu_{0} I}{4\pi}
+            \frac{
+                \frac{a}{sin^{2}(\theta)}
+            }
+            {
+                \frac{a^{2}}{sin^{2}(\theta)}
+            }
+            \sin(\theta) d\theta \mendl
+        & \ra dB = \frac{\mu_{0} I}{4\pi} \sin(\theta) d\theta \mendl
+        & \ra B = \frac{\mu_{0} I}{4\pi a} \INT{_{\theta_{1}}^{\theta_{2}}\sin(\theta) d\theta} \mendl
+        & \ra B = \frac{\mu_{0} I}{4\pi a} (\cos\theta_{1} - \cos\theta_{2}) \mendl
+    \end{flalign*}
+    \begin{flalign*}
+        & \bullet \mbox{ If the wire is infinitely long }\mendl
+        & \ra B = \frac{\mu_{0} I}{4\pi a} (\cos(0) - \cos(\pi)) \mendl
+        & \ra B = \frac{\mu_{0} I}{2\pi a} \mendl
+    \end{flalign*}
+
+\hi{Ampere's Law}
+    \begin{eqbox}
+        B \Dt l = \mu_{0}I
+    \end{eqbox}

@@ -1,0 +1,223 @@
+\chapter{Heat Engines, Entropy, and the Second Law of Thermodynamics}
+
+\hi{Heat Engines and the Second Law of Thermodynamics}
+    \hii{Heat Engines}
+        \par A \impt{heat engine} is a device that item takes in energy by heat and, operating in a cyclic process, expels a fraction of that energy by means of work.
+        \par \impt{The cyclic process}:
+        \begin{enumerate}
+            \item The working substance absorbs energy by heat from a high-temperature
+            energy reservoir
+            \item Work is done by the engine
+            \item Energy is expelled by heat to a lower-temperature reservoir.
+        \end{enumerate}
+    \hii{Work done by an engine}
+        \begin{eqbox}
+            W_{eng} = |Q_{h}| - Q_{c}
+        \end{eqbox}
+        \begin{itemize}
+            \item $W_{eng}$: work done by the engine
+            \item $Q_{h}$: heat absorbed from the hot reservoir
+            \item $Q_{c}$: heat given up to the cold reservoir
+        \end{itemize}
+    \hii{Thermal Efficiency}
+        \begin{eqbox}
+            e = \frac{W_{eng}}{|Q_{h}|}
+            = \frac{|Q_{h}| - |Q_{c}|}{|Q_{h}|}
+            = 1 - \frac{|Q_{c}|}{|Q_{h}|}
+        \end{eqbox}
+    \hii{Kelvin-Planck form of the Second Law of Thermodynamics}
+        \par It is impossible to construct a heat engine that, operating in a cycle,
+        produces no effect other than the input of energy by heat from a reservoir and the
+        performance of an equal amount of work.
+        \par In order words:
+        \begin{eqbox}
+            W_{eng} < |Q_{h}| \mbox{ for all engines}
+        \end{eqbox}
+
+\hi{Heat Pumps and Refrigerators}
+    \hii{Heat Pumps and Refrigerators Definition}
+        \par The device that transfer energy from a cold reservoir to a hot reservoir is a
+        \impt{heat pump} or \impt{refrigerator}.
+        \par In a refrigerator, the engine takes in energy $|Q_{c}|$ from a cold reservoir
+        and expels energy $|Q_{h}|$ to a hot reservoir. This can be accomplished only if
+        \textit{work is done \textbf{on} the engine}.
+    \hii{Clausius form of the Second Law of Thermodynamics}
+        \par It is impossible to construct a cyclical machine whose sole effect is to
+        transfer energy continuously by heat from one object to another object at a higher
+        temperature without the input of energy by work.
+        \par In simpler terms, \textit{energy does not transfer spontaneously by heat
+        from a cold object to a hot object}.
+    \hii{Coefficient of performance}
+        \begin{eqbox}
+            \mbox{COP (heating mode) } = \frac{|Q_{h}|}{W_{ref}}
+        \end{eqbox}
+        \begin{eqbox}
+            \mbox{COP (cooling mode) } = \frac{|Q_{c}|}{W_{ref}}
+        \end{eqbox}
+
+\hi{Reversible and Irreversible Processes}
+    \hii{Reversible and Irreversible Processes}
+        \par In a \impt{reversible} process, the system undergoing the process can be
+        returned to its initial conditions along the same path on a $PV$ diagram, and every
+        point along this path is an equilibrium state.
+        \par A process that does not sastisfy these requirements is \impt{irreversible}.
+        \par All natural processes are known to be \textit{irreversible}.
+
+\hi{The Carnot Engine}
+    \hii{The Carnot Cycle}
+        \par Assume that the working substance is an ideal gas contained in a cylinder
+        fitted with a movable piston at one end. The cylinder's walls and the piston
+        are thermally nonconducting.
+        \par There are 4 stages in an Carnot cycle:
+        \begin{enumerate}
+            \item Process $A \to B$: \impt{isothermal expansion} at $T_{h}$.
+                \par The gas is placed in thermal contact with an energy reservoir at
+                temperature $T_{h}$.
+                \par During the expansion, the gas:
+                \begin{itemize}
+                    \item absorbs energy $|Q_{h}|$ from the reservoir through the base
+                    \item does work $W_{AB}$ in raising the piston.
+                \end{itemize}
+            \item Process $B \to C$: \impt{adiabatic expansion}
+                \par The base of the cylinder is replaced by a thermally nonconducting wall,
+                and the gas expands \impt{adiabatically} - no energy enters or leaves the
+                system by heat. During the expansion, the temperature of the gas
+                \impt{decreases} from $T_{h}$ to $T_{c}$ and the gas the work $W_{BC}$
+                in raising the piston.
+            \item Process $C \to D$: \impt{isothermal compression} at $T_{c}$
+                \par The gas is placed in thermal contact with an energy reservoir at
+                temperature $T_{c}$ and is compressed isothermally at temperature
+                $T_{c}$.
+                \par During the compression, the gas:
+                \begin{itemize}
+                    \item expels energy $|Q_{c}|$ to the reservoir
+                    \item does work $W_{CD}$ on the piston
+                \end{itemize}
+            \item Process $D \to A$: \impt{adiabatic compression}
+                \par The base of the cylinder is replaced by a nonconducting wall.
+                \par During this process:
+                \begin{itemize}
+                    \item The temperature of the gas increases to $T_{h}$
+                    \item The work done by the gas on the piston is $W_{CD}$.
+                $W_{DA}$.
+                \end{itemize}
+        \end{enumerate}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=5cm]{img/Carnot-cycle.jpg}    
+            \caption{Carnot cycle}
+        \end{figure}
+    \hii{Carnot's theorem}
+        \par No real heat engine operating between two energy reservoirs can be more
+        efficient than a Carnot engine operating between the same two reservoirs.
+    \hii{Efficiency of Carnot engine}
+        \begin{eqbox}
+            e_{C} = 1 - \frac{T_{c}}{T_{h}}
+        \end{eqbox}
+        \par \textbf{Proof}:
+        \begin{flalign*}
+            %
+            &\bullet A \to B \mbox{ is an isothermal process} \mendl
+            &\ra \Dt E_{int} = 0 \mendl
+            &\ra |Q_{h}| = |-W_{AB}|
+                = - \INT{_{V_{i}}^{V_{f}} PdV}
+                = nRT_{h}\ln \Big(
+                    \frac{V_{B}}{V_{A}}
+                \Big) \quad (V_{B} > V_{A}) \quad (1) \mendl
+            %
+            &\bullet C \to D \mbox{ is an isothermal process} \mendl
+            &\ra \Dt E_{int} = 0 \mendl
+            &\ra |Q_{h}| = |-W_{CD}|
+                = - \INT{_{V_{i}}^{V_{f}} PdV}
+                = nRT_{c} \ln \Big(
+                    \frac{V_{C}}{V_{D}}
+                \Big) \quad (V_{C} > V_{D}) \quad (2) \mendl
+            &\bullet \mbox{Divide (2) by (1)} \mendl
+            &\ra \frac{|Q_{c}|}{|Q_{h}|}
+                = \frac{T_{c}}{T_{h}} \cdot \frac{\ln(V_{C}/V_{D})}{\ln(V_{B}/V_{A})}
+                \quad (3) \mendl
+            %
+        \end{flalign*}
+        \begin{flalign*}
+            &\bullet \mbox{ In an adiabatic process} \mendl
+            &\Dt E_{int} = W \mendl
+            &\ra \Dt E_{int} - W = 0 \mendl
+            &\ra \frac{3}{2}nR \Dt T - P \Dt V = 0 \mendl
+            &\ra \frac{3}{2}nRdT - nRTdV = 0 \mendl
+            &\mbox{Divide both side for } nRT: \mendl
+            &\ra \frac{3}{2}\frac{dT}{T} - \frac{dV}{V} = 0 \mendl
+            &\ra \frac{3}{2}\INT{_{T_{i}}^{T_{f}} \frac{dT}{T}}
+                - \INT{_{V_{i}}^{V_{f}} \frac{dV}{V}} = 0 \mendl
+            &\ra \frac{3}{2} \ln\Big(\frac{T_{f}}{T_{i}}\Big)
+                - \ln\Big(\frac{V_{f}}{V_{i}}\Big) = 0 \mendl
+            &\ra \ln\Big(\frac{T_{f}^\frac{3}{2}}{T_{i}^\frac{3}{2}}\Big)
+                - \ln\Big(\frac{V_{f}}{V_{i}}\Big) = 0 \mendl
+            &\ra \ln\Big(
+                    \frac{T_{f}^\frac{3}{2}}{T_{i}^\frac{3}{2}}
+                    \cdot \frac{V_{i}}{V_{f}}
+                    \Big) = 0 \mendl
+            &\ra \frac{T_{f}^\frac{3}{2}}{T_{i}^\frac{3}{2}}
+                \cdot \frac{V_{i}}{V_{f}} = 1 \quad \mendl
+        \end{flalign*}
+        \begin{flalign*}
+            &\bullet B \to C \mbox{ is an adiabatic process } \mendl
+            &\ra \frac{T_{C}^\frac{3}{2}}{T_{B}^\frac{3}{2}}
+                \cdot \frac{V_{B}}{V_{C}} = 
+                \frac{T_{c}^\frac{3}{2}}{T_{h}^\frac{3}{2}}
+                \cdot \frac{V_{B}}{V_{C}} = 1 \quad (4) \mendl
+            &\bullet D \to A \mbox{ is an adiabatic process } \mendl
+            &\ra \frac{T_{A}^\frac{3}{2}}{T_{D}^\frac{3}{2}}
+                \cdot \frac{V_{D}}{V_{A}} = 
+                \frac{T_{h}^\frac{3}{2}}{T_{c}^\frac{3}{2}}
+                \cdot \frac{V_{D}}{V_{A}} = 1 \quad (5) \mendl
+            %
+            &\bullet \mbox{ Multiply (4) and (5) } \mendl
+            &\ra \frac{V_{B}}{V_{C}} \cdot \frac{V_{D}}{V_{A}} = 1 \mendl
+            &\ra \frac{V_{B}}{V_{C}} = \frac{V_{A}}{V_{D}} \mendl
+            &\ra \frac{V_{B}}{V_{A}} = \frac{V_{C}}{V_{D}} (6) \mendl
+        \end{flalign*}
+
+\hi{Entropy}
+    \hii{Statement on Entropy of the Second Law of Thermodynamics}
+        \par The entropy of the Universe increases in all real processes.
+    \hii{Formula}
+        \par Consider any infinitesimal process in which a system changes from
+        one equilibrium state to another. If $dQ_{r}$ is the amount of energy
+        transferred by heat when the system follows a reversible path between
+        the states, then the change in entropy $dS$ is equal to this amount of
+        energy for the reversible process divided by the absolute temperature
+        of the system.
+        \begin{eqbox}
+            dS = \frac{dQ_{r}}{T}
+        \end{eqbox}
+    \hii{Entropy as a State Variable}
+        \par The change in entropy during a process depends only on the end
+        points and therefore is independent of the actual path followed.
+        Consequently, the entropy change for an irreversible process can be
+        determined by calculating the entropy change for a reversible process
+        that connects the same initial and final states.
+    \hii{Entropy in the Carnot cycle}
+        \par In a Carnot cycle, there are two processes where the engine exchanges
+            energy with the reservoirs:
+        \begin{itemize}
+            \item Process $A \to B$ where the engine absorbs heat from the
+                hot reservoir
+            \item Process $C \to D$ where the engine expels heat to the
+                cold reservoir
+        \end{itemize}
+        \begin{flalign*}
+            & \Dt S = \Dt S_{AB} + \Dt S_{CD} \mendl
+            & \ra \Dt S = \INT{\frac{dQ_{h}}{T_{h}}} + \INT{\frac{dQ_{c}}{T_{c}}} \mendl
+        \end{flalign*}
+        \par As we have mentioned earlier about the efficiency of a Carnot engine:
+        \begin{flalign*}
+            & \frac{Q_{h}}{Q_{c}} = \frac{T_{h}}{T_{c}} \mendl
+        \end{flalign*}
+        \par Therefore:
+        \begin{flalign*}
+            & \Dt S = 0 \mendl
+        \end{flalign*}
+        \par In general:
+        \begin{flalign*}
+            & \OINT{\frac{dQ_{r}}{T}} = 0 \mendl
+        \end{flalign*}

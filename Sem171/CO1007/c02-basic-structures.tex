@@ -1,0 +1,304 @@
+\chapter{BASIC STRUCTURES: SETS, FUNCTIONS, SEQUENCES, SUMS, AND MATRICES}
+
+\hi{Sets}
+
+    \hiiBEGIN{Sets}
+
+        \hiii{Definition}
+            \par A \impt{set} is an unordered collection of objects, called \textit{elements} or
+            \textit{members} of the set. A set is said to \textit{contain} its elements. We write
+            $a \in A$ to denote that $a$ is an element of the set $A$. The notation $a \not \in A$
+            denotes that $a$ is not an element of the set A.
+
+        \hiii{Equal sets}
+            \par Two sets are \impt{equal} if and only if they have the same elements.
+            \par If $A$ and $B$ are sets:
+            \begin{equation}
+                A = B \liff \forall x (x \in A \liff x \in B)
+            \end{equation}
+
+        \hiii{Special sets}
+            \par The \impt{empty set} or the null set is a set that has no element. It is denoted
+            by $\emptyset$ or $\{\}$.
+            \par The \impt{singleton set} is the set that has only one element.
+
+        \hiii{Venn Diagrams}
+            \par Sets can be represented graphically using Venn diagrams.
+            \par In Venn diagrams, the \impt{universal set} $U$, which contains all the objects under
+            consideration, is represented by a rectangle. Inside this rectangle:
+            \begin{itemize}
+                \item Circles or other geometrical figures are used to represent sets. 
+                \item Points are used to represent the particular elements of the set.
+            \end{itemize}
+            
+        \hiii{Subsets}
+            \par The set $A$ is a \impt{subset} of $B$ if and only if every element of $A$ is also
+            an element of $B$.
+            \par Notation: $A \subseteq B$
+            \par If $A$ and $B$ are sets:
+            \begin{equation}
+                A \subseteq B \liff \forall x (x \in A \limpl x \in B)
+            \end{equation}
+            \par To show $A \subseteq B$: show that if $x \in A$ and $x \in B$.
+            \par To show that $A \not \subseteq B$: find a single $x \in A$ such that $x \not \in B$.
+
+        \hiii{The Size of a Set}
+            \par Let $S$ be a set. If there are exactly $n$ \impt{distinct} elements in $S$ where
+            $n$ is a nonnegative integer, we say that $S$ is a \impt{finite set} and that $n$ is
+            the \impt{cardinality} of $S$.
+            \par Notation: $|S|$
+
+        \hiii{Power Sets}
+            \par Given a set $S$. The \impt{power set} of $S$ is the set of all subsets of the
+            set $S$. The power set of $S$ is denoted by $P(S)$
+
+        \hiii{Cartesian Products}
+            \par The \impt{ordered n-tuple} $(a_{1}, a_{2}, \ldots, a_{n})$ is the ordered collection
+            that has $a_{1}$ as its first element, $a_{2}$ as its second elements, \ldots, $a_{n}$
+            as its $n^{th}$ element.
+            \par Let $A$ and $B$ are sets. The \impt{Cartesian product} of $A$ and $B$, denoted by
+            $A \times B$, is the set of all ordered pairs $(a, b)$, where $a \in A$ and $b \in B$.
+            \begin{equation}
+                A \times B = \{(a, b) | a \in A \land b \in B\}
+            \end{equation}
+            \par The \impt{Cartesian product} of the sets $A_{1}, A_{2}, \ldots, A_{n}$, denoted by
+            $A_{1} \times A_{2} \times \ldots \times A_{n}$, is the set of ordered $n$-tuples
+            $(a_{1}, a_{2}, \ldots, a_{n}$ where $a_{i}$ belongs to $A_{i}$ for $i = 1, 2, \ldots, n$.
+            \begin{equation}
+                A_{1} \times A_{2} \times \ldots \times A_{n}
+                = \{(a_{1}, a_{2}, \ldots, a_{n}) | a_{i} \in A_{i} \mbox{ for } i = 1, 2, \ldots, n\}
+            \end{equation}
+
+    \hiiEND
+
+    \hiiBEGIN{Set Operators}
+        \hiii{Union}
+            \par Let $A$ and $B$ be sets. The \impt{union} of the sets $A$ and $B$, denoted by
+            $A \cup B$, is the set that contains those elements that are either in $A$ or in $B$,
+            or in both.
+            \begin{equation}
+                A \cup B = \{x | x \in A \lor x \in B\}
+            \end{equation}
+
+        \hiii{Intersection}
+            \par Let $A$ and $B$ be sets. The \impt{intersection} of the sets $A$ and $B$, denoted
+            by $A \cap B$, is the set containing those element in both $A$ and $B$.
+            \begin{equation}
+                A \cap B = \{x | x \in A \land x \in B\}
+            \end{equation}
+            \par Two sets are called \impt{disjoint} if their intersection is the empty set.
+
+        \hiii{Difference}
+            \par Let $A$ and $B$ be sets. The \impt{difference} of $A$ and $B$, denoted by $A - B$,
+            is the set containing those elements that are in $A$ but not in $B$. The difference of
+            $A$ and $B$ is called the \impt{complement of $B$ with respect to $A$}.
+
+        \hiii{Complement}
+            \par Let $U$ be the universal set. The \impt{complement} of the set $A$, denoted by
+            $\overline{A}$, is the complement of $A$ with respect to $U$. Therefore, the
+            complement of the set $A$ is $U - A$.
+            \begin{equation}
+                \overline{A} = \{x \in U | x \not \in A\}
+            \end{equation}
+
+        \hiii{Set Identities}
+            \tableBEGIN{|c|c|}
+                \hline
+                $A \cap U = A$ & \mRow{2}{*}{Identity laws} \\
+                $A \cup \emptyset = A$ & \\ 
+                \hline
+                $A \cup U = U$ & \mRow{2}{*}{Domination laws} \\
+                $A \cap \emptyset = \emptyset$ & \\
+                \hline
+                $A \cup A = A$ & \mRow{2}{*}{Idempotent laws} \\
+                $A \cap A = A$ & \\
+                \hline
+                $\overline{\overline{A}} = A$ & Complementation law \\
+                \hline
+                $A \cup B = B \cup A$ & \mRow{2}{*}{Commutative laws} \\
+                $A \cap B = B \cap A$ & \\
+                \hline
+                $(A \cup B) \cup C = A \cup (B \cup C)$ & \mRow{2}{*}{Associative laws} \\
+                $(A \cap B) \cap C = A \cap (B \cap C)$ & \\
+                \hline
+                $A \cup (B \cap C) = (A \cap B) \cup (A \cap C)$ & \mRow{2}{*}{Distributed laws} \\
+                $A \cup (B \cap C) = (A \cap B) \cup (A \cap C)$ & \\
+                \hline
+                $\overline{A \cup B} = \overline{A} \cap \overline{B}$
+                & \mRow{2}{*}{De Morgan's laws} \\
+                $\overline{A \cap B} = \overline{A} \cup \overline{B}$ & \\
+                \hline
+                $A \cup (A \cap B) = A$ & \mRow{2}{*}{Absorption laws} \\
+                $A \cap (A \cup B) = A$ & \\
+                \hline
+                $A \cup \overline{A} = U$ & \mRow{2}{*}{Complement laws} \\
+                $A \cap \overline{A} = \emptyset$ & \\
+                \hline
+            \tableEND
+    \hiiEND
+
+\hi{Functions}
+    
+    \hii{Definition}
+        \par Let $A$ and $B$ be nonempty sets. A \impt{function} $f$ from $A$ to $B$ is an
+        assignment of exactly one element of $B$ to each element of $A$. We write $f(a) = b$
+        if $B$ is the unique element of $B$ assigned by the function $f$ to the element $a$ of A.
+        \par Notation: $f: A \limpl B$
+        \par Functions are sometimes also called \impt{mappings} or \impt{transformations}.
+
+    \hii{Domain and Codomain}
+        \begin{itemize}
+            \item If $f$ is a function from $A$ to $B$, we say that $A$ is the \impt{domain}
+                of $f$ and $B$ is the \impt{codomain} of $f$.
+            \item If $f(a) = b$, we say that $b$ is the \impt{image} of $a$ and $a$ is a
+            \impt{preimage} of $b$.
+            \item The \impt{range}, or \impt{image} of $f$ is the set all all images of
+                elements of $A$.
+            \item We can also say that $f$ \impt{maps} $A$ to $B$.
+        \end{itemize}
+
+    \hii{One-to-One Functions}
+        \par A function $f$ is said to be \impt{one-to-one}, or an \impt{injunction}, if and
+        only if:
+        \begin{equation}
+            \forall a, b \in D, f(a) = f(b) \limpl a = b
+        \end{equation}
+
+    \hii{Increasing and Decreasing Functions}
+
+    \hii{Onto Functions}
+        \par A function $f$ from $A$ to $B$ is called \impt{onto}, or a \impt{surjection}, if
+        and only if for every element $b \in B$ there is an element $a \in A$ with $f(a) = b$.
+        \begin{equation}
+            \forall b \in B, \exists a \in A: f(a) = b
+        \end{equation}
+        \par A function $f$ is called \impt{surjective} if it is onto.
+
+    \hii{One-to-One Correspondence - Bijection}
+        \par The function $f$ is a \impt{one-to-one correspondence}, or a \impt{bijection}, if
+        it is both one-to-one and onto.
+        \begin{equation}
+            \forall b \in B, \exists! a \in A: f(a) = b
+        \end{equation}
+        \par We say that such a function is \impt{bijective}.
+
+    \hii{Inverse Functions}
+        \par Let $f$ be a one-to-one correspondence from the set $A$ to the set $B$. The
+        \impt{inverse function} of $f$ is the function that assigns to an element $b$ belonging
+        to $B$ the unique element in A such that f(a) = b.
+        \par Notation: $f^{-1}$
+        \begin{equation}
+            f(a) = b \limpl f^{-1}(b) = a
+        \end{equation}
+        \par How to read: $f$ inverse of $b$ equals $a$.
+
+    \hii{Compositions of Functions}
+        \par Let $g$ be a function from the set $A$ to the set $B$ and let $f$ be a function from
+        the set $B$ to the set $C$. The \impt{composition} of the functions $f$ and $g$, denoted
+        for all $a \in A$ by $f \circ g$, is defined by:
+        \begin{equation}
+            (f \circ g)(a) = f(g(a))
+        \end{equation}
+        \par How to read: $f$ circle $g$ of $a$; $f$ round $g$ of $a$, $f$ of $g$ of $a$, \ldots
+
+    \hii{The Graphs of Functions}
+        \par Let $f$ be a function from the set $A$ to the set $B$. The \impt{graph} of the function
+        $f$ is the set of ordered pairs $\{(a, b) | a \in A \mbox{ and } f(a) = b\}$.
+
+    \hii{The Floor Function and the Ceiling Function}
+        \par The \impt{floor function} assigns to the real number $x$ the largest integer that
+        is less than or equal to $x$. The value of the floor function at $x$ is denoted by
+        $\lfloor x \rfloor$.
+        \par The \impt{ceiling function} assigns to the real number $x$ the smallest integer that
+        is greater than or equal to $x$. The value of the ceiling function at $x$ is denoted by
+        $\lceil x \rceil$.
+    
+    \hii{Partial Functions}
+        \par A \impt{partial function} $f$ from a set $A$ to a set $B$ is an assignment to each
+        element $a$ in \impt{a subset} of $A$, called the \impt{domain of definition} of $f$,
+        of a unique element $b$ in $B$. The sets $A$ and $B$ are called the \impt{domain} and
+        \impt{codomain} of $f$, respectively. We say that $f$ is \impt{undefined} for elements
+        in $A$ that are not in the domain of definition of $f$. When the domain of definition of
+        $f$ equals A, we say that $f$ is a \impt{total function}.
+        \par In more simple words: A \impt{partial function} $f$ is a function which takes only
+        a subset of the set $A$ as the domain. That subset is called \impt{domain of definition}.
+        For the rest of $A$, $f$ is undefined.
+
+\hi{Sequences}
+    \hii{Sequences}
+        \par A \impt{sequence} is a function from a subset of the set of integers to a set $S$.
+        (The subset is usually either \{0, 1, 2, \ldots\} or \{1, 2, 3, \ldots\}).
+        \par Notation: $a_{n}$ is the image of the integer $n$.
+        \par We call $a_{n}$ a \impt{term} of a sequence.
+
+    \hii{Arithmetic Progression}
+        \par An \impt{arithmetic progression} is a sequence of the form:
+        \begin{eqbox}
+            a, a + d, a + 2d, \ldots, a + nd, \ldots
+        \end{eqbox}
+        \begin{itemize}
+            \item $a$ is called the \impt{initial term}.
+            \item $d$ is called the \impt{common difference}.
+            \item $a$ and $d$ are both real numbers.
+        \end{itemize}
+
+    \hii{Geometric Progression}
+        \par A \impt{geometric progression} is a sequence of the form:
+        \begin{equation}
+            a, ar, ar^{2}, \ldots, ar^{n}, \ldots
+        \end{equation}
+        \begin{itemize}
+            \item $a$ is called the \impt{initial term}.
+            \item $d$ is called the \impt{common ratio}.
+            \item $a$ and $r$ are both real numbers.
+        \end{itemize}
+
+    \hii{Recurrence Relations}
+        \par A \impt{recurrence relation} for the sequence $\{a_{n}\}$ is an equation that
+        expresses $a^{n}$ in terms of one or more of the previous terms of the sequence.
+        \par A sequence is called a \textit{solution of a recurrence relation} if its terms
+        satisfy the recurrence relation.
+
+    \hii{The Fibonnacci sequence}
+        \par The Fibonnacci sequence is defined by the initial conditions:
+        \begin{equation}
+            \begin{cases}
+                f_{0} = 0 \\
+                f_{1} = 1 \\
+            \end{cases}
+        \end{equation}
+        and the recurrence relation:
+        \begin{equation}
+            f_{n} = f_{n - 1} + f_{n - 2}
+        \end{equation}
+        for $n = 2, 3, 4, \ldots$
+
+    \hiiBEGIN{Summations}
+        \hiii{Arithmetic Sequence}
+            \par Sum of the first $n$ terms:
+            \begin{eqbox}
+                \SUM{_{k = 0}^{n - 1} (a + kd)} = \frac{2a + (n - 1)d}{2} = \frac{n(a + a_{n})}{2}
+            \end{eqbox}
+            where $a_{n} = a + (n - 1)d$
+        \hiii{Geometric Sequence}
+            \par Sum of the first $n$ terms:
+            \begin{eqbox}
+                \SUM{_{k = 0}^{n - 1} ar^{k}} = \frac{a(r^{n} - 1)}{r - 1}
+            \end{eqbox}
+    \hiiEND
+
+\hi{Cardinality of Sets}
+    \hii{Two sets with same cardinality}
+        \par Two sets $A$ and $B$ have the \impt{same cardinality} if and only
+        if there is a \impt{one-to-one correspondence} from $A$ to $B$.
+        \par Notation: $|A| = |B|$.
+        \par If there is a one-to-one function from $A$ to $B$, the cardinality of $A$ is less
+        than or the same as the cardinality of $B$ and we write $|A| \leq |B|$. Moreover, when
+        $|A| \leq |B|$, and $A$ and $B$ have different cardinality, we say that the cardinality
+        of $A$ is less than the cardinality of $B$ and we write $|A| < |B|$.
+    \hii{Countable Sets}
+        \par A set that is either finite or has the same cardinality as the set of \impt{positive
+        integers} is called \impt{countable}. A set that is not countable is called
+        \impt{uncountable}. When an infinite set $S$ is countable, we denote the cardinality of
+        $S$ by $\aleph_{0}$.
+        \par Notation: $|S| = \aleph_{0}$.

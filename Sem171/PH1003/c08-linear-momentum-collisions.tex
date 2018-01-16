@@ -1,0 +1,121 @@
+\chapter{Linear Momentum and Collisions}
+    \hi{Linear Momentum}
+        \hii{Linear Momentum}
+            \par The \impt{linear momentum} of a particle or an object that can be modeled as a
+            particle of mass $m$ moving with a velocity $v$ is defined to be the product of the mass
+            and velocity:
+            \begin{equation}
+                \vt{p} = m\vt{v}
+            \end{equation}
+            \par Using Newton's Second law of motion, we can relate the linear momentum of a particle
+            to the resultant force acting on the particle:
+            \begin{align*}
+                \sum F = ma = m \dfrac{dv}{dt}
+            \end{align*}
+            \par Since the mass $m$ is assumed to be constant:
+            \begin{align*}
+                \sum F = ma = \dfrac{d(mv)}{dt} = \dfrac{dp}{dt}
+            \end{align*}
+            \par This shows that the \textit{time rate of change of the linear momentum of a particle
+            is equal to the net force acting on the particle}. This is the way Newton originally
+            showed his Second law of motion.
+        \hii{Conservation of Linear Momentum}
+            \par Suppose that in an isolated system, there are two particles with mass $m_{1}$ and
+            $m_{2}$ moving with velocity $v_{1}$ and $v_{2}$ at an instant of time. When the two
+            particles collide, according to the Newton's Third law of motion:
+            \begin{align*}
+                F_{12} + F_{21} = 0
+            \end{align*}
+            \par In combination with the Newton's Second law, we have:
+            \begin{flalign*}
+                & m_{1}a_{1} + m_{2}a_{2} = 0 \\
+                \ra & m_{1} \dfrac{dv_{1}}{dt} + m_{2} \dfrac{dv_{2}}{dt} = 0 \\
+                \ra & \dfrac{d}{dt} (m_{1}v_{1} + m_{2}v_{2}) = 0 \\
+                \ra & \dfrac{d}{dt} (p_{1} + p_{2}) = 0 \\
+                \ra & \dfrac{dp_{system}}{dt} = 0
+            \end{flalign*}
+            \par The rate of change in the total momentum of the system is $0$ over time. Therefore,
+            the total momentum is conserved.
+            \begin{equation}
+                \Delta p = 0
+            \end{equation}
+            or
+            \begin{equation}
+                p_{1i} + p_{2i} = p_{1f} + p_{2f} 
+            \end{equation}
+    \hi{Impulse}
+        \par The \impt{impulse} of the force $F$ acting on a particle equals the change in the
+        momentum of the particle.
+        \par According to the Newton's Second law:
+        \begin{flalign*}
+            & dp = Fdt \\
+            \ra & \Delta p = p_{f} - p_{i} = \INT{_{t_{i}}^{t_{f}} Fdt}
+        \end{flalign*}
+        \par According to the definition of impulse:
+        \begin{equation}
+            I = \Delta p = \INT{_{t_{i}}^{t_{f}} Fdt}
+        \end{equation}
+        \par If the impulse is constant:
+        \begin{equation}
+            I = F \Delta t
+        \end{equation}
+
+    \hi{Collisions in One Dimension}
+        \hii{Elastic Collision}
+            \par An \impt{elastic collision} between two objects is one in which \impt{the total
+            kinetic energy} of the system \impt{is the same} before and after the collision.
+        \hii{Inelastic Collision}
+            \par An \impt{inelastic collision} between two objects is one in which \impt{the
+            total kinetic energy} of the system \impt{is not the same} before and after the collision.
+            \par When the colliding objects stick together after the collision, the collision is
+            called \impt{perfectly inelastic}.
+
+    \hi{Collisions in Two Dimensions}
+
+    \hi{The Center of Mass}
+        \par In a \impt{system of particles}, the position of the \impt{center of mass} is given
+        by the equation:
+        \begin{equation}
+            r_{CM} = \dfrac{\SUM{_{i} m_{i}r_{i}}}{M}
+        \end{equation}
+        in which:
+        \begin{itemize}
+            \item $r_{CM}$: the position vector of the center of mass
+            \item $m_{i}$: the mass of each particle
+            \item $r_{i}$: the position vector of each particle
+            \item $M$: the total mass of the system
+        \end{itemize}
+        \par In the case of an \impt{extended object}, the particle separation is very small, and
+        so each particle has a very small mass.
+        \begin{equation}
+            r_{CM} = \lim_{\Delta m_{i} \to 0} \dfrac{\SUM{_{i} r_{i} \Delta m_{i}}}{M}
+            = \dfrac{1}{M} \INT{rdm} \\
+        \end{equation}
+
+    \hi{Motion of a System of Particles}
+        \hii{The Momentum of the System}
+            \begin{equation} \label{eq:sysMomentum01}
+                v_{CM} = \dfrac{dr_{CM}}{dt} = \dfrac{1}{M} \SUM{_{i} m_{i}} \dfrac{dr_{i}}{dt}
+                = \dfrac{\SUM{_{i} m_{i}v_{i}}}{M}
+            \end{equation}
+            \begin{equation}
+                \ra Mv_{CM} = \SUM{_{i} m_{i}v_{i}} = \SUM{_{i} p_{i}} = \SUM{p}
+            \end{equation}
+            \par \textit{Conclusion}: The \impt{total linear momentum} of a system equals the
+            \impt{total mass} multiplied by the \impt{velocity of the center of mass}.
+        \hii{The Force of the System}
+            \par By differentiating the equation \eqref{eq:sysMomentum01}, we obtain:
+            \begin{equation}
+                a_{CM} = \dfrac{dv_{CM}}{dt} = \dfrac{1}{M} \SUM{_{i} m_{i}} \dfrac{dv_{i}}{dt}
+                = \dfrac{\SUM{_{i} m_{i}a_{i}}}{M}
+            \end{equation}
+            \begin{equation}
+                \ra Ma_{CM} = \SUM{_{i} m_{i}a_{i}} = \SUM{_{i} F_{i}} = \SUM{F}
+            \end{equation}
+            \par \textit{Conclusion}: The \impt{net external force} on a system of particles
+            equals the \impt{total mass of the system} multiplied by the \impt{acceleration of
+            the center of mass}.
+        \hii{Motion of the Center of Mass}
+            \par The \impt{Center of Mass} of a system of particles of combined mass $M$ moves
+            like an equivalent particle of mass $M$ would move under the influence of the net
+            external force on the system.

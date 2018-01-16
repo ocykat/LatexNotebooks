@@ -1,0 +1,92 @@
+\documentclass[12pt, a4paper]{report}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\usepackage{relsize}
+\usepackage[fleqn]{mathtools}
+
+% Margins
+\usepackage[margin=0.75in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\cdot}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Then}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+\newcommand{\OINT}[1]{\oint\limits #1}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Set section numbering
+\setcounter{secnumdepth}{4}
+
+% Numbering for Math environments
+\newcounter{mitemize}
+\newcounter{mitem}[mitemize]
+\newcommand{\mitemize}{\refstepcounter{mitemize}}
+\newcommand{\mitem}{\refstepcounter{mitem} \themitem. \quad}
+
+% Endline for left-align in Math environments
+\newcommand{\mendl}{&&\\}
+
+% + Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+% Link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document}
+\tableofcontents
+
+\input{c01-functions.tex}
+\input{c02-limits.tex}
+\input{c03-derivatives.tex}
+\input{c04-application-derivatives.tex}
+\input{c05-integrals.tex}
+\input{c06-integration-techniques.tex}
+\input{c07-application-integration}
+\input{c08-differential-equation}
+    
+
+\end{document}

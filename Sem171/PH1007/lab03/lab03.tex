@@ -1,0 +1,210 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{mathtools}
+
+% Margins
+\usepackage[margin=0.5in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+% Physics experiment macros
+\newcommand{\relerr}[1]{\dfrac{\Dt #1}{\avg{#1}}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & October 11, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 03 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries DETERMINING THE MOMENT OF INERTIA OF A SOLID CYLINDER AND THE FRICTION FORCE OF A PULLEY \par}
+
+    \vspace{3cm}
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+    \par Measuring:
+    \begin{itemize}
+        \item The moment of inertia of the solid cylinder.
+        \item The friction force of the pulley.
+    \end{itemize}
+
+\hi{Data Analysis \& Results}
+    \hii{Measurements}
+        \begin{itemize}
+            \item Mass $m$ of the weight: $m = 0.2385 \pm 0.0001 (kg)$
+            \item Accuracy of the ruler: $0.02 (mm)$
+            \item Accuracy of the versatile chronometer MC-963: $0.001 (s)$
+            \item Accuracy of the straight-millimeter ruler T: $1 (mm)$
+            \item The height of the position A: $h_{1} = 674 \pm 1 (mm)$
+        \end{itemize}
+
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|c|}
+                \hline
+                \quad Time \quad & \quad $d (mm)$ \quad & \quad $\Dt d (mm)$ \quad
+                & \quad $T (s)$ \quad & \quad $t (s)$ \quad & \quad $h_{2} (mm)$ \quad
+                & \quad $\Dt h_{2} (mm)$ \quad \\
+                \hline
+                1       & 8.00 & 0.07 & 6.823 & 0.098 & 580 & 3 \\
+                \hline
+                2       & 7.94 & 0.13 & 6.518 & 0.207 & 585 & 2 \\
+                \hline
+                3       & 8.20 & 0.13 & 6.668 & 0.057 & 588 & 5 \\
+                \hline
+                4       & 8.08 & 0.01 & 6.892 & 0.167 & 578 & 5 \\
+                \hline
+                5       & 8.14 & 0.07 & 6.726 & 0.001 & 583 & 0 \\
+                \hline
+                Average & 8.07 & 0.08 & 6.725 & 0.106 & 583 & 3 \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \hiiBEGIN{Calculations}
+        \hiii{Calculate the values}
+            \begin{align*}
+                \avg{f_{fric.}} & = \avg{m} \cdot \avg{g} \cdot \dfrac{\avg{h_{1}} - \avg{h_{2}}}{\avg{h_{1}} + \avg{h_{2}}} \\
+                & = 0.2385 \mul 9.81 \mul \dfrac{0.674 - 0.583}{0.674 + 0.583} \\
+                & = 0.17 N 
+            \end{align*}
+            \begin{align*}
+                \avg{I} & = \dfrac{\avg{m} \cdot \avg{d}^{2}}{4} \cdot \bigg[ \avg{g} \cdot \avg{t}^{2} \cdot \dfrac{\avg{h_{2}}}{\avg{h_{1}} \cdot (\avg{h_{1}} + \avg{h_{2}})} - 1 \bigg] \\
+                & = \dfrac{0.2385 \times (8.07 \times 10^{-3})^{2}}{4} \times \bigg[ 9.81 \times 6.725^{2} \times \dfrac{0.583}{0.674 \times (0.674 + 0.583)} - 1 \bigg] \\
+                & = 1.182 \times 10^{-3} (kg \cdot m^{2})
+            \end{align*}
+
+        \hiiiBEGIN{Calculate the errors}
+            \hiv{Total errors}
+                \begin{align*}
+                    \Dt m     &= (\Dt m)_{instrument}     + \avg{\Dt m}     &= 0.0001 + 0    &= 0.0001 (kg) & \\
+                    \Dt h_{1} &= (\Dt h_{1})_{instrument} + \avg{\Dt h_{1}} &= 0.001 + 0     &= 0.001 (m) & \\
+                    \Dt h_{2} &= (\Dt h_{2})_{instrument} + \avg{\Dt h_{2}} &= 0.001 + 0.003 &= 0.004 (m) & \\
+                    \Dt t     &= (\Dt t)_{instrument}     + \avg{\Dt t}     &= 0.001 + 0.106 &= 0.107 (s) & \\
+                    \Dt d     &= (\Dt d)_{instrument}     + \avg{\Dt d}     &= 0.02 + 0.08   &= 0.1 (10^{-3} m) & \\
+                \end{align*}
+
+            \hiv{Relative errors}
+                \begin{align*}
+                    \dfrac{\Dt f_{fric.}}{\avg{f_{fric.}}} 
+                    & = \dfrac{\Dt m}{\avg{m}} + \dfrac{\Dt g}{\avg{g}} +
+                        \bigg| \dfrac{1}{\avg{h_{1}} - \avg{h_{2}}} - \dfrac{1}{\avg{h_{1}} + \avg{h_{2}}} \bigg| \cdot \Dt h_{1}
+                        \bigg| \dfrac{-1}{\avg{h_{1}} - \avg{h_{2}}} - \dfrac{1}{\avg{h_{1}} + \avg{h_{2}}} \bigg| \cdot \Dt h_{2} \\
+                    & = \dfrac{0.0001}{0.2385} + \dfrac{0.01}{2 \times 9.81} +
+                        \bigg| \dfrac{1}{0.674 - 0.583} - \dfrac{1}{0.674 + 0.583} \bigg| \times 0.001 \\
+                    & + \bigg| \dfrac{-1}{0.674 - 0.583} - \dfrac{1}{0.674 + 0.583} \bigg| \times 0.004 \\
+                    & = 2.29 \% \\
+                    \Rightarrow & \Dt f_{fric.} = \avg{f_{fric.}} \times 2.29 \% = 0.17 \times 2.29 \% = 0.004 (N)
+                \end{align*}
+                \begin{align*}
+                    \relerr{I} & = \relerr{m} + 2 \cdot \relerr{d} + \relerr{g} + 2 \cdot \relerr{t} +
+                        \bigg| \dfrac{-1}{\avg{h_{1}}} - \dfrac{1}{\avg{h_{1}} + \avg{h_{2}}} \bigg| \cdot \Dt h_{1} +
+                        \bigg| \dfrac{1}{\avg{h_{2}}} - \dfrac{1}{\avg{h_{1}} + \avg{h_{2}}} \bigg| \cdot \Dt h_{2} \\
+                    & = \dfrac{0.0001}{0.2385} + 2 \times \dfrac{0.1 \times 10^{-3}}{8.07} + \dfrac{0.01}{2 \times 9.81} + 2 \times \dfrac{0.107}{6.725} \\
+                    & + \bigg| \dfrac{-1}{0.674} - \dfrac{1}{0.674 + 0.583} \bigg| \times \Dt 0.001 
+                      + \bigg| \dfrac{1}{0.583} - \dfrac{1}{0.674 + 0.583} \bigg| \cdot \Dt 0.004 \\
+                    & = 3.87 \% \\
+                    \Rightarrow & \Dt I = \avg{I} \times 3.87 \% = 1.182 \times 10^{-3} \times 3.87 \% = 0.046 \times 10^{-3} (kg \cdot m^{2})
+                \end{align*}
+        \hiiiEND
+
+    \hiiEND
+
+    \hii{Results}
+        \begin{align*}
+            f_{fric.} = \avg{f_{fric.}} \pm \Dt f_{fric.} = 0.17 \pm 0.004 (N) \\
+        \end{align*}
+        \begin{align*}
+            I = \avg{I} \pm \Dt I = 1.182 \pm 0.046 \quad (10^{-3} kg \cdot m^{2})
+        \end{align*}
+
+\end{document}

@@ -1,0 +1,249 @@
+\chapter{Function and Limits}
+\hi{Function}
+    \hii{Definition}
+    \par A \impt{function} $f$ is a rule that assigns to each element $x$ in
+    a set $D$ exactly one element, called $f(x)$, in a set $E$.
+
+    \hii{Terminology}
+        \begin{itemize}
+            \item $D$ is called the \impt{domain} of the function.
+            \item $E$ is called the \impt{range} of the function.
+            \item The number $f(x)$ is \impt{the value of $f$ at $x$} and is
+                read \textit{``$f$ of $x$"}.
+            \item A symbol that represents an arbitrary number in the \impt{domain}
+                of a function $f$ is called an \impt{independent variable}.
+            \item A symbol that represents an arbitrary number in the \impt{range}
+                of a function $f$ is called an \impt{dependent variable}.
+       \end{itemize}
+        
+    \hiiBEGIN{Representing a Function}
+        \hiii{Arrow diagram}
+            \par In an arrow diagram, each arrow connects an element of $D$ to an
+            element of $E$. The arrow indicates that $f(a)$ is associated with $a$,
+            $f(b)$ is associated with $b$, and so on.
+        \hiii{Graph}
+            \par If $f$ is a function with domain $D$, then its \impt{graph} is the set of
+            ordered pairs:
+            \begin{equation}
+                \{(x, f(x)) | x \in D\}
+            \end{equation}
+    \hiiEND
+        
+    \hii{Piecewise Defined Functions}
+        \par Functions with multiple formulas are called \impt{piecewise defined functions}.
+
+    \hiiBEGIN{Symmetry}
+        \hiii{Even functions}
+            \par If $f(x)$ is an \impt{even} function, then:
+            \begin{equation}
+                f(-x) = f(x) \forall x \in D
+            \end{equation}
+            \par The \impt{graph} of an even function is \impt{symmetric with respect to the y axis}.
+        \hiii{Odd functions}
+            \par If $f(x)$ is an \impt{odd} function, then:
+            \begin{equation}
+                f(-x) = f(x) \forall x \in D
+            \end{equation}
+            \par The \impt{graph} of an odd function is \impt{symmetric about the origin}.
+    \hiiEND
+
+    \hiiBEGIN{Increasing and Decreasing Functions}
+        \hiii{Increasing functions}
+            \par A function $f$ is called \impt{increasing} on an interval $I$ if:
+            \begin{equation}
+                f(x_{1}) < f(x_{2}) \forall x_{1} < x_{2} \mbox{ in } I
+            \end{equation}
+        \hiii{Increasing functions}
+            \par A function $f$ is called \impt{decreasing} on an interval $I$ if:
+            \begin{equation}
+                f(x_{1}) > f(x_{2}) \forall x_{1} < x_{2} \mbox{ in } I
+            \end{equation}
+    \hiiEND
+
+    \hii{Periodic Functions}
+        \par The function $f$ is called \impt{periodic of period} $T$ if:
+        \begin{align}
+            \forall x, x + T, x - T \in D: f(x) = f(x - T) = f(x + T)
+        \end{align}
+
+    \hii{Boundedness}
+        \par Let function $f: X \to Y$ be defined on a set $D \subset X$. Then the function
+        $f$ is called:
+        \begin{itemize}
+            \item \impt{bounded from above} if
+                \begin{equation}
+                    \exists M \in \R: \forall x \in D, f(x) \leq M
+                \end{equation}
+            \item \impt{bounded from below} if
+                \begin{equation}
+                    \exists m \in \R: \forall x \in D, f(x) \geq m
+                \end{equation}
+            \item \impt{bounded} if:
+                \begin{equation}
+                    \exists C > 0: \forall x \in D, |f(x)| \leq C
+                \end{equation}
+            \item \impt{unbounded} if:
+                \begin{equation}
+                    \forall C > 0: \exists x_{0} \in D, |f(x_{0})| > C
+                \end{equation}
+        \end{itemize}
+
+    \hiiBEGIN{Composite function}
+        \hiii{Definition}
+            \par Given 2 functions $f$ and $g$. The composite function $f \circ g$ (read: $f$
+            circle $g$) is defined by:
+            \begin{equation}
+                (f \circ g)(x) = f(g(x))
+            \end{equation}
+        \hiii{Finding the domain of composite function}
+            \par To find the domain of the composite function $f \circ g$:
+            \begin{itemize}
+                \item Find the domain of $g$
+                \item Replace $x$ in $f$ with the formula of $g(x)$. Find the domain of $f$.
+            \end{itemize}
+    \hiiEND
+
+    \hii{One-to-one function}
+        \par A function $f$ is called a \impt{one-to-one function} if:
+        \begin{equation}
+            f(x_{1}) \neq f(x_{2}) \forall x_{1}, x_{2} \in D
+        \end{equation}
+
+    \hiiBEGIN{Inverse function}
+        \hiii{Definition}
+            \par Let $f$ be a one-to-one function with domain $D$ and range $E$. Then its
+            \impt{inverse function} $f^{-1}$ (read: $f$ inverse) has domain $E$ and range $D$ and
+            is defined by:
+            \begin{equation}
+                f(x) = y \Iff f^{-1}(y) = x
+            \end{equation}
+        \hiii{Finding inverse function}
+            \begin{itemize}
+                \item Write $y = f(x)$
+                \item Solve $x$ in terms of $y$ (if possible)
+                \item Interchange $x$ and $y$
+            \end{itemize}
+    \hiiEND
+        
+    \hii{Polynomials}
+        \par A function $P$ is called a \impt{polynomial} if:
+        \begin{equation}
+            P(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
+        \end{equation}
+        where $n$ is a nonnegative integer and the numbers $a_{0}, a_{1}, a_{2}, \ldots$ are 
+        constants called \impt{coefficients} of the polynomial.
+
+\hi{Basic types of functions}
+
+    \hiiBEGIN{Power Functions}
+        \hiii{Definition}
+            \par A function in the form:
+            \begin{equation}
+                f(x) = x^{a}
+            \end{equation}
+            where $a$ is a constant, is called a \impt{power function}.
+        \hiii{Domain}
+            \begin{itemize}
+                \item If $a \in Z^{+}$: $D = \R$
+                \item If $a \in Z^{-}$: $D = \R \backslash \{0\}$
+                \item If $a \not \in Z$: $D = (0, + \infty)$
+            \end{itemize}
+
+    \hiiEND
+
+    \hii{Root Functions}
+
+    \hii{Reciprocal Functions}
+
+    \hii{Rational Functions}
+
+    \hii{Algebraic Functions}
+
+    \hiiBEGIN{Exponential Functions}
+        \hiii{Definition}
+            \par A function in the form:
+            \begin{equation}
+                f(x) = a^{x}
+            \end{equation}
+            is an exponential function.
+        \hiii{Domain}
+            $D = \R$
+    \hiiEND
+
+    \hiiBEGIN{Logarithmic Functions}
+        \hiii{Definition}
+        \hiii{Domain}
+            $D = (0, + \infty)$
+    \hiiEND
+
+    \hiiBEGIN{Trigonometric Functions}
+        \hiiiBEGIN{Arcsin, Arccos and Arctan}
+            \hiv{Arcsin}
+                \begin{itemize}
+                    \item Domain:
+                        \begin{equation}
+                            D = [-1, 1]
+                        \end{equation}
+                    \item Range: 
+                        \begin{equation}
+                            E = \big[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\big]
+                        \end{equation}
+                \end{itemize}
+            \hiv{Arccos}
+                \begin{itemize}
+                    \item Domain:
+                        \begin{equation}
+                            D = [-1 \leq x \leq 1]
+                        \end{equation}
+                    \item Range:
+                        \begin{equation}
+                            E = [0, \pi]
+                        \end{equation}
+                \end{itemize}
+            \hiv{Arctan}
+                \begin{itemize}
+                    \item Domain:
+                        \begin{equation}
+                            D = \R
+                        \end{equation}
+                    \item Range:
+                        \begin{equation}
+                            E = \big[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\big]
+                        \end{equation}
+                \end{itemize}
+        \hiiiEND
+    \hiiEND
+
+    \hiiBEGIN{Hyperbolic functions}
+        \hiii{sinh}
+            \begin{itemize}
+                \item Definition
+                    \begin{equation}
+                        \sinh(x) = \dfrac{e^{x} - e^{-x}}{2}
+                    \end{equation}
+                \item Domain: $D = \R$
+                \item Range: $E = \R$
+                \item Function is increasing on $\R$
+                \item Function is odd
+            \end{itemize}
+        \hiii{cosh}
+            \begin{itemize}
+                \item Definition
+                    \begin{equation}
+                        \cosh(x) = \dfrac{e^{x} + e^{-x}}{2}
+                    \end{equation}
+                \item Domain: $D = \R$
+                \item Range: $E = \R$
+                \item Function is decreasing on $(- \infty, 0)$ and increasing on $(0, + \infty)$.
+                \item Function is even.
+            \end{itemize}
+        \hiii{Hyperbolic identities}
+            \begin{align}
+                sinh(-x) = -sinh(x) \\
+                cosh(-x) = cosh(x) \\
+                cosh^{2}(x) - sinh^{2}(x) = 1 \\
+                cosh^{2}(x) + sinh^{2}(x) = cosh(2x) \\
+                sinh(x + y) = sinh(x)cosh(y) + cosh(x)sinh(y) \\
+                cosh(x + y) = cosh(x)cosh(y) + sinh(x)sinh(y)
+            \end{align}
+    \hiiEND

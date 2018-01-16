@@ -1,0 +1,112 @@
+\documentclass[12pt, a4paper]{report}
+
+% MATH PACKAGES
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{empheq}   % equation boxes
+
+% MARGINS
+\usepackage[margin=0.75in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Table formatting
+\usepackage{multirow}
+
+% Graphs
+\usepackage{tkz-graph}
+\usepackage{tikz}
+
+\tikzstyle{nn}=[shape=circle,draw] % normal node
+\tikzstyle{from}=[<-,shorten <=1pt,>=stealth,semithick]
+\tikzstyle{to}=[->,shorten >=1pt,>=stealth,semithick]
+
+% ___MACROS___
+
+% + Logic
+% \land
+% \lor
+% \lnot
+\newcommand{\lxor}{\oplus}
+\newcommand{\limpl}{\rightarrow}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lT}{\mathbf{T}}
+\newcommand{\lF}{\mathbf{F}}
+\newcommand{\deduce}{\Rightarrow}
+
+% + Math
+\newcommand{\Dt}{\Delta}
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+% + Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+% + Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% + Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% + Equation box
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+% + Center aligned
+\newenvironment{nscenter}
+    {\parskip=0pt\par\nopagebreak\centering}
+    {\par\noindent\ignorespacesafterend}
+\newcommand{\CENTER}[1]{\begin{center} #1 \end{center}}
+\newcommand{\NSCENTER}[1]{\begin{nscenter} #1 \end{nscenter}}
+
+% + Horizontal line for rule of inference
+\newcommand{\roiLine}[1]{\overline{\quad #1 \quad}}
+
+% Set section numbering
+\setcounter{secnumdepth}{4}
+
+% Link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document}
+\tableofcontents
+
+\pagebreak
+
+\input{c01-logic}
+
+\input{c02-basic-structures}
+
+\input{c03-relations}
+
+\input{c04-graph}
+
+\input{c05-tree}
+
+\end{document}

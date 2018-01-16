@@ -1,0 +1,131 @@
+\documentclass[12pt, a4paper]{report}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{relsize}
+
+% Margins
+\usepackage[margin=0.75in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\cdot}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+\newcommand{\SUM}[1]{{\sum\limits #1}}
+\newcommand{\INT}[1]{{\int\limits #1}}
+\newcommand{\OINT}[1]{{\oint\limits #1}}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\mCol}{\multicolumn}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\newenvironment{nscenter}
+    {\parskip=0pt\par\nopagebreak\centering}
+    {\par\noindent\ignorespacesafterend}
+\newcommand{\CENTER}[1]{\begin{center} #1 \end{center}}
+\newcommand{\NSCENTER}[1]{\begin{nscenter} #1 \end{nscenter}}
+
+% Horizontal line for rule of inference
+\newcommand{\roiLine}[1]{\overline{\quad #1 \quad}}
+
+% Set section numbering
+\setcounter{secnumdepth}{4}
+
+% Link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+% Numbering for Math environments
+\newcounter{mitemize}
+\newcounter{mitem}[mitemize]
+\newcommand{\mitemize}{\refstepcounter{mitemize}}
+\newcommand{\mitem}{\refstepcounter{mitem} \themitem. \quad}
+
+% Endline for left-align in Math environments
+\newcommand{\mendl}{&&\\}
+
+% Images
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{ {img/} }
+
+
+\begin{document}
+\tableofcontents
+
+\input{c02-motion-in-1D}
+
+\input{c03-motion-in-2D}
+
+\input{c04-laws-of-motion}
+
+\input{c05-circular}
+
+\input{c06-energy}
+
+\input{c07-potential-energy}
+
+\input{c08-linear-momentum-collisions}
+
+\input{c09-rotational}
+
+\input{c10-angular-momentum}
+
+\input{c11-temperature}
+
+\input{c12-first-law}
+
+\input{c14-second-law}
+
+\input{c15-electric-field}
+
+\input{c16-gauss-law}
+
+\input{c17-electric-potential}
+
+\input{c18-magnetic-field}
+
+\input{c19-sources-of-magnetic-field}
+
+%Newton's Cradle
+%Simple Pendulum
+%sth sth pendulum
+\end{document}

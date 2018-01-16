@@ -1,0 +1,448 @@
+\chapter{THE FOUNDATION: LOGIC AND PROOFS}
+
+\textit{The rules of logic specify the meaning of mathematical statements.}
+
+\hi{Propositional Logic}
+    \hiiBEGIN{Proposition}
+        \hiii{Proposition}
+        \par A proposition is a declarative sentence (that is, a sentence that 
+        declares a fact) that is \textit{either true or false, but not both.}
+
+        \hiii{Proposition variables}
+        \par Commonly used proposition variables are p, q, r, s, \ldots
+
+        \hiii{Truth value}
+        \par Truth value is either True (1) or False (0).
+    \hiiEND
+
+    \hiiBEGIN{Logical operators (Logical connectives)}
+        \hiiiBEGIN{Negation}
+            \hiv{Definition}:
+                \begin{itemize}
+                    \item Let $p$ be a proposition. The negation of $p$, denoted by $\lnot p$, is
+                    the statement "It is not the case that p".
+                    \item $\lnot p$ is read "not p".
+                    \item The truth value of $\lnot p$ is the opposite of the truth value of p.
+                \end{itemize}
+
+            \hiv{Truth Table}:
+                \tableBEGIN{|c|c|}
+                    \hline
+                    $p$ & $\lnot p$ \\
+                    \hline
+                    $\lT$ & $\lF$ \\
+                    \hline
+                    $\lF$ & $\lT$ \\
+                    \hline
+                \tableEND
+        \hiiiEND
+
+        \hiiiBEGIN{Conjunction}
+                \hiv{Definition}:
+
+                \begin{itemize}
+                    \item Let $p$ and $q$ be propositions. The \textit{conjunction}
+                    of $p$ and $q$, denoted by $p \land q$, is the proposition ``$p$ and $q$".
+                    \item The conjunction $p \land q$ is true when both $p$ and $q$ are true
+                    and is false otherwise.
+                \end{itemize}
+
+                \hiv{Truth Table}:
+                    \begin{center}
+                        \begin{tabular}{|c|c|c|}
+                            \hline
+                            $p$ & $q$ & $p \land q$ \\
+                            \hline
+                            $\lT$ & $\lT$ & $\lT$ \\
+                            \hline
+                            $\lT$ & $\lF$ & $\lF$ \\
+                            \hline
+                            $\lF$ & $\lT$ & $\lF$ \\
+                            \hline
+                            $\lF$ & $\lF$ & $\lF$ \\
+                            \hline
+                        \end{tabular}
+                    \end{center}
+        \hiiiEND
+
+        \hiiiBEGIN{Disjunction}
+            \hiv{Definition}
+            \begin{itemize}
+                \item Let $p$ and $q$ be propositions. The \textit{disjunction}
+                of $p$ and $q$, denoted by $p \lor q$, is the proposition ``$p$ or $q$".
+                \item The disjunction $p \lor q$ is false when both $p$ and $q$ are false
+                and is true otherwise.
+            \end{itemize}
+            \hiv{Truth Table}:
+                \tableBEGIN{|c|c|c|}
+                    \hline
+                    $p$ & $q$ & $p \lor q$ \\
+                    \hline
+                    $\lT$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lT$ & $\lF$ & $\lT$ \\
+                    \hline
+                    $\lF$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lF$ & $\lF$ & $\lF$ \\
+                    \hline
+                \tableEND
+        \hiiiEND
+
+        \hiiiBEGIN{Exclusive disjunction}
+            \hiv{Definition}
+            \begin{enumerate}
+                \item Let $p$ and $q$ be propositions. The \textit{exclusive disjunction}
+                of $p$ and $q$, denoted by $p \lxor q$, is the proposition that is true when
+                exactly one of $p$ and $q$ is true and is false otherwise.
+            \end{enumerate}
+
+            \hiv{Truth Table}
+                \tableBEGIN{|c|c|c|}
+                    \hline
+                    $p$ & $q$ & $p \lxor q$ \\
+                    \hline
+                    $\lT$ & $\lT$ & $\lF$ \\
+                    \hline
+                    $\lT$ & $\lF$ & $\lT$ \\
+                    \hline
+                    $\lF$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lF$ & $\lF$ & $\lF$ \\
+                    \hline
+                \tableEND
+        \hiiiEND
+
+        \hiiiBEGIN{Implication}
+            \hiv{Definition}
+                \begin{enumerate}
+                    \item Let $p$ and $q$ be propositions. The conditional statement
+                    $p \limpl q$ is the proposition ``if p, then q".
+                    \item The conditional statement $p \limpl q$ is false when $p$
+                    is true and $q$ is false, and true otherwise.
+                    \item $p$ is called the \textit{hypothesis} (or antedecent or premise)
+                    and $q$ is called the \textit{conclusion} (or consequence).
+                \end{enumerate}
+            \hiv{Truth Table}
+                \tableBEGIN{|c|c|c|}
+                    \hline
+                    $p$ & $q$ & $p \limpl q$ \\
+                    \hline
+                    $\lT$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lT$ & $\lF$ & $\lF$ \\
+                    \hline
+                    $\lF$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lF$ & $\lF$ & $\lT$ \\
+                    \hline
+                \tableEND
+            \hiv{Converse, Contrapositive and Inverse}
+                \par Suppose we have the conditional statement $p \limpl q$, then:
+                \begin{itemize}
+                    \item $q \limpl p$ is called the \textit{converse}.
+                    \item $\lnot q \limpl \lnot p$ is called the \textit{contrapositive}.
+                    \item $\lnot p \limpl \lnot q$ is called the \textit{inverse}.
+                \end{itemize}
+        \hiiiEND
+
+        \hiiiBEGIN{Biconditional}
+            \hiv{Definition}
+                \begin{itemize}
+                    \item Let $p$ and $q$ be propositions. The biconditional statement
+                    $p \liff q$ is the proposition ``$p$ if and only if $q$".
+                    \item The biconditional statement is true when $p$ and $q$ have the same
+                    truth value, and is false otherwise.
+                \end{itemize}
+            \hiv{Truth Table}
+                \tableBEGIN{|c|c|c|}
+                    \hline
+                    $p$ & $q$ & $p \liff q$ \\
+                    \hline
+                    $\lT$ & $\lT$ & $\lT$ \\
+                    \hline
+                    $\lT$ & $\lF$ & $\lF$ \\
+                    \hline
+                    $\lF$ & $\lT$ & $\lF$ \\
+                    \hline
+                    $\lF$ & $\lF$ & $\lT$ \\
+                    \hline
+                \tableEND
+        \hiiiEND
+    \hiiEND
+
+\pagebreak
+            
+\hi{Propositional Equivalences}
+    \hii{Definition}
+        \begin{itemize}
+            \item The compound propositions $p$ and $q$ are called logically
+            equivalent if $p \liff q$ is a tautology.
+            \item The notation $p \equiv q$ denotes that $p$ and $q$ are
+            logically equivalent.
+        \end{itemize}
+
+    \hii{Important Logical Equivalences}
+        \tableBEGIN{|c|c|}
+            \hline
+            \textbf{Equivalence} & \textbf{Name} \\
+            \hline
+
+            $p \land \lT \equiv p$ & \mRow{2}{*}{Identity laws} \\
+            $p \lor \lF \equiv p$ & \\
+            \hline
+
+            $p \land \lF \equiv \lF$ & \mRow{2}{*}{Domination laws} \\
+            $p \lor \lT \equiv \lT$ & \\
+            \hline
+
+            $p \land p \equiv p$ & \mRow{2}{*}{Idempotent laws} \\
+            $p \lor p \equiv p$ & \\
+            \hline
+
+            $\lnot (\lnot p) \equiv p$ & Double negation laws \\
+            \hline
+
+            $p \land q \equiv q \land p$ & \mRow{2}{*}{Commutative laws} \\
+            $p \lor q \equiv q \lor p$ & \\
+            \hline
+
+            $(p \land q) \land r \equiv p \land (q \land r)$
+                & \mRow{2}{*}{Associative laws} \\
+            $(p \lor q) \lor r \equiv p \lor (q \lor r)$ & \\
+            \hline
+
+            $\lnot (p \land q) \equiv \lnot p \lor \lnot q$
+                & \mRow{2}{*}{De Morgan's laws} \\
+            $\lnot (p \land q) \equiv \lnot p \lor \lnot q$ & \\
+            \hline
+
+            $p \land (p \lor q) \equiv p$
+                & \mRow{2}{*}{Absorption laws} \\
+            $p \lor (p \land q) \equiv p$ & \\
+            \hline
+
+            $p \lor \lnot p \equiv \lT$ & \mRow{2}{*}{Negation laws} \\
+            $p \land \lnot p \equiv \lF$ & \\
+            \hline
+
+            $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$
+                & \mRow{2}{*}{Distributed laws} \\
+            $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ & \\
+            \hline
+
+            $p \limpl q \equiv \lnot p \lor q$
+            & \mRow{5}{*}{Logical Equivalences Involving Conditional Statements} \\
+            $(p \limpl q) \land (p \limpl r) \equiv p \limpl (q \land r)$
+            & \\
+            $(p \limpl q) \lor (p \limpl r) \equiv p \limpl (q \lor r)$
+            & \\
+            $(p \limpl q) \land (q \limpl r) \equiv (p \lor q) \limpl r$
+            & \\
+            $(p \limpl q) \lor (q \limpl r) \equiv (p \land q) \limpl r$
+            & \\
+            \hline
+        \tableEND
+
+
+\pagebreak
+
+\hi{Predicates and Quantifiers}
+    \hiiBEGIN{Predicates}
+        \hiii{Definition}
+            \par \textit{Example:} $x$ is greater than 3.
+            \par The statement has two parts:
+            \begin{itemize}
+                \item The variable $x$, which is the subject of the statement
+                \item The \impt{predicate} ``is greater than 3", which refers to a property
+                that the subject of the statement can have.
+            \end{itemize}
+
+            \par We denote the predicate by $P(x)$, which is also said to be the value of the
+            \textit{propositional function} $P$ at $x$. Once a value has been assigned to $x$,
+            $P(x)$ becomes a proposition and has a truth value.
+
+        \hiii{Preconditions and Postconditions}
+            \par Predicates are used to establish the correctness of computer programs.
+            \begin{itemize}
+                \item The statements that describe valid input are known as
+                    \impt{preconditions}.
+                \item The conditions that the output should satisfy when the program has run
+                    are known as \impt{postconditions}.
+            \end{itemize}
+    \hiiEND
+
+
+    \hiiBEGIN{Quantifiers}
+        \hiii{The Universal Quantifier}
+            \begin{itemize}
+                \item The \impt{universal quantification} of $P(x)$ is the statement: \\
+                    \NSCENTER{``$P(x)$ for all value of $x$ in the domain".}
+                \item The notation $\forall x P(x)$ denotes the universal qualification of
+                    $P(x)$. Here $\forall$ is called the \impt{universal quantifier}.
+                \item An element for which $P(x)$ is false is called a \impt{counterexample}
+                    of $\forall x P(x)$.
+            \end{itemize}
+        \hiii{The Existential Quantifier}
+            \begin{itemize}
+                \item The \impt{existential quantification} of $P(x)$ is the proposition: \\
+                    \NSCENTER{``There exists an element $x$ in the domain such that $P(x)$".}
+                \item The notation $\exists x P(x)$ denotes the existential qualification of
+                    $P(x)$. Here $\exists$ is called the \impt{existential quantifier}.
+            \end{itemize}
+        \hiii{Precedence of Quantifiers}
+            \par The quantifiers $\forall$ and $\exists$ have higher precedence than all
+                logical operators from propositional calculus.
+        \hiii{Negation of Quantifiers}
+            \par Based on the \impt{De Morgan's Laws for Quantifiers}:
+            \CENTER{$\lnot (\forall x P(x)) \equiv \exists x \lnot P(x)$} 
+            \CENTER{$\lnot (\exists x P(x)) \equiv \forall x \lnot P(x)$}
+    \hiiEND
+
+\pagebreak
+
+\hi{Nested Quantifiers}
+
+\pagebreak
+
+\hi{Rules of Inference}
+    \hii{Introduction to Proofs}
+        \par \impt{Proofs} are valid arguments that establish the truth of mathematical
+        statements.
+        \begin{itemize}
+            \item \impt{An argument} is a sequence of statements that end with a conclusion.
+            \item \impt{Valid} means that the the final statement of the argument must follow
+                from the truth of the premises, or preceding statements.
+        \end{itemize}
+        \par To deduce new statements from the premises, we use \impt {rules of Inference}.
+
+    \hiiBEGIN{Rules of Inference}
+        \hiiiBEGIN{Modus Ponens and Modus Tollens}
+            \hiv{Modus Ponens}
+                \begin{itemize}
+                    \item \textit{Meaning:} The way that \textit{affirms by affirming}.
+                    \item \textit{Structure:} If $p$ is true, then $q$ is true.
+                        $p$ is true. Therefore, $q$ is true.
+                    \item \textit{Notation:} $[(p \limpl q) \land p] \limpl q$
+                \end{itemize}
+            \hiv{Modus Tollens}
+                \begin{itemize}
+                    \item \textit{Meaning:} The way that \textit{denies by denying}.
+                    \item \textit{Structure:} If $p$ is true, then $q$ is true.
+                        $q$ is NOT true. Therefore, $p$ is NOT true.
+                    \item \textit{Notation:} $[(p \limpl q) \land \lnot q] \limpl \lnot p$
+                \end{itemize}
+        \hiiiEND
+
+        \hiiiBEGIN{Hypothetical Syllogism and Disjunctive Syllogism}
+            \hiv{Hypothetical Syllogism}
+                \begin{itemize}
+                    \item \textit{Structure:} If $p$ is true, then $q$ is true.
+                        If $q$ is true, then $r$ is true.
+                        Therefore, if $p$ is true, then $r$ is true.
+                    \item \textit{Notation:}
+                        $[(p \limpl q) \land (q \limpl r)] \limpl (p \limpl r)$
+                \end{itemize}
+            \hiv{Disjunctive Syllogism}
+                \begin{itemize}
+                    \item \textit{Structure:} $p$ or $q$ is true. $p$ is NOT true.
+                        Therefore, $q$ is true.
+                    \item \textit{Notation:}
+                        $[(p \lor q) \land \lnot p] \limpl q$
+                \end{itemize}
+        \hiiiEND
+
+        \hiiiBEGIN{Other Rules}
+            \hiv{Addition}
+                \begin{itemize}
+                    \item \textit{Structure:} $p$ is true.
+                        Therefore, $p$ or $q$ is true.
+                    \item \textit{Notation:}
+                        $p \limpl (p \lor q)$
+                \end{itemize}
+            \hiv{Symplification}
+                \begin{itemize}
+                    \item \textit{Structure:} "$p$ and $q$" is true.
+                        Therefore, $p$ is true.
+                    \item \textit{Notation:}
+                        $(p \land q) \limpl p$
+                \end{itemize}
+            \hiv{Conjunction}
+                \begin{itemize}
+                    \item \textit{Structure:} $p$ is true. $q$ is true.
+                        Therefore, $p$ and $q$ is true.
+                    \item \textit{Notation:}
+                        $[(p) \land (q)] \limpl (p \land q)$
+                \end{itemize}
+            \hiv{Resolution}
+                \begin{itemize}
+                    \item \textit{Structure:} "$p$ or $q$" is true.
+                        "NOT $q$ or $r$" is true.
+                        Therefore, $q$ or $r$ is true.
+                    \item \textit{Notation:}
+                        $[(p \lor q) \land (\lnot p \lor r)] \limpl (q \lor r)$
+                \end{itemize}
+       \hiiiEND
+
+
+        \tableBEGIN{|c|c|c|}
+            \hline
+            \textbf{Rule of Inference} & \textbf{Tautology} & \textbf{Name} \\
+            \hline
+
+            $p$ & \mRow{3}{*}{$(p \land (p \limpl q)) \limpl q$} & \mRow{3}{*}{Modus Ponens} \\
+            $p \limpl q$ & & \\
+            $\roiLine{\therefore q}$ & & \\
+            \hline
+
+            $p \limpl q$ & \mRow{3}{*}{$(p \limpl q) \land \lnot q$} & \mRow{3}{*}{Modus Tollen} \\
+            $\lnot q$ & & \\
+            $\roiLine{\therefore \lnot p}$ & & \\
+            \hline
+
+            $p \limpl q$ & \mRow{3}{*}{$[(p \limpl q) \land (q \limpl r)] \limpl (p \limpl r)$}
+            & \mRow{3}{*}{Hypothetical Syllogism} \\
+            $q \limpl r$ & & \\
+            $\roiLine{\therefore p \limpl r}$ & & \\
+            \hline
+
+        \tableEND
+
+    \hiiEND
+
+\pagebreak
+
+\hi{Introduction to Proofs}
+    \hiiBEGIN{Terminology}
+        \hiii{Theorem}
+            \begin{itemize}
+                \item A \textbf{theorem} is a statement that can be shown to be true.
+                \item A less important theorem that is helpful in the proof of other results is
+                    called a \textbf{lemma}.
+                \item A \textbf{corollary} is a theorem that can be establised directly from
+                    a theorem that has been proved.
+            \end{itemize}
+        \hiii{Proof}
+            \par A \textbf{proof} is a valid argument that establishes the truth of a theorem.
+        \hiii{Axioms}
+            \par An \textbf{axiom} or a postulate is a statement which is assumed to be true.
+    \hiiEND
+
+    \hiiBEGIN{Proving Methods}
+        \hiii{Direct proof}
+        \par A \textbf{direct proof} of a conditional statement $p \limpl q$ is constructed when:
+            \begin{itemize}
+                \item The first step is the assumption that $p$ is true
+                \item Subsequent steps are constructed using \textit{rules of inference}, with the
+                final step showing that $q$ must also be true.
+            \end{itemize}
+        \hiii{Proof by Contraposition}
+            \par By \textbf{contraposition}, a conditional statement $p \limpl q$ can be proved
+            by showing that its contrapositive, $\lnot q \limpl \lnot p$ is true.
+
+        \hiii{Proofs by Contradiction}
+
+        \hiii{Proofs by Mathematical Induction}
+    \hiiEND
+
+\pagebreak

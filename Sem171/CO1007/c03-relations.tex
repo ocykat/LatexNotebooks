@@ -1,0 +1,150 @@
+\chapter{RELATION}
+    \hi{Relations and their properties}
+        \hii{Definition}
+            \par Let $A$ and $B$ be sets. A \impt{binary relation from $A$ to $B$} is a subset of
+                $A \times B$.
+            \begin{equation}
+                R \subset A \times B
+            \end{equation}
+
+        \hii{Functions as Relations}
+            \par A function is a special type of relation. A function $f: A \to B$ is a relation
+            in which an element $b \in B$ has only one correspondent element $a \in A$. 
+
+        \hii{Relations on a Set}
+            \par A relation on a set $A$ is a relation from $A$ to $A$.
+            \begin{equation}
+                R \subset A \times A
+            \end{equation}
+
+        \hiiBEGIN{Properties of Relations}
+            \hiii{Reflexive}
+                \par A relation $R$ on a set $A$ is called \impt{reflexive} if $(a, a) \in R$ for
+                every element $a \in A$.
+                \begin{equation}
+                    \forall a \in A: (a, a) \in R \deduce R \mbox{ is reflexive}
+                \end{equation}
+            \hiii{Symmetric}
+                \par A relation $R$ on a set $A$ is called \impt{symmetric} if $(b, a) \in R$
+                whenever $(a, b) \in R$, for all $a, b \in A$.
+                \begin{equation}
+                    \forall a, b \in A: (a, b) \in R \limpl (b, a) \in R
+                    \deduce R \mbox{ is symmetric}
+                \end{equation}
+            \hiii{Antisymmetric}
+                \par A relation $R$ on a set $A$ such that for all $a, b \in A$, if $(a, b) \in R$
+                and $(b, a) \in R$, then $a = b$ is called \impt{antisymmetric}.
+                \begin{equation}
+                    \forall a, b \in A: (a, b) \in R \land (b, a) \in R \limpl a = b
+                    \deduce R \mbox{ is antisymmetric}
+                \end{equation}
+            \hiii{Transitive}
+                \par A relation $R$ on a set $A$ is called \impt{transitive} if whenever
+                $(a, b) \in R$
+                and $(b, c) \in R$ then $(a, c) \in R$, for all $a, b, c \in A$.
+                \begin{equation}
+                    \forall a, b, c \in A: (a, b) \in R \land (b, c) \in R \limpl (a, c) \in R
+                    \deduce R \mbox{ is transitive}
+                \end{equation}
+        \hiiEND
+
+        \hii{Composite Relation}
+            \par Let $R$ be a relation from a set $A$ to a set $B$ and $S$ a relation from $B$ to
+            a set $C$. The \impt{composite} of $R$ and $S$ is the relation consisting of ordered pairs
+            $(a, c)$, where $a \in A$, $c \in C$, and for which there exists an element $b \in B$ such
+            that $(a, b) \in R$ and $(b, c) \in S$.
+
+        \hiiBEGIN{Power Relation}
+            \hiii{Definition}
+                \par Let $R$ be a relation on the set $A$. The powers $R^{n}$, $n = 1, 2, 3, \ldots$
+                are defined recursively by:
+                \begin{equation}
+                    R^{1} = R \land R^{n + 1} = R^{n} \circ R
+                \end{equation}
+            \hiii{Theorem}
+                \par The relation $R$ on a set $A$ is transitive if and only if $R^{n} \subseteq R$
+                for $n = 1, 2, 3, \ldots$
+        \hiiEND
+
+    \hi{Relations and their properties}
+        \hii{$n$-ary Relations}
+            \par Let $A_{1}, A_{2}, \ldots, A_{n}$ be sets. An \impt{$n$-ary relation} on these set
+            is a subset of $A_{1} \times A_{2} \times \ldots \times A_{n}$.
+            \par The sets $A_{1}, A_{2}, \ldots, A_{n}$ are called the \impt{domains} of the
+            relation, and $n$ is called its \impt{degree}.
+
+    \hi{Representing Relations}
+        \hii{Representing Relations using Matrices}
+            \par The relation $R$ can be represented by the matrix $M_{R} = [m_{ij}]$, where
+            \begin{equation}
+                m_{ij} = 
+                \begin{cases}
+                    1 \mbox{ if } (a_{i}, b_{j}) \in R \\
+                    0 \mbox{ if } (a_{i}, b_{j}) \not \in R
+                \end{cases}
+            \end{equation}
+
+        \hii{Representing Relations using Digraphs}
+            \par The \impt{directed graph}, or \impt{digraph}, consists of a set $V$ of
+            \impt{vertices} (or \impt{nodes}) together with a set $E$ of ordered pairs of
+            elements of $V$ called \impt{edges} (or \impt{arcs}).
+            \par The vertex $a$ is called the \impt{initial vertex} of the edge $(a, b)$, and
+            the vertex $b$ is called the \impt{terminal vertex} of this edge.
+
+    \hi{Closures of Relations}
+
+    \hi{Equivalence Relations}
+        \par A relation on a set $A$ is called an \impt{equivalence relation} if it is:
+        \begin{itemize}
+            \item reflexive
+            \item symmetric
+            \item transitive
+        \end{itemize}
+
+    \hi{Counting \& Relations}
+        \hii{Number of possible relations on a set}
+            \par In a set $A$, there are $n^{2}$ numbers of ordered pairs $(x, y)$.
+            \par We define $R_{all}$ as the set containing all the ordered pairs.
+            \par The number of relations on the set $A$ is the number of subset of $R_{all}$.
+            That is $2^{n^{2}}$.
+        \hii{Number of reflexive relations on a set}
+            \par Represent a set $A$ with a $n \times n$ matrix.
+            \par For a reflexive relation,
+            the main diagonal has to be marked. The main diagonal contains $n$ squares.
+            There are $n^{2} - n$ squares left. There are $2^{n^{2} - n}$ ways to choose to
+            mark or not mark those squares.
+        \hii{Number of symmetric relations on a set}
+            \par Represent a set $A$ with a $n \times n$ matrix.
+            \par For a symmetric relation, each square $(i, j)$ and $(j, i)$ in which $i < j$ have
+            to be marked simultaneously. We can simply remove all the $(j, i)$ squares .
+            \par What we have left are:
+            \begin{itemize}
+                \item The $(i, j)$ squares in which $i < j$. There are $C^{2}_{n}$ of them.
+                \item All the $(i, i)$ squares. There are $n$ of them.
+            \end{itemize}
+            \par In total, the number of squares left is:
+            \begin{align*}
+                C^{2}_n + n = \dfrac{n(n - 1)}{2} + n = \dfrac{n(n + 1)}{2}
+            \end{align*}
+            \par The number of ways to choose to mark or not mark these squares is 
+            $2^{\frac{n(n + 1)}{2}}$.
+        \hii{Number of antisymmetric relations on a set}
+            \par An antisymmetric relation on a set $A$ means $(i, j) \in R \limpl (j, j) \not
+            \in R$ where $i \neq j$.
+            \par For each unordered pair $(i, j)$ where $i \neq j$, there are three choices:
+            \begin{itemize}
+                \item Mark $(i, j)$, do not mark $(j, i)$
+                \item Mark $(j, i)$, do not mark $(i, j)$
+                \item Mark nothing
+            \end{itemize}
+            \par There are $C^{2}_n$ of those pairs.
+            \par The squares that have not been mentioned are the one on the main diagonal.
+            There are $n$ of them. It does not matter if these squares are marked or not.
+            \par In total, the number of way to mark the matrix:
+            \begin{align*}
+                3^{\frac{n(n - 1)}{2}} \times 2^{n}
+            \end{align*}
+        \hii{Number of relations from a set to another set}
+            \par Given two sets: $A$ with $n$ elements and $B$ with $m$ elements. There are $mn$
+            elements in the set $A \times B$. The number of relations is the number of subset of
+            $A \times B$, which is $2^{mn}$.

@@ -1,0 +1,175 @@
+\chapter{Techniques of Integration}
+    
+\hi{Integration by Parts}
+    \hii{Formula}
+        \par From the Product rule, we have:
+        \begin{align*}
+            &\frac{d}{dx}f(x)g(x) = f(x)g'(x) + g(x)f'(x) \\
+            \ra & \INT{[f(x)g'(x) + g(x)f'(x)]dx} = f(x)g(x) \\
+            \ra & \INT{f(x)g'(x)dx} = f(x)g(x) - \INT{g(x)f'(x)dx} \\
+        \end{align*}
+        \par Thus, we have the formula:
+        \begin{equation}
+            \INT{udv} = uv - \INT{vdu}
+        \end{equation}
+
+    \hii{Steps}
+        \par To intergrate by parts, we follow the following steps:
+        \begin{itemize}
+            \item Define $u$, and $dv$.
+            \item Differentiate $u$ to obtain $du$.
+            \item Integrate $dv$ to obtain $v$.
+            \item Apply the formula of integration by parts.
+        \end{itemize}
+
+    \hii{When to use}
+        \par Integration by Parts is used when the integral has the form of:
+        \begin{align*}
+            I = \INT{f(x)g(x)dx}
+        \end{align*}
+        where $f(x)$, $g(x)$ are two of the following types of function:
+        \begin{itemize}
+            \item logarithm
+            \item polynomial
+            \item trigonometric (sin, cos)
+            \item power
+        \end{itemize}
+        \par In the mentioned list, the upper functions should be chosen to be $u$, and the
+        lower functions should be chosen to be $dv$.
+
+\hi{Some Good Integrals to Study}
+    \mitemize
+    % 1
+    \begin{flalign*}
+        \mitem \INT{\frac{dx}{\sqrt{x^{2} - a^{2}}}} \mendl
+        &\mbox{Let } x = \frac{a}{\cos(t)} \ra dx = \frac{a\sin(t)}{\cos^{2}(t)} dt \mendl
+        &\ra I = \INT{
+            \frac{\frac{a\sin(t)}{\cos^{2}(t)}}
+                {\sqrt{\frac{a^{2}}{\cos^{2}(t)} - a^{2}}} dt
+        } \mendl
+        &= \INT{\frac{1}{\cos(t)} dt} \mendl
+        &= \INT{
+            \frac{1}{\cos(t)} \cdot \frac{\tan(t) + \frac{1}{\cos(t)}}{\tan(t) + \frac{1}{\cos(t)}} dt
+        } \mendl
+        &\mbox{Let } u = \tan(t) + \frac{1}{\cos(t)} \ra du = \Big[\frac{1}{\cos^{2}(t)} + \frac{\tan(t)}{\cos(t)} \Big] dt \mendl
+        &\ra I = \INT{\frac{du}{u}} = \ln|u| + C \mendl
+        & = \ln\Big|\tan(t) + \frac{1}{\cos(t)}\Big| + C \mendl
+        & = \ln\Big|\frac{\sin(t) + 1}{\cos(t)}\Big| + C \mendl
+        &x = \frac{a}{\cos(t)} \ra \cos(t) = \frac{a}{x} + C \mendl
+        &\ra I = \ln\Big|
+            \frac{x}{a}[\sqrt{1 - \cos^{2}(t)} + 1]
+        \Big| + C \mendl
+        &\ra I = \ln\Big|
+            \frac{x}{a} \Big[
+                \sqrt{1 - \frac {a^{2}} {x^{2}} } + 1
+            \Big]
+        \Big| + C \mendl
+        &\ra I = \ln\Big|
+            \frac{x}{a} \sqrt{\frac {x^{2} - a^{2}} {x^{2}} } + \frac{x}{a}
+        \Big| + C \mendl
+        &\ra I = \ln\Big|
+            \frac{x + \sqrt{x^{2} - a^{2}}}{a}
+        \Big| + C \mendl
+        &\ra I = \ln| x + \sqrt{x^{2} - a^{2}} | + C \mendl
+    \end{flalign*}
+    % 2
+    \begin{flalign*}
+        \mitem \INT{\frac{dx}{\sqrt{x^{2} + a^{2}}}} \mendl
+        &\mbox{Let } x = a\tan(t) \ra dx = \frac{a}{\cos^{2}(t)} dt \mendl
+        &\ra I = \INT{
+            \frac{1}{a\sqrt{tan^{2}(t) + 1}} \cdot \frac{a}{\cos^{2}(t)} dt
+        } \mendl
+        &= \INT{\frac{1}{\cos(t)}} \mendl
+        &= \INT{
+            \frac{1}{\cos(t)} \cdot \frac{\tan(t) + \frac{1}{\cos(t)}}{\tan(t) + \frac{1}{\cos(t)}}
+        } \mendl
+        &\mbox{Let } u = \tan(t) + \frac{1}{\cos(t)} \ra du = \Big[\frac{1}{\cos^{2}(t)} + \frac{\tan(t)}{\cos(t)} \Big] dt \mendl
+        &\ra I = \INT{\frac{du}{u}} = \ln|u| + C \mendl
+        & = \ln\Big|\tan(t) + \frac{1}{\cos(t)}\Big| + C \mendl
+        & = \ln|\tan(t) + \sqrt{\tan^{2}(t) + 1}| + C \mendl
+        &\ra I = \ln\Big|
+            \frac{x + \sqrt{x^{2} + a^{2}}}{a}
+        \Big| + C \mendl
+        &\ra I = \ln| x + \sqrt{x^{2} + a^{2}} | + C \mendl
+    \end{flalign*}
+    % 3
+    \begin{flalign*}
+        \mitem \INT{\frac{dx}{\sqrt{a^{2} - x^{2}}}} \mendl
+        &\mbox{Let } x = a\sin(t) \ra dx = a\cos(t)dt \mendl
+        &\ra I = \INT{
+            \frac{a\cos(t)}{a\sqrt{1 - \sin^{2}(t)}} dt
+        } \mendl
+        & = \INT{
+            \frac{\cos(t)}{\sqrt{1 - \sin^{2}(t)}} dt
+        } \mendl
+        & = \INT{dt} \mendl
+        & = t + C \mendl
+        & x = \sin(t) \ra \sin(t) = \frac{x}{a} \ra t = \arcsin\Big(\frac{x}{a}\Big) \mendl
+        &\ra I = a \arcsin\Big(\frac{x}{a}\Big) + C \mendl
+    \end{flalign*}
+    % 4
+    \begin{flalign*}
+        \mitem \INT{\frac{dx}{x^{2} + a^{2}}} \mendl
+        &\mbox{Let } x = a\tan(t) \ra dx = a\frac{dt}{\cos^{2}(t)} \mendl
+        &\ra I = \INT{
+            \frac{1}{a^{2}\tan^{2}(t) + a^{2}} \cdot \frac{adt}{\cos^{2}(t)} dt
+        } \mendl
+        & = \frac{1}{a} \INT{dt} \mendl
+        & x = a\tan(t) \ra \tan(t) = \frac{x}{a} \ra t = \arctan\Big(\frac{x}{a}\Big) \mendl
+        & \ra I = \frac{1}{a} \arctan{\frac{x}{a}}
+    \end{flalign*}
+
+\hi{Improper Intergrals}
+    \hiiBEGIN{Type 1: Infinite Intervals}
+        \hiii{Definition}
+            \par If the integral $\INT{_{a}^{t} f(x) dx}$ exists for every number
+            $t \geq a$, then:
+            \begin{eqbox}
+                \INT{_{a}^{\infty} f(x) dx} = \lim_{t \to \infty} \INT{_{a}^{t} f(x) dx}
+            \end{eqbox}
+            provided this limit exists (as a finite number).
+        \hiii{Convergence and Divergence}
+            \par The improper integral is \impt{convergent} if the corresponding limit
+            exists, and \impt{divergent} otherwise.
+        \hiii{Comparison Test}
+            \par Given $0 \leq g(x) \leq f(x) \forall x >= a$:
+            \begin{itemize}
+                \item If $\INT{_{a}^{\infty} f(x)dx}$ is \impt{convergent}, then
+                    $\INT{_{a}^{\infty} g(x)dx}$ is \impt{convergent}.
+                \item If $\INT{_{a}^{\infty} g(x)dx}$ is \impt{divergent}, then
+                    $\INT{_{a}^{\infty} f(x)dx}$ is \impt{divergent}.
+            \end{itemize}
+        \hiii{Equivalent function at a limit}
+            \par Two functions $f(x)$ and $g(x)$ are called \impt{equivalent} as
+                $x \to a$ if:
+            \begin{equation}
+                \lim_{x \to a} \frac{f(x)}{g(x)} = 1
+            \end{equation}
+            \par Denote: $f(x) ~ g(x)$.
+            \par If two functions $f(x)$ and $g(x)$ are \impt{equivalent} and one is
+            \impt{convergent} (or \impt{divergent}), then the other is also \impt{convergent}
+            (or \impt{divergent}).
+    \hiiEND
+    \hiiBEGIN{Type 2: Discontinuous Integrands}
+        \hiii{Definition}
+            \par If $f$ is continuous on $[a, b)$ and is discontinuous at $b$, then
+            \begin{eqbox}
+                \INT{_{a}^{b} f(x)dx} = \lim_{t \to b^{-}} \INT{_{a}^{t} f(x)dx}
+            \end{eqbox}
+            provided this limit exists (as a finite number).
+            \par If $f$ is continuous on $(a, b]$ and is discontinuous at $a$, then
+            \begin{eqbox}
+                \INT{_{a}^{b} f(x)dx} = \lim_{t \to a^{+}} \INT{_{t}^{b} f(x)dx}
+            \end{eqbox}
+            provided this limit exists (as a finite number).
+            \par If $f$ is continuous on $[a, b]$ and is discontinuous at $c \in [a, b]$,
+            then
+            \begin{eqbox}
+                \INT{_{a}^{b} f(x)dx} = \lim_{t \to c^{-}} \INT{_{a}^{c} f(x)dx}
+                                        + \lim_{t \to c^{+}} \INT{_{c}^{b} f(x)dx}
+            \end{eqbox}
+            provided this limit exists (as a finite number).
+        \hiii{Convergence and Divergence}
+            \par The improper integral is \impt{convergent} if the corresponding limit
+            exists, and \impt{divergent} otherwise.
+    \hiiEND

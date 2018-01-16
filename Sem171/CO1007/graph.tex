@@ -1,0 +1,20 @@
+\documentclass[12pt, a4paper]{report}
+
+\usepackage{tikz}
+
+\tikzstyle{nn}=[shape=circle,draw] % normal node
+\tikzstyle{from}=[<-,shorten <=1pt,>=stealth,semithick]
+\tikzstyle{to}=[->,shorten >=1pt,>=stealth,semithick]
+
+\begin{document}
+    \begin{tikzpicture}        
+        \node[nn] (A) (0, 0) {A};
+        \node[nn] (B) at (4, 4) [nn] {B};
+            edge[from](A) {1}
+        ;
+        \node(C) at (-1, 3) [nn] {C}
+            edge[from] node[auto, swap] {2} (B)
+        ;
+        \node(D) at (2, 5) [nn] {D};
+    \end{tikzpicture}
+\end{document}

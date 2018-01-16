@@ -1,0 +1,265 @@
+\chapter{Motion in Two Dimensions}
+    \hi{The Position, Velocity and Acceleration Vectors}
+        \hiiBEGIN{Position}
+            \hiii{Position Vector}
+                \par Position vector is the vector drawn from the origin of some
+                coordinate system to the particle located in the $xy$ plane.
+
+            \hiii{Displacement Vector}
+                \par Displacement vector is the vector indicating the change in position
+                of a particle in some time interval.
+                \begin{center}
+                    \begin{equation}
+                        \vt{\Delta r} = \vt{r_{f}} - \vt{r_{i}}
+                    \end{equation}
+                \end{center}
+                \textit{in which:}
+                \begin{itemize}
+                    \item $\vt{\Delta r}$: displacement
+                    \item $\vt{r_{i}}$: initial position
+                    \item $\vt{r_{f}}$: final position
+                \end{itemize}
+        \hiiEND
+
+        \hiiBEGIN{Velocity}
+            \hiii{Average Velocity}
+                The average velocity of a particle during the time interval $\Delta t$is 
+                defined as the displacement of the particle divided by the time interval.
+                \begin{center}
+                    \begin{equation}
+                        \avg{\vt{\Delta v}} = \frac{\vt{\Delta r}}{t}
+                    \end{equation}
+                \end{center}
+
+            \hiii{Instantaneous Velocity}
+                The instantaneous velocity of a particle is defined as the limit of the
+                average velocity $\frac{\Delta r}{\Delta t}$ as $\Delta t$ approaches zero:
+                \begin{center}
+                    \begin{equation}
+                        v = \lim_{x \to 0} \frac{\Delta r}{\Delta t} = \frac{dx}{dt}
+                    \end{equation}
+                \end{center}
+        \hiiEND
+
+        \hiiBEGIN{Acceleration}
+            \hiii{Average Acceleration}
+                The average acceleration of a particle is defined as the change in the
+                instantaneous velocity vector $\vt{\Delta v}$ divided by the time interval
+                $\Delta t$ during which that change occurs.
+                \begin{center}
+                    \begin{equation}
+                        \avg{\vt{\Delta a}} = \frac{\vt{\Delta v}}{t}
+                    \end{equation}
+                \end{center}
+
+            \hiii{Instantaneous Acceleration}
+                The instantaneous acceleration of a particle is defined as the limit of the
+                average acceleration $\frac{\Delta v}{\Delta t}$ as $\Delta t$ approaches
+                zero:
+                \begin{center}
+                    \begin{equation}
+                        a = \lim_{t \to 0} \frac{\Delta v}{\Delta t} = \frac{dv}{dt}
+                    \end{equation}
+                \end{center}
+        \hiiEND
+    
+    \pagebreak
+
+    \hi{Two-Dimensional Motion with Constant Acceleration}
+        \hii{Position vector}
+            \par When a particle moves with constant acceleration, the position vector for it
+            in the $xy$ plane can be written as
+            \begin{equation}
+                r = x \hat{i} + y \hat{j}
+            \end{equation}
+            where $x$, $y$ and $r$ change with time as the particle moves while the unit
+            vector $\hat{i}$ and $\hat{j}$ remain constant.
+
+        \hii{Velocity vector}
+            \begin{equation}
+                v = \frac{dr}{dt} = \frac{dx}{dt} \hat{i} + \frac{dy}{dt} \hat{j}
+                = v_{x} \hat{i} + v_{y} \hat{j}
+            \end{equation}
+            \par Because $a$ is constant:
+            \begin{equation}
+                \begin{aligned}
+                    v_{f} &= (v_{xi} + a_{x}t) \hat{i} + (v_{yi} + a_{y}t) \hat{j} \\
+                    &= (v_{xi} \hat{i} + v_{yi} \hat{j}) + (a_{x} \hat{i} + a_{y} \hat{j})t \\
+                    &= v_{i} + at
+                \end{aligned}
+            \end{equation}
+
+        \hii{Equations of kinematics}
+            \begin{equation}
+                r_{f} = r_{i} + v_{i}t + \frac{1}{2} at^{2}
+            \end{equation}
+
+    \pagebreak
+
+    \hi{Projectile Motion}
+        \hii{Definition}
+            \par A projectile motion is a motion in which two assumptions are made:
+            \begin{itemize}
+                \item The free-fall acceleration $g$ is constant over the range of motion
+                and is directed downward.
+                \item The effect of air resistance is negligible.
+            \end{itemize}
+
+        \hii{Velocity}
+            \par At the beginning, the velocity components are:
+            \begin{equation}
+                \begin{aligned}
+                v_{xi} = v_{i} \cos \theta_{i} \qquad
+                v_{yi} = v_{i} \sin \theta_{i}
+                \end{aligned}
+            \end{equation}
+
+            \par After some time interval $t$, these components become:
+            \begin{equation}
+                \begin{aligned}
+                v_{xi} = v_{i} \cos \theta_{i} \qquad
+                v_{yi} = v_{i} \sin \theta_{i} - gt
+                \end{aligned}
+            \end{equation}
+
+        \hii{Position}
+            \begin{equation} 
+                \label{eq:01}
+                x_{f} = x_{i} + v_{ix}t
+            \end{equation}
+
+            \begin{equation}
+                \label{eq:02}
+                y_{f} = y_{i} + v_{iy}t - \frac{1}{2} gt^{2}
+            \end{equation}
+
+            \par If the particle starts from the origin of the referene frame, which
+            means $x_{i} = 0$ and $y_{i} = 0$, then:
+            \begin{equation} 
+                \label{eq:03}
+                x = v_{ix}t = v_{i}\cos\theta_{i}t
+            \end{equation}
+
+            \begin{equation}
+                \label{eq:04}
+                y = v_{iy}t - \frac{1}{2}gt^{2} = v_{i}\sin\theta_{i}t - \frac{1}{2}gt^{2}
+            \end{equation}
+
+
+            \par From the equation \eqref{eq:03}:
+            \begin{equation}
+                t = \frac{x}{v_{i}\cos\theta_{i}}
+            \end{equation}
+
+            \par Substitute $t$ in the equation \eqref{eq:04}:
+            \begin{equation}
+                \begin{aligned}
+                \label{eq:05}
+                    y &= v_{i}\sin\theta_{i} \mul \frac{x}{v_{i}\cos\theta_{i}}
+                    - \frac{1}{2}g (\,\frac{x}{v_{i}\cos\theta_{i}})\,^{2} \\
+                    &= x\tan{\theta_{i}} - \frac{gx^{2}}{2v^{2}_{i}\cos^{2}\theta_{i}}
+                \end{aligned}
+            \end{equation}
+
+            Because the equation \eqref{eq:05} is in the form of a quadratic equation,
+            the path is parabolic.
+
+    \pagebreak
+
+    \hi{Uniform Circular Motion}
+        \hii{Definition}
+            Uniform circular motion can be described as the motion of an object in a circle
+            at a constant speed. As an object moves in a circle, it is constantly changing
+            its direction. At all instances, the object is moving tangent to the circle.
+
+        \hii{Centripetal Acceleration}
+            \begin{equation}
+                a_{c} = \frac{v^{2}}{r}
+            \end{equation}
+
+        \hii{Period}
+            \begin{equation}
+                T = \frac{2\pi r}{v}
+            \end{equation}
+
+    \pagebreak
+    
+    \hi{Tangential and Radial Acceleration}
+        \hii{Definition}
+            \par When a particle moves along a curved path, the total acceleration $\vt{a}$ 
+            changes from point to point. This vector can be resolved into two components:
+            \begin{itemize}
+                \item A radial component $\vt{a_{r}}$
+                \item A tangential component $\vt{a_{r}}$
+            \end{itemize}
+
+        \hii{Model circle}
+            \par At each point on the path, there exists a model circle on which the radial
+            component and a tangential component are defined.
+
+        \hii{Radial Acceleration}
+            \par The Radial Acceleration lies along the radius of the model circle, arises from
+            the change in direction of the velocity vector.
+            \begin{equation}
+                a_{r} = -a{c} = -\frac{v^{2}}{r}
+            \end{equation}
+            \par The negative sign indicates that the direction of the centripetal acceleration
+            is toward the center of the circle representing the radius of curvature, which
+            is opposite the direction of the radial unit vector $\hat{r}$.
+
+        \hii{Tangential Acceleration}
+        \par The Tangential Acceleration is perpendicular to the radius, parallel to the
+        instantaneous velocity, and causes the change in the speed of the particle.
+        \begin{equation}
+            a_{t} = \frac{d|v|}{dt}
+        \end{equation}
+
+    \pagebreak 
+
+    \hi{Relative Velocity and Relative Acceleration}
+        \par Consider a particle which is being observed by two observers:
+        \begin{itemize} 
+            \item One in reference frame S, fixed relative to Earth
+            \item One in reference frame S', moving relative to S with a constant velocity
+                $\vt{v_{0}}$
+        \end{itemize} 
+
+        \par Suppose at t = 0, the origins of the two reference frames coincide in space. Thus,
+        at time t, the origins of the referene frames will be separated by a distance
+        $v_{0}t$.
+        \par If we denote:
+        \begin{itemize}
+            \item $\vt{r}$ as the position vector of the particle related to the origin of S.
+            \item $\vt{r'}$ as the position vector of the particle related to the origin of S'.
+        \end{itemize} 
+        \par then we have:
+        \begin{equation}
+        \label{eq:06}
+            r' = r - v_{0}t
+        \end{equation}
+
+        \par By differentiating equation \eqref{eq:06} and note that $v_{0}$ is constant, we obtain:
+        \begin{equation}
+        \label{eq:07}
+            \begin{aligned}
+                & \frac{dr'}{dt} = \frac{dr}{dt} - v_{0} \\
+                & \ra v' = v - v_{0}
+            \end{aligned}
+        \end{equation}
+
+        \par The equations \eqref{eq:06} and \eqref{eq:07} are known as \textbf{Galilean
+        transformation equations}.
+
+        \par Taking the time derivative of equation \eqref{eq:07}, we obtain:
+        \begin{equation}
+            \frac{dv'}{dt} = \frac{dv}{dt} - \frac{dv_{0}}{dt}
+        \end{equation}
+        \par Because $v_{0}$ is constant, $\dfrac{dv_{0}}{dt} = 0$. Therefore, the acceleration of
+        the particle measured by an observer in one frame of the reference is the same as
+        that measured by any other observer \textit{moving with constant velocity related to
+        the first frame}.
+        \begin{equation}
+            a' = a.
+        \end{equation}
+
+    \pagebreak

@@ -1,0 +1,86 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{relsize}
+
+% Margins
+\usepackage[margin=0.75in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\cdot}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\SUM}[1]{\mathlarger{\sum\limits #1}}
+\newcommand{\INT}[1]{\mathlarger{\int\limits #1}}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\newenvironment{nscenter}
+    {\parskip=0pt\par\nopagebreak\centering}
+    {\par\noindent\ignorespacesafterend}
+\newcommand{\CENTER}[1]{\begin{center} #1 \end{center}}
+\newcommand{\NSCENTER}[1]{\begin{nscenter} #1 \end{nscenter}}
+
+% Horizontal line for rule of inference
+\newcommand{\roiLine}[1]{\overline{\quad #1 \quad}}
+
+% Set section numbering
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+
+\hi{Average}
+    \par The \impt{average}, or \impt{mean} of $n$ independent measurements:
+    \begin{equation}
+        \avg{x} = \dfrac{\SUM{_{i}^{n} x_{i}}}{n}
+    \end{equation}
+
+\hi{Average Deviation}
+    \par \impt{Average deviation} tells on average (with ~50\% confidence) how
+    much the individual measurements vary from the mean.
+    \begin{equation}
+        \avg{d} = \dfrac{\SUM{_{i}^{n} |x_{i} - \avg{x}|}}{n}
+    \end{equation}
+
+\hi{Standard Deviation}
+    \par \impt{Standard deviation} is the most common way to characterize
+    the spread of a data set. The standard deviation is always slightly greater
+    than the average deviation.
+    \par Steps to find the standard deviation:
+    \begin{itemize}
+        \item Find the \impt{average}.
+        \item Subtract the average from the $n$ measurements to obtain
+            \impt{$n$ deviations}.
+        \item Square each deviation and add all up.
+        \item Divide the result by $(n - 1)$ and take the square root.
+    \end{itemize}
+    \par Let $\delta x_{i} = x_{i} - \avg{x}$. The following equation is
+    obtained:
+    \begin{equation}
+        s = \sqrt{\dfrac{\SUM{_{i}^{n} \delta x_{i}^{2}}}{n - 1}}
+    \end{equation}
+
+\end{document}

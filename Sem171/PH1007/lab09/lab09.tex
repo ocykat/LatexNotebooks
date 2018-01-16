@@ -1,0 +1,204 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[fleqn]{mathtools}
+\usepackage{relsize}
+\usepackage{tcolorbox}
+
+% Margins
+\usepackage[margin=0.5in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\mCol}{\multicolumn}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+% Math Macros
+\newcommand{\SUM}[1]{\mathlarger{\sum\limits #1}}
+\newcommand{\INT}[1]{\mathlarger{\int\limits #1}}
+
+% Physics experiment macros
+\newcommand{\relerr}[1]{\dfrac{\Dt #1}{\avg{#1}}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & November 17, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 09 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries MEASURING THE FOCAL LENGTHS OF CONVERGENT AND DIVERGENT LENSES \par}
+    \vspace{3cm}
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+    \par Measuring the focal length of a convergent lens using two different methods:
+    Silberman method and Bessel method.
+
+\hi{Measurement Data}
+    \begin{itemize}
+        \item Precision of the ruler: $1 mm$
+        \item Unit of measurement: $mm$
+    \end{itemize}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline 
+            & \mCol{3}{c|}{Silberman method} & \mCol{4}{c|}{Bessel method} \\
+            \hline 
+            No.     & \quad $L$ \quad & \quad $f_{1}$ \quad & \quad $\Dt f_{1}$ \quad & \quad $L$ \quad & \quad $a$ \quad & \quad $f_{1}$ \quad & \quad $\Dt f_{1}$ \quad \\ 
+            \hline 
+            1       & 618 & 155 & 0 & 700 & 309 & 141 & 1 \\ 
+            \hline 
+            2       & 625 & 156 & 1 & 730 & 349 & 141 & 1 \\ 
+            \hline 
+            3       & 615 & 154 & 1 & 760 & 396 & 138 & 2 \\ 
+            \hline 
+            Average & 619 & 155 & 1 & 730 & 351 & 140 & 1 \\ 
+            \hline 
+        \end{tabular} 
+    \end{center}
+
+\hi{Calculation}
+    \hii{Value}
+        \begin{itemize}
+            \item Silberman method:
+                \begin{align*}
+                    f_{1} = \frac{L_{0}}{4}
+                \end{align*}
+            \item Bessel method:
+                \begin{align*}
+                    f_{1} = \frac{L^{2} - a^{2}}{4L}
+                \end{align*}
+        \end{itemize}
+
+    \hii{Deviation}
+        \textbf{Instrument errors} \\
+        \begin{itemize}
+            \item Silberman method:
+                \begin{align*}
+                    \Dt f_{1 instru} = \frac{\Dt L_{0 instru}}{4} = \frac{1}{4} = 0 (mm)
+                \end{align*}
+            \item Bessel method:
+                \begin{align*}
+                    \frac{\Dt f_{1 instru}}{\avg{f_{1}}} &= \big|\frac{\avg{L}}{\avg{L^{2}} - \avg{a^{2}}}
+                    - \frac{1}{\avg{L}} \big| \Dt L_{instru} + \big|\frac{-2\avg{a}}{\avg{L^{2}} - \avg{a^{2}}}
+                    \big| \Dt a_{instru} \\
+                    &= \big|\frac{730}{730^{2} - 351^{2}}
+                    - \frac{1}{730} \big| \cdot 1 + \big|\frac{-2 \cdot 351}{730^{2} - 351^{2}}
+                    \big| \cdot 1 = 0.2 \% \\
+                    & \ra \Dt f_{1 instru} = 0.2 \% \cdot \avg{f_{1}}= 0.2 \% \cdot 140 = 0 (mm)
+                \end{align*}
+%                \begin{align*}
+                    %\frac{f_{1 instru}}{f_{1g}} = \big|\frac{2L_{g}}{L_{g}^{2} - a_{g}^{2}}
+                    %- \frac{1}{L_{g}} \big| \Dt L_{instru} + \big|\frac{-2a_{g}}{L_{g}^{2} - a_{g}^{2}}
+                    %\big| \Dt a_{instru}
+                %\end{align*}
+
+        \end{itemize}
+        \textbf{Measurement errors} \\
+        \begin{itemize}
+            \item Silberman method:
+                \begin{align*}
+                    \Dt f_{1} = \Dt f_{1 instru} + \avg{\Dt f_{1}} = 0 + 1 = 1(mm)
+                \end{align*}
+            \item Bessel method:
+                \begin{align*}
+                    \Dt f_{1} = \Dt f_{1 instru} + \avg{\Dt f_{1}} = 0 + 1 = 1(mm)
+                \end{align*}
+        \end{itemize}
+
+\hi{Result}
+    \begin{tcolorbox}
+        \begin{itemize}
+            \item Silberman method: $f_{1} = \avg{f_{1}} \pm \Dt f_{1} = 155 \pm 1 (mm)$
+            \item Bessel method: $f_{1} = \avg{f_{1}} \pm \Dt f_{1} = 140 \pm 1 (mm)$
+        \end{itemize}
+    \end{tcolorbox}
+
+
+\end{document}

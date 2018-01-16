@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.pdf
+*.out
+*.toc
+
+*.PNG
+*.png
+*.jpg
+*.JPEG
+
+*.py

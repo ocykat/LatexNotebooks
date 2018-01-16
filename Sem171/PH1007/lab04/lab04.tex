@@ -1,0 +1,296 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[fleqn]{mathtools}
+\usepackage{relsize}
+
+% Margins
+\usepackage[margin=0.5in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+% Math Macros
+\newcommand{\SUM}[1]{\mathlarger{\sum\limits #1}}
+\newcommand{\INT}[1]{\mathlarger{\int\limits #1}}
+
+% Physics experiment macros
+\newcommand{\relerr}[1]{\dfrac{\Dt #1}{\avg{#1}}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & October 21, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 04 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries DETERMINING THE THERMOCOUPLE CONSTANT \par}
+    \vspace{3cm}
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+
+\hi{Measurement Data}
+    \begin{itemize}
+        \item Electronic milivoltmeter: \\
+            $\delta_{V\_elec} = \dfrac{5}{150} = 3.33 \%$ \\
+            $U_{elec\_max} = 150 (mV)$
+        \item Digital milivoltmeter: \\
+            $\delta_{V\_dig} = \dfrac{0.1}{200} = 0.5 \% $ \\
+            $n\alpha = \dfrac{200}{2000} = 0.1 (mV)$
+        \item Digital thermometer: \\
+            $\Dt{T} = 0.1 (\degree C)$
+        \item $T_{2} = 27.3 \degree C$
+    \end{itemize}
+
+    \begin{center}
+        \textbf{Table 1.} \\ \vspace{5mm}
+        \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline
+                \quad No. \quad &
+                \quad $T_{1} (\degree C)$ \quad &
+                \quad $T_{1} - T_{2} (\degree C)$ \quad &
+                \quad $\Dt (T_{1} - T_{2}) (\degree C)$ \quad &
+                \quad $U_{amplified} (mV)$ \quad \\
+            \hline
+            1       & 95.1 & 67.8 & 0.2 & 124.7 \\
+            \hline
+            2       & 90.0 & 62.7 & 0.2 & 114.0 \\
+            \hline
+            3       & 85.0 & 57.7 & 0.2 & 106.7 \\
+            \hline
+            4       & 80.1 & 52.8 & 0.2 &  95.5 \\
+            \hline
+            5       & 75.1 & 47.8 & 0.2 &  87.0 \\
+            \hline
+            6       & 70.2 & 42.9 & 0.2 &  78.2 \\
+            \hline
+            7       & 65.1 & 37.8 & 0.2 &  67.5 \\
+            \hline
+            8       & 60.0 & 32.7 & 0.2 &  58.3 \\
+            \hline
+            9       & 55.1 & 27.8 & 0.2 &  49.6 \\
+            \hline
+            10      & 50.2 & 22.9 & 0.2 &  41.2 \\
+            \hline
+            11      & 44.9 & 17.6 & 0.2 &  31.7 \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+\hi{Calculation}
+    \hii{Values and Deviations}
+    \begin{align*}
+        &k = \dfrac{U_{dig}}{U_{elec}} = \dfrac{15.0}{5} = 3.0 \\
+        &\Dt U_{elec} = \delta_{V\_elec} \cdot U_{elec\_max} = 3.33 \% \cdot 150 = 5 \quad (mV) \\
+        &\Dt U_{dig} = \delta_{V\_dig} \cdot U_{dig\_max} + n \alpha
+        = 0.5 \% \cdot 200 + 0.1 = 1.1 \quad (mV) \\
+        &\dfrac{\Dt k}{k} = \dfrac{\Dt U_{dig}}{U_{dig}} + \dfrac{\Dt U_{elec}}{U_{elec}}
+        = \dfrac{1.1}{200.0} + \dfrac{5}{150} = 3.883 \% \\
+        &\Dt (T_{1} - T_{2}) = \Dt T_{1} + \Dt T_{2} = 2 \Dt T = 0.2 (\degree C)
+    \end{align*}
+    \pagebreak
+    \par \textbf{\textit{Formulas for the second table:}} \\
+    \begin{align*}
+        &E_{thermal\_i} = \dfrac{U_{amplified\_i}}{k} = \dfrac{U_{amplified\_i}}{3}  \\
+        &\Dt U_{amplified\_i} = \delta_{V\_dig} \cdot U_{amplified\_i} + n \alpha
+        = 0.5 \% \cdot U_{amplified\_i} + 0.1 \\
+        &\epsilon_{i} = \dfrac{\Dt E_{thermal\_i}}{E_{thermal\_i}}
+        = \dfrac{\Dt{k}}{k} + \dfrac{\Dt U_{amplified\_i}}{U_{amplified}} \\
+        &\Dt E_{thermal\_i} = \epsilon_{i} \cdot E_{thermal\_i} \\
+    \end{align*}
+
+    \begin{center}
+        \textbf{Table 2.} \\ \vspace{5mm}
+        \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline
+                No. &
+                $T_{1} - T_{2} (\degree C)$ &
+                $U_{amplified} (mV)$ &
+                $\Dt U_{amplified} (mV)$ &
+                $\epsilon$ &
+                $E_{thermal}$ &
+                $\Dt E_{thermal}$ \\
+            \hline
+            1       & 67.8 & 124.7 & 0.7 & 4.463 & 41.6 & 1.9 \\
+            \hline
+            2       & 62.7 & 114.0 & 0.7 & 4.471 & 38.0 & 1.7 \\
+            \hline
+            3       & 57.7 & 106.7 & 0.6 & 4.477 & 35.6 & 1.6 \\
+            \hline
+            4       & 52.8 &  95.5 & 0.6 & 4.488 & 31.8 & 1.4 \\
+            \hline
+            5       & 47.8 &  87.0 & 0.5 & 4.498 & 29.0 & 1.3 \\
+            \hline
+            6       & 42.9 &  78.2 & 0.5 & 4.511 & 26.1 & 1.2 \\
+            \hline
+            7       & 37.8 &  67.5 & 0.4 & 4.531 & 22.5 & 1.0 \\
+            \hline
+            8       & 32.7 &  58.3 & 0.4 & 4.555 & 19.4 & 0.9 \\
+            \hline
+            9       & 27.8 &  49.6 & 0.3 & 4.585 & 16.5 & 0.8 \\
+            \hline
+            10      & 22.9 &  41.2 & 0.3 & 4.626 & 13.7 & 0.6 \\
+            \hline
+            11      & 17.6 &  31.7 & 0.3 & 4.698 & 10.6 & 0.5 \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \pagebreak
+
+    \hii{Graph}
+    \begin{equation*}
+        E_{thermal} = C \cdot (T_{1} - T_{2})
+    \end{equation*}
+
+    \par \textbf{Scale:} $1 \degree C$ on the $x$ axis has the same length with $1 mV$ on the $y$
+    axis.
+
+            \begin{figure}[h]
+                \begin{center}
+                    \includegraphics{graph.png}
+                \end{center}
+            \end{figure}[h]
+
+    \pagebreak
+
+    \hiiBEGIN{Determine the thermocouple constant}
+        \hiii{Method 1}
+        \par In the working range of temperature, let the graph representing the function
+        $E = CT$ be the segment $OA$. Then, the average $\avg{C}$ and the absolute error
+        $\Dt C$ of constant $C$ are calculated as follows:
+        \begin{align*}
+            &\avg{C} = \dfrac{\SUM{_{i = 1}^{n} (T_{1i} - T_{2}) \cdot E_{thermal}}}{\SUM{_{i = 1}^{n} (T_{1i} - T_{2})^{2}}} = 0.607 \quad (mV/\degree C) \\
+            &\xi_{thermal\_i} = C \cdot (T_{1i} - T_{2}) = 0.607 \cdot (T_{1i} - T_{2}) \\
+            &S^{2} = \dfrac{1}{n - 1} \SUM{_{i = 1}^{n} (E_{thermal\_i} - \xi_{thermal\_i})}
+            = 0.104 \quad (mV^{2}) \\
+            &(\Dt C)^{2} = \dfrac{S^{2}}{\SUM{_{i = 1}^{n} (T_{1i} - T_{2})^{2}}} \\
+            & \ra (\Dt C) = 0.002 \quad (mV/\degree C)
+        \end{align*}
+        \par \impt{Result: }
+        \[
+            \boxed{C = \avg{C} + \Dt C = 0.607 \pm 0.002 \quad (mV/\degree C)}
+        \]
+    
+        \hiiiBEGIN{Method 2}
+            \hiv{Calculation of $C$}
+                \par Define $\alpha$ as the angle of the line $OA$ with respect to the horizontal
+                axis. We have:
+                \begin{align*}
+                    \avg{C} = \tan{\alpha} = \dfrac{K_{y} \cdot AH}{K_{x} \cdot OH}
+                   % = \dfrac{}{}
+                \end{align*}
+            \hiv{Calculation of $\Dt C$}
+                \par Applying differential, we obtain:
+                \begin{align*}
+                    dC = d(\tan{\alpha}) = \dfrac{d\alpha}{cos^{2}\alpha} = (1 + \tan^{2}\alpha)d(\alpha)
+                \end{align*}
+                \par Since $C^{2} = \tan^{2}\alpha << 1$, we can deduce that:
+                \begin{align*}
+                    \Dt C = (1 + C^{2})\Dt \alpha \approx \Dt \alpha
+                \end{align*}
+                \par We can consider $\Dt \alpha$ as the angle between two lines starting from the
+                origin $O$ and going through the two endpoints of the error segment $2 \Dt E$.
+                $\Dt \alpha$ is approximated as follow:
+                \begin{align*}
+                    \Dt \alpha \approx \dfrac{2\Dt E}{OA}
+                \end{align*}
+%                with
+                %\begin{align*}
+                    %OA = \sqrt{\avg{AH}^{2} + \avg{OH}^2} = \\
+                    %2 \Dt E = \\
+                %\end{align*}
+        \hiiiEND
+            
+
+    \hiiEND
+
+\end{document}

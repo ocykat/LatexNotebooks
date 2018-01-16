@@ -1,0 +1,307 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{mathtools}
+
+% Margins
+\usepackage[margin=1in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & October 1, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2.5cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 01 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries MEASURING DENSITY OF SOLIDS \par}
+
+    \vspace{3cm}
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{4cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+    \par Determine the mass density of some symmetrical objects using a vernier
+    calliper and a balanced scale.
+
+\hi{Data Analysis \& Results}
+    \hiiBEGIN{Determine the mass density of object 1}
+        \hiii{Determine the volume of object 1}
+            \begin{center}
+                \begin{tabular}{|c|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{7}{|c|}{Precision of calliper: 0.02 mm} \\
+                    \hline
+                    \multirow{2}{*}{Meas. No.} & $D$ & $\Dt D$ & $d$ & $\Dt d$ & $h$ & $\Dt h$ \\
+                    & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ \\
+                    \hline
+                    1       & 33.02 & 0.05 & 20.70 & 0.01 & 29.52 & 0.02 \\
+                    \hline
+                    2       & 32.98 & 0.01 & 20.78 & 0.07 & 29.56 & 0.02 \\
+                    \hline
+                    3       & 32.90 & 0.07 & 20.66 & 0.05 & 29.54 & 0.00 \\
+                    \hline
+                    Average & 32.97 & 0.04 & 20.71 & 0.04 & 29.54 & 0.01 \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+            \begin{itemize}
+                \item Calculate the total errors of measurement of the outer radius $D$,
+                    the inner radius $d$, and the height $h$:
+                    {\setlength{\abovedisplayskip}{0pt}
+                    \begin{align*}
+                        \Dt D & = (\Dt D)_{instrument} + \avg{\Dt D} & = 0.02 + 0.04 & = 0.06 & (10^{-3} m) \\
+                        \Dt d & = (\Dt d)_{instrument} + \avg{\Dt d} & = 0.02 + 0.04 & = 0.06 & (10^{-3} m) \\
+                        \Dt h & = (\Dt h)_{instrument} + \avg{\Dt h} & = 0.02 + 0.01 & = 0.03 & (10^{-3} m) 
+                    \end{align*}}
+                \item Calculate the relative error and the object's volume:
+                    {\setlength{\abovedisplayskip}{0pt}
+                    \begin{flalign*}
+                        \delta = \dfrac{\Dt V}{\avg{V}}
+                        & = \dfrac{\Dt \pi}{\pi} + 2 \mul \dfrac{\avg{D} \Dt D + \avg{d} \Dt d}{\avg{D^{2}} - \avg{d^{2}}} + \dfrac{\Dt h}{\avg{h}} \\
+                        & = \dfrac{0.01}{2\pi} + 2 \mul \dfrac{32.97 \mul 0.06 + 20.71 \mul 0.06}{32.97^{2} - 20.71^{2}} + \dfrac{0.03}{29.54} \\
+                        & = 0.012 \\
+                    \end{flalign*}
+                    \begin{flalign*}
+                        \avg{V} & = \dfrac{\pi}{4} (\avg{D^{2}} - \avg{d^{2}}) \mul \avg{h} \\
+                        & = \dfrac{\pi}{4} (32.97^{2} - 20.71^{2}) \mul 29.54 \\
+                        & = 15268 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}
+                    \begin{flalign*}
+                        \Dt V & = \delta \mul \avg{V} = 0.012 \mul 15268 = 183 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}}
+                \item Write the result of the ring volume measurement:
+                    \begin{flalign*}
+                        V = \avg{V} \pm \Dt V = 15268 \pm 183 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}
+           \end{itemize}
+
+        \hiii{Determine the mass of object 1}
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \multirow{2}{*}{Meas. No.} & $m$ & $\Dt m$ \\
+                    & $(10^{-3} kg)$ & $(10^{-3} kg)$ \\
+                    \hline
+                    1       & 151.3 & 0.2 \\
+                    \hline
+                    2       & 151.1 & 0.0 \\
+                    \hline
+                    3       & 151.0 & 0.1 \\
+                    \hline
+                    Average & 151.1 & 0.1 \\
+                    \hline
+               \end{tabular}
+            \end{center}
+
+            \begin{itemize}
+                \item Calculate total errors:
+                    \begin{flalign*}
+                        \Dt m = (\Dt m)_{instrument} + \avg{\Dt m} = 0.1 + 0.1 = 0.2 \qquad (10^{-3} kg)
+                    \end{flalign*}
+                \item Wirte the result of the mass measurement
+                    \begin{flalign*}
+                        m = \avg{m} \pm \Dt m = 151.1 \pm 0.2 \qquad (10^{-3} kg)
+                    \end{flalign*}
+            \end{itemize}
+
+        \hiii{Determine the mass density of object 1}
+            \begin{flalign*}
+                \avg{\rho} & = \dfrac{\avg{m}}{\avg{V}} \\
+                & = \dfrac{151.1 \mul 10^{-3}}{15268 \mul 10^{-9}} = 9897 \qquad (kg/m^{3}) \\
+            \end{flalign*}
+            \begin{flalign*}
+                \dfrac{\Dt \rho}{\avg{\rho}} = \dfrac{\Dt m}{\avg{m}} + \dfrac{\Dt V}{\avg{V}}
+                = \dfrac{0.2}{151.1} + \dfrac{183}{15268} = 0.013 \\
+                \ra \Dt \rho = 0.013 \mul \avg{\rho} = 0.013 \mul 9897 = 129 \qquad (kg/m^{3}) \\
+            \end{flalign*}
+            \begin{flalign*}
+                \rho = \avg{\rho} \pm \Dt \rho = 9.897 \pm 0.129 \qquad (10^{3} kg/m^{3}) \\
+            \end{flalign*}
+
+    \hiiEND
+
+    \pagebreak
+
+    \hiiBEGIN{Determine the mass density of object 2}
+        \hiii{Determine the volume of object 2}
+            \begin{center}
+                \begin{tabular}{|c|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{7}{|c|}{Precision of calliper: 0.02 mm} \\
+                    \hline
+                    \multirow{2}{*}{Meas. No.} & $D$ & $\Dt D$ & $d$ & $\Dt d$ & $h$ & $\Dt h$ \\
+                    & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ & $(10^{-3} m)$ \\
+                    \hline
+                    1       & 33.34 & 0.01 & 14.90 & 0.10 & 18.84 & 0.03 \\
+                    \hline
+                    2       & 33.32 & 0.01 & 15.10 & 0.10 & 18.90 & 0.03 \\
+                    \hline
+                    3       & 33.34 & 0.01 & 15.00 & 0.00 & 18.86 & 0.01 \\
+                    \hline
+                    Average & 33.33 & 0.01 & 15.00 & 0.07 & 18.87 & 0.02 \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+            \begin{itemize}
+                \item Calculate the total errors of measurement of the outer radius $D$,
+                    the inner radius $d$, and the height $h$:
+                    {\setlength{\abovedisplayskip}{0pt}
+                    \begin{align*}
+                        \Dt D & = (\Dt D)_{instrument} + \avg{\Dt D} & = 0.02 + 0.01 & = 0.03 & (10^{-3} m) \\
+                        \Dt d & = (\Dt d)_{instrument} + \avg{\Dt d} & = 0.02 + 0.07 & = 0.09 & (10^{-3} m) \\
+                        \Dt h & = (\Dt h)_{instrument} + \avg{\Dt h} & = 0.02 + 0.02 & = 0.04 & (10^{-3} m) 
+                    \end{align*}}
+                \item Calculate the relative error and the object's volume:
+                    {\setlength{\abovedisplayskip}{0pt}
+                    \begin{flalign*}
+                        \delta = \dfrac{\Dt V}{\avg{V}}
+                        & = \dfrac{\Dt \pi}{\pi} + 2 \mul \dfrac{\avg{D} \Dt D + \avg{d} \Dt d}{\avg{D^{2}} - \avg{d^{2}}} + \dfrac{\Dt h}{\avg{h}} \\
+                        & = \dfrac{0.01}{2\pi} + 2 \mul \dfrac{33.33 \mul 0.03 + 15.00 \mul 0.09}{33.33^{2} - 15.00^{2}} + \dfrac{0.04}{29.54} \\
+                        & = 0.008 \\
+                    \end{flalign*}
+                    \begin{flalign*}
+                        \avg{V} & = \dfrac{\pi}{4} (\avg{D^{2}} - \avg{d^{2}}) \mul \avg{h} \\
+                        & = \dfrac{\pi}{4} (33.33^{2} - 15.00^{2}) \mul 18.87 \\
+                        & = 13129 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}
+                    \begin{flalign*}
+                        \Dt V & = \delta \mul \avg{V} = 0.008 \mul 13129 = 105 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}}
+                \item Write the result of the ring volume measurement:
+                    \begin{flalign*}
+                        V = \avg{V} \pm \Dt V = 13129 \pm 105 \qquad (10^{-9} m^{3}) \\
+                    \end{flalign*}
+            \end{itemize}
+
+        \hiii{Determine the mass of object 2}
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \multirow{2}{*}{Meas. No.} & $m$ & $\Dt m$ \\
+                    & $(10^{-3} kg)$ & $(10^{-3} kg)$ \\
+                    \hline
+                    1       & 99.4 & 0.2 \\
+                    \hline
+                    2       & 99.0 & 0.2 \\
+                    \hline
+                    3       & 99.2 & 0.0 \\
+                    \hline
+                    Average & 99.2 & 0.1 \\
+                    \hline
+               \end{tabular}
+            \end{center}
+
+            \begin{itemize}
+                \item Calculate total errors:
+                    \begin{flalign*}
+                        \Dt m = (\Dt m)_{instrument} + \avg{\Dt m} = 0.1 + 0.1 = 0.2 \qquad (10^{-3} kg)
+                    \end{flalign*}
+                \item Wirte the result of the mass measurement
+                    \begin{flalign*}
+                        m = \avg{m} \pm \Dt m = 99.2 \pm 0.2 \qquad (10^{-3} kg)
+                    \end{flalign*}
+            \end{itemize}
+
+        \hiii{Determine the mass density of object 2}
+            \begin{flalign*}
+                \avg{\rho} & = \dfrac{\avg{m}}{\avg{V}} \\
+                & = \dfrac{99.2 \mul 10^{-3}}{13129 \mul 10^{-9}} = 7556 \qquad (kg/m^{3}) \\
+            \end{flalign*}
+            \begin{flalign*}
+                \dfrac{\Dt \rho}{\avg{\rho}} = \dfrac{\Dt m}{\avg{m}} + \dfrac{\Dt V}{\avg{V}}
+                = \dfrac{0.2}{99.2} + \dfrac{105}{13129} = 0.010 \\
+                \ra \Dt \rho = 0.010 \mul \avg{\rho} = 0.010 \mul 7556 = 76 \qquad (kg/m^{3}) \\
+            \end{flalign*}
+            \begin{flalign*}
+                \rho = \avg{\rho} \pm \Dt \rho = 7.556 \pm 0.076 \qquad (10^{3} kg/m^{3}) \\
+            \end{flalign*}
+
+    \hiiEND
+
+\end{document}

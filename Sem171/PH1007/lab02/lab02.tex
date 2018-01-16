@@ -1,0 +1,205 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{mathtools}
+
+% Margins
+\usepackage[margin=1in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & October 1, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 02 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries MEASURING THE GRAVITATIONAL ACCELERATION WITH A REVERSIBLE PENDULUM \par}
+
+    \vspace{3cm}
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+    \par Adjust a physical pendulum so that it becomes reversible and use it to determine
+    the gravitational acceleration.
+
+\hi{Data Analysis \& Results}
+    \hiiBEGIN{Determine the best position of weight $C$ for the pendulum to become reversible}
+        \hiii{Measure the period of the pendulum at different positions of weight $C$}
+            \par The length of the pendulum: $L = 700 \pm 1 \qquad (mm)$
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    Position of weight $C$ & $50T_{1}$ & $50T_{2}$ \\
+                    $(mm)$ & $(s)$ & $(s)$ \\
+                    \hline
+                    $x_{0} = 0 mm$       & 83.55 & 83.77 \\
+                    \hline
+                    $x_{0} + 40 = 40 mm$ & 84.33 & 84.11 \\
+                    \hline
+                    $x_{1} = 20 mm$      & 83.96 & 83.95 \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+        \hiii{Determine the best position of weight $C$ using graph}
+            \begin{figure}[h]
+                \begin{center}
+                    \includegraphics[width=11cm, height=10.2cm]{graph.png}
+                \end{center}
+            \end{figure}[H]
+
+    \hiiEND
+
+    \hii{Determine the oscillation period of the reversible pendulum}
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                \multicolumn{5}{|c|}{Best position of weight $C$: $x = 20 mm$} \\
+                \hline
+                Meas. No. & $50T_{1}$ (s) & $\Dt (50T_{1})$ (s) & $50T_{2}$ (s) & $\Dt (50T_{2})$ (s) \\
+                \hline
+                1       & 83.96 & 0.04 & 83.95 & 0.01 \\
+                \hline
+                2       & 83.90 & 0.02 & 83.96 & 0.00 \\
+                \hline
+                3       & 83.91 & 0.01 & 83.96 & 0.00 \\
+                \hline
+                Average & 83.92 & 0.02 & 83.96 & 0.00 \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \begin{itemize}
+            \item Calculate the average period of the reversible pendulum:
+                \begin{align*}
+                    \avg{T} & = \dfrac{1}{50} \mul \dfrac{\avg{50T_{1}} + \avg{50T_{2}}}{2} \\
+                    & = \dfrac{1}{50} \mul \dfrac{83.92 + 83.96}{2} \\
+                    & = 1.68 \qquad (s) \\
+                \end{align*}
+            \item Calculate the average error:
+                \begin{align*}
+                    \avg{\Dt T} & = \dfrac{1}{50} \mul \dfrac{\avg{\Dt (50T_{1})} + \avg{\Dt (50T_{2})}}{2} \\
+                    & = \dfrac{1}{50} \mul \dfrac{0.02 + 0.00}{2} \\
+                    & = 0.00 \qquad (s) \\
+                \end{align*}
+            \item Determine the error of the instrument: $(\Dt T)_{instrument} = 0.01 (s)$
+            \item Calculate the total error:
+                \begin{align*}
+                    \Dt T = (\Dt T)_{instrument} + \avg{\Dt T} = 0.01 + 0.00 = 0.01 (s)
+                \end{align*}
+        \end{itemize}
+       
+    \hii{Calculate the gravitational acceleration}
+        \begin{itemize}
+            \item Calculate the gravitational acceleration:
+                \begin{align*}
+                    \avg{g} = \dfrac{4 \pi^{2} \avg{L}}{\avg{T^{2}}}
+                    = \dfrac{4 \pi^{2} \mul 700 \mul 10^{-3}}{1.68^{2}} = 9.79 \qquad (m/s^{2})
+                \end{align*}
+            \item Calculate the relative error of the acceleration of gravity:
+                \begin{align*}
+                    \delta = \dfrac{\Dt g}{\avg{g}}
+                    & = 2 \mul \dfrac{\Dt \pi}{\avg{\pi}} + \dfrac{\Dt L}{\avg{L}} + 2 \mul \dfrac{\Dt T}{\avg{T}} \\
+                    & = 2 \mul \dfrac{0.01}{2 \mul pi} + \dfrac{1}{700} + 2 \mul \dfrac{0.01}{1.68} \\
+                    & = 0.017 \qquad (m/s^{2})
+                \end{align*}
+            \item Calculate the absolute error of the acceleration of gravity:
+                \begin{align*}
+                    \Dt g = \delta \mul \avg{g} = 0.017 \mul 9.79 = 0.17 \qquad (m/s^{2})
+                \end{align*}
+            \item Write the result of gravitational acceleration:
+                \begin{align*}
+                    g = \avg{g} \pm \Dt g = 9.79 \pm 0.17 \qquad (m/s^{2})
+                \end{align*}
+        \end{itemize}
+
+\end{document}

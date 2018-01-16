@@ -1,0 +1,225 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[fleqn]{mathtools}
+\usepackage{relsize}
+\usepackage{tcolorbox}
+
+% Margins
+\usepackage[margin=0.5in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+% Math Macros
+\newcommand{\SUM}[1]{\mathlarger{\sum\limits #1}}
+\newcommand{\INT}[1]{\mathlarger{\int\limits #1}}
+
+% Physics experiment macros
+\newcommand{\relerr}[1]{\dfrac{\Dt #1}{\avg{#1}}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & November 4, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 06 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries STUDYING THE ACCUMULATE-RELEASED OSCILLATOR CIRCUIT USING THE NEON LIGHT TO MEASURE THE RESISTANCE AND THE CAPACITANCE \par}
+    \vspace{3cm}
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+
+\hi{Measurement Data}
+    \begin{itemize}
+        \item Voltmeter V: \\
+            $U_{max} = 100 (V)$ \\
+            $\delta_{V} = 2 \%$
+        \item Sample resistor: \\
+            $R_{0} = 1.00 + 0.01 (M\Omega)$
+        \item Sample capacitor: \\
+            $C_{0} = 1.00 + 0.01 (\mu F)$
+        \item Versatile chronometer MC-963A: \\
+            $\Dt t = 0.01 (s)$
+        \item $U_{n} = 90V$
+    \end{itemize}
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\hline 
+	No. & $U_{S} (V)$ & $\Dt U_{S} (V)$ & $U_{T} (V)$ & $\Dt U_{T} (V)$ & $t_{0} (s)$ & $\Dt t_{0} (s)$ & $t_{x} (s)$ & $\Dt t_{x} (s)$ & $t'_{x} (s)$ & $\Dt t'_{x} (s)$ \\ 
+	\hline 
+	1 & 74 & 3 & 64 & 0 & 36.62 & 0.66 & 48.13 & 0.39 & 25.52 & 0.26 \\ 
+	\hline 
+	2 & 76 & 1 & 64 & 0 & 35.51 & 0.45 & 49.02 & 0.50 & 25.88 & 0.10 \\ 
+	\hline 
+	3 & 78 & 1 & 64 & 0 & 35.74 & 0.22 & 48.85 & 0.33 & 25.73 & 0.05 \\ 
+	\hline 
+	4 & 78 & 1 & 64 & 0 & 35.16 & 0.80 & 48.62 & 0.10 & 26.04 & 0.26 \\ 
+	\hline 
+	5 & 78 & 1 & 64 & 0 & 36.77 & 0.81 & 47.96 & 0.56 & 25.74 & 0.04 \\ 
+	\hline 
+	Average & 77 & 1 & 64 & 0 & 35.96 & 0.59 & 48.52 & 0.38 & 25.78 & 0.14 \\ 
+	\hline 
+\end{tabular} 
+
+\hi{Calculation}
+    \hii{Values}
+        \begin{align*}
+            & \avg{\tau_{0}} = \avg{R_{0}} \cdot \avg{C_{0}} \cdot
+                \ln\big(\frac{\avg{U_{n}} - \avg{U_{T}}}{\avg{U_{n}} - \avg{U_{S}}}\big)
+            = 1 \cdot 10^{6} \cdot 1 \cdot 10^{-6} \cdot \ln\big(\frac{90 - 64}{90 - 77}\big)
+            = 0.69 (s) \\
+            & \avg{R_{x}} = \avg{R_{0}} \cdot \frac{\avg{\tau_{x}}}{\avg{\tau_{0}}}
+                = \avg{R_{0}} \cdot \frac{\avg{t_{x}}}{\avg{t_{0}}}
+            = 1 \cdot \frac{48.52}{35.96} = 1.35 (M\Omega) \\
+            & \avg{C_{x}} = \avg{C_{0}} \cdot \frac{\avg{\tau'_{x}}}{\avg{\tau'_{0}}}
+                = \avg{R_{0}} \cdot \frac{\avg{t'_{x}}}{\avg{t'_{0}}}
+                = 1 \cdot \frac{25.78}{35.96} = 0.72 (\mu F) \\
+        \end{align*}
+    \hii{Deviations}
+        \par Measurement errors:
+        \begin{itemize}
+            \item $\Dt U_{n} = (\Dt U_{n})_{instrument} + \avg{\Dt U_{n}} = 2 + 0 = 2 (V)$
+            \item $\Dt U_{S} = (\Dt U_{S})_{instrument} + \avg{\Dt U_{S}} = 2 + 1 = 3 (V)$
+            \item $\Dt U_{T} = (\Dt U_{T})_{instrument} + \avg{\Dt U_{T}} = 2 + 0 = 2 (V)$
+            \item $\Dt t_{0} = (\Dt t_{0})_{instrument} + \avg{\Dt t_{0}} = 0.01 + 0.59 = 0.60 (s)$
+            \item $\Dt t_{x} = (\Dt t_{x})_{instrument} + \avg{\Dt t_{x}} = 0.01 + 0.38 = 0.39 (s)$
+            \item $\Dt t'_{x} = (\Dt t'_{x})_{instrument} + \avg{\Dt t'_{x}} = 0.01 + 0.14 = 0.15 (s)$
+        \end{itemize}
+        
+        \par Absolute errors:
+        \begin{align*}
+            &\Dt \tau_{0} = \big(ln\frac{\avg{U_{n}} - \avg{U_{T}}}{\avg{U_{n}} - \avg{U_{S}}}\big)
+                \cdot (\avg{C_{0}} \Dt R_{0} + \avg{R_{0}} \Dt C_{0}) \\
+            &  + (\avg{R_{0}} \avg{C_{0}})
+                \bigg[ \bigg| \frac{1}{\avg{U_{n}} - \avg{U_{T}}}
+                            - \frac{1}{\avg{U_{n}} - \avg{U_{S}}} \bigg| \cdot \Dt U_{n}
+                    + \bigg| \frac{-1}{\avg{U_{n}} - \avg{U_{T}}} \bigg| \cdot \Dt U_{T}
+                    + \bigg| \frac{1}{\avg{U_{n}} - \avg{U_{S}}}  \bigg| \Dt U_{S}
+                \bigg] \\
+            &= 0.39 (s)
+        \end{align*}
+        \begin{align*}
+            \relerr{R_{x}} = \relerr{R_{0}} + \relerr{t_{x}} + \relerr{t_{0}}
+            = 1 \% + \frac{0.39}{48.52} + \frac{0.60}{34.64}
+            = 3.5 \% \\
+            \ra \Dt R_{x} = 1.35 \cdot 3.5 \% = 0.047 (M \Omega)
+        \end{align*}
+        \begin{align*}
+            \relerr{C_{x}} = \relerr{C_{0}} + \relerr{t'_{x}} + \relerr{t_{0}}
+            = 1 \% + \frac{0.15}{25.78} + \frac{0.60}{34.64}
+            = 3.3 \% \\
+            \ra \Dt C_{x} = 0.72 \cdot 3.3 \% = 0.024 (\mu F)
+        \end{align*}
+
+\hi{Results}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item $U_{S} = 77 \pm 3 (V)$
+        \item $U_{T} = 64 \pm 2 (V)$
+        \item Direct measurement: \\
+            \begin{align*}
+                \tau_{0} = \avg{\tau_{0}} \pm \Dt \tau_{0} = 0.71 \pm 0.01 (s)
+            \end{align*}
+        \item Indirect measurement:
+            \begin{align*}
+                \tau_{0} = \avg{\tau_{0}} \pm \Dt \tau_{0} = 0.69 \pm 0.39 (s) \\
+            \end{align*}
+    \end{itemize}
+\end{tcolorbox}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item $R_{x} = \avg{R_x} \pm \Dt R_{x} = 1.35 \pm 0.047 (M\Omega)$
+        \item $C_{x} = \avg{C_x} \pm \Dt C_{x} = 0.72 \pm 0.024 (\mu F)$
+    \end{itemize}
+\end{tcolorbox}
+
+\end{document}

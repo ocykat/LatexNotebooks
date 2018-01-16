@@ -1,0 +1,1268 @@
+\documentclass[12pt, a4paper]{report}
+
+% Margins
+\usepackage[margin=0.75in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Table formatting
+\usepackage{multirow}
+
+\usepackage[version=4]{mhchem}
+
+% ___MACROS___
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\usepackage{makecell}
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Set section numbering
+\setcounter{secnumdepth}{4}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{img/}}
+
+% Orbitals
+\newcommand{\forb}{\framebox{$\uparrow \downarrow$}}
+\newcommand{\horb}{\framebox{$\uparrow \mbox{ }$}}
+
+% Mathematical
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{relsize}
+\newcommand{\mul}{\cdot}
+
+% Macros
+\newcommand{\Dt}{\Delta}
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+
+% Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+% Link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document}
+\tableofcontents
+
+\chapter{Atoms, Molecules and Ions}
+\hi{The Atomic Theory of Matter}
+    \par According to \textbf{Dalton's atomic theory}:
+        \begin{itemize}
+            \item Each element is composed of extremely small particles called atoms.
+            \item All atoms of a given element are identical to one another in properties. Atoms of
+            one element are different from the atoms of all other elements.
+            \item The atoms of one element cannot be changed into atoms of a different element, nor
+            created nor destroyed by chemical reactions;
+            \item Compounds are formed when atoms of more than one element combine. A given compound
+            always has the same relative number and kind of atoms.
+        \end{itemize}
+
+\hi{The Discovery of Atomic Structure}
+    \hii{J. J. Thomson's Discovery of Electrons}
+        \par J. J. Thomson discovered electrons through the experiment of \textbf{Cathode ray}.
+        \par In the experiment, he also discovered the ratio between the charge and the mass of
+        an electron.
+    \hii{Millikan's oil drop Experiment}
+        \par Robert Millikan discovered the charge of the electron through his \textbf{oil-drop
+        experiment}.
+        In addition, he calculated the mass of the electron using Thomson's charge-to-mass ratio.
+
+    \hii{The nuclear atom}
+        \par Thomson proposed the \textbf{plum-pudding model}, in which the atom consisted
+        of a uniform positive sphere of matter in which the electrons were embedded.
+        \par In 1910, Rutherford disproved Thomson's model with the \textbf{gold foil experiment}.
+        In the experiment, almost all $\alpha$ particles passed directly through the gold foid
+        without deflection. Rutherford postulated that most of the mass and charge of an atom
+        reside in a very small, extremely dense region called the \textbf{nucleus}; most of the
+        volume of the atom is empty space in which electrons move around the nucleus.
+
+\hi{The Modern View of Atomic Structure}
+
+\pagebreak
+
+\chapter{Electronic Structure of Atoms}
+\hi{The Wave Nature of Light}
+    \par Light is a type of {electromagnetic radiation}.
+    \par The electromagnetic spectrum:
+        \begin{figure}[H]
+            \begin{center}
+                \includegraphics{ElectromagneticSpectrum.png}
+                \caption[width=\textwidth]{Electromagnetic Spectrum}
+            \end{center}
+        \end{figure}
+    \par All types of electromagnetic radiation move through a vacuum at a speed of
+    $3 \mul 10^8 m/s$.
+    \par The inverses relationship between the frequency and the wavelength of electromagnetic
+    radiation:
+        \begin{equation}
+            c = \lambda f
+        \end{equation}
+
+\hi{Quantized Energy and Photons}
+    \par Although the wave model of light explains many aspects of its behavior, this model cannot
+    explain several phenomena. Three of these are:
+    \begin{itemize}
+        \item \impt{Blackbody radiation} or \impt{Hot-object radiation}:
+            the emmission of light from hot objects.
+        \item \impt{The photoelectric effect}: the emmission of electrons from metal surfaces on
+            which light shines.
+        \item \impt{Emmission spectra}: the emmission of light from electronically excited gas atoms.
+    \end{itemize}
+
+    \hii{Blackbody radiation and Planck's theory}
+        \textit{When solids are heated, they emit radiation. The wavelength distribution of
+            the radiation depends on the temperature: a red-hot object is cooler than a
+            white-hot one.}
+        \par The relationship between the temperature and the intensity and wavelengths of the
+            emitted radiations was solved by Max Planck.
+        \par He assumed that: \textit{Energy can be either released or absorbed by atoms only in
+            discrete "chunks" of some minimum size called \textbf{quantum}.}
+        \par The energy of each quantum can be evaluated with the equation:
+        \begin{equation}
+            E = hf
+        \end{equation}
+        \par in which:
+            \begin{itemize}
+                \item $E$: the energy of a single quantum $[J]$
+                \item $h$: Planck's constant $(6.626 \mul 10^{-34} J \mul s)$
+                \item $f$: the frequency of the radiation $[Hz]$
+            \end{itemize}
+        \par According to Planck's theory, matter is allowed to emit and absorb energy only in
+        whole-number multiples of $hf$, such as $hf$, $2hf$, $3hf$, and so forth.
+
+    \hii{Photoelectric effect and Photons}
+        \par Experiments had shown that light shining on a clean metal surface causes the surface
+        to emit electrons. Each metal has a minimum frequency of light below which no electrons
+        are emitted.
+        \par Einstein assumed that the radiant energy strking the metal surface does not behave
+        like a wave but rather as if it were a stream of tiny energy packets called \impt{photons}.
+        \par Extending Planck' quantum theory, Einstein deduced that the energy of each photon
+        must be quantized:
+        \begin{equation}
+            E_{photon} = hf
+        \end{equation}
+        \par \textit{Under the right conditions, a photon can strike a metal surface and be
+        absorbed. When this happens, the photon can transfer its energy to an electron in
+        the metal. A certain amount of energy - called the work function - is required for
+        an electron to overcome the attractive forces that hold it in the metal. If the photons
+        of the radiation impinging on the metal have less energy than the work function,
+        electons do not acquire suﬀicient energy to escape from the metal surface, even if the
+        light beam is intense. If the photons of radiation have sufficient energy, electrons
+        are emitted from the metal. If the photons have more than the minimum energy required
+        to free electrons, the excess energy appears as the kinetic energy of the emitted electrons.} 
+
+\hi{Line Spectra and The Bohr's Model}
+    \hii{Line Spectra}
+        \par Most common radiation sources, including lightbulbs and stars, produce radiation
+        \textit{containing many different wavelengths}. A \impt{spectrum} is produced when
+        radiation from such sources is separated into its different wavelength components.
+        \par There are three types of spectrum:
+        \begin{itemize}
+            \item Continuous Spectrum
+            \item Emmission Spectrum (or \textbf{Line Spectrum})
+            \item Absorption Spectrum
+        \end{itemize}
+    \hii{The Bohr's Model}
+        \par The Rutherford's Model of Atom is not feasible since electrons would collapse into the
+        nucleus due to the electrostatic force.
+        \par Bohr based his model on three postulates:
+        \begin{itemize}
+            \item Only orbits of certain radii, corresponding to certain definite energies, are
+                permitted for the electron in a hydrogen atom.
+            \item An electron in a permitted orbit has a specific energy and is in an "allowed"
+                energy state. An electron in an allowed energy state will not radiate energy
+                and therefore will not spiral into the nucleus.
+            \item Energy is emitted or absorbed by the electron only as the electron changes from
+                one allowed energy state to another. This energy is emitted or absorbed as a
+                photon: $\Delta E = hf$.
+        \end{itemize}
+
+    \hii{The Energy States of the Hydrogen Atom}
+        \par The energy corresponding to each allowed orbit for the electron in the hydrogen atom:
+        \begin{equation} \label{eq:01}
+            E_{n} = (-2.18 \mul 10^{-18} J)(\dfrac{1}{n^{2}}) = (-13.6 eV)(\,\dfrac{1}{n^2})\,
+        \end{equation}
+        \par in which:
+        \begin{itemize}
+            \item $E_{n}$: the energy corresponding to the $n^{th}$ orbit of the electron
+            \item $n$: the \impt{principle quantum number}
+        \end{itemize}
+        \par $n$ is a whole number values of 1, 2, 3, \ldots to infinity. Each orbit corresponds
+            to a different value of $n$. As $n$ increases, the orbit gets larger.
+        \par The lower the energy is, the more stable the atom will be. The lowest energy state,
+            $n = 1$, is called the \impt{ground state} of the atom. When the electron is in a higher
+            senergy, $n \geq 2$, the atom is said to be in a \impt{excited state}.
+        \par The state in which the electron is removed from the nucleus is the reference, or
+            zero-energy, state of the hydrogen atom. This zero-energy state is \textit{higher} in
+            energy than the states with negative energies.
+        \par Electron could "jump" from one allowed energy state to another by either absorbing
+        or emitting photons whose radiant energy corresponds exactly to the energy difference
+        between the two states.
+        \begin{equation} \label{eq:02}
+            \Delta E = E_{f} - E_{i} = E_{photon} = hf
+        \end{equation}
+        \par From the equations \eqref{eq:01} and \eqref{eq:02}, we have the formula:
+        \begin{equation}
+            \Delta E = hf = (-13.6 eV)(\dfrac{1}{n_{f}^2} - \dfrac{1}{n_{i}^2})
+        \end{equation}
+
+    \hii{Limitations of the Bohr's Model}
+        \par The limitations of the Bohr's Model are:
+        \begin{itemize}
+            \item It cannot explain the spectra of other atoms, except in a rather crude way.
+            \item It cannot fully explain the problem of why the negatively charged electron would not
+                just fall into the positively charged nucleus.
+        \end{itemize}
+        \par Having said that, the Bohr's model introduces two important ideas that are also
+        incorporated into our current model:
+        \begin{itemize}
+            \item Electrons exist only in certain discrete energy levels, which are described by
+                quantum numbers.
+            \item Energy is involved in moving an electron from one level to another.
+        \end{itemize}
+
+\hi{The Wave behavior of Matter}
+    \hii{Wave characteristics of particles and matter}
+        \par De Broglie suggested that as the electron moves about the nucleus, it is associated
+            with a particular wavelength. He went on to propose that the characteristic
+            wavelength of the electron, or \impt{of any matter}, depends on its mass, $m$,
+            and on its velocity, $v$:
+        \begin{equation}
+            \lambda = \dfrac{h}{p} = \dfrac{h}{mv}
+        \end{equation}
+        \par in which:
+        \begin{itemize}
+            \item $\lambda$: the wavelength of the particle
+            \item $h$: Planck's constant
+            \item $p$: the momentum of the particle
+        \end{itemize}
+
+    \hii{The Uncertainty Principle}
+        \par Werner Heisenberg proposed that the dual nature of matter places a fundamental
+        limitation on how precisely we can know both the location and the momentum of any object.
+        The limitation becomes important only when we deal with matter at the subatomic level.
+        \par Heisenberg's principle is called the \impt{Uncertainty Principle}. When applied
+        to the elctrons in an atom, this Principle states that it is inherently impossible to
+        determine simultaneous both the exact momentum of the electron and its exact location
+        in space.
+        \par Mathematical relation between the uncertainty of the position, $\Delta x$, and the
+        uncertainty in momentum, $\Delta p$:
+        \begin{equation} \label{eq:03}
+            \Delta x \mul \Delta p \geq \dfrac{h}{4\pi}
+        \end{equation}
+        \par Example: \textit{An electron has a mass of $9.11 \mul 10^{-31} kg$ and moves at and
+        average speed of about $5 \mul 10^{6} m/s$ in a hydrogen atom. Assume that we know the
+        speed to an uncertainty of $1\%$. Find the uncertainty of the position}.
+        \par Apply the equation \eqref{eq:03}:
+        \begin{equation}
+            \begin{aligned}
+                \Delta x & \geq \dfrac{h}{4 \Delta p \pi} \\
+                & = \dfrac{h}{4m \Delta v \pi} \\
+                & = \dfrac{6.626 \mul 10^{-34} Js}{4 \pi(9.11 \mul 10^{-31} kg)(5 \mul 10^{4} m/s)}
+                & = 1 \mul 10^{-9} m
+            \end{aligned}
+        \end{equation}
+        \par The size of an electron is about $1 \mul 10^{-10} m$. Thus, the uncertainty of the
+        position is too high.
+        \par Apply the same equation to a real-life object like a tennis ball, we can see that
+        the uncertainty would be so small that it would be inconsequential. As a result, the
+        principle has no practical consequence.
+        \par The De Broglie's hypothesis and Heisenberg's uncertainty principle set the stage for
+        a new model of atom that precisely describes the energy of the elctron while describing
+        its location not precisely, but in terms of probabilities.
+
+\hi{Quantum Mechanics and Atomic Orbitals}
+
+    \hii{Schrodinger's Wave Equation}
+        \par Erwin Schrodinger proposed an equation which incorporates both the wavelike behavior
+        and the particle-like behavior of the electron.
+        \par Schrodinger treated the electron as a standing circular wave around the nucleus.
+        Just as the plucked guitar string produces a fundamental frequency and higher overtones
+        (harmonics), there is a lowest-energy standing wave, and higher energy ones, for an
+        electron in an atom. Solving Schrodinger's equation leads to a series of mathematical
+        functions called \impt{wave functions} that describes the electron in an atom.
+        These functions are often denoted with the symbol $\psi$. The square of these functions,
+        $\psi^2$, provides information about an electron's location when the elctron is in an
+        allowed energy state.
+        \par In the quantum mechanical model, according to the uncertainty principle, the exact
+        location of an electron cannot be determined. Rather, we determine the \textbf{probability}
+        that the electron will be in a certain region of space at a given instant. The square of
+        the wave function, $\psi^2$, at a given point in space represents the probability that
+        the electron will be found at that location. For this reason, $\psi^2$ is called either
+        the \impt{probability density} or the \impt{elecetron density}.
+
+    \hiiBEGIN{Orbitals and Quantum Numbers}
+        \hiii{Orbitals}
+            \par The solution to Schrodinger's equation for the hydrogen atom yields a set of wave
+            functions and corresponding energies. These wave functions are called \impt{orbitals}.
+            Each orbital describes a specific distribution of electron density in space, as given
+            by the orbital's probability density. Each orbital, therefore, has a
+            \textit{characteristic energy and shape}.
+
+        \hiii{Quantum Numbers}
+            \par The quantum mechanical model uses \impt{three quantum numbers}: $n$, $l$,
+            and $m_{l}$ to describe an orbital:
+            \begin{enumerate}
+                \item $n$ - the \impt{principle quantum number}:
+                    \begin{itemize}
+                        \item Values: 1, 2, 3, \ldots
+                        \item Properties: \\ As $n$ increases:
+                        \begin{itemize}
+                            \item The orbital becomes larger.
+                            \item The electron spends more time farther from the nucleus.
+                            \item The electron has a higher energy and is therefore less tightly bound
+                                to the nucleus.
+                        \end{itemize}
+                   \end{itemize}
+                \item $l$ - the \impt{angular momentum quantum number}:
+                    \begin{itemize}
+                        \item Values: $0, 1, 2, \ldots, n - 1$ for each value of $n$
+                        \item Properties:
+                            \begin{itemize}
+                                \item $l$ defines the shape of the orbital.
+                                \item $l$ is generally designated by the letters $s$, $p$, $d$, $f$,
+                                    corresponding to the values of $0, 1, 2, 3$, respectively.
+                            \end{itemize}
+                    \end{itemize}
+                    \tableBEGIN{|c|c|c|c|c|}
+                        \hline
+                        Value of $l$ & 0 & 1 & 2 & 3 \\
+                        \hline
+                        Letter & $s$ & $p$ & $d$ & $f$ \\
+                        \hline
+                    \tableEND
+                \item $m_{l}$ - the \impt{magnetic quantum number}:
+                    \begin{itemize}
+                        \item Values: $-l, -l + 1, \ldots, 0, \ldots, l - 1, l$ for each value of $l$
+                        \item Properties: $m_{l}$ describes the orientation of the orbital in space.
+                    \end{itemize}
+            \end{enumerate}
+
+        \hiii{Shell and subshell}
+            \begin{itemize}
+                \item The collection of orbitals with the same value of $n$ is called an
+                    \impt{electorn shell}. Each shell is designated by a number ($n$).
+                \item The set of orbitals that have the same $n$ and $l$ values is called a
+                    \impt{subshell}. Each subshell is designated by a number ($n$) and a letter
+                    (which corresponding to $l$).
+            \end{itemize}
+    \hiiEND
+
+    \hiiBEGIN{Representations of Orbitals}
+        \hiii{The $s$ Orbitals}
+            \par The shape of the $s$ orbitals is \impt{spherically symmetric}.
+        \hiii{The $p$ Orbitals}
+            \par In the $p$ orbitals, the electron density is concentrated in two regions on
+            eithter side of the nucleus, separated by a node at the nucleus. We say that this
+            \impt{dumbbell-shaped} orbital has two \impt{lobes}.
+            \par Beginning with the $n = 2$ shell, each shell has 3 $p$ orbitals, all of which have
+            the same size and shape but differ from one another in spatial orientation. These
+            orbitals are label $p_{x}$, $p_{y}$ and $p_{z}$ according to the Cartesian axis that
+            each lies along.
+        \hiii{The $d$ and $f$ Orbitals}
+            \par Beginning with the $n = 3$ shell, each shell has 5 $d$ orbitals.
+            \begin{itemize}
+                \item Four of the $d$-orbital contour representations have a "four-leaf clover"
+                    shape, and each lies primarily in a plane.
+                    \begin{itemize}
+                        \item The $d_{xy}, d_{yz}, d_{yz}$ lie in the $xy$, $xz$ and $yz$ planes,
+                            respectively, with the lobes oriented between the axes.
+                        \item The lobes of the $d_{x^2 - y^2}$ orbital also lie in the $xy$ plane,
+                            but the lobes lie along the $x$ and $y$ axes.
+                    \end{itemize}
+                \item The $d_{z^2}$ orbital looks very different from the other four: it has two
+                    lobes along the $z$ axis and a ``doughnut" in the $xy$ plane. Although it looks
+                    different, it has the same energy as the other four $d$ orbitals.
+            \end{itemize}
+            \par Beginning with the $n = 4$ shell, each shell has 7 $f$ orbitals. The shapes of these
+            orbitals are very complicated.
+    \hiiEND
+
+\hi{Multiple-electron Atoms}
+    \hii{Orbitals and Their Energies}
+        \par The electronic structure of multiple-electron atoms can be described in terms of
+        orbitals.
+        \par In a multiple-electron atom, for a given value of $n$, the energy of an orbital
+        increases with increasing value of $l$. Orbitals with the same energy are said to be
+        \impt{degenerate}.
+
+    \hiiBEGIN{Electron Spin and the Pauli Exclusion Principle}
+        \hiii{Electron Spin}
+            \par A puzzling feature of the light spectra of multiple-electron atoms is that: lines
+            that were originally thought to be single were actually closely spaced pairs. This meant
+            that there were twice as many energy levels as there were supposed to be.
+            \par It has been postulated that electrons have an instrinsic property, called
+            \impt{electron spin}, that causes each electron to behave as if it were a tiny sphere
+            spinning on its own axis.
+            \par A new quantum number was assigned: $m_{s}$ - \impt{the spin magnetic quantum number}:
+                \begin{itemize}
+                    \item Values: $+\dfrac{1}{2}$ or $-\dfrac{1}{2}$
+                    \item Properties: The two values indicate the two opposite directions of spin,
+                        therefore produce oppositely directed magnetic field. The opposite magnetic
+                        fields lead to the splitting of spectral lines into closely spaced pairs.
+                \end{itemize}
+        \hiii{Pauli Exclusion Principle}
+            \par \impt{Principle}: \textit{No two electrons in an atom can have the same set of four
+            quantum numbers $n$, $l$, $m_{l}$ and $m_{s}$.}
+            \par Result of the principle: an orbital can hold a maximum of two electrons and they
+            must have opposite spins.
+    \hiiEND
+
+\hi{Electron Configurations}
+    \hii{Electron Configurations}
+        \par The way in which the electrons are distributed among the various orbitals of an atom is
+        called the \impt{electron configuration} of the atom.
+        \par The configuration can be represented by writing the symbol for the occupied subshell
+        and adding a superscript to indicate the number of electrons in that subshell:
+        \begin{center}
+            Li: $1s^{2} 2 s^{1}$
+        \end{center}
+        \par It can also be presented using the \impt{orbital diagram}:
+        \begin{center}
+            Li: \forb \quad \horb
+        \end{center}
+        \par In an orbital diagram, a half arrow pointing up represents an electron with a positive
+        spin magnetic quantum number $(\,m_{s} = +\dfrac{1}{2})\,$ and a half arrow pointing down
+        represents an electron with a negative spin magnetic quantum number
+        $(\,m_{s} = +\dfrac{1}{2})\,$.
+        \par Electrons having opposite spins are said to be \impt{paired} when they are in the same
+        orbital. An \impt{unpaired electron} is one not accompanied by a partner of opposite spin.
+
+    \hii{Hund's Rule}
+        \par \impt{Hule's Rule}: For degenerate orbitals, the lowest energy is attained when the
+        number of electrons with the same spin is maximized.
+        \par This means that electrons will occupy orbitals singly to the maximum extent possible
+        and that these single electrons in a given subshell will all have the same spin magnetic
+        quantum number. Electron arranged in this way are said to have \impt{parallel spins}.
+        \par Hund's rule is based in part on the fact that electrons repel one another. By occupying
+        different orbitals, the electron remains as far as possible from another, thus minimizing
+        electron-electron repulsions.
+        \par Note: \textit{For the first electron which occupies an orbital, the choice of a spin-up
+        or spin-down electron is arbitrary. It is customary to show unpaired electrons with their
+        spins up}.
+
+    \hii{Condensed Electron Configurations}
+        \par In writing the \impt{condensed electron configuration} of an element, the electron
+        configuration of the nearest noble-gas element of lower atomic number is represented by
+        its chemical symbol in brackets. For example: Li: [He]$2s^{1}$
+        \begin{itemize}
+            \item We refer to the electrons represented by the symbol for a noble gas as the
+                \impt{core electrons}.
+            \item The inner-shell electrons are referred to as the \impt{core electrons}.
+            \item The electrons given after the noble-gas core are called the \impt{outer-shell
+                electrons}.
+            \item The outer-shell electrons include the electrons involved in chemical bonding,
+                which are called the \impt{valence electrons}.
+        \end{itemize}
+
+    \hii{Transition Metals}
+        
+\hi{Electron Configurations and The Periodic Table}
+
+\chapter{Periodic Properties of the Elements}
+
+\hi{Effective Nuclear Charge}
+    \hii{The net attraction on a single atom}
+        \par In a multiple-electron atom, each electron is simultaneously:
+        \begin{itemize}
+            \item attracted to the nucleus.
+            \item repelled by the other electrons.
+        \end{itemize}
+        \par We can view the net electric field as if it results from a single positive charge located
+        at the nucleus, called the \impt{effective nuclear charge}, $Z_{eff}$.
+        \begin{equation}
+            Z_{eff} = Z - S
+        \end{equation}
+        in which:
+        \begin{itemize}
+            \item $Z$: number of electrons in the nucleus
+            \item $S$: the screening (or shielding) constant. 
+        \end{itemize}
+        \par The value of S is usually close to the number of core electrons in an atom.
+
+    \hii{Periodic trend in Effective Nuclear Charge}
+        \par \textit{The effective nuclear charge \textbf{increases} as we move \textbf{across the
+        row} (or \textbf{period}) from left to right.}
+        \par This is because the number of core electrons stay the same, while the electric charge of
+        the atom increases.
+        \par \textit{\textbf{Going down} a column, the effective nuclear charge experienced by valence
+        electrons \textbf{increases slightly}, but \textbf{far less} than it does across a row.}
+        \par The increase is because the larger the electron cores, the less effective is the
+        shielding effect.
+
+\hi{Sizes of Atoms and Ions}
+    \hii{Periodic trend in Atomic Radii}
+        \par \textit{Within each column (group), atomic radius \textbf{increase from top to bottom}.}
+        \par As we go down a column, the outer electrons have a greater probability of being
+        farther from the nucleus, causing the atom to increase in size.
+        \par \textit{Within each row (period), atomic radius \textbf{decrease} from left to right.}
+        \par This is because of the change in the \impt{effective nuclear charge}.
+
+    \hii{Periodic trend in Ionic Radii}
+        \par \impt{Cations} are \impt{smaller} than their parent atoms.
+        \par \impt{Ations} are \impt{bigger} than their parent atoms.
+        \par An \impt{isoelectronic series} is a group of ions with the same number of electrons.
+        In an isoelectronic series, the radius \impt{decreases} with \impt{increasing nuclear
+        charge}.
+
+\hi{Ionization Energy}
+    \hiiBEGIN{Definition of Ionization Energy}
+        \hiii{Definition}
+        \par The \impt{ionization energy} of an atom or ion is the minimum energy required to remove
+        an electron from the ground state of the isolated gaseous atom or ion.
+        \par The \textit{first ionization energy}, $I_{1}$, is the energy needed to remove the first
+        electron from a neutral atom.
+        \begin{center}
+            \ce{Na (g) -> Na+ (g) + e-}
+        \end{center}
+        \par The \textit{second ionization energy}, $I_{2}$, is the energy needed to remove the second
+        electron.
+        \begin{center}
+            \ce{Na+ (g) -> Na^2+ (g) + e-}
+        \end{center}
+        \hiii{Variations in Successive Ionization Energies}
+            \begin{align*}
+                I_{1} < I_{2} < I_{3}
+            \end{align*}
+            \par With each successive removal, an electron is being pulled away from an increasingly
+            more positive ion, requiring increasingly more energy.
+            \par The ionization energies required for core electrons are much larger than for valence
+            electrons.
+    \hiiEND
+    \hii{Periodic trend in First Ionization Energies}
+        \par \textit{Within each \textbf{row}, or \textbf{period}, of the table, $I_{1}$
+        \textbf{increases} with increasing atomic number.}
+        \par \textit{Within each \textbf{column}, or \textbf{group}, of the table, $I_{1}$
+        \textbf{decreases} with increasing atomic number.}
+        \par \impt{Irregularities}: Within a row, $I_{1}$ of group IIIA is smaller than group IIA,
+        and $I_{1}$ of group VIA is smaller than group VA.
+    \hii{Electron Configurations of Ions}
+        \par When electrons are removed from an atom to form a cation, they are always removed first
+        from the occupied orbitals having the largest principle quantum number, $n$.
+
+\hi{Electron Affinities}
+    \hiiBEGIN{Definition of Electron Affinity}
+        \hiii{Definition}
+            \par Electron affinity is the energy change that occurs when an electron is added
+            to a gaseous atom.
+        \hiii{Electron Affinity and Ionization Energy}
+            \par Ionization energy measures the ease with which an atom \impt{loses} an electron.
+            \par Electron Affinity measures the ease with which an atom \impt{gains} an electron.
+        \hiii{Sign convention}
+            \par For any reaction that \impt{releases} energy, the change $\Dt E$ in total energy
+            has a negative value and the reaction is called an exothermic process.
+            \begin{equation}
+                E_{ea} = - \Dt E
+            \end{equation}
+    \hiiEND
+    \hii{Periodic trend in Electron Affinity}
+        \par Similar to the trend in Ionization Energy.
+
+\hi{Metals, Nonmetals, and Metalloids}
+
+\hi{Group Trends}
+
+\chapter{Basic Concepts of Chemical Bonding}
+
+\hi{Chemical Bonds, Lewis Symbols, and the Octet Rule}
+    \hiiBEGIN{Type of bonds}
+        \hiii{Ionic bond}
+            \begin{itemize}
+                \item Cause: electrostatic forces between ions of opposite charge.
+                \item Interaction: metals with nonmetals.
+            \end{itemize}
+
+        \hiii{Covalent bond}
+            \begin{itemize}
+                \item Cause: the sharing of electrons between two atoms.
+                \item Interaction: nonmetals with nonmetals
+            \end{itemize}
+
+        \hiii{Metallic bond}
+            \begin{itemize}
+                \item Cause: the sharing of electrons between two atoms.
+                \item Interaction: metals with metals
+            \end{itemize}
+    \hiiEND
+
+    \hii{Lewis Symbols}
+        \par The \impt{Lewis symbol} of an element consists of:
+        \begin{itemize}
+            \item The chemical symbol for the element.
+            \item A dot for each valence electron. The dots are placed on the four sides of the
+                atomic symbol: the top, the bottom, the left and the right sides. Each side
+                can accommodate up to two electrons.
+        \end{itemize}
+
+    \hii{The Octet Rule}
+        \par \impt{Atoms tend to gain, lose, or share electrons until they are surrounded by
+        eight valence electrons.}
+
+\hi{Ionic Bonding}
+    
+\hi{Covalent Bonding}
+
+\hi{Bond Polarity and Electronegativity}
+    \hii{Bond Polarity}
+        \par The concept of \impt{bond polarity} help describe the sharing of electrons between
+        atoms.
+        \begin{itemize}
+            \item A \impt{nonpolar covalent bond} is one in which the electrons are shared equally
+                between two atoms.
+            \item A \impt{polar covalent bond} is one in which the electron is more greatly
+                attracted by one of the two atoms.
+        \end{itemize}
+
+    \hii{Electronegativity}
+        \par We use a quantity called \impt{electronegativity} to estimate whether a given bond
+        is nonpolar covalent, polar covalent or ionic.
+        \par \impt{Electronegativity} is defined as the ability of an atom in a molecule to attract
+        electrons to itself.
+        \par Electronegativity is closely related to ionization energy and electron affinity. An
+        atom with a very negative elctron affinity and high ionization energy will both attract
+        electrons from other atoms and resist having its electrons attracted away; it will be
+        highly \impt{electronegative}.
+
+    \hii{Relationship between Bond Polarity and Electronegativity}
+        \par The greater the difference in electronegativity between two atoms, the more polar
+        their bond.
+
+\chapter{Molecular Geometry and Bonding Theories}
+
+\hi{Molecular Shapes}
+    \par The overall shape of a molecule is determined by its \impt{bond angle}, the angles made by
+    the lines joining the nuclei of the atoms in the molecule.
+    \par The bond angles, together with the bond lengths, accurately define the shape and size
+    of the molecule.
+    \par For the molecules with the general formula $AB_{n}$, in which the central atom A is
+    bonded to $n$ B atoms, the possible shapes of $AB_{n}$ depend on the value of $n$.
+    \begin{itemize}
+        \item If $n = 2$: shape is linear (bond angle $= 180 \degree$) or bent
+            (bond angle $= 180 \degree$).
+        \item If $n = 3$: shape is:
+            \begin{itemize}
+                \item trigonal planar, which means the A atom lies in the same plane as the B atoms.
+                \item trigonal pyramidal, which means the A atom lies above the plane of the B atoms.
+            \end{itemize}
+        \item If $n = 4$: shape is octahedral.
+    \end{itemize}
+    \par The shape of these $AB_{n}$ molecules can be predicted using the \impt{valence-shell
+    electron-pair repulsion (VSEPR) model}.
+
+\hi{The VSEPR Model}
+    \hii{Electron domains}
+        \par A \impt{bonding pair} of electrons defines a region in which the electrons will
+        most likely be found.
+        \par A \impt{nonbonding pair}, or \impt{lone pair} of electron defines a region of electron
+        that is located principally on one atom.
+        \par Those regions are called the \impt{electron domains}.
+        \begin{center}
+            \begin{figure}[h]
+                    \begin{center}
+                        \includegraphics{eDomain.png}
+                    \end{center}
+            \end{figure}
+        \end{center}
+        \par For example, \ce{NH3} has four electron domains: three bonding pairs and one nonbonding
+        pair.
+        \par Each \impt{multiple bond} in a molecule constitutes \impt{a single electron domain}.
+        \par For example, \ce{O3} has three electron domains around the central oxygen atom: a
+        single bond, a double bond, a nonbonding pair.
+        \begin{center}
+            \begin{figure}[h]
+                    \begin{center}
+                        \includegraphics{eDomain02.png}
+                    \end{center}
+            \end{figure}
+        \end{center}
+    \hii{The idea of the VSEPR model}
+        \par The VSEPR model is based on the idea that electron domains are negatively charged and
+        therefore repel one another.
+        \par \impt{The best arrangement of a given number of electron domains is the one that
+        minimizes the repulsions among them}.
+        \par \impt{The shapes of different $AB_{n}$ molecules or ions depend on the number of electron
+        domains surrounding the central A atom}.
+    \hii{Electron-domain geometry and molecular geometry}
+        \par The arrangement of electron domains about the central atom of an $AB_{n}$ molecule or ion
+        is called its \textbf{electron-domain geometry}.
+        \par In contrast, the \impt{molecular geometry} is the arrangement of only the atoms in a
+        molecule or ion - any nonbonding pairs are not part of the description of the molecular
+        geometry.
+        \par In the VSEPR model, we predict the electron-domain geometry. From knowing how many
+        domains are due to nonbonding pairs, we can then predict the molecular geometry of a
+        molecule or ion from its electron-domain geometry.
+        \par When all the electron domains in a molecule arise from bonds, the molecular geometry is
+        identical to the electron-domain geometry. However, when one or more of the domains involve
+        nonbonding pairs of electrons, we must remember to ignore those domains when predicting
+        molecular shape.
+        \par Example: the electron-domain geometry of \ce{NH3} is tetrahedral. Due to a nonbonding
+        pair, the molecular geometry of \ce{NH3} is trigonal pyramidal.
+    \hii{Predicting the mocular shape}
+        \par To predict the shape of molecules or ions, we follow these steps:
+        \begin{itemize}
+            \item Draw the \impt{Lewis structure}, count the total number of electron domain.
+                Each nonbonding electron pair, each single bond, each double bond, and each triple
+                bond counts as an electron domain.
+            \item Determine the \impt{electron-domain geometry} so that repulsions is minimized.
+            \item Determine the \impt{molecular geometry}.
+        \end{itemize}
+        \begin{center}
+            \begin{figure}[h]
+                    \begin{center}
+                        \includegraphics{moleShapeTable.png}
+                    \end{center}
+            \end{figure}
+        \end{center}
+    \hii{Electron Domain Formula}
+        \begin{align}
+            \mbox{\# domains} &=  \mbox{\# lone pairs} + \mbox{\# bonding pairs} \\
+            &= \lceil \dfrac{\mbox{\# valence e} - \mbox{\# bonding e}}{2} \rceil + \mbox{\# bonding pairs}
+        \end{align}
+        \par We use the ceil function because 1 single electron occupies one elctron domain.
+    \hii{The Effect of Nonbonding Electrons and Multiple Bonds on Bond Angles}
+        \par The electron domains for \impt{nonbonding electron pairs} exert greater repulsive
+        forces on adjacent electron domains and tend to \impt{compress} the bond angle.
+        \par Electron domains for multiple bonds exert a greater repulsive force on adjacent
+        electron domains than do electron domains for single bonds.
+    \hii{Five basic electron-domain geometries predicted by the VSEPR model}
+        \par
+        \begin{center}
+            \begin{figure}[h]
+                    \begin{center}
+                        \includegraphics[width=5in]{VSEPR.jpg}
+                    \end{center}
+            \end{figure}
+        \end{center}
+
+
+\hi{Molecular Shape and Molecular Polarity}
+    \par A molecule is polar if its central atom has nonbonding electron pairs.
+
+\hi{Covalent Bonding and Orbital Overlap}
+    \par The bonding of atoms can be explained by the \impt{valence-bond} theory.
+    \par In the Lewis theory, covalent bonding occurs when atoms share electrons, which concentrates
+    electron density between the nuclei.
+    \par In the \impt{valence-bond} theory, bonding occurs when the orbitals of two nuclei
+    \impt{overlaps} with each other. The overlap of orbitals allows two electrons of opposite spin
+    to share the space between two atoms, forming the covalent bond.
+    \par More concisely, the overlap will occur between the \impt{valence orbital} of each atom.
+
+\hi{Covalent Bonding and Orbital Overlap}
+
+\hi{Hybridization}
+    \hii{Relationship between number of groups and type of hybridization}
+        \par A group can either be:
+        \begin{itemize}
+            \item A lone pair
+            \item A bond (single or multiple)
+        \end{itemize}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Number of groups & Type of hybridization \\
+                \hline
+                1 & $s$ \\
+                \hline
+                2 & $sp$ \\
+                \hline
+                3 & $sp^{2}$ \\
+                \hline
+                4 & $sp^{3}$ \\
+                \hline
+                5 & $d^{1}sp^{3}$ \\
+                \hline
+                6 & $d^{2}sp^{3}$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+\chapter{My Notes}
+
+\hi{Periodic table}
+    \hii{Terminology}
+        \begin{itemize}
+            \item The \impt{columns} are also called the \impt{groups}.
+            \item The \impt{rows} are also called the \impt{periods}.
+        \end{itemize}
+
+    \hii{Determine the group}
+        \par To determine whether an element belongs to group A or B, we depend on the subshell with
+        highest energy level:
+        \begin{itemize}
+            \item s or p: group A
+            \item d of f: group B
+        \end{itemize}
+
+\hi{Electrons}
+    \hii{Core \& Valence electrons}
+    \begin{itemize}
+        \item \impt{Valence electrons}: the electrons that are located on the outershell of an atom
+            and that can participate in the formation of a chemical bond.
+        \item \impt{Core electrons}: the electrons that are not valence electrons and therefore
+            do not participate in bonding.
+    \end{itemize}
+
+\chapter{Thermochemistry}
+
+\hi{The nature of energy}
+    \hiiBEGIN{System and Surroundings}
+        \hiii{System}
+            \par In the universe, the portion we single out to study is called the \impt{system}.
+        \hiii{Surroundings}
+            \par Everything other than the system in the universe is the \impt{surroundings}.
+    \hiiEND
+    
+    \hiiBEGIN{Types of systems}
+        \hiii{Open systems}
+            \par An \impt{open system} is one in which matter and energy can be exchanged with the
+            surroundings.
+        \hiii{Closed systems}
+            \par A \impt{closed system} can exchanged energy but not matter with it surroundings.
+        \hiii{Isolated systems}
+            \par An \impt{isolated system} is one in which neither energy nor matter can be
+            exchanged with the surroundings.
+    \hiiEND
+        
+\hi{The First Law of Thermodynamic}
+    \hii{Internal Energy}
+        \par The \impt{internal energy} of a system is the sum of all the kinetic and potential
+        energies of all its components.
+        \par The change in internal energy:
+        \begin{eqbox}
+            \Dt E = E_{final} - E_{initial}
+        \end{eqbox}
+        \begin{itemize}
+            \item $\Dt E > 0$: internal energy increases
+            \item $\Dt E < 0$: internal energy decreases
+        \end{itemize}
+
+    \hii{First Law of Thermodynamic}
+        \par The change in the internal energy $\Dt U$ of a closed system is equal to the amount
+        of heat $Q$ supplied to the system, plus the work $W$ done on the system.
+        \begin{equation}
+            \Dt U = P + Q
+        \end{equation}
+
+    \hii{Endothermic and Exothermic Processes}
+        \par When the system \impt{absorbs} energy, we call the process \impt{endothermic}.
+        \par When the system \impt{releases} energy, we call the process \impt{exothermic}.
+
+    \hii{State Functions}
+        \par The value of a \impt{state function} depends only on the present state of the system,
+        not on the path the system took to reach that state.
+
+    \hii{Enthalpy}
+        \par A thermodynamic function called \impt{enthalpy} accounts for heat flow in processes
+        occuring at constant pressure when no forms of work are performed other than P-V work.
+        \begin{eqbox}
+            H = E + PV
+        \end{eqbox}
+        where
+        \begin{itemize}
+            \item $H$: enthalpy
+            \item $E$: internal energy
+            \item $P$: pressure
+            \item $V$: volume
+        \end{itemize}
+        \par Normally, the product $PV$ can be ignored, and the enthalpy can be considered to be
+        approximately equals to the bond energy. (MIT OCW)
+        \par Enthalpy is a state function.
+
+\hi{Enthalpies of Reaction}
+    \par \impt{Enthalpy} of reaction is also known as \impt{heat} of reaction.
+    \begin{eqbox}
+        \Dt H = H_{product} - H_{reactants}
+    \end{eqbox}
+    \begin{itemize}
+        \item $\Dt H > 0$: \impt{endothermic} - reactions absorbing energy.
+        \item $\Dt H < 0$: \impt{exothermic} - reaction releasing energy.
+    \end{itemize}
+
+\hi{Calorimetry}
+    \hii{Calorimetry and calorimeter}
+        \par The measurement of heat flow is \impt{calorimetry}, and the device used
+        to measure heat flow is a \impt{calorimeter}.
+    \hii{Heat Capacity and Specific Heat}
+        \par Specific heat formula:
+        \begin{equation}
+            Q = mc \Dt t
+        \end{equation}
+
+\hi{Hess's Law}
+    \par If a reaction is carried out in a series of steps, $\Dt H$ for the overall
+    reaction will equal the sum of the enthalpy changes for the individual steps.
+    \begin{eqbox}
+        \Dt H = \SUM{\Dt H_{i}}
+    \end{eqbox}
+
+\hi{Enthalpy of Formation}
+
+\hi{Spontaneous Processes}
+    \par A \impt{spontaneous process} is one that proceeds on its own without any outside
+    assistance.
+    \par Processes that are spontaneous in one direction are nonspontaneous in the opposite
+    direction.
+    
+\hi{Reversible and Irreversible process}
+    \hii{Definition}
+        \par In a \impt{reversible process}, a system is changed in such a way that the system and
+            surroundings can be restored to their original state by exactly reversing the change.
+        \par An \impt{irreversible process} is one that cannot simply be reversed to restore the
+            system and its surroundings to their original states.
+        \par A reversible change produces the maximum amount of work that can be achieved by the
+            system on the surrounding.
+        \begin{eqbox}
+            w_{rev} = w_{max}
+        \end{eqbox}
+    \hii{Irreversibility of Spontaneous Processes}
+        \par Any spontaneous process is irreversible.
+
+
+\hi{Entropy and The Second Law of Thermodynamics}
+    \hii{Entropy}
+        \par \impt{Entropy} is a measure of the \impt{disorder} of a system.
+
+    \hii{Change in Entropy}
+        \par $\Dt S$ is a state function, which means it only depends on the initial and final
+            state of the system.
+        \begin{eqbox}
+            \Dt S_{sys} = S_{final} - S_{initial}
+        \end{eqbox}
+        \par Special case: in an \impt{isothermal process}, $\Dt S$ is equal to the heat that would
+            be tranferred if the process were \impt{reversible}, $q_{rev}$, divided by the
+            temperature at which the process occurs.
+        \begin{eqbox} \label{eq:EntropyIsothermalProcess}
+            \Dt S_{sys} = \frac{q_{rev}}{T} \mbox{ (constant T)}
+        \end{eqbox}
+        \par Because $S$ is a state function, the formula \eqref{eq:EntropyIsothermalProcess} can
+            be used for \impt{any isothermal process}, not just those that are reversible.
+            In case the change is irreversible, we calculate $\Dt S$ by using a reversible path
+            between the states.
+        \begin{itemize}
+            \item $\Dt S > 0$: increase in disorder
+            \item $\Dt S < 0$: decrease in disorder
+        \end{itemize}
+
+    \hii{Comparing Entropy}
+        \begin{itemize}
+            \item \textbf{Based on state}: $S_{gas} > S_{liquid} > S_{solid}$
+            \item \textbf{Based on molar mass of gas}: gas with higher molar mass has higher 
+                entropy.
+        \end{itemize}
+
+    \hii{Second Law of Thermodynamics}
+        \par The total entropy of the universe increases in any spontaneous process.
+        \par In other words, any spontaneous change is accompanied by an overall increase in
+            entropy.
+
+    \hii{Entropy Changes in Chemical Reactions}
+        \begin{eqbox}
+            \Dt S \degree = \SUM{nS\degree \mbox{(products)}} - \SUM{mS\degree \mbox{(reactants)}}
+        \end{eqbox}
+        where $n$ and $m$ are coefficients of the chemical reaction.
+
+    \hii{Entropy Changes in the Surroundings}
+        \par The change in entropy of the surroundings will depend on how much heat is absorbed
+            or given off by the system.
+        \begin{eqbox}
+            \Dt S_{surr} = \frac{-q_{sys}}{T}
+        \end{eqbox}
+        \par For a reaction occuring at constant pressure, $q_{sys}$ is simply the enthalpy change
+        for the reaction.
+        \begin{eqbox}
+            \Dt S_{surr} = \frac{-\Dt H_{sys}}{T}
+        \end{eqbox}
+
+\hi{Gibbs Free Energy}
+    \hii{Definition}
+        \par \impt{Gibbs Free Energy} is a state function which is used to predict the spontaneity
+            of a reaction.
+        \begin{eqbox}
+            G = H - TS
+        \end{eqbox}
+        \par For a process occurring at constant temperature (isothermal process), the change
+            in free energy of the system is:
+        \begin{eqbox}
+            \Dt G = \Dt H - T \Dt S
+        \end{eqbox}
+        \par Under standard condition:
+        \begin{eqbox}
+            \Dt G \degree = \Dt H \degree - T \Dt S \degree
+        \end{eqbox}
+    \hii{The origin of $G$}
+        \par For a reaction occurring at constant temperature and pressure:
+        \begin{align*}
+            \Dt S_{univ} = \Dt S_{sys} + \Dt S_{surr}
+            = \Dt S_{sys} + \big(\frac{-\Dt H_{sys}}{T}\big)
+        \end{align*}
+        \par Multiplying both sides by $(-T)$ gives us:
+        \begin{align*}
+            -T \Dt S_{univ} = \Dt H_{sys} - T \Dt S_{sys}
+        \end{align*}
+        \par Substitute $G$ with $-T \Dt S_{univ}$ gives us the formula of Gibbs Free Energy.
+        \par In a spontaneous process, $\Dt S_{univ} > 0$. Therfore,
+            $-T \Dt S_{univ} = \Dt G < 0$.
+    \hii{Sign of $G$}
+        \begin{itemize}
+            \item $\Dt G < 0$: the reaction is spontanous in the forward direction.
+            \item $\Dt G = 0$: the reaction is at equilibrium.
+            \item $\Dt G > 0$: the reaction is nonspontaneous; work must be supplied for the
+                reaction to occur. Meanwhile, the reverse reaction is spontaneous.
+        \end{itemize}
+    \hii{Free Energy under Nonstandard Condition}
+        \begin{eqbox}
+            \Dt G = \Dt G \degree + RT \ln Q
+        \end{eqbox}
+        where
+        \begin{itemize}
+            \item $\Dt G$: change in free energy under nonstandard condition $[J]$
+            \item $\Dt G \degree$: change in free energy under standard condition $[J]$
+            \item $R$: ideal gas constant $[8.314 Jmol^{-1}K^{-1}]$
+            \item $T$: temperature $[K]$
+            \item $Q$: reaction quotient that corresponds to the particular reaction mixture of
+                interest
+        \end{itemize}
+
+\chapter{Equilibrium}
+
+\hi{Reaction Quotient}
+    \begin{align*}
+        aA + bB \Rightarrow cC + dD
+    \end{align*}
+    \begin{itemize}
+        \item \textbf{In gaseous phase:}
+            \begin{eqbox}
+                Q_{P} = \frac{P_{C}^{c}P_{D}^{d}}{P_{A}^{a}P_{B}^{b}}
+            \end{eqbox}
+        \item \textbf{In solution:}
+            \begin{eqbox}
+                Q_{C} = \frac{[C]^{c}[D]^{d}}{[A]^{a}[B]^{b}}
+            \end{eqbox}
+        \item Common form:
+            \begin{equation}
+                Q = \frac{\mbox{product}}{\mbox{reactant}}
+            \end{equation}
+    \end{itemize}
+
+
+\chapter{Solutions}
+
+\hi{Terminology}
+    \par \impt{Solvent}: the liquid in which a solute is dissolved to form a solution.
+    \par \impt{Solute}: the minor component in a solution, dissolved in the solvent.
+
+\hi{The Solution Process}
+
+    \hii{The Effect of Intermocular Forces}
+        \par The extent to which one substance is able to dissolve in another depends on the
+            relative magnitudes of the solute-solvent, solute-solute, and solvent-solvent
+            interactions involved in the solution process.
+
+    \hii{Energy Changes and Solution Formation}
+        \par There are three processes happen in the formation of a solution:
+        \begin{itemize}
+            \item breaking the solute - solute interaction
+            \item breaking the solvent - solvent interaction
+            \item forming the solute - solvent interaction
+        \end{itemize}
+        \par The overall enthalpy change in forming a solution, $\Dt H_{soln}$, is the sum of
+            three terms associated with these three processes:
+        \begin{eqbox}
+            \Dt H_{soln} = \Dt H_{1} + \Dt H_{2} + \Dt H_{3}
+        \end{eqbox}
+        in which:
+        \begin{itemize}
+            \item $H_{1} > 0$
+            \item $H_{2} > 0$
+            \item $H_{3} < 0$
+        \end{itemize}
+        \par $\Dt H_{soln}$ can either be positive or negative depends on the intermolecular
+            force.
+
+\hi{Saturated Solutions and Solubility}
+    \par As a solid solute begins to dissolve in a solvent, the concentration of solute
+        particles in solution increases, thus increasing the chances of the solute particles
+        colliding with the surface of the solid. Because of such a collision, the solute
+        particle may become \textit{reattached} to the solid. This process is called
+        \impt{crystallization}.
+    \par There are two opposing processes occuring in a solution in contact with undissolve
+        solute.
+    \begin{center}
+        \ce{Solute + Solvent <=>[dissolve][crystallize] Solution}
+    \end{center}
+    \par When the rates of these opposing processes become equal, there is no net change in
+        the amount of solute in solution. The solution reaches \impt{equilibrium}.
+    \par A solution that is in equilibrium with undissolved solute is \impt{saturated}.
+        Additional solute will not dissolve if added to saturated solution.
+    \par The \impt{solubility} is the maximum amount of solute that will dissolve in a given
+        amount of solvent at a specified temperature, given that excess solute is present.
+    \par A solution which contains less solute than that needed to form a saturated solution
+        is \impt{unsaturated}.
+    \par A solution which under suitable condition contains more solute than that needed to
+        form a saturated solution is \impt{supersaturated}.
+
+\hi{Factors affecting Solubility}
+    
+    \hii{Solute - Solvent Interactions}
+        \par The stronger the attractions are between solute and solvent molecules, the greater
+            the solubility.
+        \par Substances with \impt{similar} intermolecular attractive forces tend to be soluble
+            in one another.
+        \par In other words, \textit{nonpolar} solutes tend to be insoluble in \textit{polar}
+            solvents, and vice versa.
+
+    \hii{Pressure Effects}
+        \par The solubility of the gas increases in direct proportion to its partial pressure
+            above the solution.
+        \par \impt{Henry's law}:
+        \begin{eqbox}
+            S_{g} = kP_{g}
+        \end{eqbox}
+        where
+        \begin{itemize}
+            \item $S_{g}$: solubility of the gas in the solution phase (usually expressed as
+                molarity).
+            \item $P_{g}$: partial pressure of the gas over the solution
+            \item $k$: Henry's law constant
+        \end{itemize}
+        \par The Henry's law constant is different for each solute-solvent pair and for
+            different temperatures.
+
+    \hii{Temperature Effects}
+        \par The solubility of most \impt{solid solutes} in water \impt{increases} as the
+            temperature of the solution increases.
+        \par The solubility of \impt{gases} in water \impt{decreases} as the temperature of the
+            solution increases.
+
+\hi{Ways of expressing concentration}
+    \hii{Mass Percentage, ppm and ppb}
+        \begin{itemize}
+            \item \impt{Mass percentage} ($C\%$):
+                \begin{eqbox}
+                    C\% = \frac{m_{\mbox{solute}}}{m_{\mbox{solute}} + m_{\mbox{solvent}}} \cdot 100
+                    = \frac{m_{\mbox{solute}}}{m_{\mbox{solution}}} \cdot 100
+                \end{eqbox}
+            \item \impt{Parts per million} ($ppm$):
+                \begin{eqbox}
+                    ppm = \frac{m_{\mbox{solute}}}{m_{\mbox{solute}} + m_{\mbox{solvent}}} \cdot 10^6
+                    = \frac{m_{\mbox{solute}}}{m_{\mbox{solution}}} \cdot 10^6
+                \end{eqbox}
+            \item \impt{Parts per billion} ($ppb$):
+                \begin{eqbox}
+                    ppm = \frac{m_{\mbox{solute}}}{m_{\mbox{solute}} + m_{\mbox{solvent}}} \cdot 10^9
+                    = \frac{m_{\mbox{solute}}}{m_{\mbox{solution}}} \cdot 10^9
+                \end{eqbox}
+        \end{itemize}
+    \hii{Mole Fraction, Molarity and Molality}
+        \begin{itemize}
+            \item \impt{Mole fraction} ($X$):
+                \begin{eqbox}
+                    X_{\mbox{solute}}
+                    = \frac{n_{\mbox{solute}}}{n_{\mbox{solute}} + n_{\mbox{solvent}}}
+                    = \frac{n_{\mbox{solute}}}{n_{\mbox{solution}}}
+                \end{eqbox}
+            \item \impt{Molarity} ($C_{M}$):
+                \begin{eqbox}
+                    C_{M} = \frac{n_{\mbox{solute}}}{V_{\mbox{solvent}}}
+                \end{eqbox}
+            \item \impt{Molality} ($C_{m}$):
+                \begin{eqbox}
+                    C_{m} = \frac{n_{\mbox{solute}}}{m_{\mbox{solvent}}}
+                \end{eqbox}
+                where:
+                \begin{itemize}
+                    \item $C_{m}$: molality $[mol/kg]$
+                    \item $m_{\mbox{solvent}}$: mass of the solvent $[kg]$
+                \end{itemize}
+        \end{itemize}
+
+\hi{Colligative Properties}
+    \hii{Defition}
+        \par Properties of solutions that depend on the \impt{quantity} (\impt{concentration}),
+            not the kind or identity of the solute particles are called \impt{colligative
+            properties}.
+
+    \hiiBEGIN{Lowering the Vapor Pressure}
+        \hiii{Vapor pressure}
+            \par A liquid in a closed container will establish equilibrium with its vapor.
+                When that equilibrium is reached, the pressure exerted by the vapor is
+                called vapor pressure.
+            \par A substance that has no measurable vapor pressure is \impt{nonvolatile}.
+            \par A substance that exhibits a vapor pressure is \impt{volatile}.
+        \hiii{Raoult's law}
+            \begin{eqbox}
+                P_{\mbox{solution}} = X_{\mbox{solute}} \cdot P_{\mbox{solvent}}
+            \end{eqbox}
+            where
+            \begin{itemize}
+                \item $P_{\mbox{solution}}$: vapor pressure of the solution
+                \item $X_{\mbox{solute}}$: mole fraction of the solute
+                \item $P_{\mbox{solvent}}$: vapor pressure of the solvent
+            \end{itemize}
+    \hiiEND
+
+    \hii{Boiling-Point Elevation}
+        \begin{eqbox}    
+            \Dt T_{b} = K_{b} \cdot C_{m}
+        \end{eqbox}    
+        where
+        \begin{itemize}
+            \item $\Dt T_{b}$: change in boiling-point
+            \item $K_{b}$: molal boiling-point-elevation constant, depending on the solvent
+            \item $C_{m}$: molality
+        \end{itemize}
+
+    \hii{Freezing-Point Depression}
+        \begin{eqbox}    
+            \Dt T_{f} = K_{f} \cdot C_{m}
+        \end{eqbox}    
+        where
+        \begin{itemize}
+            \item $\Dt T_{f}$: change in freezing-point
+            \item $K_{f}$: molal freezing-point-depression constant, depending on the solvent
+            \item $C_{m}$: molality
+        \end{itemize}
+
+    \hii{Osmosis}
+        \begin{eqbox}
+            \pi = \frac{n}{V}RT = C_{M}RT
+        \end{eqbox}
+        where
+        \begin{itemize}
+            \item $R$: ideal-gas constant
+        \end{itemize}
+\end{document}

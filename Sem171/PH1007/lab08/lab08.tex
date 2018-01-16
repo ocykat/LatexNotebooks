@@ -1,0 +1,179 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math supporting package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[fleqn]{mathtools}
+\usepackage{relsize}
+\usepackage{tcolorbox}
+
+% Margins
+\usepackage[margin=0.5in]{geometry}
+
+% Indent the first paragraph after a chaper/section heading
+\usepackage{indentfirst} 
+
+% Macros
+\newcommand{\mul}{\times}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+
+% Formatting
+\newcommand{\mRow}{\multirow}
+\newcommand{\mCol}{\multicolumn}
+\newcommand{\impt}[1]{\textbf{\textit{#1}}}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+% Headings
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Tables
+\newcommand{\tableBEGIN}[1]{\begin{center} \begin{tabular}{#1}}
+\newcommand{\tableEND}{\end{tabular} \end{center}}
+
+% Center aligned
+\setcounter{secnumdepth}{4}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{}}
+
+% Math Macros
+\newcommand{\SUM}[1]{\mathlarger{\sum\limits #1}}
+\newcommand{\INT}[1]{\mathlarger{\int\limits #1}}
+
+% Physics experiment macros
+\newcommand{\relerr}[1]{\dfrac{\Dt #1}{\avg{#1}}}
+
+\begin{document}
+\noindent
+\begin{tabular}{lll}
+    \textbf{School} & : & Ho Chi Minh City University of Technology \\
+    \textbf{Class} & : & PH1007 \\
+    \textbf{Group} & : & 1 \\
+    \textbf{Date} & : & November 12, 2017 \\
+\end{tabular}\\
+\rule[2ex]{\textwidth}{2pt}
+
+\vspace{2cm}
+
+\begin{center}
+    {\scshape\Large Lab Report 08 \par}
+    \vspace{1.5cm}
+    {\Huge\bfseries MEASURING THE REFRACTIVE INDEX OF A THIN FILM USING THE MICROSCOPE \par}
+    \vspace{3cm}
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        \multicolumn{4}{|c|}{\textbf{GROUP 1 -- MEMBER LIST}} \\ 
+        \hline 
+        \textbf{No.} &\qquad\qquad \textbf{Name}\qquad\qquad\qquad & \qquad\textbf{ID}\qquad\qquad & \qquad\textbf{Note}\qquad\qquad \\ 
+        \hline 
+        1 & Nguyen Minh Nhat  & 1752039 & Leader \\ 
+        \hline 
+        2 & Pham Hoang Minh   & 1752353 &  \\ 
+        \hline 
+        3 & Huynh Gia An Tien & 1752538 &  \\ 
+        \hline 
+        4 & Pham Minh Tuan    & 1752595 &  \\ 
+        \hline 
+        5 & Tran Dang Khoa    & 1752297 &  \\ 
+        \hline 
+    \end{tabular} 
+
+    \vspace{3cm}
+
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|M{4cm}|M{4cm}|N|}
+            \hline
+            \multicolumn{2}{|c|}{\textbf{Confirmation of Instructor}} \\
+            \hline
+             &  \\ [50pt]
+            \hline
+        \end{tabular}
+    \end{table}
+\end{center}
+
+\pagebreak
+
+\hi{Objective}
+    \par Using the microscope to measure the refractive index of a thin film.
+
+\hi{Measurement Data}
+    \begin{itemize}
+        \item Precision of the panme ruler: $0.01 (mm)$
+        \item Precision of the ring ruler of the microscope: $0.001 (mm)$
+    \end{itemize}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            \mRow{2}{*}{No.} & \mCol{5}{c|}{Effective thickness $(mm)$} & \mCol{2}{c|}{Real thickness $(mm)$} \\
+            \hline
+            & \quad $N$ \quad & \quad $l_{0}$ \quad & \quad $l$ \quad & \quad $d_{1}$ \quad & \quad $\Dt d_{1}$ \quad & \quad $d$ \quad & \quad $\Dt d$ \quad \\ 
+            \hline 
+            1 & 6 & 0 & 43 & 1.243 & 0.007 & 1.95 & 0.02 \\ 
+            \hline 
+            2 & 6 & 0 & 49 & 1.249 & 0.013 & 1.93 & 0.00 \\ 
+            \hline 
+            3 & 6 & 0 & 28 & 1.228 & 0.008 & 1.94 & 0.01 \\ 
+            \hline 
+            4 & 6 & 0 & 32 & 1.232 & 0.004 & 1.92 & 0.01 \\ 
+            \hline 
+            5 & 6 & 0 & 27 & 1.227 & 0.009 & 1.93 & 0.00 \\ 
+            \hline 
+            Average & 6 & 0 & 36 & 1.236 & 0.008 & 1.93 & 0.01 \\ 
+            \hline 
+        \end{tabular} 
+    \end{center}
+
+\hi{Calculation}
+    \hii{Value}
+        \begin{align*}
+            \avg{n} = \frac{\avg{d}}{\avg{d_{1}}} = \frac{1.93}{1.236} = 1.561
+        \end{align*}
+
+    \hii{Deviation}
+        \begin{itemize}
+            \item Measurement error of $d$: \\
+                \begin{align*}
+                    & \Dt d = (\Dt d)_{instrument} + \avg{\Dt d} = 0.01 + 0.01 = 0.02 (mm)
+                \end{align*}
+            \item Measurement error of $d_{1}$: \\
+                \begin{align*}
+                    & \Dt d_{1} = (\Dt d_{1})_{instrument} + \avg{\Dt d_{1}} = 0.001 + 0.008 = 0.009 (mm)
+                \end{align*}
+        \end{itemize}
+        \begin{align*}
+            \relerr{n} = \relerr{d} + \relerr{d_{1}} = \frac{0.02}{1.93} + \frac{0.009}{1.236} = 1.76 \% \\
+            \ra \Dt n = \avg{n} \cdot 1.76 \% = 0.027
+        \end{align*}
+
+\hi{Result}
+    \begin{tcolorbox}
+        \begin{align*}
+            n = \avg{n} \pm \Dt n = 1.561 + 0.027
+        \end{align*}
+    \end{tcolorbox}
+
+
+\end{document}

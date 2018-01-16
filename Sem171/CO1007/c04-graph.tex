@@ -1,0 +1,301 @@
+\chapter{GRAPH}
+\hi{Graphs and Graph Models}
+    \hii{Graphs}
+        \par A \impt{graph} $G = (V, E)$ consists of $V$, a \textit{nonempty} set of
+        \impt{vertices} (or \impt{nodes}) and $E$, a set of \impt{edges}.
+        \par Each edge has either one or two vertices associated with it, called its
+        \impt{endpoints}.
+        \par An edge is said to \impt{connect} its endpoints.
+    \hii{Finite and infinite graph}
+        \par A graph with a finite vertex set and a finite edge set is called a \impt{finite graph}.
+        \par A graph with an infinite vertex set and an finite edge set is called an
+        \impt{infinite graph}.
+    \hii{Simple graph}
+        \par A simple graph is a graph in which:
+        \begin{itemize}
+            \item each edge connects two different vertices
+            \item no two edges connect the same pair of vertices
+        \end{itemize}
+    \hii{Multigraph}
+        \par Graphs that \textit{may} have \impt{multiple edges} connecting the same vertices are
+        called \impt{multigraphs}.
+        \par When there are $m$ different edges associated to the same unordered pair of vertices
+        ${u, v}$, we also say that ${u, v}$ is an edge of \impt{multiplicity} $m$.
+        \par If $G$ is a simple graph, it is definitely a multigraph. The other way around is NOT
+        correct.
+    \hii{Pseudograph}
+        \par Graphs that \textit{may} have \impt{loops} and \textit{may} have multiple edges
+        connecting the same pair of vertices to itself are called \impt{pseudograph}.
+        \par If $G$ is a multigraph, it is definitely a pseudograph. The other way around is NOT
+        correct.
+    \hii{Directed graph}
+        \par A \impt{directed graph} (or \impt{digraph}) $G = (V, E)$ consists of a nonempty
+        set of vertices $V$ and a set of \impt{directed edges} (or \impt{arcs}) $E$.
+        \par Each \impt{directed edge} is associated with an \textit{ordered pair} of vertices.
+        \par The directed edge associated with the ordered pair $(u, v)$ is said to
+        \textit{start} at $u$ and \textit{end} at $v$.
+    \hii{Multiple directed graph}
+        \par Directed graphs that \textit{may} have \impt{multiple directed edgeds} from a vertex
+        to a second (possibly the same) vertex are called \impt{directed multigraphs}.
+        \par When there are $m$ different directed edges associated to the same ordered pair
+        $(u, v)$, we say that $(u, v)$ is an edge of \impt{multiplicity} $m$.
+
+\hi{Graph Terminology and Special Types of Graphs}
+    \hii{Adjacency in an Undirected graph}
+        \par Two vertices $u$ and $v$ in an undirected graph $G$ are called \impt{adjacent}
+        (or \impt{neighbors}) in $G$ if $u$ and $v$ are endpoints of an edge $e$ of $G$.
+        \par Such an edge $e$ is called \impt{incident} with the vertices $u$ and $v$.
+        \par $e$ is said to \impt{connect} $u$ and $v$.
+        \par The set of all neighbors of a vertex $v$ of $G = (V, E)$, denoted by $N(v)$, is
+        called the \impt{neighborhood} of $v$.
+        \par If $A$ is a subset of $V$, we denote by $N(A)$ the set of all vertices in $G$
+        that are adjacent to at least one vertex in $A$.
+        \begin{equation}
+            N(A) = \bigcup_{v \in A} N(v)
+        \end{equation}
+
+    \hii{Degree of a vertex in an Undirected graph}
+        \par The \impt{degree} of a vertex in an \impt{undirected graph} is the number of
+        edges incident with it, except that a loop contributes twice to the degree of that
+        vertex. The degree of the vertex $v$ is denoted by $deg(v)$.
+        \begin{equation}
+            deg(v) = \big(\mbox{\# edges incident with } v \big) +
+            \big( 2 \cdot \mbox{ \# loops} \big)
+        \end{equation}
+        \par A vertex of degree zero is called \impt{isolated}.
+        \par A vertex of degree one is called \impt{pendant}.
+
+    \hii{The Handshaking Theorem for Undirected graph}
+        \par Let $G = (V, E)$ be an undirected graph. Then
+        \begin{equation}
+            2|E| = \SUM{_{v \in V} deg(v)}
+        \end{equation}
+        \par An undirected graph has an even number of vertices of odd degree.
+
+    \hii{Adjacency in a Directed graph}
+        \par When $(u, v)$ is an edge of the graph $G$ with directed edges:
+        \begin{itemize}
+            \item $u$ is said to be \impt{adjacent to} $v$
+            \item $v$ is said to be \impt{adjacent from} $u$
+            \item $u$ is called the \impt{initial vertex} of $(u, v)$
+            \item $u$ is called the \impt{terminal vertex} of $(u, v)$
+        \end{itemize}
+        \par The initial vertex and terminal vertex of a loop are the same.
+
+    \hii{Degree of a vertex in a Directed graph}
+        \par In a directed graph:
+        \begin{itemize}
+            \item the \impt{in-degree} of a vertex $v$, denoted by $deg^{-}(v)$, is the number
+                of edges with $v$ as their terminal vertex.
+            \item the \impt{out-degree} of a vertex $v$, denoted by $deg^{+}(v)$, is the number
+                of edges with $v$ as their initial vertex.
+        \end{itemize}
+        \par A loop at a vertex contributes 1 to both the in-degree and the out-degree of this
+        vertex.
+
+    \hii{The Handshaking Theorem for Directed graph}
+        \par Let $G = (V, E)$ be a graph with directed edges. Then:
+        \begin{equation}
+            \SUM{_{v \in V} deg^{-}(v)} = \SUM{_{v \in V} deg^{+}(v)} = |E|
+        \end{equation}
+
+    \hiiBEGIN{Special Simple Graphs}
+        \hiii{Complete Graph}
+            \par A \impt{complete graph} on $n$ vertices, denoted by $K_{n}$, is a simple graph that
+            \textit{contains exactly one edge between each pair of distinct vertices}.
+
+        \hiii{Cycle}
+            \par A \impt{cycle} $C_{n} (n \geq 3)$ consists of $n$ vertices $v_{1}, v_{2}, \ldots, v_{n}$
+            and edges $\{v_{1}, v_{2}\}, \{v_{2}, v_{3}\}, \ldots, \{v_{n-1}, v_{n}\}$.
+
+        \hiii{Wheel}
+            \par A \impt{wheel} $W_{n}$ can be obtained when adding an additional vertex to a cycle
+            $C_{n} (n \geq 3)$ and connect this new vertex to each of the $n$ vertices in $C_{n}$, by
+            new edges.
+
+        \hiii{$n-$cube}
+            \par An \impt{n-dimensional hypercube}, or \impt{$n-$cube}, denoted by $Q_{n}$, is a
+            graph that has vertices representing the $2^{n}$ bit strings of length $n$. Two
+            vertices are adjacent if and only if the bit strings that they represent differ in
+            exactly one bit position.
+    \hiiEND
+
+    \hiiBEGIN{Bipartite Graphs}
+        \hiii{Definition}
+            \par A simple graph $G$ is called \impt{bipartite} if its vertex set $V$ can be
+            partitioned into two disjoint set $V_{1}$ and $V_{2}$ such that no edge in the graph
+            connects two vertices from the same set.
+        \hiii{Theorem}
+            \par A simple graph is \impt{bipartite} if and only if it is possible to assign one of
+            two different colors to each vertex of the graph so that no two adjacent vertices are
+            assigned the same color.
+            \par In simple word: A bipartite graph can be colored with 2 colors.
+        \hiiiBEGIN{Matchings}
+            \hiv{Definition}
+                \par A \impt{matching} $M$ in a simple graph $G = (V, E)$ is a subset of the set
+                $E$ of edges of the graph such that no two edges are incident with the same vertex.
+                In order words, a matching is a subset of edges such that if ${s, t}$ and ${u, v}$
+                are distinct edges of the matching, then $s$, $t$, $u$, and $v$ are distinct.
+            \hiv{Terminology}
+                \begin{itemize}
+                    \item A vertex that is the endpoint of an edge of a matching $M$ is said to be
+                        \impt{matched} in $M$; otherwise it is said to be \impt{unmatched}.
+                    \item A \impt{maximum matching} is a matching with the largest number of edges.
+                    \item A matching $M$ is a \impt{complete matching} from $V_{1}$ to $V_{2}$ if
+                        every vertex in $V_{1}$ is the endpoint of an edge in the matching, or
+                        equivalently, if $|M| = |V_{1}|$.
+                \end{itemize}
+            \hiv{Hall's Marriage Theorem}
+                \par The bipartite graph $G = (V, E)$ with bipartition $(V_{1}, V_{2})$
+                has a complete matching from $V_{1}$ to $V_{2}$ if and only if the number 
+                of vertices in $V_{1}$ is less than or equals to the total number of
+                their neighbors.
+                $(|N(A)| \geq |A|)$.
+                \par In simple words: The number of men is always less than or equals to
+                the number of spouses they have.
+        \hiiiEND
+    \hiiEND
+
+    \hiiBEGIN{New Graphs from Old}
+        \hiii{Subgraph}
+            \par A \impt{subgraph} of a graph $G = (V, E)$ is a graph $G_{1} = (V_{1}, E_{1})$ where
+                $V_{1} \subseteq V$ and $E_{1} \subseteq E$.
+            \par A subgraph $G_{1}$ of $G$ is a \impt{proper subgraph} if $G_{1} \neq G$.
+            \par The \impt{subgraph induced} by a subset $V_{1}$ of the vertex set $V$ is the graph
+                $(V_{1}, E_{1})$, where the edge set $E_{1}$ contains an edge in $E$ if an only if
+                both endpoints of this edge are in $W$.
+        \hiii{Graph Union}
+            \par The \impt{union} of two simple graphs $G_{1} = (V_{1}, E_{1})$ and
+                $G_{2} = (V_{2}, E_{2})$ is the simple graph $G_{1} \cup G_{2}$ with vertex set
+                $V_{1} \cup V_{2}$ and edge set $E_{1} \cup E_{2}$.
+    \hiiEND
+
+\hi{Representing Graphs and Graph Isomophism}
+    \hii{Adjacency Lists}
+    
+    \hii{Adjacency Matrix}
+
+    \hii{Trade-off between adjacency lists and adjacency matrices}
+        \par When the graph is \impt{sparse}, or the number of edges is small, it is preferable
+        to use adjacency lists to limit the number of entries.
+        \par When the graph is \impt{dense}, or the number of edges is big, it is preferable to
+        use adjacency matrix to limit the number of comparisons needed when traversing the lists.
+
+    \hii{Incidence Matrices}
+
+    \hii{Isomophism of Graphs}
+        \par The simple graphs $G_{1} = (V_{1}, E_{1})$ and $G_{2} = (V_{2}, E_{2})$ are isomorphic
+        if there exists a one-to-one and onto function $f$ from $V_{1}$ to $V_{2}$ with the property
+        that $a$ and $b$ are adjacent in $G_{1}$ if and only if $f(a)$ and $f(b)$ are adjacent in
+        $G_{2}$, for all $a$ and $b$ in $V_{1}$. Such a function $f$ is called an isomorphism.
+
+\hi{Connectivity}
+    \hii{Terminology}
+        \par Let $G$ be an undirected graph.
+        \begin{itemize}
+            \item A \impt{path} of length $n$ from $u$ to $v$ in $G$ is a sequence of $n$ edges
+                connecting from $u$ to $v$.
+            \item A \impt{circuit} is a path that begins and ends at the same vertex.
+            \item A path or circuit is said to \impt{pass through} the vertices or \impt{traverse}
+                the edges.
+            \item A path or circuit is \impt{simple} if it does not contain the same edge more
+                than once.
+            \item A \impt{walk} is equivalent to a path.
+            \item A \impt{closed walk} is equivalent to a circuit.
+            \item A \impt{trail} is equivalent to a simple path.
+        \end{itemize}
+
+
+    \hii{Cut vertices and Cut edges}
+        
+
+    \hii{Connectedness in an Undirected Graph}
+        \par An undirected graph is called \impt{connected} if there is a \impt{path} between
+            every pair of distinct vertices of the graph.
+
+    \hii{Connectedness in an Directed Graph}
+        \par A directed graph is \impt{strongly connected} if there is a path from $a$
+            to $b$ and from $b$ to $a$ whenever $a$ and $b$ are vertices in the graph.
+         \par A directed graph is \impt{weakly connected} if there is a path between
+            every two vertices in the underlying undirected graph.
+
+    \hii{Counting Paths between Vertices}
+        \par Let $G$ be a graph with adjacency matrix $A$ with respect to the ordering
+        $v_{1}, v_{2}, \ldots, v_{n}$ of the the vertices of the graph (with directed or
+        undirected edges, with multiple edges and loops allowed). The number of different paths
+        of length $r$ from $v_{i}$ to $v_{j}$, where $r$ is a positive integer, equals the
+        $(i, j)$th entry of $A^{r}$.
+
+\hi{Euler and Hamilton Paths}
+    \hiiBEGIN{Euler paths \& Euler circuits}
+        \hiii{Definition}
+            \par An \impt{Euler path} in a graph $G$ is a simple path containing every
+            \impt{edge} of $G$.
+            \par An \impt{Euler circuit} in a graph $G$ is a simple circuit containing
+            every \impt{edge} of $G$ 
+        \hiii{Theorem on Euler circuit}
+            \par A connected multigraph with at least two vertices has an
+            \textbf{Euler circuit} if and only if \impt{each} of its vertices has
+            \impt{even degree}.
+        \hiii{Theorem on Euler path}
+            \par A connected multigraph has an \textbf{Euler path} but not an 
+            \textbf{Euler circuit} if and only if it has exactly two vertices of
+            \impt{odd degree}.
+        \hiii{Fleury's algorithm}
+            \par Fleury's algorithm can be used to find an Euler circuit in a graph $G$.
+    \hiiEND
+
+    \hiiBEGIN{Hamilton paths \& Hamilton circuits}
+        \hiii{Definition}
+            \par An \impt{Hamilton path} in a graph $G$ is a simple path containing every
+            \impt{vertex} of $G$.
+            \par An \impt{Hamilton circuit} in a graph $G$ is a simple circuit containing
+            every \impt{vertex} of $G$.
+        \hiii{Dirac's theorem}
+            \par If $G$ is a simple graph with $n$ vertices with $n \geq 3$ such that the
+            degree of every vertex in $G$ is at least $n/2$, then $G$ has a Hamilton
+            circuit.
+        \hiii{Ore's theorem}
+            \par If $G$ is a simple graph with $n$ vertices with $n \geq 3$ such that
+            $deg(u) + deg(v) \geq n$ for every pair of nonadjacent vertices $u$ and $v$
+            in $G$, then $G$ has a Hamilton circuit.
+    \hiiEND
+
+\hi{Shortest-Path Problems}
+
+\hi{Planar Graphs}
+    \hii{Definition}
+        \par A graph is called \impt{planar} if it can be drawn in the plane without any
+        edges crossing (where a crossing of edges is the intersection of the lines or 
+        arcs representing them at a point other than their common endpoint).
+    \hii{Euler's Formula}
+        \par Let $G$ be a connected planar simiple graph with $e$ edges and $v$ vertices.
+        Let $r$ be the number of regions in a planar representation of $G$. Then
+        $r = e - v + 2$.
+        \par \textbf{Corollary 1}: If $G$ is a connected planar simple graph with $e$
+        edges and $v$ vertices, where $v \geq 3$, then $e \leq 3v - 6$.
+        \par \textbf{Corollary 2}: If $G$ is a connected planar simple graph with $e$
+        edges and $v$ vertices, where $v \geq 3$ and there is no circuit of length three,
+        then $e \leq 2v - 4$.
+        \par \textbf{Corollary 3}: If $G$ is a connected planar simple graph, then $G$
+        has a vertex of degree not exceeding five.
+    \hiiBEGIN{Kuratowski's Theorem}
+        \hiii{Theorem}
+            \par A graph is nonplanar if and only if it contains a subgraph
+            homeomorphic to $K_{3, 3}$ of $K_{5}$.
+        \hiii{Homeomorphic}
+            \par Given two different graphs. On any edge of this graph, add one or more 
+            vertices to it. If after adding, two graphs are isomorphic, then the original
+            graphs are homeomorphic.
+        \hiiiEND
+
+\hi{Graph Coloring}
+    \hii{Definition}
+        \par A \impt{coloring} of a simple graph is the assignment of a color to each
+        vertex of the graph so that \impt{no two adjacent vertices are assigned the same
+        color}.
+    \hii{Chromatic number}
+        \par The \impt{chromatic number} of a graph is the least number of color needed
+        for a coloring of this graph, denoted by $chi(G)$.
+    \hii{The Four Color Theorem}
+        \par The chromatic number of a planar graph is no greater than four.
