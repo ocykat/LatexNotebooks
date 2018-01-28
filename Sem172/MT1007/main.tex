@@ -1,0 +1,54 @@
+\documentclass[12pt, a4paper]{report}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{empheq}   % equation boxes
+
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+
+% Heading
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% Equation box
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+% Link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+\begin{document}
+\tableofcontents
+
+\input{details}
+\input{chap01}
+
+\end{document}

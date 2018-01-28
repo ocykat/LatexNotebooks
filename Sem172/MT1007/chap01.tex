@@ -1,0 +1,45 @@
+\chapter{Matrix algebra}
+
+\hi{Definitions}
+
+    \hii{Matrix}
+        \par An $m \times n$ matrix is a table of numbers that contains
+        $m$ rows and $n$ columns.
+        \begin{eqbox}
+            A = 
+            \begin{pmatrix}
+                a_{11} & a_{12} & ... & a_{1n} \\
+                a_{21} & a_{12} & ... & a_{1n} \\
+                ...    & ...    & ... & ...    \\
+                a_{m1} & a_{m2} & ... & a_{mn}
+            \end{pmatrix}
+            = (a_{ij})_{m \times n}
+        \end{eqbox}
+
+    \hii{Zero Matrix}
+        \par If $a_{ij} = 0 \forall i, j$, then $A$ is called a zero matrix
+        and is denoted by $0$.
+
+    \hii{Transpose}
+        \par A matrix $A^{T}$ that is form from $A$ by interchaging rows by
+        columns is called a \tb{transpose} of $A$.
+
+    \hii{Square matrix}
+        \par If the number of rows equals the number of columns, then the
+        matrix is called \tb{a square matrix of order $n$}.
+        \begin{itemize}
+            \item All elements $a_{ij}$ where $i = j$ form a diagonal in $A$.
+            \item The sum $\SUM{_{i = 1}^{n} a_{ii}}$ is called a \tbi{trace}
+            of $A$.
+            \item If $a_{ij} = 0 \quad \forall i \neq j$, then $A$ is called a
+            diagonal matrix.
+            \item If
+            \[
+                a_{ij} =
+                \begin{cases}
+                0 \mbox{ if } i \neq j \\
+                1 \mbox{ if } i = j
+                \end{cases}
+            \]
+            then $A$ is called an \tbi{identity matrix}, denoted by $I$.
+        \end{itemize}
