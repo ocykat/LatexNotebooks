@@ -1,0 +1,84 @@
+\documentclass[12pt, a4paper]{report}
+
+
+% MATH PACKAGES
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+
+
+% EQUATION BOXES
+% + package
+\usepackage{empheq}
+% + environment
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+        \setkeys{EmphEqOpt}{box=\fbox}
+            \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+
+
+% MARGINS
+\usepackage[margin=0.75in]{geometry}
+
+
+
+% HEADINGS
+% + macros
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+% + set counter depth to 4 (e.g. 1.1.1.1)
+\setcounter{secnumdepth}{4}
+
+
+% TABLE OF CONTENT
+% + link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+% INDENTATION
+% + indent the first paragraph after a heading
+\usepackage{indentfirst}
+
+
+% FOOTNOTE
+% + one footnote stays on one page
+\interfootnotelinepenalty=10000
+
+
+% TIKZ
+\usepackage{tikz}
+
+
+% FLOWCHART
+% + Tikz library
+\usetikzlibrary{shapes.geometric, arrows}
+% + style
+\tikzstyle{rect} = [rectangle, draw=black, text centered, minimum width=3cm, minimum height=1cm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{twarrow} = [thick,<->,>=stealth]
+\tikzstyle{darrow} = [dashed,->,>=stealth]
+
+
+\begin{document}
+
+\tableofcontents
+
+\input{chap01}
+
+\end{document}
