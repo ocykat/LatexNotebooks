@@ -67,12 +67,26 @@
 
 % FLOWCHART
 % + Tikz library
-\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
 % + style
-\tikzstyle{rect} = [rectangle, draw=black, text centered, minimum width=3cm, minimum height=1cm]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{twarrow} = [thick,<->,>=stealth]
-\tikzstyle{darrow} = [dashed,->,>=stealth]
+\tikzstyle{rect}    = [rectangle, draw=black, text centered,
+                       minimum width=3cm, minimum height=1cm]
+\tikzstyle{arrow}   = [thick, ->, >=stealth]
+\tikzstyle{twarrow} = [thick, <->, >=stealth]
+\tikzstyle{darrow}  = [dashed, ->, >=stealth]
+
+
+% LOGIC CIRCUIT
+\usetikzlibrary{shapes.gates.logic.US, calc}
+\tikzstyle{branch}  = [fill, shape=circle, minimum size=3pt, inner sep=0pt]
+\tikzstyle{AND}     = [and gate US, draw]
+\tikzstyle{OR}      = [or gate US, draw]
+\tikzstyle{XOR}     = [xor gate US, draw]
+\tikzstyle{NOT}     = [not gate US, draw]
+\tikzstyle{NAND}    = [nand gate US, draw]
+\tikzstyle{NOR}     = [nor gate US, draw]
+\newcommand{\inp}[1]{logic gate inputs=#1}
 
 
 \begin{document}
@@ -80,5 +94,8 @@
 \tableofcontents
 
 \input{chap01}
+\input{chap02}
+\input{chap03}
+\input{chap04}
 
 \end{document}
