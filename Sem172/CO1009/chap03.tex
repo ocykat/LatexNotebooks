@@ -1,0 +1,233 @@
+\chapter{Describing Logic Circuits}
+
+\hi{Boolean Constants and Variables}
+
+\hi{Truth Table}
+
+\hi{OR operation and OR gates}
+    \hii{Notation}
+        \begin{eqbox}
+            A + B
+        \end{eqbox}
+    \hii{Truth table}
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                A & B & A + B \\
+                \hline
+                0 & 0 & 0 \\
+                \hline
+                0 & 1 & 1 \\
+                \hline
+                1 & 0 & 1 \\
+                \hline
+                1 & 1 & 1 \\
+                \hline
+            \end{tabular}
+        \end{center}
+    \hii{OR gate}
+        \begin{tikzpicture}
+            \node (A) at (0, 2) {$A$};
+            \node (B) at (0, 0) {$B$};
+
+            \node[OR, logic gate inputs=nn] at (2.5, 1) (or) {};
+
+            \draw (A) -| ($(A) + (1, 0)$) |- (or.input 1);
+            \draw (B) -| ($(B) + (1, 0)$) |- (or.input 2);
+            \draw (or.output) -- ($(A) + (4, 1)$);
+        \end{tikzpicture}
+
+\hi{AND operation and AND gates}
+    \hii{Notation}
+        \begin{eqbox}
+            A \cdot B
+        \end{eqbox}
+    \hii{Truth table}
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                A & B & A $\cdot$ B \\
+                \hline
+                0 & 0 & 0 \\
+                \hline
+                0 & 1 & 0 \\
+                \hline
+                1 & 0 & 0 \\
+                \hline
+                1 & 1 & 1 \\
+                \hline
+            \end{tabular}
+        \end{center}
+    \hii{AND gate}
+        \begin{tikzpicture}
+            \node (A) at (0, 2) {$A$};
+            \node (B) at (0, 0) {$B$};
+
+            \node[AND, logic gate inputs=nn] at (2.5, 1) (and) {};
+
+            \draw (A) -| ($(A) + (1, 0)$) |- (and.input 1);
+            \draw (B) -| ($(B) + (1, 0)$) |- (and.input 2);
+            \draw (and.output) -- ($(A) + (4, 1)$);
+        \end{tikzpicture}
+
+\hi{NOT operation}
+    \hii{Notation}
+        \begin{eqbox}
+            \bar{A} \mbox{ or } A'
+        \end{eqbox}
+    \hii{NOT gate}
+        \begin{tikzpicture}
+            \node (A) at (0, 0) {$A$};
+            \node[NOT, logic gate inputs=n] at (2, 0) (not) {};
+            \draw (A) -- (not.input);
+            \draw (not.output) -- ($(A) + (4, 0)$);
+        \end{tikzpicture}
+
+\hi{Describing Logic Circuits Algebraically}
+    \hii{Operator Precedence}
+        \begin{itemize}
+            \item parentheses
+            \item AND operator
+            \item OR operator
+        \end{itemize}
+
+\hi{Implementing Circuits From Boolean Expressions}
+
+\hi{Laws of Logic}
+    \hii{Identity Laws}
+        \begin{align*}
+            x + 0 = x \\
+            x \cdot 1 = x
+        \end{align*}
+    \hii{Domination Laws}
+        \begin{align*}
+            x + 1 = 1 \\
+            x \cdot 0 = 0
+        \end{align*}
+    \hii{Idempotent Laws}
+        \begin{align*}
+            x + x = x \\
+            x \cdot x = x
+        \end{align*}
+    \hii{Double Negation Law}
+        \begin{align*}
+            \bar{\bar{x}} = x
+        \end{align*}
+    \hii{Negation Laws}
+        \begin{align*}
+            x + \bar{x} = 1 \\
+            x \cdot \bar{x} = 0
+        \end{align*}
+    \hii{Commutative Laws}
+        \begin{align*}
+            x + y = y + x \\
+            x \cdot y = y \cdot x
+        \end{align*}
+    \hii{Associative Laws}
+        \begin{align*}
+            x + y + z = x + (y + z) \\
+            x \cdot y \cdot z = x \cdot (y \cdot z)
+        \end{align*}
+    \hii{Absorption Laws}
+        \begin{align*}
+            x + (x \cdot y) = x \\
+            x \cdot (x + y) = x
+        \end{align*}
+    \hii{Distributed Laws}
+        \begin{align*}
+            x \cdot (y + z) = xy + xz \\
+            x + (y \cdot z) = (x + y) \cdot (x + z)
+        \end{align*}
+    \hii{De Morgan's Laws}
+        \begin{eqbox}
+            \overline{x + y} = \bar{x} \cdot \bar{y} \\
+            \overline{x \cdot y} = \bar{x} + \bar{y}
+        \end{eqbox}
+    \hii{Consensus Laws}
+        \begin{eqbox}
+            xy + \bar{x} z + yz = xy + \bar{x} z
+            (x + y)(\bar{x} + z)(y + z) + yz = (x + y)(\bar{x} + z)
+        \end{eqbox}
+        \textbf{Proof:}
+        \begin{flalign*}
+            & xy + \bar{x} z + yz \\
+            & = xy + \bar{x} z + (x + \bar{x}) yz & \mbox{Negation Laws} & \\
+            & = xy + \bar{x} z + xyz + \bar{x} yz & \mbox{Distributed Laws} & \\
+            & = xy(1 + z) + \bar{x}z(1 + y)       & \mbox{Associative Laws} &\\
+            & = xy + \bar{x}z                     & \mbox{Domination Laws} &
+        \end{flalign*}
+
+\hi{NOR gates and NAND gates}
+    \hii{NOR gates}
+        \begin{tikzpicture}
+            \node (A) at (0, 2) {$A$};
+            \node (B) at (0, 0) {$B$};
+
+            \node[NOR, logic gate inputs=nn] at (2.5, 1) (nor) {};
+
+            \draw (A) -| ($(A) + (1, 0)$) |- (nor.input 1);
+            \draw (B) -| ($(B) + (1, 0)$) |- (nor.input 2);
+            \draw (nor.output) -- ($(A) + (4, -1)$);
+        \end{tikzpicture}
+
+    \hii{NAND gates}
+        \begin{tikzpicture}
+            \node (A) at (0, 2) {$A$};
+            \node (B) at (0, 0) {$B$};
+
+            \node[NAND, logic gate inputs=nn] at (2.5, 1) (nand) {};
+
+            \draw (A) -| ($(A) + (1, 0)$) |- (nand.input 1);
+            \draw (B) -| ($(B) + (1, 0)$) |- (nand.input 2);
+            \draw (nand.output) -- ($(A) + (4, -1)$);
+        \end{tikzpicture}
+
+\hi{Universality of NAND gates and NOR gates}
+    \par All boolean expressions consist of various combinations of the basic operations of OR, AND
+    and INVERT.
+    \par NAND and NOR gates can be used to perform all basic operations.
+
+\hi{Alternate Logic-gate Representation}
+    \hii{Conversion Procedure}
+        \par The alternate symbol for each gate is obtained from the standard symbol by doing the
+        following:
+        \begin{enumerate}
+            \item Invert each input and output of the standard symbol, by adding or removing bubbles.
+            \item Change the operation symbol from AND to OR or from OR to AND.
+                (INVERTER stays unchanged).
+        \end{enumerate}
+    \hii{Notes}
+        \begin{itemize}
+            \item The equivalences can be extended to gates with \textbf{any} number of inputs.
+            \item None of the standard symbols have bubbles on their inputs, and all the alternate
+                symbols do.
+            \item The standard and alternate symbols for each gate represent the same physical
+                circuit.
+            \item NAND and NOR gates are inverting gates, so both the standard and the alternate
+                symbols for each will have a bubble on \textbf{either} the input or the output.
+            \item AND and OR gates are noninverting gates, so the alternate symbols for each will
+                have bubbles on \textbf{both} inputs and output.
+        \end{itemize}
+    \hii{Logic-Symbol Interpretation}
+        \par To interpret the logic-gate operation:
+        \begin{enumerate}
+            \item Note which logic state is the active state for the input.
+            \item Note which logic state is the active state for the output.
+            \item There are two cases:
+                \begin{itemize}
+                    \item AND gate: Output goes ... when \textbf{all} input are ...
+                    \item OR gate: Output goes ... when \text{any} input is ...
+                \end{itemize}
+        \end{enumerate}
+
+\hi{Notes on Gate Representation}
+    \hii{Standard vs Alternate}
+        \par If properly used, alternate logic gates make the circuit much clearer than standard
+        logic gates.
+    \hii{Bubble Placement}
+        \par Whenever possible, bhoose gate symbols so that bubble outputs are connected to bubble
+        inputs, and nonbubble outputs to nonbubble inputs.
+    \hii{Asserted Levels}
+        \par When a logic signal is in its active state, it is said to be \textbf{asserted}.
+        \par When a logic signal is in its inactive state, it is said to be \textbf{unasserted}.
+
