@@ -1,0 +1,55 @@
+\chapter{Combinational Logic Circuits}
+
+\hi{Sum-of-Product form}
+    \hii{Sum-of-Product form and Product-of-Sum form}
+        \par A \textbf{sum-of-product (SOP)} form consists of two or more AND terms
+        that are ORed together.
+        \par A \textbf{product-of-sum (POS)} form consists of two or more OR terms
+        that are ANDed together.
+    \hii{Sum-of-Product form in Simplyfying Logic Circuits}
+        \par Methods of logic-circuit simplification require the logic expression
+        to be in a \textbf{sum-of-product} form.
+
+\hi{Simplyfying Logic Circuits}
+    \par There are two methods for simplyfying logic circuits:
+    \begin{itemize}
+        \item Utilizing Boolean algebra theorems
+        \item Karnaugh mapping
+    \end{itemize}
+
+\hii{Designing Combinational Logic Circuits}
+    \par The complete design procedure for a combinational logic circuit
+        consists of these steps:
+    \begin{itemize}
+        \item Intepret the problem and set up a truth table to describe its
+            operations.
+        \item Write the AND (product) term for each case where the output is 1.
+        \item Write the sum-of-product (SOP) expression for the output.
+        \item Simplify the output expression if possible.
+        \item Implement the circuit for the final, simplify expression.
+    \end{itemize}
+
+\hi{Karnaugh Map Method}
+    \hi{Introduction}
+        \par K map, like truth table, is a means for showing the relationship between
+        the logic inputs and the desired output.
+    \hi{Karnaugh Map Format}
+        \begin{itemize}
+            \item Each case in the truth table corresponds to a square in the K map.
+            \item The K-maps squares a labeled so that horizontally adjacent squares differ
+                only in one variable. Note that: each square in the top row is considered to be
+                adjacent to a corresponding square in the bottom row; each square in the leftmost
+                column are adjacent to corresponding squares in the rightmost column.
+            \item Top-to-bottom and left-to-right labelling must be done following the rule of Grey
+                code.
+            \item Once a K map has been filled with 0s and 1s
+        \end{itemize}
+    \hii{Complete Simplification Process}
+        \begin{enumerate}
+            \item Construct the K map according to the truth table.
+            \item Loop isolated 1s (1s that are not adjacent to any other 1s).
+            \item Look for 1s that are adjacent to only one other 1 and loop
+            those pairs.
+            \item Loop any octet even if it contains some 1s that have been looped.
+            \item 
+        \end{enumerate}

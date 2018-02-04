@@ -1,0 +1,60 @@
+\documentclass[12pt, a4paper]{report}
+
+% MATH
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+% + Equation box
+\usepackage{empheq}
+
+\newenvironment{eqbox}{%
+    \setkeys{EmphEqEnv}{align}
+        \setkeys{EmphEqOpt}{box=\fbox}
+            \EmphEqMainEnv%
+}{%
+    \endEmphEqMainEnv%
+}
+% + Macros
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+% MARGINS
+\usepackage[margin=0.75in]{geometry}
+
+
+% HEADINGS
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+
+% INDENTATION
+% + indent the first paragraph after a heading
+\usepackage{indentfirst}
+
+
+% TABLE OF CONTENT
+% + link for TOC
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+\begin{document}
+\tableofcontents
+
+\input{chap01}
+\input{chap02}
+
+\end{document}
