@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+
+
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{arrayjob}
+
+
+\usetikzlibrary{calc} % Coordinate calculations
+
+
+\newenvironment{mykmap}[2]
+{
+    \begin{center}
+        \begin{tikzpicture}
+            \providecommand{\nrows}{#1};
+            \providecommand{\ncols}{#2};
+
+            \foreach \y in {0, 1, ..., \nrows} {
+                \pgfmathsetmacro{\ly}{\y}
+                \draw (\ly, 0) -- (\ly, -\ncols);
+            }
+            \foreach \x in {0, 1, ..., \ncols} {
+                \pgfmathsetmacro{\lx}{-1 * \x}
+                \draw (0, \lx) -- (\nrows, \lx);
+            }
+}
+{
+        \end{tikzpicture}
+    \end{center}
+}
+
+\newcommand{\kmapvars}[2]{
+    \newarray\vervars
+    \readarray{vervars}{#1}
+    \newarray\horvars
+    \readarray{horvars}{#2}
+
+    \foreach \row in {1, 2, ..., \nrows} {
+        \pgfmathsetmacro{\vy}{(-1) * (\row - 0.5)};
+        \pgfmathsetmacro{\i}{\row};
+        \draw (-0.7, \vy) node{\vervars(\i)};
+    }
+
+    \foreach \col in {1, 2, ..., \ncols} {
+        \pgfmathsetmacro{\vx}{(\col - 0.5};
+        \pgfmathsetmacro{\i}{\col};
+        \draw (\vx, 0.5) node{\horvars(\i)};
+    }
+}
+
+
+\newcommand{\kmapvalues}[1]
+{
+    \newarray\elems
+    \readarray{elems}{#1}
+    \dataheight=\ncols
+    
+    \foreach \y in {1, 2, ..., \nrows} {
+        \foreach \x in {1, 2, ..., \ncols} {
+            \pgfmathsetmacro{\ex}{\x - 0.55};
+            \pgfmathsetmacro{\ey}{-1 * (\y - 0.5)};
+            \pgfmathsetmacro{\i}{\y};
+            \pgfmathsetmacro{\j}{\x};
+            \draw (\ex, \ey) node{\elems(\i, \j)};
+        }
+    }
+}
+
+\newcommand{\kmapisolatedloop}[3]
+{
+    \draw[rounded corners=4pt, opacity=0.2, fill=#3]  ($(#2, -#1) + (-0.8, 0.8)$) rectangle ($(#2, -#1) + (-0.2, 0.2)$);
+}
+
+\newcommand{\kmapinloop}[5]
+{
+    \draw[rounded corners=4pt, opacity=0.2, fill=#5]  ($(#2, -#1) + (-0.7, 0.7)$) rectangle ($(#4, -#3) + (-0.3, 0.3)$);
+}
+
+\newcommand{\kmaptopbotloop}[5]
+{
+    \draw[opacity=0.2, fill=#5]  ($(#2, -#1) + (-0.7, +0.3)$) rectangle ($(#4, 0.1) + (-0.3, 0)$);
+    \draw[opacity=0.2, fill=#5]  ($(#2, -\nrows) + (-0.7, 0.7)$) rectangle ($(#4, -#3) + (-0.3, -0.1)$);
+}
+
+\newcommand{\kmapleftrightloop}[5]
+{
+    \draw[opacity=0.2, fill=#5]  ($(-0.1, -#1) + (0, +0.7)$) rectangle ($(#2, -#3) + (-0.3, 0.3)$);
+    \draw[opacity=0.2, fill=#5]  ($(#4, -#1) + (-0.7, +0.7)$) rectangle ($(\ncols, -#3) + (0.1, 0.3)$);
+}
+
+\newcommand{\kmapcornerloop}[9]
+{
+    \draw[opacity=0.2, fill=#9] ($(#2, -#1) + (-0.3, +0.3)$) rectangle (-0.1, 0.1);
+    \draw[opacity=0.2, fill=#9] ($(#4, -#3) + (-0.7, +0.3)$) rectangle ($(\ncols, 0) + (0.1, 0.1)$);
+    \draw[opacity=0.2, fill=#9] ($(#6, -#5) + (-0.3, +0.7)$) rectangle ($(0, -\nrows) + (-0.1, -0.1)$);
+    \draw[opacity=0.2, fill=#9] ($(#8, -#7) + (-0.7, +0.7)$) rectangle ($(\ncols, -\nrows) + (0.1, -0.1)$);
+}
+
+
+\begin{document}
+    \begin{mykmap}{4}{4}
+        \kmapvars
+            {$\bar{A}\bar{B}$ & $\bar{A} B$ & $AB$ & $A \bar{B}$}
+            {$\bar{C}\bar{D}$ & $\bar{C} D$ & $CD$ & $C \bar{D}$};
+
+        \kmapvalues{
+            0 & 1 & 1 & 0 &
+            0 & 0 & 0 & 0 &
+            0 & 0 & 1 & 0 &
+            0 & 0 & 0 & 0
+        };
+
+        \kmapisolatedloop{3}{2}{orange};
+        \kmapinloop{2}{2}{3}{3}{red};
+        \kmaptopbotloop{1}{3}{4}{4}{blue};
+    \end{mykmap}
+
+    \begin{mykmap}{4}{4}
+        \kmapvars
+            {$\bar{A}\bar{B}$ & $\bar{A} B$ & $AB$ & $A \bar{B}$}
+            {$\bar{C}\bar{D}$ & $\bar{C} D$ & $CD$ & $C \bar{D}$};
+
+        \kmapvalues{
+            0 & 1 & 1 & 0 &
+            0 & 0 & 0 & 0 &
+            0 & 0 & 1 & 0 &
+            0 & 0 & 0 & 0
+        };
+
+        \kmapleftrightloop{2}{1}{3}{4}{blue};
+        \kmapcornerloop{1}{1}{1}{4}{4}{1}{4}{4}{green};
+    \end{mykmap}
+\end{document}
