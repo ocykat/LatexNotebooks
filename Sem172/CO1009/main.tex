@@ -1,10 +1,15 @@
 \documentclass[12pt, a4paper]{report}
 
 
-% MATH PACKAGES
+% MATH
+% + packages
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{relsize}
+% + macros
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
 
 
 % EQUATION BOXES
@@ -22,7 +27,6 @@
 
 % MARGINS
 \usepackage[margin=0.75in]{geometry}
-
 
 
 % HEADINGS
@@ -87,6 +91,10 @@
 \tikzstyle{NAND}    = [nand gate US, draw]
 \tikzstyle{NOR}     = [nor gate US, draw]
 \newcommand{\inp}[1]{logic gate inputs=#1}
+
+
+% KARNAUGH MAP
+\usepackage{karnaugh-map}
 
 
 \begin{document}

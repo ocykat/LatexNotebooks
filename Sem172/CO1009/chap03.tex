@@ -34,7 +34,7 @@
 
             \draw (A) -| ($(A) + (1, 0)$) |- (or.input 1);
             \draw (B) -| ($(B) + (1, 0)$) |- (or.input 2);
-            \draw (or.output) -- ($(A) + (4, 1)$);
+            \draw (or.output) -- ($(or.output) + (2, 0)$);
         \end{tikzpicture}
 
 \hi{AND operation and AND gates}
@@ -67,7 +67,7 @@
 
             \draw (A) -| ($(A) + (1, 0)$) |- (and.input 1);
             \draw (B) -| ($(B) + (1, 0)$) |- (and.input 2);
-            \draw (and.output) -- ($(A) + (4, 1)$);
+            \draw (and.output) -- ($(and.output) + (2, 0)$);
         \end{tikzpicture}
 
 \hi{NOT operation}
@@ -115,38 +115,43 @@
         \end{align*}
     \hii{Negation Laws}
         \begin{align*}
-            x + \bar{x} = 1 \\
-            x \cdot \bar{x} = 0
+            x + \bar{x} &= 1 \\
+            x \cdot \bar{x} &= 0
         \end{align*}
     \hii{Commutative Laws}
         \begin{align*}
-            x + y = y + x \\
-            x \cdot y = y \cdot x
+            x + y &= y + x \\
+            x \cdot y &= y \cdot x
         \end{align*}
     \hii{Associative Laws}
         \begin{align*}
-            x + y + z = x + (y + z) \\
-            x \cdot y \cdot z = x \cdot (y \cdot z)
+            x + y + z &= x + (y + z) \\
+            x \cdot y \cdot z &= x \cdot (y \cdot z)
         \end{align*}
     \hii{Absorption Laws}
         \begin{align*}
-            x + (x \cdot y) = x \\
-            x \cdot (x + y) = x
+            x + (x \cdot y) &= x \\
+            x \cdot (x + y) &= x
         \end{align*}
     \hii{Distributed Laws}
         \begin{align*}
-            x \cdot (y + z) = xy + xz \\
-            x + (y \cdot z) = (x + y) \cdot (x + z)
+            x \cdot (y + z) &= xy + xz \\
+            x + (y \cdot z) &= (x + y) \cdot (x + z)
         \end{align*}
+    \hii{Unnamed Laws}
+        \begin{eqbox}
+            x + \bar{x} \cdot y &= x + y \\
+            x \cdot (\bar{x} + y) \cdot y &= x \cdot y
+        \end{eqbox}
     \hii{De Morgan's Laws}
         \begin{eqbox}
-            \overline{x + y} = \bar{x} \cdot \bar{y} \\
-            \overline{x \cdot y} = \bar{x} + \bar{y}
+            \overline{x + y} &= \bar{x} \cdot \bar{y} \\
+            \overline{x \cdot y} &= \bar{x} + \bar{y}
         \end{eqbox}
     \hii{Consensus Laws}
         \begin{eqbox}
-            xy + \bar{x} z + yz = xy + \bar{x} z
-            (x + y)(\bar{x} + z)(y + z) + yz = (x + y)(\bar{x} + z)
+            xy + \bar{x} z + yz &= xy + \bar{x} z \\
+            (x + y)(\bar{x} + z)(y + z) + yz &= (x + y)(\bar{x} + z)
         \end{eqbox}
         \textbf{Proof:}
         \begin{flalign*}

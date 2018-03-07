@@ -7,14 +7,17 @@
 % + Equation box
 \usepackage{empheq}
 
-\newenvironment{eqbox}{%
+\newenvironment{eqbox}
+{%
     \setkeys{EmphEqEnv}{align}
         \setkeys{EmphEqOpt}{box=\fbox}
             \EmphEqMainEnv%
-}{%
+}
+{%
     \endEmphEqMainEnv%
 }
 % + Macros
+\newcommand{\dif}[2]{\frac{d #1}{d #2}}
 \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\pdd}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
 

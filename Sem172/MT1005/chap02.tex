@@ -36,13 +36,14 @@
 \hi{Limits and Continuity}
     \hiiBEGIN{Limits}
         \hiii{Definition}
-            \par Let $f$ be a function of two variables whose domain $D$ includes points arbitrarily
-            close to $(a, b)$. Then we say that the \textbf{limit} of $f(x, y)$ as $(x, y)$ approaches
-            $(a, b)$ is $L$ and we write
+            \par Let $f$ be a function of two variables whose domain $D$ includes points
+            arbitrarily close to $(a, b)$. Then we say that the \textbf{limit} of
+            $f(x, y)$ as $(x, y)$ approaches $(a, b)$ is $L$ and we write
             \begin{eqbox}
                 \lim_{(x, y) \to (a, b)} f(x, y) = L
             \end{eqbox}
-            if for every number $\epsilon > 0$ there is a corresponding number $\delta > 0$ such that:
+            if for every number $\epsilon > 0$ there is a corresponding number
+            $\delta > 0$ such that:
             \begin{center}
                 if $(x, y) \in D$ and $0 < \sqrt{(x - a)^{2} - (y - b)^{2})} < \delta$, then
                 $|f(x, y) - L| < \epsilon$
@@ -50,13 +51,13 @@
         \hiii{Existence of limit}
             \par For a function of one variable
             \begin{center}
-                If $\lim_{x \to a^{-}} f(x) \neq \lim_{x \to a^{+}}$, then $\lim_{x \to a} f(x)$ does
-                not exists.
+                If $\lim_{x \to a^{-}} f(x) \neq \lim_{x \to a^{+}}$, then
+                $\lim_{x \to a} f(x)$ does not exists.
             \end{center}
-            \par For a multivariable function, the limit at one point can be approaches from
-            infinitely many directions. If there \textbf{exists two different paths} of approach
-            along which the function $f(x, y)$ has different limits, then the limit at that point
-            does not exists.
+            \par For a multivariable function, the limit at one point can be approaches
+            from infinitely many directions. If there \textbf{exists two different paths}
+            of approach along which the function $f(x, y)$ has different limits, then the
+            limit at that point does not exists.
     \hiiEND
     \hii{Continuity}
         \par A function $f$ of two variables is called \textbf{continuous} at $(a, b)$ if:
@@ -83,10 +84,10 @@
     \hii{Rule for Finding Partial Derivatives}
         \par Given the function $z = f(x, y)$.
         \begin{itemize}
-            \item To find $f_{x}$, regard $y$ as a constant and differentiate $f(x, y)$ with respect
-                to $x$.
-            \item To find $f_{y}$, regard $x$ as a constant and differentiate $f(x, y)$ with respect
-                to $y$.
+            \item To find $f_{x}$, regard $y$ as a constant and differentiate $f(x, y)$
+                with respect to $x$.
+            \item To find $f_{y}$, regard $x$ as a constant and differentiate $f(x, y)$
+                with respect to $y$.
         \end{itemize}
     \hii{Higher Derivatives}
         \begin{alignat*}{4}
@@ -123,3 +124,65 @@
             dz &= f_{x} (x_{1}, y_{1}) \Delta x + f_{y} (x_{1}, y_{1}) \Delta y \\
             &= f_{x} (x_{1}, y_{1}) (x_{2} - x_{1}) + f_{y} (x_{1}, y_{1}) (y_{2} - y_{1})
         \end{alignat*}
+
+\hi{The Chain Rule}
+    \hii{Case 1}
+        \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
+        $x = g(t)$ and $y = h(t)$ are both differentiable functions of $t$. Then $z$ is a
+        differentiable function of $t$ and
+        \begin{eqbox}
+            \dif{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
+        \end{eqbox}
+    \hii{Case 2}
+        \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
+        $x = g(s, t)$ and $y = h(s, t)$ are both differentiable functions of $s$ and $t$.
+        Then $z$ is a differentiable function of $s$ and $t$ and
+        \begin{eqbox}
+            \pd{z}{s} = \pd{z}{x} \dif{x}{s} + \pd{z}{y} \dif{y}{s} \\
+            \pd{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
+        \end{eqbox}
+
+\hi{Maximum and Minimum Values}
+    \hii{Definition}
+        \par A function of two variables has a \textbf{local maximum} at $(a, b)$ if
+        $f(x, y) \leq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
+        called a \textbf{local maximum value}.
+        \par A function of two variables has a \textbf{local minimum} at $(a, b)$ if
+        $f(x, y) \geq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
+        called a \textbf{local minimum value}.
+        \par If the inequalities hold for all points $(x, y)$ in the domain of $f$, then $f$
+        has an \textbf{absolute maximum} (or \textbf{absolute minimum}) at $(a, b)$.
+
+    \hii{Theorem (Fermat theorem for multivariable function)}
+        \par If $f$ has a local maximum or minimum at $(a, b)$ and the first-order partial
+        derivatives of $f$ exist there, then $f_{x}(a, b) = 0$ and $f_{y} (a, b) = 0$.
+        
+    \hii{Second Derivatives Test}
+        \par Suppose the second partial derivatives of $f$ are continuous on a disk with center
+        $(a, b)$, and suppose that $f_{x}(a, b) = 0$ and $f_{y}(a, b) = 0$.
+        \par Let:
+        \begin{itemize}
+            \item $A = f_{xx}(a, b)$
+            \item $B = f_{xy}(a, b)$
+            \item $C = f_{yy}(a, b)$
+            \item $D = AC - B^{2}$
+        \end{itemize}
+        then
+        \begin{itemize}
+            \item $D > 0$ and $A > 0$, then $f(a, b)$ is a local minimum.
+            \item $D > 0$ and $A < 0$, then $f(a, b)$ is a local maximum.
+            \item $D < 0$, then $f(a, b)$ is not a local maximum or minimum. Instead, it
+                is called a \textbf{saddle point}.
+            \item $D = 0$, there is no conclusion can be made. $f(a, b)$ can either be a
+                local maximum/minimum or a saddle point.
+        \end{itemize}
+        \par The formula of $D$ can be written in the form of the determinant:
+        \begin{equation}
+            D = 
+            \begin{vmatrix}
+                f_{xx} & f_{xy} \\
+                f_{yx} & f_{yy}
+            \end{vmatrix}
+        \end{equation}
+
+    \hii{Absolute Maximum and Minimum Values}
