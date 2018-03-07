@@ -1,12 +1,21 @@
+# By-product files
 *.aux
 *.log
 *.pdf
 *.out
 *.toc
 
+# Images
 *.PNG
 *.png
 *.jpg
 *.JPEG
 
+# Shell scripts
+*.sh
+
+# Makefiles
+Makefile
+
+# Others
 *.py

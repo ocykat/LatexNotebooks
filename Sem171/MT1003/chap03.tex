@@ -1,0 +1,66 @@
+\chapter{Application of Derivatives}
+
+\hi{Maximum and Minimum Values}
+    \hii{Absolute maximum and minimum}
+        \par Let $c$ be a number in the domain $D$ of a function $f$. Then $f(c)$ is the
+        \begin{itemize}
+            \item \textbf{absolute maximum} value of $f$ on $D$ if $f(c) \geq f(x)$ for all $x$
+                in $D$.
+            \item \textbf{absolute minimum} value of $f$ on $D$ if $f(c) \leq f(x)$ for all $x$
+                in $D$.
+        \end{itemize}
+
+    \hii{Local maximum and minimum}
+        \par The number $f(c)$ is a:
+        \begin{itemize}
+            \item \textbf{local maximum} value of $f$ is $f(c) \geq f(x)$ when $x$ is near $c$.
+            \item \textbf{local minimum} value of $f$ is $f(c) \geq f(x)$ when $x$ is near $c$.
+        \end{itemize}
+
+    \hii{The Extreme Value Theorem}
+        \par If $f$ is continuous on a closed interval $[a, b]$, then $f$ attains an
+        absolute maximum value $f(c)$ and an absolute minimum value $f(d)$ at some
+        number $c$ and $d$ in $[a, b]$. \footnotemark
+        \footnotetext{This theorem is very difficult to prove, although it is intuitively
+            very plausible.}
+
+    \hii{Fermat's Theorem}
+        \par If $f$ has a local maximum or minimum at $c$, and if $f'(c)$ exists, then
+        $f'(c) = 0$.
+        \small{
+            \par \textbf{Proof:}
+            \par Suppose that $f$ has a local maximum at $c$, and $h$ is a sufficiently
+            small number.
+            \par If $h > 0$, we have:
+            \begin{alignat*}{2}
+                f(c + h) - f(c) &\leq 0 \\
+                \ra \frac{f(c + h) - f(c)}{h} &\leq 0 \\
+                \ra \lim_{h \to 0^{+}} \frac{f(c + h) - f(c)}{h}
+                    &\leq \lim_{h \to 0^{+}} 0 = 0 \\
+                \ra f'(c) &\leq 0 \quad (1)
+            \end{alignat*}
+            \par If $h < 0$, we have:
+            \begin{alignat*}{2}
+                f(c + h) - f(c) &\leq 0 \\
+                \ra \frac{f(c + h) - f(c)}{h} &\geq 0 \\
+                \ra \lim_{h \to 0^{-}} \frac{f(c + h) - f(c)}{h}
+                    &\geq \lim_{h \to 0^{-}} 0 = 0 \\
+                \ra f'(c) &\geq 0 \quad (2)
+            \end{alignat*}
+            \par From $(1)$ and $(2)$ \quad $\ra f'(c) = 0$.
+        }
+
+
+
+\hi{Exercise - Investigate \& draw a graph for a function}
+    \begin{itemize}
+        \item Step 1: Find the domain of the function.
+        \item Step 2: Find $f'(x)$.
+        \item Step 3: Solve the equation $f'(x) = 0$ to find the critical points.
+        \item Step 4: Find the asymtotes: vertical, horizontal and slant
+        \item Step 5: Find $f''(x)$.
+        \item Step 6: Find the points of inflection.
+        \item Step 7: Show how the function increases/decreases on $D$, the local
+            maxima/minima
+        \item Step 8: Draw the graph
+    \end{itemize}
