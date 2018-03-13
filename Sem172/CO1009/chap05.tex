@@ -1,0 +1,139 @@
+\chapter{Flip-flops and Related Devices}
+
+\hi{Introduction}
+    \par Most digital systems consist of both combinational circuits and
+    memory elements.
+    \par The most important memory element is the \textbf{flip-flop} (FF),
+    which is made up of an assembly of logic gates.
+    \par Even though a logic gate, by itself, has no storage capability,
+    several can be connected together in ways that permit information
+    to be stored.
+    \begin{itemize}
+        \item $Q$: \textit{normal} FF output
+        \item $\bar{Q}$: \textit{inverted} FF output, which is always in the
+        opposite state with $Q$.
+        \item $Q = 1$: the \textbf{SET} state. If the input cause $Q$ to go to 1,
+        we call it "setting the FF/the FF has been set".
+        \item $Q = 0$: the \textbf{CLEAR/RESET} state. If the input cause $Q$ to
+        go to 0, we call it "clearing or reseting the FF/the FF has been cleared
+        or reset".
+        \item A FF can have one or more inputs. These inputs are used to cause the
+        FF to switch.
+        \item Most FF inputs need only to be momentarily activated (pulsed) to switch
+        the FF, and the output will remain in that new state even after the input
+        pulse is over (FF's \textit{memory} characteristic).
+    \end{itemize}
+    \par The most basic FF circuit can be constructed from either two NAND gates or
+    two NOR gates.
+
+\hi{NAND Gate Latch}
+    \begin{itemize}
+        \item The two NAND gates are cross-coupled so that the \textbf{output} of
+        NAND-1 is connected to one \textbf{input} of NAND-2, and vice versa
+        \item There are two latch inputs:
+        \begin{itemize}
+            \item the SET input is the input that sets Q to the 1 state
+            \item the RESET input is the input that resets Q to the 0 state.
+        \end{itemize}
+        \item The SET and RESET inputs are both normally resting in the HIGH state,
+        and one of them will be pulsed LOW whenever we want to change the latch
+        outputs.
+        \item There are two different possibilities, which \textbf{depends on what
+        has occurred previously at the inputs}:
+        \begin{itemize}
+            \item $Q = 0$ and $\bar{Q} = 1$
+            \item $Q = 1$ and $\bar{Q} = 0$
+        \end{itemize}
+    \end{itemize}
+
+\hi{Setting and Resetting the FF}
+    \begin{itemize}
+        \item If the SET input is pulsed LOW while RESET is kept HIGH, then $Q = 1$.
+        We call this \textbf{setting the FF}.
+        \item If the RESET input is pulsed LOW while RESET is kept HIGH, then $Q = 0$.
+        We call this \textbf{clearing/resetting the FF}.
+        \item If simultaneous setting and resetting happens, the result is unpredictable.
+        Therefore, SET = RESET = 0 condition is normally not used for the NAND latch.
+    \end{itemize}
+
+\hi{Summary of NAND Latch}
+    \begin{itemize}
+        \item SET = RESET = 1: normal resting state, having no effect on the output.
+        $Q$ and $\bar{Q}$ remain in whatever state they were in prior to this input
+        condition.
+        \item SET = 0, RESET = 1: Q = 1
+        \item SET = 1, RESET = 0: Q = 0
+        \item SET = 0, RESET = 0: unpredictable behaviour
+    \end{itemize}
+
+\hi{Summary of NOR Latch}
+    \begin{itemize}
+        \item SET = RESET = 0: normal resting state, having no effect on the output.
+        $Q$ and $\bar{Q}$ remain in whatever state they were in prior to this input
+        condition.
+        \item SET = 1, RESET = 0: Q = 1
+        \item SET = 0, RESET = 1: Q = 0
+        \item SET = 1, RESET = 1: unpredictable behaviour
+    \end{itemize}
+
+\hi{Pulse}
+    \par A pulse that performs its intended function when it goes HIGH is called
+    a positive pulse.
+    \par A pulse that performs its intended function when it goes LOW is called
+    a negative pulse.
+    \par In actual circuits it takes time for a pulse waveform to change from one
+    level to the other. These transition times are called the rise time ($t_{r}$) and
+    the fall time ($t_{f}$) and are defined as the time it takes the voltage to change
+    between 10\% and 90\% of the HIGH level voltage.
+    \par The transition at the beginning of the pulse is called the leading edge.
+    \par The transition at the end of the pulse is the trailing edge.
+    \par The duration (width) of the pulse ($t_{w}$) is defined as the time between
+    the points when the leading and trailing edges are at 50\% of the HIGH level voltage.
+
+\hi{Clock Signals and Clocked Flip-flops}
+    \hii{Asynchronous and Synchronous Systems}
+        \begin{itemize}
+            \par In asynchronous systems, the outputs can change state any time one
+            or more of the inputs change.
+            \par In synchronous systems, the exact times at which any output can change
+            states are determined by a signal commonly called the \textbf{clock}.
+        \end{itemize}
+    \hii{Clock}
+        \par Most of the system outputs can change state only when the clock makes
+        a \textbf{transition} (also called \textbf{edge}).
+        \begin{itemize}
+            \item When the clock changes from 0 to 1: \textbf{positive-going
+            transition (PGT)}
+            \item When the clock changes from 1 to 0: \textbf{negative-going
+            transition (NGT)}
+        \end{itemize}
+        \par One \textbf{cycle} is measured from one PGT to the next one, or from
+        one NGT to the next one.
+    \hii{Clocked Flip-flops}
+        \par Clocked FFs have a clock input (often labeled CLK, CK or CP).
+        \par In most clocked FFs, the CLK input is edge-triggered, which means
+        that it is activated by a signal transition.
+        This contrasts with the latches, which are level-triggered.
+        \begin{itemize}
+            \item A FF with a small triangle on its CLK input to indicate
+            that this input is activated only when a positive-going transition
+            (PGT) occurs; no other part of the input pulse will have an effect
+            on the CLK input.
+            \item A FF with a small triangle with a bubble on its CLK input to indicate
+            that this input is activated only when a negative-going transition
+            (NGT) occurs; no other part of the input pulse will have an effect
+            on the CLK input.
+        \end{itemize}
+        \par Clocked FFs also have one or more control inputs. The control
+        inputs will have no effect on Q until the active clock transition occurs.
+        They are called \textbf{synchronous control inputs}.
+        \par In summary, we can say that the control inputs get the FF outputs ready
+        to change, while the active transition at the CLK input actually triggers
+        the change.The control inputs control the WHAT; the CLK input determines the WHEN.
+
+
+\hi{Clocked D Flip-flop}
+    \par A \textbf{clocked D flip-flop} triggers on a PGT.
+    \par This flip-flop has only one synchronous control input, $D$ (data).
+    \par Operation: $Q$ will go to the same state that is present on the $D$ input
+    when a PGT occurs at CLK.
