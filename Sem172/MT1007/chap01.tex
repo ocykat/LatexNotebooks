@@ -1,45 +1,493 @@
 \chapter{Matrix algebra}
 
-\hi{Definitions}
+\hi{Matrix}
 
-    \hii{Matrix}
-        \par An $m \times n$ matrix is a table of numbers that contains
-        $m$ rows and $n$ columns.
-        \begin{eqbox}
-            A = 
-            \begin{pmatrix}
-                a_{11} & a_{12} & ... & a_{1n} \\
-                a_{21} & a_{12} & ... & a_{1n} \\
-                ...    & ...    & ... & ...    \\
-                a_{m1} & a_{m2} & ... & a_{mn}
-            \end{pmatrix}
-            = (a_{ij})_{m \times n}
-        \end{eqbox}
+  \hii{Matrix}
+    \par An $m \times n$ matrix is a table of numbers that contains
+    $m$ rows and $n$ columns.
+    \begin{eqbox}
+      A = 
+      \begin{pmatrix}
+        a_{11} & a_{12} & ... & a_{1n} \\
+        a_{21} & a_{22} & ... & a_{2n} \\
+        ...    & ...    & ... & ...    \\
+        a_{m1} & a_{m2} & ... & a_{mn}
+      \end{pmatrix}
+      = (a_{ij})_{m \times n}
+    \end{eqbox}
 
-    \hii{Zero Matrix}
-        \par If $a_{ij} = 0 \forall i, j$, then $A$ is called a zero matrix
-        and is denoted by $0$.
+  \hii{Zero Matrix}
+    \par If $a_{ij} = 0 \forall i, j$, then $A$ is called a zero matrix
+    and is denoted by $0$.
 
-    \hii{Transpose}
-        \par A matrix $A^{T}$ that is form from $A$ by interchaging rows by
-        columns is called a \tb{transpose} of $A$.
+  \hii{Transpose}
+    \par A matrix $A^{T}$ that is form from $A$ by interchaging rows by
+    columns is called a \tb{transpose} of $A$.
 
-    \hii{Square matrix}
-        \par If the number of rows equals the number of columns, then the
-        matrix is called \tb{a square matrix of order $n$}.
+\hi{Square Matrix}
+
+  \hii{Square Matrix}
+    \par If the number of rows equals the number of columns, then the
+    matrix is called \tb{a square matrix of order $n$}.
+  
+  \hii{Diagonal}
+    \par All elements $a_{ij}$ where $i = j$ form a \tb{diagonal} in $A$.
+
+  \hii{Trace}
+    \par The sum $\SUM{_{i = 1}^{n} a_{ii}}$ is called a \tbi{trace}
+      of $A$.
+
+  \hii{Diagonal Matrix}
+    \par If $a_{ij} = 0 \quad \forall i \neq j$, then $A$ is called a
+      \tb{diagonal matrix}.
+
+  \hii{Identity Matrix}
+    \par If
+    \[
+      a_{ij} =
+      \begin{cases}
+      0 \mbox{ if } i \neq j \\
+      1 \mbox{ if } i = j
+      \end{cases}
+    \]
+      then $A$ is called an \tbi{identity matrix}, denoted by $I$.
+  
+  \hii{Triangular Matrix}
+    \par If $\forall i > j, a_{ij} = 0$, then $A$ is called an \tb{upper
+      triangular matrix}.
+    \par \ti{Example}:
+    \[
+      A =
+      \begin{pmatrix}
+        1 & 2 &  3 \\
+        0 & 3 & -1 \\
+        0 & 0 &  5 \\
+      \end{pmatrix}
+    \]
+    \par If $\forall i < j, a_{ij} = 0$, then $A$ is called a \tb{lower
+      triangular matrix}.
+
+
+\hi{Matrix Operations}
+
+  \hii{Equality}
+    \[
+      A = B \iff
+      \begin{cases}
+        \mbox{A \& B have the same size} \\
+        \mbox{each corresponding entries are equal}
+      \end{cases}
+    \]
+
+  \hii{Sum}
+    \par The operation can only be carry out if $A$ \& $B$ have the same
+    size.
+    \[
+      A + B = (a_{ij} + b_{ij})_{m \times n}
+    \]
+
+  \hii{Scalar multiplication}
+    \[
+      \alpha \times A = (\alpha \times a_{ij})_{m \times n}
+    \]
+
+  \hii{Matrix multiplication}
+    \par The operation can only be carry out if the number of columns of 
+    $A$ equals the number of rows of $B$.
+    \par Given:
+    \[
+        A = (a_{ij})_{m \times n} \mbox{ \& }
+        B = (b_{ij})_{n \times p}
+    \]
+    then
+    \[
+      AB = C = (c_{ij})_{m \times p}
+    \]
+    where each entry $c_{ij}$ in $C$ is the result of the \tb{dot product} of
+    row $i$ of $A$ and column $j$ of $B$.
+    \[
+      c_{ij} = (i^{th} \mbox{ row of A}) . (j^{th} \mbox{ column of B})
+    \]
+
+  \hii{Matrix Exponential for Square Matrices}
+    \par Let $A$ be a \tb{square matrix}.
+    \[
+      A^{n} =
+      \begin{cases}
+        I \qquad \mbox{ if } n = 0 \\
+        \PROD{_{i = 1}^{n} A} \quad \mbox{ if } n \in \mathbb{N*}
+      \end{cases}
+    \]
+
+  \hii{Polynomial Function of Square Matrix}
+    \par Let $f(x)$ be a \tb{polynomial function}.
+    \[
+      f(x) = \alpha_{n}x^{n} + \alpha_{n - 1}x^{n - 1}
+        + \ldots + \alpha_{1}x^{1} + \alpha{0}x^{0}
+    \]
+    \par Given a \tb{square matrix} A. then
+    \begin{alignat*}{2}
+      f(A) &= \alpha_{n}A^{n} + \alpha_{n - 1}A^{n - 1}
+        + \ldots + \alpha_{1}A^{1} + \alpha_{0}A^{0} \\
+      &= \alpha_{n}A^{n} + \alpha_{n - 1}A^{n - 1}
+        + \ldots + \alpha_{1}A + \alpha_{0}I
+    \end{alignat*}
+
+\hi{Properties of Matrix Operations}
+  \hiiBEGIN{Properties of Summation}
+    \hiii{Commutative Rule}
+      \[
+        A + B = B + A
+      \]
+
+    \hiii{Associative Rule}
+      \[
+        (A + B) + C = A + (B + C)
+      \]
+
+    \hiii{Identity Rule}
+      \[
+        A + 0 = A
+      \]
+
+  \hiiEND
+
+  \hiiBEGIN{Properties of Scalar Multiplication}
+    \hiii{Commutative Rule}
+      \[
+        \alpha (A \times B) = (\alpha A) B = A (\alpha B)
+      \]
+    \hiii{Distributive Rule}
+      \[
+        \alpha (A + B) = \alpha A + \alpha B
+      \]
+  \hiiEND
+
+  \hiiBEGIN{Properties of Matrix Multiplication}
+    \hiii{Associative Rule}
+      \[
+        (A \times B) \times C = A \times (B \times C)
+      \]
+
+    \hiii{Distributive Rule}
+      \begin{alignat*}{2}
+        A \times (B + C) = AB + AC \\
+        (A + B) \times C = AC + BC
+      \end{alignat*}
+
+    \hiii{Identity Rule}
+      \par Given $A = (a_{ij})_{m \times n}$. Then:
+      \[
+        I_{m} \times A = A \times I_{n} = A
+      \]
+      or
+      \[
+        I \times A = A \times I = A
+      \]
+
+    \hiii{Note}
+      \begin{itemize}
+        \item There is no commutative rule for multiplication.
+          \[
+            A \times B \neq B \times A
+          \]
+        \item
+          \[
+            A \times B = 0 \not \Rightarrow A = 0 \lor B = 0
+          \]
+      \end{itemize}
+
+  \hiiEND
+
+  \hiiBEGIN{Properties of the Transpose of a Matrix}
+    \hiii{Transpose Property}
+      \[
+        (A^{T})^{T} = A
+      \]
+
+    \hiii{Summation}
+      \[
+        (A + B)^{T} = A^{T} + B^{T}
+      \]
+
+    \hiii{Scalar Multiplication}
+      \[
+        r(A^{T}) = (rA)^{T}
+      \]     
+
+    \hiii{Matrix Multiplication}
+      \[
+        (A + B)^{T} = B^{T} + A^{T}
+      \]
+  \hiiEND
+
+
+\hi{Echelon form \& Elementary Row Operations}
+  \hii{Leading entry}
+    \par In a matrix, the \tb{leading entry} of a row is the first non-zero
+    element of that row.
+  \hii{Elementary Row Operations}
+    \par There are 3 types of elementary operations for matrices:
+    \begin{itemize} 
+      \item Scaling: multiply a row by a non-zero number.
+      \item Adding: add a constant $c$ times one row to another.
+      \item Interchanging: interchange two rows.
+    \end{itemize} 
+  \hii{Echelon form}
+    \par A matrix is said to be in \tb{Echelon form} if:
+    \begin{enumerate}
+      \item All non-zero rows are above any rows of all zeros.
+      \item Each leading entry of a row is on the right of the leading entry
+        of the row above it.
+    \end{enumerate}
+
+\hi{Gaussian Elimination}
+  \hii{System of Linear Equations (Linear System)}
+    \par A system of $n$ linear equations and $n$ unknowns has the form of:
+%    \[
+      %\begin{cases}
+        %\begin{aligned}
+          %a_{11} x_{1} &+& a_{12} x_{2} &+& \ldots &+& a_{1n} x_{n} &=& b_{1}  \\
+          %a_{21} x_{1} &+& a_{22} x_{2} &+& \ldots &+& a_{2n} x_{n} &=& b_{2}  \\
+          %\vdots       &+& \vdots       &+& \vdots &+& \vdots       &=& \vdots \\
+          %a_{n1} x_{1} &+& a_{n2} x_{2} &+& \ldots &+& a_{nn} x_{n} &=& b_{n}  \\
+        %\end{aligned}
+      %\end{cases}
+    %\]
+    \[
+      \left\{
+        \begin{aligned}
+          a_{11} x_{1} &+& a_{12} x_{2} &+& \ldots &+& a_{1n} x_{n} &=& b_{1}  \\
+          a_{21} x_{1} &+& a_{22} x_{2} &+& \ldots &+& a_{2n} x_{n} &=& b_{2}  \\
+          \vdots       &+& \vdots       &+& \vdots &+& \vdots       &=& \vdots \\
+          a_{n1} x_{1} &+& a_{n2} x_{2} &+& \ldots &+& a_{nn} x_{n} &=& b_{n}  \\
+        \end{aligned}
+      \right.
+    \]
+    \par There are 3 different senarios when a system is solved:
+      \begin{itemize}
+        \item The system has no solution.
+        \item The system has exactly one solution.
+        \item The system has more than one solution.
+      \end{itemize}
+    \par If the system has at least one solution, it is said to be \tb{consistent}.
+    Otherwise, it is \tb{inconsistent}.
+
+  \hii{Matrix form of a System of Linear Equations}
+    \par A system of linear equations has the matrix form:
+    \[
+      \begin{pmatrix}
+        a_{11} & a_{12} & \ldots & a_{1n} = b_{1} \\
+        a_{21} & a_{22} & \ldots & a_{2n} = b_{2} \\
+        \vdots & \vdots & \vdots & \vdots = \vdots \\
+        a_{n1} & a_{n2} & \ldots & a_{nn} = b_{n} \\
+      \end{pmatrix}
+      \begin{pmatrix}
+        x_{1} \\
+        x_{2} \\
+        \vdots \\
+        x_{n} \\
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        b_{1} \\
+        b_{2} \\
+        \vdots \\
+        b_{n} \\
+      \end{pmatrix}
+    \]
+    \[
+      AX = B
+    \]
+    where
+    \begin{itemize}
+      \item $A$: coefficient matrix
+      \item $X$: column vector of unknowns
+      \item $B$: column vector of free coefficients
+    \end{itemize}
+    
+    \par The matrix $(A|B)$ is called an \tb{augmented matrix}.
+
+  \hii{Gaussian Elimination}
+    \begin{itemize}
+      \item Step 1: Write the augmented matrix $(A|B)$.
+      \item Step 2: Reduce the matrix to \tb{reduced Echelon form} using only
+        row elementary operations.
+      \item Step 3: Solve in order from right to left: $x_{n} \to ... \to x_{1}$.
+    \end{itemize}
+
+
+\hi{Rank}
+  \hii{Rank of a Matrix}
+    \par Given matrix $A = (a_{ij})_{m \times n}$.
+    \par The rank of $A$, denoted by $r(A)$, is the number of non-zero rows of $A$
+    after it has been transformed to \tb{reduced Echelon form}.
+
+  \hii{Rouche - Capelli theorem}
+    \par Given a linear system $AX = B$ of $n$ unknowns.
+    \begin{itemize}
+      \item If $r(A|B) \neq r(A)$, then the system is inconsistent.
+      \item If $r(A|B) = r(A)$, then the system is consistent.
         \begin{itemize}
-            \item All elements $a_{ij}$ where $i = j$ form a diagonal in $A$.
-            \item The sum $\SUM{_{i = 1}^{n} a_{ii}}$ is called a \tbi{trace}
-            of $A$.
-            \item If $a_{ij} = 0 \quad \forall i \neq j$, then $A$ is called a
-            diagonal matrix.
-            \item If
-            \[
-                a_{ij} =
-                \begin{cases}
-                0 \mbox{ if } i \neq j \\
-                1 \mbox{ if } i = j
-                \end{cases}
-            \]
-            then $A$ is called an \tbi{identity matrix}, denoted by $I$.
+          \item $r(A|B) = r(A) = n$: the system has exactly one
+            solution.
+          \item $r(A|B) = r(A) < n$: the system has infinitely
+            many solutions.
         \end{itemize}
+    \end{itemize}
+
+\hi{Determinant of Square Matrix}
+  \hii{Notation}
+    \par The \tb{determinant} of a square matrix is denoted by $det(A)$ or $|A|$.
+  \hii{Cofactor}
+    \par Let $A$ be a square matrix and $a_{ij}$ be an element of $A$. A cofactor of
+    the element $a_{ij}$ is the quantity:
+    \[
+      A_{ij} = (-1)^{i + j}
+      \begin{bmatrix}
+        \mbox{from A by deleting} \\
+        \mbox{the $i^{th}$ row and} \\
+        \mbox{the $j^{th}$ column}
+      \end{bmatrix}
+    \]
+
+  \hii{Basic Determinant Formula}
+    \par Let $A$ be a square matrix of order $n$.
+    \[
+      det(A) = \SUM{_{j = 1}^{n} a_{1j} A_{1j}}
+    \]
+    \par Note that if $n = 1$, then $det(A) = 0$.
+
+  \hiiBEGIN{Properties of Determinant}
+    \hiii{Calculating Determinant}
+      \par A determinant can be computed by expanding along any row $r$ or
+      down any column $c$.
+      \[
+        det(A) = \SUM{_{i = 1}^{n} a_{ic} A_{ic}}
+               = \SUM{_{j = 1}^{n} a_{rj} A_{rj}}
+      \]
+
+    \hiii{Determinant of Triangular Matrix}
+      \par A determinant of a triangular matrix is the product of all diagonal
+      elements.
+      \[
+        A \text{ is a triangular matrix }
+          \Rightarrow det(A) = \PROD{_{i = 1}^{n} a_{ii}}
+      \]
+
+    \hiii{Determinant and Elementary Row Operations}
+      \begin{itemize}
+        \item $A \xrightarrow[r_{i} \to \alpha r_{i}]{} B \quad \quad
+          \rightarrow det(B) = \alpha det(A)$
+        \item $A \xrightarrow[r_{i} \to r_{i} + \beta r_{j}]{} B \quad
+          \rightarrow det(B) = det(A)$
+        \item $A \xrightarrow[r_{i} \leftrightarrow r_{j}]{} B \quad \quad
+          \rightarrow det(B) = - det(A)$
+      \end{itemize}
+      \par The same result is obtained for elementary column operations.
+
+    \hiii{Determinant of Scalar Multiplication}
+      \[
+        det(\alpha \times A) = \alpha^{n} det(A)
+      \]
+
+    \hiii{Determinant of Matrix Multiplication}
+      \[
+        det(A \times B) = det(A) \times det(B)
+      \]
+      \par \tb{Note}:
+      \[
+        det(A \times B) = det(A) \times det(B)
+      \]
+
+    \hiii{Determinant of Transpose of a Matrix}
+      \[
+        det(A^{T}) = det(A)
+      \]
+
+    \hiii{Cases where determinant equals zero}
+      \begin{itemize}
+        \item $A$ has a zero row (column).
+        \item $A$ has two identical row (column).
+        \item $A$ has two propotional rows (column).
+      \end{itemize}
+
+  \hiiEND
+
+
+\hi{Inverse of a Square Matrix}
+  \hii{Invertible Matrix}
+    \par A square matrix $A$ is invertible if there exists a square matrix $B$
+    such that:
+    \[
+      AB = BA = I
+    \]
+
+  \hii{The Inverse of a Matrix}
+    \par Matrix $B$ is called the inverse of $A$ and is denoted by $A^{-1}$.
+    \par Thus: $A \times A^{-1} = I$.
+
+  \hii{Invertibility Theorem}
+    \par A square matrix $A$ is invertible if and only if $det(A) \neq 0$.
+
+  \hiiBEGIN{Calculating the Inverse Matrix}
+    \hiii{Method 1}
+      \[
+        A = \frac{1}{det(A)} \times P_{A}
+      \]
+      where
+      \[
+        (P_{A})^{T} =
+        \begin{pmatrix}
+          A_{11} & A_{12} & \ldots & A_{1n} \\
+          A_{21} & A_{22} & \ldots & A_{2n} \\
+          \vdots & \vdots & \vdots & \vdots \\
+          A_{n1} & A_{n2} & \ldots & A_{nn} \\
+        \end{pmatrix}
+      \]
+
+    \hiii{Method 2}
+    \[ 
+      (A|I) \xrightarrow[\text{only row operations}]{} (I|A^{-1})
+    \] 
+  \hiiEND
+
+  \hiiBEGIN{Properties of Invertible Matrix}
+    \hiii{The Inverse of Inverse Matrix}
+      \[
+        (A^{-1})^{-1} = A
+      \]
+
+    \hiii{The Inverse of a Tranpose Matrix}
+      \[
+        (A^{-1})^{T} = (A^{T})^{-1}
+      \]
+
+    \hiii{Scalar Multiplication}
+      \[
+        (\alpha A)^{-1} = \frac{1}{\alpha} \times A^{-1}
+      \]
+    
+    \hiii{Matrix Multiplication}
+      \[
+        (A \times B)^{-1} = A^{-1} \times B^{-1}
+      \]
+
+    \hiii{Determinant}
+      \[
+        det(A^{-1}) = \frac{1}{det(A)}
+      \]
+
+    \hiii{P Matrix}
+      \[
+        det(P_{A}) = (det(A))^{n - 1}
+      \]
+      where $n$ is the order of $A$.
+
+    \hiii{Rank}
+      \begin{align*}
+        det(A) \neq 0 \Rightarrow r(A) = n \\
+        det(A) = 0 \Rightarrow r(A) < n \\
+      \end{align*}
+
+  \hiiEND
