@@ -54,15 +54,31 @@
     urlcolor=black
 }
 
+% TABULAR
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
 
 % INDENTATION
 % + indent the first paragraph after a heading
 \usepackage{indentfirst}
 
 
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+
 % FOOTNOTE
 % + one footnote stays on one page
 \interfootnotelinepenalty=10000
+
+% APPENDICES
+\usepackage[toc,page]{appendix}
 
 
 % TIKZ
@@ -105,5 +121,9 @@
 \input{chap02}
 \input{chap03}
 \input{chap04}
+\input{chap05}
+\begin{appendices}
+\input{appendix-a}
+\end{appendices}
 
 \end{document}

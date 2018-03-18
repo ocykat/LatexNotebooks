@@ -1,15 +1,28 @@
 \documentclass[12pt, a4paper]{report}
 
-% Math
+
+% MATH
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{relsize}
-\usepackage{empheq}   % equation boxes
-
+\usepackage{gensymb}
+% Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}
+{
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv
+}
+{
+    \endEmphEqMainEnv
+}
+% Sum, product, limit
 \newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
 \newcommand{\INT}[1]{\int\limits #1}
 
-% Heading
+
+% HEADINGS
 \newcommand{\hi}{\section}
 \newcommand{\hii}{\subsection}
 \newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
@@ -19,16 +32,13 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-% Equation box
-\newenvironment{eqbox}{%
-    \setkeys{EmphEqEnv}{align}
-    \setkeys{EmphEqOpt}{box=\fbox}
-    \EmphEqMainEnv%
-}{%
-    \endEmphEqMainEnv%
-}
 
-% Link for TOC
+% INDENTATION
+\usepackage{indentfirst}
+
+
+% TABLE OF CONTENTS
+% links
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -38,6 +48,12 @@
     urlcolor=black
 }
 
+
+% APPENDICES
+\usepackage[toc,page]{appendix}
+
+
+% TEXT
 % Bold, italic, underlined text
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
@@ -45,10 +61,15 @@
 \newcommand{\tu}[1]{\underline{#1}}
 \newcommand{\tbu}[1]{\textbf{\underline{#1}}}
 
+
 \begin{document}
 \tableofcontents
 
 \input{details}
 \input{chap01}
+\input{chap02}
+\begin{appendices}
+\input{appendix-a}
+\end{appendices}
 
 \end{document}

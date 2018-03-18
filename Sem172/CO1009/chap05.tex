@@ -93,22 +93,24 @@
 \hi{Clock Signals and Clocked Flip-flops}
     \hii{Asynchronous and Synchronous Systems}
         \begin{itemize}
-            \par In asynchronous systems, the outputs can change state any time one
-            or more of the inputs change.
-            \par In synchronous systems, the exact times at which any output can change
-            states are determined by a signal commonly called the \textbf{clock}.
+            \item In asynchronous systems, the outputs can change state any time one
+              or more of the inputs change.
+            \item In synchronous systems, the exact times at which any output can change
+              states are determined by a signal commonly called the \textbf{clock}.
         \end{itemize}
+
     \hii{Clock}
         \par Most of the system outputs can change state only when the clock makes
         a \textbf{transition} (also called \textbf{edge}).
         \begin{itemize}
             \item When the clock changes from 0 to 1: \textbf{positive-going
-            transition (PGT)}
+                transition (PGT)} or \textbf{rising edge}.
             \item When the clock changes from 1 to 0: \textbf{negative-going
-            transition (NGT)}
+                transition (NGT)} or \textbf{falling edge}.
         \end{itemize}
         \par One \textbf{cycle} is measured from one PGT to the next one, or from
         one NGT to the next one.
+
     \hii{Clocked Flip-flops}
         \par Clocked FFs have a clock input (often labeled CLK, CK or CP).
         \par In most clocked FFs, the CLK input is edge-triggered, which means
@@ -116,12 +118,12 @@
         This contrasts with the latches, which are level-triggered.
         \begin{itemize}
             \item A FF with a small triangle on its CLK input to indicate
-            that this input is activated only when a positive-going transition
-            (PGT) occurs; no other part of the input pulse will have an effect
-            on the CLK input.
+              that this input is activated only when a \textbf{PGT} occurs;
+              no other part of the input pulse will have an effect
+              on the CLK input.
             \item A FF with a small triangle with a bubble on its CLK input to indicate
-            that this input is activated only when a negative-going transition
-            (NGT) occurs; no other part of the input pulse will have an effect
+              that this input is activated only when a \textbf{NGT}
+             occurs; no other part of the input pulse will have an effect
             on the CLK input.
         \end{itemize}
         \par Clocked FFs also have one or more control inputs. The control
@@ -129,10 +131,32 @@
         They are called \textbf{synchronous control inputs}.
         \par In summary, we can say that the control inputs get the FF outputs ready
         to change, while the active transition at the CLK input actually triggers
-        the change.The control inputs control the WHAT; the CLK input determines the WHEN.
+        the change. The control inputs control the WHAT; the CLK input determines the WHEN.
 
+    \hii{Setup and Hold time}
+        \par Before and after a transition (either PGT or NGT) the signal
+        must be kept at a stable value for the clocked FF to respond reliably.
+        \begin{itemize}
+          \item The \textbf{setup time} $t_{s}$ is the required time
+              \textbf{preceding} a transition.
+          \item The \textbf{hold time} $t_{H}$ is the required time
+              \textbf{following} a transition.
+        \end{itemize}
+
+\hi{Clocked S-R FF}
+\begin{itemize}
+  \item \tb{Triggered by}: PGT
+  \item \tb{Operation:}
+\end{itemize}
+
+\hi{Clocked S-R FF}
+\begin{itemize}
+  \item \tb{Triggered by}: PGT
+  \item \tb{Operation:}
+\end{itemize}
 
 \hi{Clocked D Flip-flop}
+  \hii{Triggering}
     \par A \textbf{clocked D flip-flop} triggers on a PGT.
     \par This flip-flop has only one synchronous control input, $D$ (data).
     \par Operation: $Q$ will go to the same state that is present on the $D$ input

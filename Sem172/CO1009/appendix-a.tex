@@ -1,0 +1,72 @@
+\chapter{Hardware Description Language}
+
+\hi{ASIC and FPGA}
+    \hii{ASIC}
+        \par ASIC stands for \textbf{application-specific integrated circuit}.
+        It is a IC customized for a particular use, rather than intended for
+        general-purpose use.
+    \hii{FPGA}
+        \par A field-programmable gate array (FPGA) is an integrated circuit
+        designed to be configured by a customer or a designer after manufacturing
+        – hence "field-programmable". The FPGA configuration is generally
+        specified using a hardware description language (HDL), similar to that
+        used for an application-specific integrated circuit (ASIC).
+    \hii{Differences between ASIC and FPGA}
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline 
+            ASIC & FPGA \\ 
+            \hline 
+            specific-purpose IC & reprogrammable IC \\ 
+            \hline 
+            cannot be altered after production & can be corrected/updated \\ 
+            \hline 
+            & commonly used to design and test \\ 
+            \hline 
+            waste very little material &  \\ 
+            \hline 
+            & \specialcell{more cost-effective for smaller designs \\ or lower production volumes} \\ 
+            \hline 
+        \end{tabular} 
+    \end{center}
+
+\hi{FPGA design flow}
+    \hii{Write a specification}
+        \par Specification allows engineers to understand the design.
+    \hii{Design - top-down method}
+        \par High level functions are defined first, then the lower level implementation
+        details are filled in later.
+    \hii{Simulate}
+        \par This step is for debugging.
+    \hii{Synthesize}
+        \par Turn the abstract form of desired circuit behavior into the design
+        implementation in terms of logic gates.
+    \hii{Place and Route}
+    \hii{Resimulate}
+
+\hi{Using Verilog in Quartus}
+    \hii{Create a Verilog file}
+        \begin{itemize}
+            \item File $\to$ New $\to$ Verilog HDL File
+            \item File $\to$ Save As...
+            \item Start coding. Note that the module name must be similar to the
+            file name.
+        \end{itemize}
+    \hii{Using block diagram/schemantic file}
+        \begin{itemize}
+            \item Change "Hierarchy" to "File" in the dropdown menu on the file pane.
+            \item Right click the file $\to$ Set as top-level entity
+            \item Right click the file $\to$ Create Symbol Files for Current File
+            \item File $\to$ New $\to$ Verification/Debugging Files/University
+                Program VWF
+            \item Click on the Symbol Tool, choose the verilog file to load the IC.
+            \item To create new input/output, use the Pin Tool.
+        \end{itemize}
+    \hii{Simulate the design}
+        \begin{itemize}
+            \item File $\to$ New $\to$ Block diagram/Schemantic File
+            \item Edit $\to$ Insert $\to$ Insert Node or Bus...
+            \item Click on Node Finder
+            \item Click on List to list all available nodes
+            \item Add nodes to the right pane and click OK twice.
+        \end{itemize}

@@ -397,7 +397,7 @@
       \]
       \par \tb{Note}:
       \[
-        det(A \times B) = det(A) \times det(B)
+        det(A + B) \neq det(A) + det(B)
       \]
 
     \hiii{Determinant of Transpose of a Matrix}
@@ -412,10 +412,18 @@
         \item $A$ has two propotional rows (column).
       \end{itemize}
 
+    \hiii{Determinang and Rank Relationship}
+      \begin{align*}
+        det(A) \neq 0 \Rightarrow r(A) = n \\
+        det(A) = 0 \Rightarrow r(A) < n \\
+      \end{align*}
   \hiiEND
 
 
 \hi{Inverse of a Square Matrix}
+  \hii{Invertibility Theorem}
+    \par A square matrix $A$ is invertible if and only if $det(A) \neq 0$.
+
   \hii{Invertible Matrix}
     \par A square matrix $A$ is invertible if there exists a square matrix $B$
     such that:
@@ -426,9 +434,6 @@
   \hii{The Inverse of a Matrix}
     \par Matrix $B$ is called the inverse of $A$ and is denoted by $A^{-1}$.
     \par Thus: $A \times A^{-1} = I$.
-
-  \hii{Invertibility Theorem}
-    \par A square matrix $A$ is invertible if and only if $det(A) \neq 0$.
 
   \hiiBEGIN{Calculating the Inverse Matrix}
     \hiii{Method 1}
@@ -470,7 +475,7 @@
     
     \hiii{Matrix Multiplication}
       \[
-        (A \times B)^{-1} = A^{-1} \times B^{-1}
+        (A \times B)^{-1} = B^{-1} \times A^{-1}
       \]
 
     \hiii{Determinant}
@@ -484,10 +489,6 @@
       \]
       where $n$ is the order of $A$.
 
-    \hiii{Rank}
-      \begin{align*}
-        det(A) \neq 0 \Rightarrow r(A) = n \\
-        det(A) = 0 \Rightarrow r(A) < n \\
-      \end{align*}
+
 
   \hiiEND

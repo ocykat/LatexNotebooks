@@ -1,0 +1,287 @@
+%&tex
+
+\chapter{Vector Space}
+
+
+\hi{Vector Space}
+  \hii{Definition}
+    \par Let $V$ be a non-empty set. Elements in $V$ are vectors. There exists
+    2 operations in $V$:
+    \begin{itemize}
+      \item Adding: Sum of two vectors
+      \item Scaling: Multiplication of a vector by a number
+    \end{itemize}
+
+    \par The set $V$ is called a vector space over $K$, if the 10 following
+    axioms are held:
+    \begin{enumerate}
+      \item $\forall x, y \in V: x + y \in V$.
+      \item $\forall x \in V, \forall \alpha \in K: \alpha x \in V$.
+      \item $\forall x, y \in V: x + y = y + x$.
+      \item $\forall x, y \in V: (x + y) + z = x + (y + z)$.
+      \item $\forall x \in V: \exists v = 0: x + v = x + 0 = x$.
+      \item $\forall x \in V: \exists v = (-x): x + v = x + -x = 0$
+      \item $\forall x, y \in V: \forall \alpha \in K:
+        \alpha (x + y) = \alpha x + \alpha y$.
+      \item $\forall x \in V: \forall \alpha, \beta \in K:
+        (\alpha + \beta) x = \alpha x + \beta x$.
+      \item $\forall x \in V: \forall \alpha, \beta \in K:
+        (\alpha\beta) x = \alpha(\beta x)$.
+      \item $\forall x \in V: x \cdot 1 = x$.
+    \end{enumerate}
+
+  \hiiBEGIN{Notations}
+    \hiii{Real Vector Space}
+      \par Let $V$ be a vector space over $\mathbb{R}$ that contains all
+        tuples of $n$ numbers. $(n \in \mathbb{N*})$
+      \par $V$ is denoted by: $R_{n}$.
+      \par Note that $R_{1}$ is also a vector space.
+
+    \hiii{Matrix Vector Space}
+      \par Let $V$ be a vector space that contains all real matrices of size
+      $m \times n$.
+      \par $V$ is denoted by: $M_{m \times n}[R]$.
+      \par If $V$ is a square matrix of order $n$, then $V$ can also be denoted
+      by $M_{n}[R]$.
+
+    \hiii{Polynomial Vector Space}
+      \par Let $V$ be a vector space that contains all polynomials with real
+      coefficients and degree of $n$ or less.
+      \par $V$ is denoted by: $P_{n}[x]$.
+  \hiiEND
+
+
+\hi{Linear Independence}
+  \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
+
+  \hiiBEGIN{Linear Dependent Set \& Linear Independent Set}
+
+    \hiii{Linear Dependent Set}
+      \par $M$ is called a \tb{linear dependent} set if:
+      \[
+        \exists (\alpha_{1}, \alpha_{2}, \ldots, \alpha_{m}):
+        \begin{cases}
+          \exists i: i \in [1, m], \alpha_{i} \neq 0 \\
+          \alpha_{1} v_{1} + \alpha_{2} v_{2}
+            + \ldots + \alpha_{m} v_{m} = 0
+        \end{cases}
+      \]
+
+    \hiii{Linear Dependent Set}
+      \par $M$ is called a \tb{linear independent} set if it is
+      not a linear dependent set.
+      \par \ti{Equivalent definition}:
+      \par If
+      \begin{align*}
+          \alpha_{1} v_{1} + \alpha_{2} v_{2}
+            + \ldots + \alpha_{m} v_{m} = 0 \\
+          \rightarrow \alpha_{1} = \alpha_{2}
+            = \ldots = \alpha_{m} = 0 
+      \end{align*}
+      then $M$ is independent.
+
+  \hiiEND
+
+  \hii{Linear Combination}
+       \par $v$ is called a \tb{linear combination} of $M$ if:
+      \[
+        \exists (\alpha_{1}, \alpha_{2}, \ldots, \alpha_{m}):
+          \alpha_{1} v_{1} + \alpha_{2} v_{2}
+            + \ldots + \alpha_{m} v_{m} = v
+      \]
+
+  \hii{Spanning Set}
+    \par $M$ is called a \tb{spanning set} of $V$ if:
+    \[
+      \forall v \in V: v \mbox{ is a linear combination of } M
+    \]
+
+  \hii{Basis}
+    \par $M$ is called a \tb{basis} of $V$ if:
+    \begin{itemize}
+      \item $M$ is a \tb{spanning set} of $V$.
+      \item $M$ is \tb{independent}.
+    \end{itemize}
+
+  \hii{Dimension}
+    \par If $V$ has a basis that contains a finite number of elements, then
+      $V$ is a \tb{finite dimensional vector space}.
+    \par The number of elements in the basis is called the \tb{dimension} of
+      $V$ and is denoted by $dim(V)$.
+    \par Note: $dim(R_{n}) = n$.
+
+
+\hi{Rank of a Set of Vectors}
+  \hii{Definition}
+    \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
+    \par The \tb{rank} of the set $M$ is the \ti{maximum number of linear
+    independent} vectors from $M$.
+    \par $r(M) = x$ means that:
+    \begin{itemize}
+      \item There exists $x$ linear independent vectors from $M$.
+      \item Any subset of $M$ that contains more than $x$ vectors
+      is \ti{dependent}.
+    \end{itemize}
+
+  \hii{Relationship between Rank of a Set of Vectors and Rank of a Matrix}
+    \par Given a matrix $A$.
+    \par If $M$ is the \tb{set of row vectors} of $A$, and
+            $N$ is the \tb{set of column vectors} of $A$, then:
+    \[
+      r(A) = r(M) = r(N)
+    \]
+
+  \hii{Properties}
+    \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
+    \begin{enumerate}
+      \item If $r(M) = m$ then $M$ is \tb{independent}.
+      \item If $r(M) < m$ then $M$ is dependent.
+      \item If $r(M) = dim(V)$ then $M$ is a \tb{spanning set} of $V$.
+      \item If $r(M) < dim(V)$ then $M$ is NOT a \tb{spanning set} of $V$.
+      \item If $r(M) = dim(V) = m$ then $M$ is a \tb{basis} of $V$.
+    \end{enumerate}
+
+
+\hi{Standard basis}
+  \hii{Standard basis of a Real Vector}
+    \begin{align*}
+      dim(R_{n}) = n \\
+      %E = \{1, x, \ldots, x^{n}\}
+    \end{align*}
+
+  \hii{Standard basis of a Matrix Vector}
+    \begin{align*}
+      dim(M_{m \times n}[R]) = m \times n \\
+      %E = \{1, x, \ldots, x^{n}\}
+    \end{align*}
+
+  \hii{Standard basis of a Polynomial Vector}
+    \begin{align*}
+      dim(P_{n}[x]) = n + 1 \\
+      E = \{1, x, \ldots, x^{n}\}
+    \end{align*}
+
+
+\hi{Coordinates}
+  \hii{Coordinates}
+    \par Let $E = \{e_{1}, e_{2}, \ldots, e_{n}\}$ be an \tb{ordered basis} for
+    $V$ and $x \in V$.
+    \[
+      x \mbox{ is a linear combination of } E
+        \Leftrightarrow x = x_{1} e_{1} + x_{2} e_{2} + \ldots + x_{n} e_{n}
+    \]
+    \par $n$ numbers $(x_{1}, x_{2}, \ldots, x_{n})$ are called \tb{coordinates}
+    of the vector $x$ with respect to $E$ and are denoted by:
+    \[
+      [x]_{E} =
+      \begin{pmatrix}
+        x_{1}  \\
+        x_{2}  \\
+        \ldots \\
+        x_{n}  \\
+      \end{pmatrix}
+    \]
+    
+    \[
+      [x]_{E} = E^{-1} \cdot x
+    \]
+
+  \hii{Change-of-basis Matrix}
+    \par Let
+    \begin{align*}
+      E  = \{e_{1},  e_{2},  \ldots, e_{n}\}  \\
+      E' = \{e_{1}', e_{2}', \ldots, e_{n}'\} \\
+    \end{align*}
+    be 2 bases of $V$.
+
+    \par Let $x$ be an element of $V$.
+    \begin{align*}
+      x = x_{1} e_{1}   + x_{2} e_{2}   + \ldots + x_{n} e_{n}
+        \Rightarrow [x]_{E} = 
+          \begin{pmatrix}
+            x_{1}  \\
+            x_{2}  \\
+            \ldots \\
+            x_{n}  \\
+          \end{pmatrix} \qquad (1) \\
+      x = x_{1}' e_{1}' + x_{2}' e_{2}' + \ldots + x_{n}' e_{n}'
+        \Rightarrow [x]_{E'} = 
+          \begin{pmatrix}
+            x_{1}'  \\
+            x_{2}'  \\
+            \ldots \\
+            x_{n}'  \\
+          \end{pmatrix} \qquad (2) \\
+    \end{align*}
+
+    \begin{align*}
+      e_{1}' = a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n} \\
+      e_{2}' = a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n1} e_{n} \\
+      \ldots \\ 
+      e_{n}' = a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n} \\
+    \end{align*}
+
+    \par Substitute into $(2)$:
+    \begin{align*}
+      x &= x_{1}'(a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n}) & \\
+        &+ x_{2}'(a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n2} e_{n}) & \\
+        &+ \ldots &\\
+        &+ x_{n}'(a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n}) &\\
+    \end{align*}
+
+    \begin{align*}
+      \Rightarrow \left\{
+      \begin{aligned}
+        x_{1} &= a_{11}x_{1}' + a_{12}x_{2}' + \ldots + a_{1n}x_{n}' \\
+        x_{2} &= a_{21}x_{1}' + a_{22}x_{2}' + \ldots + a_{2n}x_{n}' \\
+        \ldots & \ldots \\
+        x_{n} &= a_{n1}x_{1}' + a_{n2}x_{2}' + \ldots + a_{nn}x_{n}' \\
+      \end{aligned}
+      \right.
+    \end{align*}
+
+    \begin{align*}
+      \Leftrightarrow
+      \begin{pmatrix}
+        x_{1}  \\
+        x_{2}  \\
+        \ldots \\
+        x_{n}  \\
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        a_{11} & a_{12} & \ldots & a_{1n} \\
+        a_{21} & a_{22} & \ldots & a_{2n} \\
+        \vdots & \vdots & \vdots & \vdots \\
+        a_{n1} & a_{n2} & \ldots & a_{nn} \\
+      \end{pmatrix}
+      \begin{pmatrix}
+        x_{1}' \\
+        x_{2}' \\
+        \ldots \\
+        x_{n}' \\
+      \end{pmatrix}
+    \end{align*}
+
+    \begin{align*}
+      [x]_{E} = A[x]_{E'}
+    \end{align*}
+
+    \par The matrix $A$ is called a \tb{change-of-basis matrix} from $E$ to $E'$.
+
+    \par Also:
+    \begin{align*}
+      A &=
+      \begin{pmatrix}
+        [e_{1}']_{E} & [e_{2}']_{E} & \ldots & [e_{n}']_{E}
+      \end{pmatrix} \\
+      &=
+      \begin{pmatrix}
+        E^{-1}e_{1}' & E^{-1}e_{2}' & \ldots & E^{-1}e_{n}'
+      \end{pmatrix} \\
+      &= E^{-1}
+      \begin{pmatrix}
+        e_{1}' & e_{2}' & \ldots & e_{n}'
+      \end{pmatrix} \\
+      &= E^{-1} \times E'
+    \end{align*}
