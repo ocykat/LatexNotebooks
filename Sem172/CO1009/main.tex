@@ -77,8 +77,16 @@
 % + one footnote stays on one page
 \interfootnotelinepenalty=10000
 
+
 % APPENDICES
 \usepackage[toc,page]{appendix}
+
+
+% IMAGES
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\graphicspath{ {img/} }
 
 
 % TIKZ
@@ -123,7 +131,7 @@
 \input{chap04}
 \input{chap05}
 \begin{appendices}
-\input{appendix-a}
+  \input{appendix-a}
 \end{appendices}
 
 \end{document}

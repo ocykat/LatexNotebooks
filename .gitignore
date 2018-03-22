@@ -17,5 +17,8 @@
 # Makefiles
 Makefile
 
+# image directories
+img/
+
 # Others
 *.py
