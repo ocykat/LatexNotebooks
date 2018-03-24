@@ -197,42 +197,73 @@
     \par The alternate symbol for each gate is obtained from the standard
     symbol by doing the following:
     \begin{enumerate}
-      \item Invert each input and output of the standard symbol, by adding or removing bubbles.
+      \item Invert each input and output of the standard symbol, by adding or
+        removing bubbles.
       \item Change the operation symbol from AND to OR or from OR to AND.
         (INVERTER stays unchanged).
     \end{enumerate}
+    \begin{figure}[H]
+      \includegraphics[width=15cm]{c03/alternate-gates.jpg}
+      \caption{Alternate Representations of Gates}
+    \end{figure}
   \hii{Notes}
     \begin{itemize}
-      \item The equivalences can be extended to gates with \textbf{any} number of inputs.
-      \item None of the standard symbols have bubbles on their inputs, and all the alternate
-        symbols do.
-      \item The standard and alternate symbols for each gate represent the same physical
-        circuit.
-      \item NAND and NOR gates are inverting gates, so both the standard and the alternate
-        symbols for each will have a bubble on \textbf{either} the input or the output.
-      \item AND and OR gates are noninverting gates, so the alternate symbols for each will
-        have bubbles on \textbf{both} inputs and output.
+      \item The equivalences can be extended to gates with \textbf{any}
+        number of inputs.
+      \item None of the standard symbols have bubbles on their inputs, and
+        all the alternate symbols do.
+      \item The standard and alternate symbols for each gate represent the
+        same physical circuit.
+      \item NAND and NOR gates are inverting gates, so both the standard and
+        the alternate symbols for each will have a bubble on \textbf{either}
+        the input or the output.
+      \item AND and OR gates are noninverting gates, so the alternate symbols
+        for each will have bubbles on \textbf{both} inputs and output.
     \end{itemize}
-  \hii{Logic-Symbol Interpretation}
-    \par To interpret the logic-gate operation:
-    \begin{enumerate}
-      \item Note which logic state is the active state for the input.
-      \item Note which logic state is the active state for the output.
-      \item There are two cases:
-        \begin{itemize}
-          \item AND gate: Output goes ... when \textbf{all} input are ...
-          \item OR gate: Output goes ... when \text{any} input is ...
-        \end{itemize}
-    \end{enumerate}
+
+  \hiiBEGIN{Logic-Symbol Interpretation}
+    \hiii{Active-HIGH - Active-LOW}
+    \begin{itemize}
+      \item When an input or output line on a logic circuit symbol \tb{does
+        not} have bubble on it, that line is said to be \tb{active-HIGH}.
+      \item When an input or output line on a logic circuit symbol \tb{does}
+        have bubble on it, that line is said to be \tb{active-LOW}.
+    \end{itemize}
+
+    \hiii{Interpretation}
+      \par To interpret the logic-gate operation:
+      \begin{itemize}
+        \item \tb{Step 1}: Note which logic state is the active state for the input.
+        \item \tb{Step 2}: Note which logic state is the active state for the output.
+        \item \tb{Step 3}: Based on the type of gate, there are two cases:
+          \begin{itemize}
+            \item AND gate: Output goes ... when \textbf{all} input are ...
+            \item OR gate: Output goes ... when \text{any} input is ...
+          \end{itemize}
+      \end{itemize}
+
+    \hiii{Example}
+    \par The standard symbol for NAND gate has:
+    \begin{itemize}
+      \item no bubble on each of its input $\Rightarrow$ the input's active
+      state is HIGH
+      \item a bubble on its output $\Rightarrow$ the output's active state
+      is LOW.
+    \end{itemize}
+    \par Therefore, the NAND gate is interpreted as followed:
+    \par \tb{The output goes LOW only when \ti{all} of the inputs are HIGH}.
+  \hiiEND
+
 
 \hi{Notes on Gate Representation}
   \hii{Standard vs Alternate}
-    \par If properly used, alternate logic gates make the circuit much clearer than standard
-    logic gates.
+    \par If properly used, alternate logic gates make the circuit much clearer
+    than standard logic gates.
   \hii{Bubble Placement}
-    \par Whenever possible, bhoose gate symbols so that bubble outputs are connected to bubble
-    inputs, and nonbubble outputs to nonbubble inputs.
+    \par Whenever possible, bhoose gate symbols so that bubble outputs are
+    connected to bubble inputs, and nonbubble outputs to nonbubble inputs.
   \hii{Asserted Levels}
-    \par When a logic signal is in its active state, it is said to be \textbf{asserted}.
-    \par When a logic signal is in its inactive state, it is said to be \textbf{unasserted}.
-
+    \par When a logic signal is in its active state, it is said to be
+    \textbf{asserted}.
+    \par When a logic signal is in its inactive state, it is said to be
+    \textbf{unasserted}.

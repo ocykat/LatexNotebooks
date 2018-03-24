@@ -77,7 +77,7 @@
   representation:
   \begin{figure}[H]
     \centering
-    \includegraphics{c05/nand-latch.jpg}
+    \includegraphics{c05/nand-latch.JPG}
     \caption{Alternate Representation of NAND latch}
   \end{figure}
 
@@ -132,47 +132,168 @@
     that it is activated by a signal transition.
     This contrasts with the latches, which are level-triggered.
     \begin{itemize}
-      \item A FF with a small triangle on its CLK input to indicate
+      \item A FF with \ti{a small triangle} on its CLK input to indicate
         that this input is activated only when a \textbf{PGT} occurs;
         no other part of the input pulse will have an effect
         on the CLK input.
-      \item A FF with a small triangle with a bubble on its CLK input to indicate
-        that this input is activated only when a \textbf{NGT}
-       occurs; no other part of the input pulse will have an effect
+      \item A FF with \ti{a small triangle with a bubble} on its CLK input
+      to indicate that this input is activated only when a \textbf{NGT}
+      occurs; no other part of the input pulse will have an effect
       on the CLK input.
     \end{itemize}
     \par Clocked FFs also have one or more control inputs. The control
-    inputs will have no effect on Q until the active clock transition occurs.
-    They are called \textbf{synchronous control inputs}.
-    \par In summary, we can say that the control inputs get the FF outputs ready
-    to change, while the active transition at the CLK input actually triggers
+    inputs will \ti{have no effect on Q until the active clock transition
+    occurs.} They are called \textbf{synchronous control inputs}.
+    \par In summary, the control inputs get the FF outputs ready to change,
+    while the active transition at the CLK input actually triggers
     the change. The control inputs control the WHAT; the CLK input determines the WHEN.
 
   \hii{Setup and Hold time}
     \par Before and after a transition (either PGT or NGT) the signal
     must be kept at a stable value for the clocked FF to respond reliably.
     \begin{itemize}
-      \item The \textbf{setup time} $t_{s}$ is the required time
+      \item The \textbf{setup time} $t_{S}$ is the required time
         \textbf{preceding} a transition.
       \item The \textbf{hold time} $t_{H}$ is the required time
         \textbf{following} a transition.
     \end{itemize}
 
-\hi{Clocked S-R FF}
-\begin{itemize}
-  \item \tb{Triggered by}: PGT
-  \item \tb{Operation:}
-\end{itemize}
 
 \hi{Clocked S-R FF}
-\begin{itemize}
-  \item \tb{Triggered by}: PGT
-  \item \tb{Operation:}
-\end{itemize}
+  \hii{Trigger}
+    \par The \tb{clocked S-R FF} triggers on a PGT of the clock signal
+
+  \hii{Operation}
+    \par Similar to a NOR gate latch, but does not respond to the inputs until
+      the PGT of the clock signal:
+    \begin{itemize}
+      \item If $S = 0$, $R = 0$, $Q = Q_{0}$ (maintaining previous state).
+      \item If $S = 1$, $R = 0$ then $Q = 1$.
+      \item If $S = 0$, $R = 1$ then $Q = 0$.
+      \item If $S = 1$, $R = 1$, the behaviour is unpredictable.
+  \end{itemize}
+
+
+\hi{Clocked J-K FF}
+  \hii{Trigger}
+    \par The \tb{clocked J-K FF} triggers on a PGT of the clock signal
+
+  \hii{Operation}
+    \par Similar to a NOR gate latch, but does not respond to the inputs until
+      the PGT of the clock signal:
+    \begin{itemize}
+      \item If $J = 0$, $K = 0$, $Q = Q_{0}$ (maintaining previous state).
+      \item If $J = 1$, $K = 0$ then $Q = 1$.
+      \item If $J = 0$, $K = 1$ then $Q = 0$.
+      \item If $J = 1$, $K = 1$, $Q = \bar{Q_{0}}$ (toggled to the opposite
+      state).
+  \end{itemize}
+
 
 \hi{Clocked D Flip-flop}
-  \hii{Triggering}
-  \par A \textbf{clocked D flip-flop} triggers on a PGT.
-  \par This flip-flop has only one synchronous control input, $D$ (data).
-  \par Operation: $Q$ will go to the same state that is present on the $D$ input
-  when a PGT occurs at CLK.
+  \hii{Trigger}
+    \par The \textbf{clocked D flip-flop} triggers on a PGT.
+
+  \hii{Operation}
+    \par This flip-flop has only one synchronous control input, $D$ (data).
+    \par Operation: $Q = D$ when a PGT occurs at CLK.
+
+  \hii{Parallel Data Transfer}
+    \par One application of the D FF is parallel data transfer.
+
+
+\hi{D Latch (Transparent Latch)}
+  \hii{Description}
+    \par The circuit contains a \tb{NAND latch} and two steering NAND gates.
+    \par The edge-detector circuit is replaced by the \tb{enable input} (EN)
+    as the input of the steering gates.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=12cm]{c05/d-latch.jpg}
+      \caption{D Latch}
+    \end{figure}
+
+  \hii{Operation}
+    \begin{itemize}
+      \item If $EN = 0$ then $Q = Q_{0}$ (maintaining previous state).
+      \item If $EN = 1$, $D = 0$ then $Q = 0$.
+      \item If $EN = 1$, $D = 1$ then $Q = 1$.
+    \end{itemize}
+
+
+\hi{Asynchronous Inputs}
+  \hii{Description}
+    \par Some FFs also have one or more \tb{asynchronous inputs} that operate
+      independently of the synchoronous inputs and clock input.
+    \par Asynchronous inputs can be used to set the FF to 1 or clear the FF
+      to 0 at \ti{any time, regardless of the conditions at the other inputs}.
+    \par In order words, asynchronous inputs are \tb{override inputs}, which
+      can be used to \ti{override} all the other inputs.
+
+  \hii{Example}
+    \par Example: a J-K FF with two asynchronous active-LOW inputs
+    $\overline{PRESET}$ and $\overline{CLEAR}$.
+    \begin{itemize}
+      \item $\overline{PRESET} = \overline{CLEAR} = 1$:
+        The asynchronous inputs are \tb{inactive}; the FF operates according to
+        the synchronous ones.
+      \item $\overline{PRESET} = 0$, $\overline{CLEAR} = 1$, then Q = 1.
+      \item $\overline{PRESET} = 1$, $\overline{CLEAR} = 0$, then Q = 0.
+    \end{itemize}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{c05/async-jk-ff.jpg}
+    \caption{J-K FF with asynchronous inputs}
+  \end{figure}
+
+  \hii{Designations for Asynchronous Inputs}
+    \par To distinguish asynchronous inputs from synchronous ones,
+      asynchronous inputs are often labeled PRE and CLR instead of SET and
+      RESET, respectively.
+
+
+\hi{FF Timing Considerations}
+  \hii{Setup and Hold Times}
+
+  \hii{Propagation Delays}
+    \par \tb{Propagation delay} is the delay from the time the signal is
+    applied to the time when the output makes its change.
+    \par \ti{Note that these delays are measured between the 50 percent points
+      on the input and output waveforms}.
+    \par For an IC, the maximum values of $t_{PLH}$ (delay from going from
+    LOW to HIGH) and $t_{PHL}$ (delay from going from HIGH to LOW) are often
+    specified in the manufacturers' datasheet.
+
+  \hii{Maximum Clocking Frequency}
+    \par This is the highest frequency that may be applied to the CLK input
+    of an FF and still have it trigger reliably.
+
+  \hii{Clock Pulse HIGH and LOW Times}
+    \begin{itemize}
+      \item $t_W (L)$: the minimum time the CLK signal must remain LOW before
+        going HIGH
+      \item $t_W (H)$: the minimum time the CLK signal must remain HIGH before
+        going LOW
+    \end{itemize}
+    \par Failure to meet these minimum time requirements can result in
+    unreliable triggering.
+    \par \ti{These time values are measured between the halfway points on
+    the signal transitions.}
+
+  \hii{Asynchronous Active Pulse Width}
+    \par PRESET or CLEAR input must also be kept in its active state for
+    some minimum duration of time in order to set or clear the FF reliably.
+    This duration is called \tb{minimum asynchronous active pulse width}.
+
+  \hii{Clock Transition Times}
+    \par For reliable triggering, the \tb{clock waveform transition times}
+      (rise and fall times) should be kept \tb{very short}.
+    \par If the clock signal takes too long to make the transitions from one
+      level to the other, the FF may trigger erratically (unpredictably) or
+      not at all.
+
+
+\hi{Potential Timing Problem in FF Circuits}
+  \par \tb{The FF output will go to a state determined by the logic levels
+    present at its synchronous control inputs \ti{just prior} to the active
+    clock transition}.
