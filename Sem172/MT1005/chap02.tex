@@ -1,211 +1,289 @@
 \chapter{Partial Derivatives}
 
 \hi{Function of two variables}
-    \hii{Definition}
-        \par A function of two variables is a rule that assigns
-        to each ordered pair of real numbers $(x, y)$ in a set a unique real number
-        denoted by $f(x, y)$. The set $D$ is the \textbf{domain} of $f$ and its
-        \textbf{range} is the set of values that $f$ takes on.
-        \par We often write:
-        \begin{eqbox}
-            z = f(x, y)
-        \end{eqbox}
-        where:
-        \begin{itemize}
-            \item $x$, $y$: independent variables
-            \item $z$: dependent variable
-        \end{itemize}
-    \hii{Domain}
-        \par Given the function: $f(x, y)$. The domain of $f$ is the
-        \textbf{Cartesian product} of the set $D_{x}$ and the set $D_{y}$, where
-        $D_{x}$ and $D_{y}$ are the set of all possible values of $x$ and $y$,
-        respectively. This is true for any multivariable function.
-        \begin{eqbox}
-            D = D_{x} \times D_{y} \subseteq \mathbb{R}^{2}
-        \end{eqbox}
-    \hii{Graph}
-        \par If $f$ is a function of two variables with domain $D$, then the graph
-        of $f$ is the set of all points $(x, y, z)$ in $\mathbb{R}^{3}$ such that
-        $z = f(x, y)$ and $(x, y) \in D$.
-    \hii{Level Curves}
-        \par The \textbf{level curves} of a function $f$ of two variables are the curves
-        with equations $f(x, y) = k$, where $k$ is a constant (in the range of $f$).
-        \par The graph of level curves is called the \textbf{contour graph}.
-        \par To construct a contour graph, the set of $k$ is required.
+  \hii{Definition}
+    \par A function of two variables is a rule that assigns
+    to each ordered pair of real numbers $(x, y)$ in a set a unique real number
+    denoted by $f(x, y)$. The set $D$ is the \textbf{domain} of $f$ and its
+    \textbf{range} is the set of values that $f$ takes on.
+    \par We often write:
+    \begin{eqbox}
+      z = f(x, y)
+    \end{eqbox}
+    where:
+    \begin{itemize}
+      \item $x$, $y$: independent variables
+      \item $z$: dependent variable
+    \end{itemize}
+  \hii{Domain}
+    \par Given the function: $f(x, y)$. The domain of $f$ is the
+    \textbf{Cartesian product} of the set $D_{x}$ and the set $D_{y}$, where
+    $D_{x}$ and $D_{y}$ are the set of all possible values of $x$ and $y$,
+    respectively. This is true for any multivariable function.
+    \begin{eqbox}
+      D = D_{x} \times D_{y} \subseteq \mathbb{R}^{2}
+    \end{eqbox}
+  \hii{Graph}
+    \par If $f$ is a function of two variables with domain $D$, then the graph
+    of $f$ is the set of all points $(x, y, z)$ in $\mathbb{R}^{3}$ such that
+    $z = f(x, y)$ and $(x, y) \in D$.
+  \hii{Level Curves}
+    \par The \textbf{level curves} of a function $f$ of two variables are the curves
+    with equations $f(x, y) = k$, where $k$ is a constant (in the range of $f$).
+    \par The graph of level curves is called the \textbf{contour graph}.
+    \par To construct a contour graph, the set of $k$ is required.
+
+\newpage
 
 \hi{Limits and Continuity}
-    \hiiBEGIN{Limits}
-        \hiii{Definition}
-            \par Let $f$ be a function of two variables whose domain $D$ includes points
-            arbitrarily close to $(a, b)$. Then we say that the \textbf{limit} of
-            $f(x, y)$ as $(x, y)$ approaches $(a, b)$ is $L$ and we write
-            \begin{eqbox}
-                \lim_{(x, y) \to (a, b)} f(x, y) = L
-            \end{eqbox}
-            if for every number $\epsilon > 0$ there is a corresponding number
-            $\delta > 0$ such that:
-            \begin{center}
-                if $(x, y) \in D$ and $0 < \sqrt{(x - a)^{2} - (y - b)^{2})} < \delta$, then
-                $|f(x, y) - L| < \epsilon$
-            \end{center}
-        \hiii{Existence of limit}
-            \par For a function of one variable
-            \begin{center}
-                If $\lim_{x \to a^{-}} f(x) \neq \lim_{x \to a^{+}}$, then
-                $\lim_{x \to a} f(x)$ does not exists.
-            \end{center}
-            \par For a multivariable function, the limit at one point can be approaches
-            from infinitely many directions. If there \textbf{exists two different paths}
-            of approach along which the function $f(x, y)$ has different limits, then the
-            limit at that point does not exists.
-    \hiiEND
-    \hii{Continuity}
-        \par A function $f$ of two variables is called \textbf{continuous} at $(a, b)$ if:
-        \begin{eqbox}
-            \lim_{(x, y) \to (a, b)} f(x, y) = f(a, b)
-        \end{eqbox}
-        \par We say $f$ is continuous on $D$ if $f$ is continuous at every point $(a, b)$ in $D$.
+  \hiiBEGIN{Limits}
+    \hiii{Definition}
+      \par Let $f$ be a function of two variables whose domain $D$ includes points
+      arbitrarily close to $(a, b)$. Then we say that the \textbf{limit} of
+      $f(x, y)$ as $(x, y)$ approaches $(a, b)$ is $L$ and we write
+      \begin{eqbox}
+        \lim_{(x, y) \to (a, b)} f(x, y) = L
+      \end{eqbox}
+      if for every number $\epsilon > 0$ there is a corresponding number
+      $\delta > 0$ such that:
+      \begin{center}
+        if $(x, y) \in D$ and $0 < \sqrt{(x - a)^{2} - (y - b)^{2})} < \delta$, then
+        $|f(x, y) - L| < \epsilon$
+      \end{center}
+    \hiii{Existence of limit}
+      \par For a function of one variable
+      \begin{center}
+        If $\lim_{x \to a^{-}} f(x) \neq \lim_{x \to a^{+}}$, then
+        $\lim_{x \to a} f(x)$ does not exists.
+      \end{center}
+      \par For a multivariable function, the limit at one point can be approaches
+      from infinitely many directions. If there \textbf{exists two different paths}
+      of approach along which the function $f(x, y)$ has different limits, then the
+      limit at that point does not exists.
+  \hiiEND
+  \hii{Continuity}
+    \par A function $f$ of two variables is called \textbf{continuous} at $(a, b)$ if:
+    \begin{eqbox}
+      \lim_{(x, y) \to (a, b)} f(x, y) = f(a, b)
+    \end{eqbox}
+    \par We say $f$ is continuous on $D$ if $f$ is continuous at every point $(a, b)$ in $D$.
+
+\newpage
 
 \hi{Partial Derivatives}
-    \hii{Definition}
-        \par Given the function $f(x, y)$.
-        \par The \textbf{partial derivative} of $f$ with respect to $x$ at $(a, b)$, denoted by
-        $f_{y}(a, b)$, is obtained by keeping $y$ fixed $(y = b)$ and finding the ordinary
-        derivative at $a$ of the function $G(x) = f(x, b)$.
-        \begin{eqbox}
-            f_{x} (x, y) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x, y) - f(x, y)}{\Delta x} \\
-            f_{y} (x, y) = \lim_{\Delta y \to 0} \frac{f(x, y + \Delta y) - f(x, y)}{\Delta y}
-        \end{eqbox}
-    \hii{Notations}
-        \begin{eqbox}
-            f_{x} (x, y) = f_{x} = \pd{f}{x} = \pd{}{x} f(x, y) = \pd{z}{x} = D_{1}f = D_{x}f \\
-            f_{y} (x, y) = f_{y} = \pd{f}{y} = \pd{}{y} f(x, y) = \pd{z}{y} = D_{2}f = D_{y}f
-        \end{eqbox}
-    \hii{Rule for Finding Partial Derivatives}
-        \par Given the function $z = f(x, y)$.
-        \begin{itemize}
-            \item To find $f_{x}$, regard $y$ as a constant and differentiate $f(x, y)$
-                with respect to $x$.
-            \item To find $f_{y}$, regard $x$ as a constant and differentiate $f(x, y)$
-                with respect to $y$.
-        \end{itemize}
-    \hii{Higher Derivatives}
-        \begin{alignat*}{4}
-            (f_{x})_{x} (x, y) = f_{xx} = f_{11}
-                &= \pd{}{x}\bigg(\pd{f}{x}\bigg)
-                &= \pd{^{2}f}{x^{2}}
-                &= \pd{^{2}z}{x^{2}} \\
-            (f_{x})_{y} (x, y) = f_{xy} = f_{12}
-                &= \pd{}{y}\bigg(\pd{f}{x}\bigg)
-                &= \pdd{^{2}f}{y}{x}
-                &= \pdd{^{2}z}{y}{x} \\
-            (f_{y})_{x} (x, y) = f_{yx} = f_{21}
-                &= \pd{}{x}\bigg(\pd{f}{y}\bigg)
-                &= \pdd{^{2}f}{x}{y}
-                &= \pdd{^{2}z}{x}{y} \\
-            (f_{y})_{y} (x, y) = f_{yy} = f_{22}
-                &= \pd{}{y}\bigg(\pd{f}{y}\bigg)
-                &= \pd{^{2}f}{y^{2}}
-                &= \pd{^{2}z}{y^{2}}
-        \end{alignat*}
+  \hii{Definition}
+    \par Given the function $f(x, y)$.
+    \par The \textbf{partial derivative} of $f$ with respect to $x$ at $(a, b)$, denoted by
+    $f_{y}(a, b)$, is obtained by keeping $y$ fixed $(y = b)$ and finding the ordinary
+    derivative at $a$ of the function $G(x) = f(x, b)$.
+    \begin{eqbox}
+      f_{x} (x, y) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x, y) - f(x, y)}{\Delta x} \\
+      f_{y} (x, y) = \lim_{\Delta y \to 0} \frac{f(x, y + \Delta y) - f(x, y)}{\Delta y}
+    \end{eqbox}
+  \hii{Notations}
+    \begin{eqbox}
+      f_{x} (x, y) = f_{x} = \pd{f}{x} = \pd{}{x} f(x, y) = \pd{z}{x} = D_{1}f = D_{x}f \\
+      f_{y} (x, y) = f_{y} = \pd{f}{y} = \pd{}{y} f(x, y) = \pd{z}{y} = D_{2}f = D_{y}f
+    \end{eqbox}
+  \hii{Rule for Finding Partial Derivatives}
+    \par Given the function $z = f(x, y)$.
+    \begin{itemize}
+      \item To find $f_{x}$, regard $y$ as a constant and differentiate $f(x, y)$
+        with respect to $x$.
+      \item To find $f_{y}$, regard $x$ as a constant and differentiate $f(x, y)$
+        with respect to $y$.
+    \end{itemize}
+  \hii{Higher Derivatives}
+    \begin{alignat*}{4}
+      (f_{x})_{x} (x, y) = f_{xx} = f_{11}
+        &= \pd{}{x}\bigg(\pd{f}{x}\bigg)
+        &= \pd{^{2}f}{x^{2}}
+        &= \pd{^{2}z}{x^{2}} \\
+      (f_{x})_{y} (x, y) = f_{xy} = f_{12}
+        &= \pd{}{y}\bigg(\pd{f}{x}\bigg)
+        &= \pdd{^{2}f}{y}{x}
+        &= \pdd{^{2}z}{y}{x} \\
+      (f_{y})_{x} (x, y) = f_{yx} = f_{21}
+        &= \pd{}{x}\bigg(\pd{f}{y}\bigg)
+        &= \pdd{^{2}f}{x}{y}
+        &= \pdd{^{2}z}{x}{y} \\
+      (f_{y})_{y} (x, y) = f_{yy} = f_{22}
+        &= \pd{}{y}\bigg(\pd{f}{y}\bigg)
+        &= \pd{^{2}f}{y^{2}}
+        &= \pd{^{2}z}{y^{2}}
+    \end{alignat*}
 
+\newpage
 
 \hi{Tangent Plane and Linear Approximation}
-    \hii{Differentials}
-        \par For a differentiable function of two variables, $z = f(x, y)$, we define the
-        differentials $dx$ and $dy$ to be independent variables. Then the differential $dz$,
-        also called the total differntial, is defined by:
-        \begin{eqbox}
-            dz = f_{x}(x, y) dx + f_{y}(x, y) dy = \pd{f}{x} dx + \pd{f}{y} dy
-        \end{eqbox}
-        \par If we take $dx = \Delta x = x - a$ and $dy = \Delta y = y - b$,
-        then the differential of $z$ is:
-        \begin{alignat*}{2}
-            dz &= f_{x} (x_{1}, y_{1}) \Delta x + f_{y} (x_{1}, y_{1}) \Delta y \\
-            &= f_{x} (x_{1}, y_{1}) (x_{2} - x_{1}) + f_{y} (x_{1}, y_{1}) (y_{2} - y_{1})
-        \end{alignat*}
+  \hii{Differentials}
+    \par For a differentiable function of two variables, $z = f(x, y)$, we define the
+    differentials $dx$ and $dy$ to be independent variables. Then the differential $dz$,
+    also called the total differntial, is defined by:
+    \begin{eqbox}
+      dz = f_{x}(x, y) dx + f_{y}(x, y) dy = \pd{f}{x} dx + \pd{f}{y} dy
+    \end{eqbox}
+    \par If we take $dx = \Delta x = x - a$ and $dy = \Delta y = y - b$,
+    then the differential of $z$ is:
+    \begin{alignat*}{2}
+      dz &= f_{x} (x_{1}, y_{1}) \Delta x + f_{y} (x_{1}, y_{1}) \Delta y \\
+      &= f_{x} (x_{1}, y_{1}) (x_{2} - x_{1}) + f_{y} (x_{1}, y_{1}) (y_{2} - y_{1})
+    \end{alignat*}
+
+\newpage
 
 \hi{The Chain Rule}
-    \hii{Case 1}
-        \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
-        $x = g(t)$ and $y = h(t)$ are both differentiable functions of $t$. Then $z$ is a
-        differentiable function of $t$ and
+  \hii{Case 1}
+    \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
+    $x = g(t)$ and $y = h(t)$ are both differentiable functions of $t$. Then $z$ is a
+    differentiable function of $t$ and
+    \begin{eqbox}
+      \dif{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
+    \end{eqbox}
+  \hii{Case 2}
+    \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
+    $x = g(s, t)$ and $y = h(s, t)$ are both differentiable functions of $s$ and $t$.
+    Then $z$ is a differentiable function of $s$ and $t$ and
+    \begin{eqbox}
+      \pd{z}{s} = \pd{z}{x} \dif{x}{s} + \pd{z}{y} \dif{y}{s} \\
+      \pd{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
+    \end{eqbox}
+
+\newpage
+
+\hi{Directional Derivatives and the Gradient Vector}
+  \hiiBEGIN{Directional Derivatives}
+    \hiii{Derivative in Unit Vector Direction}
+      \par For a function $z = f(x, y)$, the partial derivatives:
+      \begin{align*}
+        f_{x} (x_{0}, y_{0})
+          = \lim_{\Delta x \to 0}
+              \frac{f({x_{0}} + \Delta x, y_{0}) - f(x_{0}, y_{0})}
+                   {\Delta x} \\
+        f_{y} (x_{0}, y_{0})
+          = \lim_{\Delta y \to 0}
+              \frac{f({x_{0}}, y_{0} + \Delta y) - f(x_{0}, y_{0})}
+                   {\Delta y} \\
+      \end{align*}
+      represent the \tb{rates of change of $z$ in the $x$- and $y$- directions},
+      or, the directions of the unit vectors $i$ and $j$.
+
+    \hiii{Derivative in Arbitrary Direction}
+      \par Let surface $S$ be the graph of the function $z = f(x, y)$.
+      \par Let point $M(x_{0}, y_{0}, z_{0})$ (with $z_{0} = f(x_{0}, y_{0})$)
+        be a point on the graph $S$.
+      \par Suppose we want to obtain the rate of change of $z$ at $(x_{0}, y_{0})$ in
+        the direction of an arbitrary unit vector $\vec{u} = \langle a, b \rangle$.
+      \par The plane $P$ that passes through $M$ in the direction of $\vec{u}$
+        intersects $S$ in a curve $C$.
+      \par In the plane $P$, the slope of the tangent line $T$ to $C$ at the point $M$
+        is the rate of change of $z$ in the direction of $\vec{u}$.
+      \par Let $N(x, y, z)$ be another point on $C$. Let $M'$, $N'$ be the projections
+        \footnotemark of $M$, $N$ onto the $xy$- plane. Then, $\vec{M'N'}$ is
+        parallel to $\vec{u}$ and so:
+          \footnotetext{The projection of (x, y, z) onto the $xy$-plane is the
+          point $(x, y, 0)$}
+        \[
+          \vt{P'Q'} = h\vec{u} = \langle ha, hb \rangle
+        \]
+        for some arbitrary scalar $h$.
+      \par Therefore:
+        \[
+          \begin{cases}
+            x - x_{0} = ha \\
+            y - y_{0} = hb
+          \end{cases}
+          \ra
+          \begin{cases}
+            x = x_{0} + ha \\
+            y = y_{0} + hb \\
+          \end{cases}
+          \\
+          \ra \frac{\dt z}{h} = \frac{z - z_{0}}{h}
+             = \frac{f(x_{0} + ha, y_{0} + hb) - f(x_{0}, y_{0})}{h}
+        \]
+      \par If we take the limit as $h \to 0$, we obtain the \tb{rate of change}
+        of $z$ in the direction of $\vec{u}$, which is called the \ti{directional
+        derivative of $f$ in the direction of $\vec{u}$}.
+      \par \tb{Definition}: The \tb{directional derivative} of $f$ at
+        $(x_{0}, y_{0})$ in the direction of a unit vector $u = \langle a, b \rangle$
+        is:
         \begin{eqbox}
-            \dif{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
+          D_{u}f(x_{0}, y_{0})
+            = \lim_{h \to 0}
+              \frac{f(x_{0} + ha, y_{0} + hb) - f(x_{0}, y_{0})}{h}
         \end{eqbox}
-    \hii{Case 2}
-        \par Suppose that $z = f(x, y)$ is a differentiable function of $x$ and $y$, where
-        $x = g(s, t)$ and $y = h(s, t)$ are both differentiable functions of $s$ and $t$.
-        Then $z$ is a differentiable function of $s$ and $t$ and
-        \begin{eqbox}
-            \pd{z}{s} = \pd{z}{x} \dif{x}{s} + \pd{z}{y} \dif{y}{s} \\
-            \pd{z}{t} = \pd{z}{x} \dif{x}{t} + \pd{z}{y} \dif{y}{t}
-        \end{eqbox}
+        \ti{if this limit exists}.
+  \hiiEND
+
+\newpage
 
 \hi{Maximum and Minimum Values}
-    \hii{Definition}
-        \par A function of two variables has a \textbf{local maximum} at $(a, b)$ if
-        $f(x, y) \leq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
-        called a \textbf{local maximum value}.
-        \par A function of two variables has a \textbf{local minimum} at $(a, b)$ if
-        $f(x, y) \geq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
-        called a \textbf{local minimum value}.
-        \par If the inequalities hold for all points $(x, y)$ in the domain of $f$, then $f$
-        has an \textbf{absolute maximum} (or \textbf{absolute minimum}) at $(a, b)$.
+  \hii{Definition}
+    \par A function of two variables has a \textbf{local maximum} at $(a, b)$ if
+    $f(x, y) \leq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
+    called a \textbf{local maximum value}.
+    \par A function of two variables has a \textbf{local minimum} at $(a, b)$ if
+    $f(x, y) \geq f(a, b)$ when $(x, y)$ is near $(a, b)$. The number $f(a, b)$ is
+    called a \textbf{local minimum value}.
+    \par If the inequalities hold for all points $(x, y)$ in the domain of $f$, then $f$
+    has an \textbf{absolute maximum} (or \textbf{absolute minimum}) at $(a, b)$.
 
-    \hii{Theorem (Fermat theorem for multivariable function)}
-        \par If $f$ has a local maximum or minimum at $(a, b)$ and the first-order partial
-        derivatives of $f$ exist there, then $f_{x}(a, b) = 0$ and $f_{y} (a, b) = 0$.
-        
-    \hii{Second Derivatives Test}
-        \par Suppose the second partial derivatives of $f$ are continuous on a disk with center
-        $(a, b)$, and suppose that $f_{x}(a, b) = 0$ and $f_{y}(a, b) = 0$.
-        \par Let:
-        \begin{itemize}
-            \item $A = f_{xx}(a, b)$
-            \item $B = f_{xy}(a, b)$
-            \item $C = f_{yy}(a, b)$
-            \item $D = AC - B^{2}$
-        \end{itemize}
-        then
-        \begin{itemize}
-            \item $D > 0$ and $A > 0$, then $f(a, b)$ is a local minimum.
-            \item $D > 0$ and $A < 0$, then $f(a, b)$ is a local maximum.
-            \item $D < 0$, then $f(a, b)$ is not a local maximum or minimum. Instead, it
-                is called a \textbf{saddle point}.
-            \item $D = 0$, there is no conclusion can be made. $f(a, b)$ can either be a
-                local maximum/minimum or a saddle point.
-        \end{itemize}
-        \par The formula of $D$ can be written in the form of the determinant:
-        \begin{equation}
-            D = 
-            \begin{vmatrix}
-                f_{xx} & f_{xy} \\
-                f_{yx} & f_{yy}
-            \end{vmatrix}
-        \end{equation}
+  \hii{Theorem (Fermat theorem for multivariable function)}
+    \par If $f$ has a local maximum or minimum at $(a, b)$ and the first-order partial
+    derivatives of $f$ exist there, then $f_{x}(a, b) = 0$ and $f_{y} (a, b) = 0$.
+    
+  \hii{Second Derivatives Test}
+    \par Suppose the second partial derivatives of $f$ are continuous on a disk with center
+    $(a, b)$, and suppose that $f_{x}(a, b) = 0$ and $f_{y}(a, b) = 0$.
+    \par Let:
+    \begin{itemize}
+      \item $A = f_{xx}(a, b)$
+      \item $B = f_{xy}(a, b)$
+      \item $C = f_{yy}(a, b)$
+      \item $D = AC - B^{2}$
+    \end{itemize}
+    then
+    \begin{itemize}
+      \item $D > 0$ and $A > 0$, then $f(a, b)$ is a local minimum.
+      \item $D > 0$ and $A < 0$, then $f(a, b)$ is a local maximum.
+      \item $D < 0$, then $f(a, b)$ is not a local maximum or minimum. Instead, it
+        is called a \textbf{saddle point}.
+      \item $D = 0$, there is no conclusion can be made. $f(a, b)$ can either be a
+        local maximum/minimum or a saddle point.
+    \end{itemize}
+    \par The formula of $D$ can be written in the form of the determinant:
+    \begin{equation}
+      D = 
+      \begin{vmatrix}
+        f_{xx} & f_{xy} \\
+        f_{yx} & f_{yy}
+      \end{vmatrix}
+    \end{equation}
 
-    \hii{Extreme Value Theorem}
-        \par A \textbf{closed} set in $R^{2}$ is one that contains all its boundary
-            points.
-        \par \textit{Example:} $D = {(x, y) | x^{2} + y^{2} \leq 1}$
-        \par The circle $x^{2} + y^{2} = 1$ is the set of all boundary points
-        of $D$.
-        \par A bounded set in $R^{2}$ is finite in extent and contained within
-        some disk.
-        \par \textbf{Extreme Value Theorem for Functions of Two Variables:}
-        \par If $f$ is continuous on a closed, bounded set $D$ in $R^{2}$, then $f$
-        attains an absolute maximum value $f(x_{1}, y_{1})$ and an absolute
-        minimum value $f(x_{2}, y_{2})$ at some points $(x_{1}, y_{1})$ and
-        $(x_{2}, y_{2})$ in $D$.
-        \par To find the absolute maximum and minimum values of a continuous
-        function $f$ on a closed, bounded set $D$:
-        \begin{enumerate}
-            \item Find the values of $f$ at the critical points of $f$ in $D$.
-            \item Find the extreme values of $f$ on the boundary of $D$.
-            \item The largest of the values from steps 1 and 2 is the absolute
-            maximum value; the smallest of these values is the absolute minimum
-            value.
-        \end{enumerate}
+  \hii{Extreme Value Theorem}
+    \par A \textbf{closed} set in $R^{2}$ is one that contains all its boundary
+      points.
+    \par \textit{Example:} $D = {(x, y) | x^{2} + y^{2} \leq 1}$
+    \par The circle $x^{2} + y^{2} = 1$ is the set of all boundary points
+    of $D$.
+    \par A bounded set in $R^{2}$ is finite in extent and contained within
+    some disk.
+    \par \textbf{Extreme Value Theorem for Functions of Two Variables:}
+    \par If $f$ is continuous on a closed, bounded set $D$ in $R^{2}$, then $f$
+    attains an absolute maximum value $f(x_{1}, y_{1})$ and an absolute
+    minimum value $f(x_{2}, y_{2})$ at some points $(x_{1}, y_{1})$ and
+    $(x_{2}, y_{2})$ in $D$.
+    \par To find the absolute maximum and minimum values of a continuous
+    function $f$ on a closed, bounded set $D$:
+    \begin{enumerate}
+      \item Find the values of $f$ at the critical points of $f$ in $D$.
+      \item Find the extreme values of $f$ on the boundary of $D$.
+      \item The largest of the values from steps 1 and 2 is the absolute
+      maximum value; the smallest of these values is the absolute minimum
+      value.
+    \end{enumerate}
+
+\newpage
 
 \hi{Lagrange Multipliers}

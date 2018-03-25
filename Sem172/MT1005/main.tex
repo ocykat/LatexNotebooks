@@ -17,6 +17,10 @@
     \endEmphEqMainEnv%
 }
 % + Macros
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\dt}{\Delta}
 \newcommand{\dif}[2]{\frac{d #1}{d #2}}
 \newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\pdd}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
@@ -37,9 +41,27 @@
 \newcommand{\hiv}{\item\textbf}
 
 
+% APPENDICES
+\usepackage[toc,page]{appendix}
+
+
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+
 % INDENTATION
 % + indent the first paragraph after a heading
 \usepackage{indentfirst}
+
+
+% FOOTNOTE
+% + one footnote stays on one page
+\interfootnotelinepenalty=10000
 
 
 % TABLE OF CONTENT
