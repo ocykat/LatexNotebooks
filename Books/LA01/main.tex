@@ -1,0 +1,71 @@
+\documentclass[12pt, a4paper]{report}
+
+
+% MATH
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+% Equation box
+\usepackage{empheq}   % equation boxes
+\newenvironment{eqbox}
+{
+    \setkeys{EmphEqEnv}{align}
+    \setkeys{EmphEqOpt}{box=\fbox}
+    \EmphEqMainEnv
+}
+{
+    \endEmphEqMainEnv
+}
+% Text inside math environments
+\newcommand{\mb}[1]{\mbox{ #1 }}
+
+
+% TABLE OF CONTENT
+% Links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+% APPENDICES
+\usepackage[toc,page]{appendix}
+
+
+% HEADINGS
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+\newcommand{\hiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\item\textbf}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+
+% INDENTATION
+% indent first paragraph after a heading
+\usepackage{indentfirst}
+
+
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+
+\begin{document}
+\tableofcontents
+
+\input{chap01}
+
+
+\end{document}
