@@ -1,0 +1,341 @@
+\chapter{Foundations}
+
+\hi{Getting started}
+  \hii{Insertion Sort}
+
+    \begin{itemize}
+      \item \textbf{Input:} A sequence of $n$ numbers $a_{1}, a_{2}, \ldots, a_{n}$
+      \item \textbf{Output:} A permutation of the input sequence such that
+        $a'_{1} \leq a'_{2} \leq \ldots \leq a'_{n}$
+    \end{itemize}
+
+    \begin{algorithm}
+      \caption{Insertion-Sort}
+      \begin{algorithmic}[1]
+        \Statex
+        \Function{Insertion-Sort}{$a$}
+          \FOR{i \gets 2 \TO a.length}
+            \LET{key}{a[i]}
+            \LET{j}{i - 1}
+            \WHILE{j > 0 \AND a[j] > key}
+              \LET{a[j]}{a[j + 1]}
+              \LET{j}{j - 1}
+            \ENDWHILE
+            \LET{a[j + 1]}{key}
+          \ENDFOR
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+
+  \hii{Loop Invariants}
+    \par To prove that \textbf{Insertion Sort} is correct, we use \textbf{loop invariants}.
+    \par \textbf{A loop invariant} consists of three things:
+    \begin{itemize}
+      \item \textbf{Initialization}: It is true prior to the first iteration of the loop.
+      \item \textbf{Maintenance}: If it is true before an iteration of the loop, it remains
+        true before the next iteration.
+      \item \textbf{Termination}: When the loop terminates, the invariant gives us a useful
+        property that helps show that the algorithm is correct.
+    \end{itemize}
+
+  \hii{Correctness of Insertion Sort}
+    \begin{itemize}
+      \item \textbf{Initialization}: When $i = 2$, the subarray $a[1..i - 1] = a[1..1]$ only
+        contains 1 element. Therefore, it is already sorted.
+      \item \textbf{Maintenance}: After each iteration, $a[i]$ is added to the sorted
+        subarray in the following way: from the right to the left of the sorted subarray,
+        find the suitable position for $a[i]$. While going right to left, all elements
+        which are larger than $a[i]$ is shifted one position to the right to ensure that
+        there is an empty position for $a[i]$ to occupy when the suitable position is
+        found.
+      \item \textbf{Termination}: After the last iteration $i = a.length$, the "subarray"
+        $a[1..a.length]$ has been sorted. In order words, the whole array has been sorted.
+    \end{itemize}
+
+\hi{Analyzing algorithms}
+  \hii{Analyzing Insertion Sort}
+    \hiii{Evaluating Running Time}
+      \par Let:
+      \begin{itemize}
+        \item $n = a.length$: the length of array $a$
+        \item $t_{j}$: number of times the $j_{th}$ while-loop executes in one iteration
+          of the outer for-loop
+      \end{itemize}
+      \begin{algorithm}
+        \caption*{\textsc{Insertion-Sort}}
+        \begin{algorithmic}[1]
+          \Statex
+          \Function{Insertion-Sort}{$a$}
+            \FOR{i \gets 2 \TO a.length} \Comment{Times: $n$; Cost: $c_{1}$}
+              \LET{key}{a[i]} \Comment{Times: $n - 1$; Cost: $c_{2}$}
+              \LET{j}{i - 1} \Comment{Times: $n - 1$; Cost: $c_{3}$}
+              \WHILE{j > 0 \AND a[j] > key}
+              \Comment{Times: $\SUM{_{j = 2}^{n} t_{j}}$; Cost: $c_{4}$}
+                \LET{a[j]}{a[j + 1]}
+                \Comment{Times: $\SUM{_{j = 2}^{n} (t_{j} - 1)}$; Cost: $c_{5}$}
+                \LET{j}{j - 1}
+                \Comment{Times: $\SUM{_{j = 2}^{n} (t_{j} - 1)}$; Cost: $c_{6}$}
+              \ENDWHILE
+              \LET{a[j + 1]}{key}
+              \Comment{Times: $n - 1$; Cost: $c_{7}$}
+            \ENDFOR
+          \EndFunction
+        \end{algorithmic}
+      \end{algorithm}
+      \par The running time of the Insertion Sort algorithm can be calculated as follow:
+      \begin{align*}
+        T(n) = c_{1}n
+          + c_{2}(n - 1)
+          + c_{3}(n - 1)
+          + c_{4} \SUM{_{j = 2}^{n} t_{j}}
+          + c_{5} \SUM{_{j = 2}^{n} (t_{j} - 1)}
+          + c_{6} \SUM{_{j = 2}^{n} (t_{j} - 1)}
+          + c_{7}(n - 1)
+      \end{align*}
+      \par Running time may vary according to input.
+    \hiii{Best-case Running Time}
+      \par The \textbf{best case} occurs if the array is already sorted.
+      In that case, $t_{j} = 1$ for $j = 2, 3, \ldots n$. Thus, the best-case running time
+      is:
+      \begin{align*}
+        T(n) &= c_{1}n
+          + c_{2}(n - 1)
+          + c_{3}(n - 1)
+          + c_{4}(n - 1)
+          + c_{7}(n - 1) \\
+          &= (c_{1} + c_{2} + c_{3} + c_{4} + c_{7})n
+            - (c_{2} + c_{3} + c_{4} + c_{7}) \\
+          &= an + b
+      \end{align*}
+      \par This is a \textbf{linear function} of $n$.
+    \hiii{Worst-case Running Time}
+      \par The \textbf{worst case} occurs if the array is reversely sorted.
+      In that case, $t_{j} = j$ for $j = 2, 3, \ldots n$. Noting that:
+      \begin{align*}
+        \SUM{_{j = 2}{n} j} = \frac{n(n + 1)}{2} - 1
+        \SUM{_{j = 2}{n} (j - 1)} = \frac{(n - 1)n}{2}
+      \end{align*}
+      \par Thus, the worst-case running time is:
+      \begin{align*}
+        T(n) &= c_{1}n
+          + c_{2}(n - 1)
+          + c_{3}(n - 1)
+          + c_{4} \bigg[ \frac{n(n + 1)}{2} - 1 \bigg]
+          + c_{5} \bigg[ \frac{(n - 1)n}{2} \bigg]
+          + c_{6} \bigg[ \frac{(n - 1)n}{2} \bigg]
+          + c_{7}(n - 1) \\
+          &= c_{1}n
+          + c_{2}n - c_{2}
+          + c_{3}n - c_{3}
+          + \frac{c_{4}}{2} [n(n + 1)] - c_{4}
+          + \frac{c_{5}}{2} [(n - 1)n]
+          + \frac{c_{6}}{2} [(n - 1)n]
+          + c_{7}n - c_{7} \\
+          &= c_{1}n
+          + c_{2}n - c_{2}
+          + c_{3}n - c_{3}
+          + \frac{c_{4}}{2} [n^{2} + n] - c_{4}
+          + \frac{c_{5}}{2} [n^{2} - n]
+          + \frac{c_{6}}{2} [n^{2} - n]
+          + c_{7}n - c_{7} \\
+          &= \bigg(\frac{c_{4} + c_{5} + c_{6}}{2} \bigg) n^{2}
+          + \bigg(c_{1} + c_{2} + c_{3}
+            + \frac{c_{4}}{2} - \frac{c_{5}}{2} - \frac{c_{6}}{2} + c_{7} \bigg) n
+          - (c_{2} + c_{3} + c_{4} + c_{7}) \\
+          &= an^{2} + bn + c
+      \end{align*}
+      \par This is a \textbf{quadratic function} of $n$.
+    \hiii{Average-case Running Time}
+      \par On average, half the elements in $A[1..j - 1]$ are less than $A[j]$, and half the
+      elements are greater. Therefore, on average, we have to check half of the subarray
+      $A[1..j - 1]$, so $t_{j}$ is about $j/2$. Thus, the average-case running time is
+      also a quadratic function.
+
+  
+  \hii{Worst-case and Average-case analysis}
+    \par The \textbf{worst-case} running time should usually be concentrate on for three
+    reasons:
+    \begin{itemize}
+      \item It gives us the upper bound on the running time of any input, which means the
+        algorithm is guarantee to never take longer than the worst-case running time.
+      \item Worst case occurs fairly often for some algorithms.
+      \item The average case is often roughly as bad as the worse case. Insertion-Sort is
+        one particular example.
+    \end{itemize}
+
+  \hii{Order of Growth}
+    \par It is the \textbf{rate of growth}, or \textbf{order of growth}, of the running time
+    that really interests us. We therefore consider only the \textbf{leading term} of the
+    formula.
+    We also \textbf{ignore the constant coefficient} of this term.
+    \par For Insertion-Sort, we are left with the factor $n^{2}$. We write that:
+    \begin{center}
+      Insertion-Sort has the worst-case running time of $\Theta(n^{2})$.
+    \end{center}
+
+\hi{Designing algorithms}
+  \hii{Common approaches}
+    \par Some common approaches for algorithm design are:
+    \begin{itemize}
+      \item Incremental approach: insertion sort
+      \item Divide-and-conquer: merge sort
+    \end{itemize}
+  \hii{Divide-and-conquer}
+    \hiii{Introduction}
+      \par Many algorithms are \textbf{recursive} in structure: to solve a given problem,
+      they call themselves recursively one or more times to deal with closely related
+      subproblems.
+      \par These algorithms typically follow a \textbf{divide-and-conquer} approach:
+      they break the problem into several subproblems that are similar to the original
+      problem but smaller in size, solve the subproblems recursively, and then combine
+      these solutions to create a solution to the original problem.
+    \hiii{Steps}
+      \par The divide-and-conquer paradigm involves three steps at each level of the
+      recursion:
+      \begin{itemize}
+        \item \textbf{Divide} the problem into a number of subproblems that are smaller
+          instances of the same problem.
+        \item \textbf{Conquer} the subproblems by solving them recursively. If the
+          subproblem sizes are small enough, however, just solve the subproblems in a
+          straightforward manner.
+        \item \textbf{Combine} the solutions to the subproblems into the solution for the
+          original problem.
+      \end{itemize}
+
+  \hii{Merge Sort}
+
+    \hiii{Description}
+      \begin{itemize}
+        \item \textbf{Divide}: Divide the $n$-element sequence to be sorted into two
+          subsequences of $n / 2$ elements each.
+        \item \textbf{Conquer}: Sort the two subsequences recursively using merge sort.
+        \item \textbf{Combine}: Merge the two sorted subsequences to produce the sorted
+          answer.
+      \end{itemize}
+      \par The recursion "bottoms out" when the sequence to be sorted has length 1, in which
+      case there is no work to be done, since every sequence of length 1 is already sorted.
+
+    \hiii{Pseudocode}
+      \begin{algorithm}
+        \caption{Merge-Sort}
+        \begin{algorithmic}[1]
+          \Statex
+          \Function{Merge}{$a, start, mid, end$}
+            \LET{n_{1}}{mid - start + 1} \Comment{$left$ includes $a[mid]$}
+            \LET{n_{2}}{end - mid}
+            \LET{left}{\mbox{new array} [1..n_{1} + 1]}
+            \LET{right}{\mbox{new array} [1..n_{2} + 1]}
+            \FOR{i \gets 1 \TO n_{1}}
+              \LET{left[i]}{a[start + i - 1]}
+            \ENDFOR
+            \FOR{j \gets 1 \TO n_{2}}
+              \LET{right[j]}{a[mid + j]}
+            \ENDFOR
+            \LET{left[n_{1} + 1]}{\infty}
+            \LET{right[n_{2} + 1]}{\infty}
+            \LET{i}{1}
+            \LET{j}{1}
+            \FOR{k \gets start \TO end}
+              \IF{left[i] \leq right[j]}
+                \LET{a[k]}{left[i]}
+                \LET{i}{i + 1}
+              \ELSE
+                \LET{a[k]}{right[j]}
+                \LET{i}{i + 1}
+              \ENDIF
+            \ENDFOR
+          \EndFunction
+          \State
+          \Function{Merge-sort}{$a, start, end$}
+            \IF{start < end}
+              \LET{mid}{\floor{(start + end) / 2}}
+              \CALLPROC{Merge-sort}{a, start, mid}
+              \CALLPROC{Merge-sort}{a, mid + 1, end}
+              \CALLPROC{Merge}{a, start, mid, end}
+            \ENDIF
+          \EndFunction
+        \end{algorithmic}
+      \end{algorithm}
+
+    \hiii{The Merge Procedure}
+      \par \tb{Correctness with Loop Invariant}
+      \begin{itemize}
+        \item \tb{Initialization}: Before the first iteration, $k = start$.
+          The subarray $a[start..k - 1]$ is ``sorted", since it does not contain
+          any element. $left[i]$ and $right[j]$ are each the smallest element in their
+          arrays that has not been copied to $a$. Also, the largest element of $a$
+          is smaller than both $left[i]$ and $right[j]$.
+        \item \tb{Maintenance}: At the start of any iteration, the subarray
+          $a[start..k - 1]$ is sorted. Then, the smaller of $left[i]$ and $right[j]$
+          is copied to $a$. $k$ and $i$ or $j$ is increased by 1.
+        \item \tb{Termination}: At termination, $k = end + 1$. By loop invariant, the
+        subarray $a[start..k - 1] \equiv a[start..end]$ is sorted.
+      \end{itemize}
+      \par \tb{Running time}: $\Theta(n)$, where $n = end - start + 1$
+      is the number of elements being merged.
+    
+  \hii{Analyzing divide-and-conquer algorithms}
+    \par When an algorithm contains a recursive call to itself, the running
+    time can be described by a \tb{recurrence equation} or \tb{recurrence}.
+    \par For divide-and-conquer algorithms, the running time can be evaluated
+    as follow:
+    \begin{equation}
+      T(n) = \begin{cases}
+        \Theta(1) \qquad \mbox{ if } n \leq c \\
+        a T(n / b) + D(n) + C(n) \quad \mbox {otherwise}
+      \end{cases}
+    \end{equation}
+    where
+    \begin{itemize}
+      \item $n$: the size of the input
+      \item $c$: the maximum size of the input where the solution can
+      be evaluated in a straightforward way
+      \item $a$: number of subproblems after dividing
+      \item $n/b$: the size of the input of each subproblem (note that for
+      some special cases, $a \neq b$)
+      \item $D(n)$: dividing time
+      \item $C(n)$: combining time
+    \end{itemize}
+  
+  \hii{Analysis of Merge Sort}
+    \par To simplify the analysis, we assume that the size of the array is
+      a power of 2. Later, we will find out that this assumption does not
+      affect the order of growth of the function.
+    \par We reason as follow to set up the worst-case running time, $T(n)$,
+      of merge sort:
+    \begin{itemize}
+      \item \tb{Divide}: The divide step just computes the middle of the
+        subarray, which takes constant time. $D(n) = 1$.
+      \item \tb{Conquer}: We recursively solve two subproblems, each of
+        size $n/2$, which contributes $2T(n/2)$ to the running time.
+      \item \tb{Combine}: The running time taken for merge is
+        $C(n) = \Theta(n)$.
+    \end{itemize}
+    \begin{equation}
+      T(n) = \begin{cases}
+        \Theta(1) \qquad \mbox{ if } n = 1 \\
+        2T(n/2) + \Theta(n) \quad \mbox{ if } n > 1 \\
+      \end{cases}
+    \end{equation}
+    \par The ``master theorem" can be used to prove that
+      $T(n) = \Theta(n\log(n))$.
+
+\clearpage
+  \begin{algorithm}
+    \caption{Counting mismatches between two packed \DNA{} strings
+      \label{alg:packed-dna-hamming}}
+    \begin{algorithmic}[1]
+      \Require{$x$ and $y$ are packed \DNA{} strings of equal length $n$}
+      \Statex
+      \Function{Distance}{$x, y$}
+        \Let{$z$}{$x \oplus y$} \Comment{$\oplus$: bitwise exclusive-or}
+        \Let{$\delta$}{$0$}
+        \For{$i \gets 1 \textrm{ to } n$}
+          \If{$z_i \neq 0$}
+            \Let{$\delta$}{$\delta + 1$}
+          \EndIf
+        \EndFor
+        \State \Return{$\delta$}
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}

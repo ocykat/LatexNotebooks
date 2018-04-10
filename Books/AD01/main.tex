@@ -1,0 +1,103 @@
+\documentclass[12pt, a4paper]{report}
+
+
+% MATH
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\newcommand{\mul}{\cdot}
+\newcommand{\vt}{\overrightarrow}
+\newcommand{\avg}{\overline}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\Dt}{\Delta}
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+\newcommand{\OINT}[1]{\oint\limits #1}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+% MARGINS
+\usepackage[margin=0.75in]{geometry}
+
+
+% HEADINGS
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiii}{\subsubsection}
+\newcommand{\hiiiBEGIN}{\subsubsection \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+
+% SECTION NUMBER - level 4
+\setcounter{secnumdepth}{4}
+
+
+% TABLE OF CONTENT
+% + link for TOC
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+
+% INDENTATION
+% + indent the first paragraph after a heading
+\usepackage{indentfirst}
+
+
+% FOOTNOTE
+% + one footnote stays on one page
+\interfootnotelinepenalty=10000
+
+
+% PSEUDOCODE
+\usepackage{algpseudocode,algorithm,algorithmicx}
+\usepackage{caption}
+\newcommand*\DNA{\textsc{dna}}
+
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}} 
+
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+\newcommand{\TO}{\textrm{ to }}
+\newcommand{\AND}{\textrm{ and }}
+\newcommand{\OR}{\textrm{ or }}
+\newcommand{\LET}[2]{\Let{$#1$}{$#2$}}
+\newcommand{\FOR}[1]{\For{$#1$}}
+\newcommand{\ENDFOR}{\EndFor}
+\newcommand{\IF}[1]{\If{$#1$}}
+\newcommand{\ELSEIF}[1]{\Elseif{$#1$}}
+\newcommand{\ELSE}{\Else}
+\newcommand{\ENDIF}{\EndIf}
+\newcommand{\WHILE}[1]{\While{$#1$}}
+\newcommand{\ENDWHILE}{\EndWhile}
+\newcommand{\CALLFUNC}[2]{\Call{#1}{$#2$}}
+\newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
+
+
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+
+\begin{document}
+
+\tableofcontents
+
+\input{chap01}
+\input{chap02}
+\input{chap03}
+
+\end{document}

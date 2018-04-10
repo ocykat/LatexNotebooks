@@ -1,0 +1,20 @@
+\chapter{Order of Growth}
+
+\hi{Asymptotic efficiency}
+  \par The \tb{asymptotic} efficiency of algorithm is the efficiency
+  evaluated only by the \tb{order of growth} of the algorithm while leaving
+  out unnecessary precisions (multiplicative constants, lower-order terms,
+  etc.)
+  \par Usually, an algorithm that is asymptotically more efficient will
+  be the best choice, except for the case of very small inputs.
+
+\hi{Asymptotic notations}
+  \par The notations to describe asymptotic running time of an algorithm
+  are defined in terms of functions whose domains are the set of natural
+  numbers $\mathbb{N}$.
+  
+  \hii{$\Theta$-notation}
+    \begin{equation}
+      \Theta(g(n)) = \{f(n) | \exists c_{1}, c_{2}, n_{0} > 0:
+      0 \leq c_{1}g(n) \leq f(n) \leq c_{2}g(n) \forall n \geq n_{0}\}
+    \end{equation}
