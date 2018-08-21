@@ -1,0 +1,59 @@
+\chapter{Double Integral}
+
+\hi{Properties of Double Integral}
+  \begin{itemize}
+    \item 
+      \begin{align*}
+        \IINT_R [f(x, y)+ g(x, y)]dA = \IINT_R f(x, y)dA + \IINT_R g(x, y)dA
+      \end{align*}
+    \item 
+      \begin{align*}
+        \IINT_R cf(x, y)dA = c \IINT_R f(x, y)dA
+      \end{align*}
+      where $c$ is a constant.
+    \item If $f(x, y) \geq g(x, y) \forall (x, y) \in R^{2}$ then
+      \begin{align*}
+        \IINT_R f(x, y) \geq \IINT_R g(x, y)
+      \end{align*}
+  \end{itemize}
+
+
+\hi{Iterated Integral}
+  \par Suppose that $f(x, y)$ is integrable on the rectangle
+    $R = [a, b] \times [c, d]$.
+  \par The integral $\IINT_{c}^{d} f(x, y)dy$ means that $x$ is held fixed
+    and $f(x, y)$ is integrated with respect to $y$ from $y = c$ to $y = d$.
+  \par $\IINT_{c}^{d} f(x, y)dy$ is a number that depends on the value of $x$,
+    so it defines a function of $x$:
+    \begin{align*}
+      g(x) = \IINT_{c}^{d} f(x, y)dy
+    \end{align*}
+  \par Integrating the function $f$ with respect to $x$ from $x = a$ to $x = b$
+    gives us:
+    \begin{align*}
+      \IINT_{a}^{b} g(x) = \IINT_{a}^{b} \bigg[\IINT_{c}^{d} f(x, y)dy\bigg] dx
+    \end{align*}
+  \par The brackets can be omitted.
+    \begin{align*}
+      \IINT_{a}^{b} g(x) = \IINT_{a}^{b} \IINT_{c}^{d} f(x, y)dydx
+    \end{align*}
+  \par The integral means that we first integrate with respect to $y$ from $c$
+    to $d$ and then with respect to $x$ from $a$ to $b$.
+
+
+\hi{Fubini's Theorem}
+  \par \tb{Theorem:}
+  \par \ti{If $f$ is continuous on the rectangle
+    $R = \{(x, y) | a \leq x \leq b, c \leq y \leq d\}$, then}
+    \begin{align*}
+      \IINT_{R} f(x, y) dA
+      = \IINT_{a}^{b}\IINT_{c}^{d} f(x, y)dydx
+      = \IINT_{c}^{d}\IINT_{a}^{b} f(x, y)dxdy
+    \end{align*}
+
+
+\hi{Double Integral of the Multiplication of Functions of One variable}
+  \begin{align*}
+    \IINT_{a}^{b} \IINT_{c}^{d} f(x)g(y)dydx
+      = \IINT_{a}^{b} f(x)dx \cdot \IINT_{c}^{d} g(y)dy
+  \end{align*}

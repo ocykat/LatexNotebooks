@@ -1,0 +1,47 @@
+\clearpage
+\begin{multicols}{3}
+
+\hi{MSI Logic Circuits}
+
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Decoder}:
+        \begin{itemize}
+          \item \tb{Input}: $n$-bit
+          \item \tb{Output}: only $\pmb{1}$ corresponding output
+        \end{itemize}
+      \item \tb{7-seg Decoder}:
+        \begin{itemize}
+          \item \tb{Common-Anode LED Display}: outputs are active-LOW
+          \item \tb{Common-Cathode LED Display}: outputs are active-HIGH
+        \end{itemize}
+      \item \tb{Encoder}
+        \begin{itemize}
+          \item \tb{Input}: only 1 is active at a time
+          \item \tb{Output}: $n$-bit
+        \end{itemize}
+      \item \tb{Priority Encoder}: the output is corresponding to the
+        \tb{largest} active input.
+      \item \tb{Multiplexer}: (MUX, also Data Selector)
+        \begin{itemize}
+          \item \tb{Input}: $n$ SELECT inputs and $\leq 2^{N}$ DATA inputs
+          \item \tb{Output}: only 1 output for all
+        \end{itemize}
+      \item \tb{Demultiplexer}: (DEMUX, also Data Distributor)
+        \begin{itemize}
+          \item \tb{Input}: $n$ SELECT inputs and 1 DATA input
+          \item \tb{Output}: $\leq 2^{N}$ outputs, only 1 receives the DATA input
+        \end{itemize}
+      \item \tb{Magnitude Comparator}: circuit to compare two $n$-bit numbers
+        If the two $n$-bit input numbers are equal, the comparison will also
+        based on the \tb{cascading input}.
+        \par \ti{Connecting MCs: LSB first}
+      \item \tb{Code Converter}: circuit to convert one type to another type
+        of binary code
+      \item \tb{Data Busing}: multiple device have their outputs connected to
+        a common set of bus lines
+        \par \ti{Only outputs of one device can be transmitted on the bus lines
+        at a time. To achieve that, we use \tb{tristate registers}}.
+  \end{itemize}
+
+\end{multicols}

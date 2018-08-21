@@ -1,3 +1,126 @@
+\chapter{Verilog}
+
+\hi{Terminology}
+  \begin{itemize}
+    \item \tb{Hardware Registers}: circuits typically composed of flip-flops,
+      often with many characteristics similar to memory, such as:
+      \begin{itemize}
+        \item The ability to read and write multiples bits at a time.
+        \item Using an address to select a particular register in a manner
+          similar to a memory address.
+      \end{itemize}
+    \item \tb{Register-transfer Level - RTL}: a design abstraction which
+      models a synchronous digital circuit in terms of the flow of digital
+      signals (data) between hardware registers, and the logical operations
+      performed on those signals.
+  \end{itemize}
+
+\hi{ASIC/FPGA Design Stages}
+  \begin{itemize}
+    \item \tb{Specification}: Define what are the important parameters of the
+      system that one is planning to design.
+    \item \tb{High-level Design}: Define various blocks in the design and how
+      they communicate.
+    \item \tb{Low-level Design}: Describe how each block is implemented.
+    \item \tb{RTL Coding}: Low-level design is converted into HDL code, using
+      synthesizable constructs of the language.
+    \item \tb{Simulation}: Verifying the functional characteristics of models at
+      any level of abstraction.
+    \item \tb{Synthesis}: The abstract form of circuit design is turned into a
+      design implementation in terms of logic gates, typically by a computer
+      program called a \ti{synthesis tool}.
+    \item \tb{Place and Route}
+    \item \tb{Post Silicon Validation}
+
+  \end{itemize}
+
+\hi{Module}
+  \par The module name must match the file name. For example, if the module name
+    is ``module\textunderscore name", then the file name must be
+    ``module\textunderscore name.v".
+\begin{lstlisting}[language=Verilog]
+  module module_name()
+  endmodule
+\end{lstlisting}
+
+\hi{Output and Input Ports}
+  \par A module takes ports as parameters.
+  \par Ports are then specified as ``output", ``input", or ``inout" in the
+    module.
+  \par The order of parameters is not important. However, a good convention is
+    to include the output ports first, then the input ports.
+\begin{lstlisting}[language=Verilog]
+  module module_name(out_port, in_port_1, in_port_2);
+    output out_port;
+    input in_port_1, in_port_2;
+  endmodule
+\end{lstlisting}
+
+\hi{Vectors}
+  \par Verilog allows vectors for input and output bus.
+\begin{lstlisting}[language=Verilog]
+  module module_name(out, in);
+    output [3:0] out; // 4 bits bus
+    input  [7:0] in;  // 8 bits bus
+  endmodule
+\end{lstlisting}
+  \par It is a convention that vector of ports is indexed from right to left,
+    starting from the LSB and ending with the MSB.
+
+\hi{Reg and Wire}
+  \par In Verilog, ``\tb{reg}" and ``\tb{wire}" are driver types.
+  \par In simple words, in a physical circuit, a driver would be anything that
+    electrons can move through/into
+  \begin{itemize}
+    \item A ``reg" is used to store a value.
+    \item A ``wire" is used to connect two points in the circuit.
+  \end{itemize}
+
+\hi{Gate-Level Modeling}
+  \par Available gate primitives:
+  \begin{itemize}
+    \item and
+    \item nand
+    \item or
+    \item nor
+    \item xor
+    \item xnor
+    \item not
+  \end{itemize}
+  \par A gate can take any arbitrary number inputs, but only returns 1 output.
+  \par Syntax:
+\begin{lstlisting}
+  <gate primitive> <gate_name(optional)>(output, input_1, input_2, ...);
+\end{lstlisting}
+
+\hi{Logic Values and Signal Strength}
+  \begin{itemize}
+    \item 0: zero, low, false
+    \item 1: one, high, true
+    \item z or Z: high impedance, floating
+    \item x or X: unknown, uninitialized, contention, don't-care
+  \end{itemize}
+
+\hi{Example 1: Gate-Level Modeling - Majority Circuit}
+
+\begin{lstlisting}[language=Verilog]
+module majority(
+    out,
+    a, b, c
+);
+    output out;
+    input  a, b, c;
+    
+    wire w1, w2, w3;
+
+    and and_1(w1, a, b);
+    and and_2(w2, b, c);
+    and and_3(w3, c, a);
+    or  or_1(out, w1, w2, w3);
+
+endmodule
+\end{lstlisting}
+
 \chapter{Adder Circuits}
 
 \hi{Half-Adder Circuit}
@@ -19,25 +142,25 @@
 
 \hi{Full-Adder Circuit}
   \hii{Truth table}
-\begin{tabular}{|c|c|c|c|c|}
-    \hline 
-    CARRY-IN & IN1 & IN2 & SUM & CARRY-OUT \\ 
-    \hline 
-    0 & 0 & 0 & 0 & 0 \\ 
-    \hline 
-    0 & 0 & 1 & 1 & 0 \\ 
-    \hline 
-    0 & 1 & 0 & 1 & 0 \\ 
-    \hline 
-    0 & 1 & 1 & 0 & 1 \\ 
-    \hline 
-    1 & 0 & 0 & 1 & 0 \\ 
-    \hline 
-    1 & 0 & 1 & 0 & 1 \\ 
-    \hline 
-    1 & 1 & 0 & 0 & 1 \\ 
-    \hline 
-    1 & 1 & 1 & 1 & 1 \\ 
-    \hline 
-\end{tabular} 
+  \begin{tabular}{|c|c|c|c|c|}
+      \hline 
+      CARRY-IN & IN1 & IN2 & SUM & CARRY-OUT \\ 
+      \hline 
+      0 & 0 & 0 & 0 & 0 \\ 
+      \hline 
+      0 & 0 & 1 & 1 & 0 \\ 
+      \hline 
+      0 & 1 & 0 & 1 & 0 \\ 
+      \hline 
+      0 & 1 & 1 & 0 & 1 \\ 
+      \hline 
+      1 & 0 & 0 & 1 & 0 \\ 
+      \hline 
+      1 & 0 & 1 & 0 & 1 \\ 
+      \hline 
+      1 & 1 & 0 & 0 & 1 \\ 
+      \hline 
+      1 & 1 & 1 & 1 & 1 \\ 
+      \hline 
+  \end{tabular} 
 

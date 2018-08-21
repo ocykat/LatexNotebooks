@@ -1,0 +1,128 @@
+\clearpage
+
+\begin{multicols}{3}
+
+\hi{Triple Integrals}
+
+  \par \tb{General form}
+    \begin{eqbox}
+      I = \IIINT_{E} f(x, y, z) dV
+    \end{eqbox}
+
+  \hii{Separable Form}
+    \hiii{Domain}
+      \begin{equation*}
+        E = [a, b] \times [c, d] \times [r, s]
+      \end{equation*}
+
+    \hiii{Method}
+      \par If $f(x, y, z) = f_{1}(x) \times f_{2}(y) \times f_{3}(z)$
+        then
+        \begin{equation}
+          I = \INT_{a}^{b} f_{1}(x)dx \times
+              \INT_{c}^{d} f_{2}(y)dy \times
+              \INT_{r}^{s} f_{3}(z)dz
+        \end{equation}
+
+    \hiii{Applications}
+      \begin{itemize}
+        \item \tb{Volume of solid}
+          \begin{equation*}
+            V = \IIINT_{E} dV
+          \end{equation*}
+        \item \tb{Mass}
+          \par Given volume mass density $\rho(x, y, z)$:
+          \begin{equation*}
+            m = \IIINT_{E} \rho dV
+          \end{equation*}
+        \item \tb{Charge}
+          \par Given charge density $\sigma(x, y, z)$:
+          \begin{equation*}
+            q = \IIINT_{E} \sigma dV
+          \end{equation*}
+      \end{itemize}
+
+\colbreak
+
+  \hii{Cylindrical Form}
+    \hiii{Domain}
+      \par One of the three variables appears \tb{twice} $\to$ height.
+      \par The other two variables $\to$ D. If $D$ is \tb{infinite}
+        $\to$ \tb{intercept equation}.
+      \par W.L.O.G:
+        \footnotemark
+        \footnotetext{any of the three variables can be the height}
+        \begin{equation*}
+          E =
+          \begin{cases}
+            h: z_{2} - z_{1} \\
+            D: (x, y)
+          \end{cases}
+        \end{equation*}
+
+    \hiii{Method}
+      \begin{equation}
+        I = \IINT_{D} \INT_{z_{1}}^{z_{2}} f(x, y, z) dV
+      \end{equation}
+
+    \hiii{Polar Coordinate}
+      \par If $D$ is related to circle/disk:
+        \begin{equation*}
+          x^{2} + y^{2} = r^{2}
+        \end{equation*}
+        then
+        \begin{equation*}
+          E =
+          \begin{cases}
+            D_{r \theta} \mbox{ where } 
+            \begin{cases}
+              x = r\cos\theta \\
+              y = r\sin\theta \\
+            \end{cases} \\
+            h: z_{2}(r\cos\theta, r\sin\theta) - z_{1}(r\cos\theta, r\sin\theta)
+          \end{cases}
+        \end{equation*}
+      \begin{equation}
+        I = \IINT_{D_{r \theta}}
+          \INT_{z_{1}}^{z_{2}} f(r\cos\theta, r\sin\theta, z) \pmb{r} dz d\theta dr
+      \end{equation}
+
+\colbreak
+
+  \hii{Spherical Form}
+    \hiii{Domain}
+      \par $E$ is related to
+        \begin{itemize}
+          \setlength\itemsep{0em}
+          \item \tb{Sphere}: $x^{2} + y^{2} + z^{2} = R^{2}$
+          \item \tb{Ball}: $x^{2} + y^{2} + z^{2} \leq R^{2}$
+        \end{itemize}
+    \hiii{Method}
+        \begin{equation*}
+          E =
+            \begin{cases}
+              0 \leq \rho \leq R \\
+              0 \leq \theta \leq 2 \pi \\
+              0 \leq \varphi \leq \pmb{\pi} \mbox{ (!) }
+            \end{cases}
+        \end{equation*}
+
+        where
+        \begin{equation*}
+          \begin{cases}
+            x = \rho \sin \varphi \cos \theta \\
+            y = \rho \sin \varphi \sin \theta \\
+            z = \rho \cos \varphi
+          \end{cases}
+        \end{equation*}
+
+        \begin{equation}
+          I = \IIINT_{E_{\rho \theta \varphi}}
+            f(\rho \sin \varphi \cos \theta,
+              \rho \sin \varphi \sin \theta,
+              \rho \cos \varphi
+            ) \pmb{\rho^{2} \sin \varphi}
+            d \varphi d \theta d \rho
+        \end{equation}
+
+\end{multicols}

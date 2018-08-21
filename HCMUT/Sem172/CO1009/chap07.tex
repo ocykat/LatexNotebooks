@@ -1,0 +1,99 @@
+\chapter{Counters and Registers}
+
+\hi{Asynchronous (Ripple) Counters}
+  \hii{Introduction}
+    \par An four-bit binary counter comprises of 4 J-K FF connecting in sequence.
+    \par \ti{\tu{Note:} Most counters in the course is triggered by NGT. In
+      practical use, PGT-triggered counters can also be used.}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=16cm]{c07/four-bit-counter.jpg}
+    \end{figure}
+
+  \hii{MOD number}
+    \begin{equation*}
+      \mbox{MOD number} = N
+    \end{equation*}
+    where $n$ is the number of J-K FFs.
+
+  \hii{Frequency Division}
+    \par In any counter, the signal at the output of the last FF (i.e., the
+    MSB) will have a frequency equal to the input clock frequency
+    divided by the MOD number of the counter.
+    \begin{align*}
+      f_{\mbox{last FF}} = \frac{f_{CLK}}{MOD} = \frac{f_{CLK}}{2^{N}}
+    \end{align*}
+    where $n$ is the number of J-K FFs.
+
+
+\hi{Propagation Delay In Ripple Counters}
+  \hii{The cause of propagation delay}
+    \par Each J-K FF in the counter has a certain amount of propagation delay
+    $t_{pd}$.
+    \par Because of the inherent propagation delay time ($t_{pd}$) of each
+      FF, this means that the second FF will not respond until a time $t_{pd}$
+      after the first FF receives an active clock transition; the third FF
+      will not respond until a time equals to $2 \times t_{pd}$ after that
+      clock transition; and so on.
+    \par In general, the $n-th$ FF will not respond until a time equals to
+    $(n - 1) \times t_{pd}$ after that clock transition.
+  \hii{Requirement}
+    \par For proper counter operation we need:
+    \begin{itemize}
+      \item In terms of the period of the input-clock:
+      \begin{equation*}
+        T_{\mbox{CLK}} \geq N \times t_{pd}
+      \end{equation*}
+      \item In terms of the frequency of the input-clock:
+      \begin{equation*}
+        f_{\mbox{CLK max}} \geq N \times t_{pd}
+      \end{equation*}
+    \end{itemize}
+
+
+\hi{Counters with MOD Numbers $\leq 2^{N}$}
+  \par Each input which is at $HIGH$ at the state $MOD$ is connected to a
+  common NAND gate. At that state, everything is cleared.
+
+\hi{Decade/BCD}
+  \par \ti{\tu{Note:} A BCD counter is a decade counter, while a decade
+    counter is NOT necessary a BCD counter}.
+
+
+\hi{Asynchronous Counter IC: 74LS293}
+
+
+\hi{Designing Counter Problems}
+  \hii{Asynchronous Counters}
+    \begin{itemize}
+      \item \tb{CLK inputs}
+        \begin{itemize}
+          \item \tb{UP} counter: $Q$ of the previous FF is connected to
+            $CLK$ of the next FF.
+          \item \tb{DOWN} counter: $\bar{Q}$ of the previous FF is connected to
+              $CLK$ of the next FF.
+        \end{itemize}
+      \item \tb{JK FF}
+        \par Both $J$ input and $K$ input are connected to $1$. (toggle state)
+      \item \tb{D FF}
+        \par The $D$ input is connected to the $\bar{Q}$ output of the same FF.
+    \end{itemize}
+    
+  \hii{Synchronous Counters}
+    \begin{itemize}
+      \item \tb{CLK inputs}
+        \par All $CLK$ inputs of all FFs are connected to \tb{one} common
+          clock signal.
+      \item \tb{JK FF}
+        \par Both $J$ input and $K$ input of the $i_{th}$ FF are connected to
+          $Q_{0} \cdot Q_{1} \cdot \ldots \cdot Q_{i - 1}$.
+          \begin{equation}
+            J_{i} = K_{i} = \PROD{_{j = 0}^{i - 1} Q_{j}}
+          \end{equation}
+      \item \tb{D FF}
+        \par The $D$ input of the $i_{th}$ FF is connected to
+          $Q_{0} \cdot Q_{1} \cdot \ldots \cdot Q_{i - 1} \cdot \bar{Q}$.
+          \begin{equation}
+            D_{i} = \bigg( \PROD{_{j = 0}^{i - 1} Q_{j}} \bigg) \cdot \bar{Q_{i}}
+          \end{equation}
+    \end{itemize}

@@ -1,25 +1,25 @@
 \chapter{Systems of Linear Equations and Matrices}
 
+
 \hi{Introduction to Systems of Linear Equations}
 
   \hii{Linear Equations}
 
     \par In two dimensions a line in a rectangular $xy$-coordinate system
-    can be represented by an equation of the form:
+      can be represented by an equation of the form:
 
     \begin{align*}
       ax + by = c \quad (a, b \mb{not both} 0)
     \end{align*}
 
     \par In three dimensions a plane in a rectangular $xyz$-coordinate
-    system can be represented by an equation of the form:
+      system can be represented by an equation of the form:
 
     \begin{align*}
       ax + by = c \quad (a, b, c \mb{not all} 0)
     \end{align*}
 
     \par These equations are called \tb{linear equations}.
-
     \par A linear equation of $n$ variables can be expressed in the form:
 
     \begin{align*}
@@ -27,11 +27,13 @@
     \end{align*}
 
     \par If $b = 0$, the equation is called a \tb{homogeneous linear
-    equation} in the variables $x_{1}, x_{2}, \ldots, x_{n}$.
+      equation} in the variables $x_{1}, x_{2}, \ldots, x_{n}$.
 
   \hii{Linear Systems}
     \par A finite set of linear equation is called a \tb{system of linear
     equations} or a \tb{linear system}.
+
+    \par In a linear system, the variables are called \tb{unknowns}.
 
     \par A general linear system of $m$ equations in the $n$ unknowns
     $x_{1}, x_{2}, \ldots, x_{n}$ can be written as:
@@ -58,7 +60,10 @@
     \end{align*}
 
     \par We say that a linear system is \tb{consistent} if it has at least
-    one solution, and \tb{inconsistent} if it has no solutions.
+      one solution, and \tb{inconsistent} if it has no solutions.
+    
+    \par Every system of linear equations has zero, one, or infinitely many
+      solution 
 
   \hii{Augmented Matrices and Elementary Row Operations}
 
@@ -76,12 +81,16 @@
 
     \par The method of solving a linear system is to perform appropriate
     algebraic operations on the system that:
+
     \begin{itemize}
       \item do not alter the solution set 
       \item produce a succession of increasingly simpler systems, until
         the solution is obtained if any.
     \end{itemize}
-    \par These algebraic operations are typically used:
+
+    \par Three algebraic operations are typically used for solving
+      linear systems:
+
     \begin{enumerate}
       \item Multiply an equation through by a nonzero constant.
       \item Interchange two equations.
@@ -89,8 +98,8 @@
     \end{enumerate}
 
   \hii{Elementary row operations}
-    \par The mentioned algebraic operations on linear systems are 
-    equivalent to these on matrices:
+    \par The mentioned algebraic operations on a linear system are 
+    equivalent to these operations on its augmented matrix:
 
     \begin{enumerate}
       \item Multiply a row through by a nonzero constant.
@@ -99,37 +108,124 @@
     \end{enumerate}
 
     \par These operations are called \tb{elementary row operations} on a
-    matrix.
+      matrix.
 
 
 \hi{Gaussian Elimination}
 
   \hii{Considerations in Solving Linear Systems}
     \par Although there are more than one way to solve linear equations,
-    Gauusian Elimination is arguably the most systematic, and the
-    most popular when it comes to dealing with a large system.
+      Gauusian Elimination is arguably the most systematic, and the
+      most popular when it comes to dealing with a large system.
 
-  \hii{Echelon Forms}
-    \par A matrix is of \tb{Echelon form} (or more precisely,
-    \tb{reduced row Echelon form}) if it consists of these properties:
+  \hii{Row Echelon Form - Reduced Row Echelon Form}
+    \par A matrix is of \tb{row Echelon form} if it consists of these
+    properties:
+
+    \begin{enumerate}
+      \item All nonzero rows are above any rows of all zeros
+      \item In any two successive rows that do not consist entirely of
+        zeros, the leading entry of the lower row occurs farther to the right
+        than the leading entry of the higher row.
+      \item Each column that contains a leading entry has zeros everywhere
+        else in that column.
+    \end{enumerate}
+
+    \par A matrix is of \tb{reduced row Echelon form} if it consists
+    of these properties:
+
     \begin{enumerate}
       \item If a row does not consist entirely of zeros, then the first
-      nonzero number in the row is a 1. We call this a \tb{leading 1}.
+        nonzero number in the row is a 1. We call this a \tb{leading 1}.
       \item If there are any rows that consist entirely of zeros, then
-      they are grouped together at the bottom of the matrix.
+        they are grouped together at the bottom of the matrix.
       \item In any two successive rows that do not consist entirely of
-      zeros, the leading 1 in the lower row occurs farther to the right
-      than the leading 1 in the higher row.
+        zeros, the leading 1 in the lower row occurs farther to the right
+        than the leading 1 in the higher row.
       \item Each column that contains a leading 1 has zeros everywhere
-      else in that column.
+        else (above and below) in that column.
     \end{enumerate}
-    \par A matrix which has the first 3 properties is said to be in
-    \tb{row echelon form}.
-
-
+    \par In other words, the \tb{reduced row Echelon form} is stricter than
+      the \tb{row Echelon form}. Both can be used to solve linear systems.
+      
+  \hii{Elimination Methods}
+    \par To transform a matrix to \tb{row Echelon form}, we follow these
+      steps:
+    \begin{itemize}
+        \item Step 1: Locate the leftmost column that does not consist
+          entirely of zeros.
+        \item Step 2: Interchange the top row with another column, if
+          necessary, to bring a nonzero entry to the top of the column
+          found in step 1.
+        \item Step 3: Add suitable multiples of the top row to the rows
+          below so that all entries below the leading entry become zeros.
+        \item Step 4: Cover the top row in the matrix and begin again
+          with step 1 appplied to the submatrix that remains.
+    \end{itemize}
+    \par To transform a matrix to \tb{reduced Echelon form}, we follow
+      these steps:
+    \begin{itemize}
+      \item Step 1: Locate the leftmost column that does not consist
+        entirely of zeros.
+      \item Step 2: Interchange the top row with another column, if
+        necessary, to bring a nonzero entry to the top of the column
+        found in step 1.
+      \item Step 3: If the entry that is now at the top of the column
+        found in Step 1 is $a$, multiply the first row by $1/a$ in
+        order to introduce a leading 1.
+      \item Step 4: Add suitable multiples of the top row to the rows
+        below so that all entries below the leading entry become zeros.
+      \item Step 5: Cover the top row in the matrix and begin again
+        with step 1 appplied to the submatrix that remains.
+      \item Step 6: Beginning with the last nonzero row and working upward,
+          add suitable multitples of each row to the rows above to
+          introduce zeros above the leading 1's.
+    \end{itemize}
+    \par The procedure for reducing a matrix to reduced row echelon form is
+      called \tb{Gauss-Jordan elimination}. The algorithm consists of two
+      parts:
+    \begin{itemize}
+      \item A forward phase in which zeros are introduced below the leading
+        1's.
+      \item A backward phase in which zeros are introduced above the leading
+        1's.
+    \end{itemize}
+    \par If only the forward phase is used, the procedure is called
+      \tb{Gaussian elimination}.
+  
+  \hii{Back-Substitution}
+    \begin{itemize}
+      \item Step 1: Solve the equations for the leading variables.
+      \item Step 2: Beginning with the bottom equation and working upward,
+      successively substitute each equation into all the euqations above it.
+      \item Step 3: Assign arbitrary values to the free variables, if any.
+    \end{itemize}
+    \par Example: page 37.
+  
+  \hii{Homogeneous Linear Systems}
+    \par A linear system is said to be \tb{homogeneous} if the constant
+      terms are all zero.
+    \begin{align*}
+      \begin{cases}
+        a_{11}x_{1} + a_{12}x_{2} + \ldots + a_{1n}x_{n} = 0 \\
+        a_{21}x_{1} + a_{22}x_{2} + \ldots + a_{2n}x_{n} = 0 \\
+        \ldots \\
+        a_{n1}x_{1} + a_{n2}x_{2} + \ldots + a_{nn}x_{n} = 0
+      \end{cases}
+    \end{align*}
+    \par Every homogeneous system of linear equations is consistent because
+      all such systems have $x_{1} = x_{2} = \ldots = x_{n} = 0$ as a solution.
+      It is called the \tb{trivial solution}. If there are other solutions,
+      they are called \tb{nontrivial solutions}.
+    \par If a homogenous system has more unknowns than equations, it always
+      has at least one nontrivial solution.
+      
 \hi{Matrices and Matrix Operations}
+
   \hiiBEGIN{Matrix Notation and Terminology}
+
     \hiii{Matrix and Entries}
+
       \begin{itemize}
         \item A \tb{matrix} is a rectangular array of numbers.
         \item A $m \times n$ matrix is a matrix with $m$ \tb{rows}
@@ -141,13 +237,16 @@
           $[a_{ij}]$.
         \item An entry can also be denoted as $(A)_{ij}$.
       \end{itemize}
+
     \hiii{Row and Column Matrices}
+
       \begin{itemize}
         \item A matrix with only one column is called a \tb{column vector} or
           \tb{column matrix}.
         \item A matrix with only one row is called a \tb{row vector} or
           \tb{row matrix}.
       \end{itemize}
+
     \hiii{Square Matrix}
       \par 
   \hiiEND

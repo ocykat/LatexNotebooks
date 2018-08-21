@@ -1,0 +1,33 @@
+\chapter{Divide and Conquer}
+
+\hi{Maximum-Subarray Problem}
+  \hii{Problem}
+    \par Given an array. Find the subarray $a[i..j]$ that has the maximum
+      sum.
+  \hii{Incorrect Assumption}
+    \par The subarray does not necessary starts or ends at the maximum or
+      minimum element in the array.
+  \hii{Divide-and-Conquer Approach}
+    \par Suppose we want to find the maximum subarray of the subarray
+      $a[low..high]$. If we divide the subarray $a[low..high]$ into two parts,
+      $a[low..mid]$ and $a[mid + 1..high]$, then the maximum subarray must lie
+      in one of the three places:
+      \begin{itemize}
+        \item entirely in the subarray $a[low..mid]$, so that
+          $low \leq i \leq j \leq mid$.
+        \item entirely in the subarray $a[mid + 1..high]$, so that
+          $mid < i \leq j \leq high$.
+        \item crossing the midpoint, so that $low \leq i \leq mid < j \leq high$.
+      \end{itemize}
+    \par In other words, the maximum subarray of $a[low..high]$ must have the
+      greatest sum over all subarrays entirely in $a[low..mid]$, entirely in
+      $a[mid + 1..high]$, or crossing the midpoint.
+    \par The maximum subarrays of $a[low..mid]$ and $a[mid + 1..high]$ can
+      be found recursively, because these two subproblems are smaller instances
+      of the problem of findng a maximum subarray.
+    \par One more problem to handle is to find the maximum subarray that
+      crosses through the midpoint.
+    \par We can easily see that any subarray $a[i..j]$ crossing the midpoint
+      is made of two subarrays: $a[i..mid]$ and $a[mid + 1..j]$. Therefore, we
+      just need to find the maximum subarrays in the form of $a[i..mid]$ and
+      $a[mid + 1..j]$ and then combine them.

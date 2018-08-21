@@ -1,0 +1,16 @@
+[h1]<Chapter 1. Introductory Concepts>
+
+  [h2]<Analog vs Digital>
+    [numering]
+    <
+      * [b]<Analog>: continuous, representing physical world
+      * [b]<Digital>: discrete (0-1), representing digital signals
+    >
+
+  [h2](MSB-LSB)
+    [bullets]
+    <
+      * [b]<MSB>: most significant bit (leftmost, largest)
+      * [b]<LSB>: least significant bit (rightmost, smallest)
+    >
+

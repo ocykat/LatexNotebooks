@@ -5,6 +5,8 @@
 *.out
 *.toc
 
+*.synctex.gz
+
 # Images
 *.PNG
 *.png

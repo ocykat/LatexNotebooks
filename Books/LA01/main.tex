@@ -33,6 +33,23 @@
 }
 
 
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+
+% HEADING COLOR
+\usepackage{xcolor}
+\usepackage{sectsty}
+%\chapterfont{\color{}}
+\sectionfont{\color{red}}
+\subsectionfont{\color{blue}}
+
+
 % APPENDICES
 \usepackage[toc,page]{appendix}
 
@@ -43,7 +60,7 @@
 \newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
 \newcommand{\hiiEND}{\end{enumerate}}
 \newcommand{\hiii}{\item\textbf}
-\newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+\newcommand{\hiiiBEGIN}[1]{\item\textbf{\textcolor{purple}{#1}} \begin{enumerate}}
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
@@ -51,15 +68,6 @@
 % INDENTATION
 % indent first paragraph after a heading
 \usepackage{indentfirst}
-
-
-% TEXT
-% Bold, italic, underlined text
-\newcommand{\tb}[1]{\textbf{#1}}
-\newcommand{\ti}[1]{\textit{#1}}
-\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
-\newcommand{\tu}[1]{\underline{#1}}
-\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
 
 
 \begin{document}

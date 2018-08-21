@@ -1,0 +1,162 @@
+\clearpage
+
+\begin{multicols}{4}
+
+\hi{Line Integrals}
+
+  \hii{Type 1}
+    \hiii{Form}
+      \begin{itemize}
+        \item \tb{Domain}: Curve $(C)$ between two points.
+        \item \tb{Integral}:
+          \begin{equation*}
+            I = \INT_{(C)} f(x, y)\pmb{ds}
+          \end{equation*}
+      \end{itemize}
+
+    \hiii{Method}
+      \par General idea: convert to single integral of one variable.
+        \begin{itemize}
+          \item \tb{Case 1}:
+            \begin{equation*}
+              (C):
+                \begin{cases}
+                  y = g(x) \\
+                  x_{1} \leq x \leq x_{2}
+                \end{cases}
+            \end{equation*}          
+
+            \begin{equation}
+              I = \INT_{x_{1}}^{x_{2}} f(x, g(x)) \sqrt{1 + [g'(x)]^{2}} dx
+            \end{equation}
+
+          \item \tb{Case 2}:
+            \begin{equation*}
+              (C):
+                \begin{cases}
+                  x = g(y) \\
+                  y_{1} \leq y \leq y_{2}
+                \end{cases}
+            \end{equation*}
+
+            \begin{equation}
+              I = \INT_{y_{1}}^{y_{2}} f(g(y), y) \sqrt{1 + [g'(y)]^{2}} dy
+            \end{equation}
+
+        \end{itemize}
+
+      \hiii{Application}
+        \par Mass of string $(C)$ given length density $\rho(x, y)$.
+
+\colbreak
+
+
+  \hii{Type 2}
+    \hiii{Form}
+      \begin{itemize}
+        \item \tb{Domain}: Curve $(C)$ between two points.
+        \item \tb{Integral}:
+          \begin{equation*}
+            I = \INT_{(C)} \big[P(x, y)\pmb{dx} + Q(x, y)\pmb{dy}\big]
+          \end{equation*}
+      \end{itemize}
+
+    \hiii{Method}
+      \par General idea: convert to single integral of one variable.
+        \begin{itemize}
+          \item \tb{Case 1}:
+            \begin{equation*}
+              (C):
+                \begin{cases}
+                  y = g(x) \ra dy = g'(x)dx \\
+                  x_{1} \to x_{2} \mbox{ (!) }
+                \end{cases}
+            \end{equation*}          
+
+            \begin{equation}
+              I = \INT_{(C)} \big[P(x, g(x)) + Q(x, g(x)) \cdot g'(x)\big] \pmb{dx}
+            \end{equation}
+
+          \item \tb{Case 2}:
+            \begin{equation*}
+              (C):
+                \begin{cases}
+                  x = g(y) \ra dx = g'(y)dy \\
+                  y_{1} \to y_{2} \mbox{ (!) }
+                \end{cases}
+            \end{equation*}
+
+            \begin{equation}
+              I = \INT_{(C)} \big[P(g(y), y) \cdot g'(y) + Q(g(y), y)\big] \pmb{dy}
+            \end{equation}
+        \end{itemize}
+
+    \hiii{Application}
+      \par Work done by force field along the path $(C)$.
+        \begin{itemize}    
+          \item \tb{Force field}
+            \begin{equation*}
+              \vec{F} = [P(x, y), Q(x, y)] = P\vec{i} + Q\vec{j}
+            \end{equation*}
+          \item \tb{R.O.C of Displacement}
+            \begin{equation*}
+              d\vec{r} = (dx, dy)
+            \end{equation*}
+          \item \tb{Work}
+            \begin{flalign*}
+              & W = \INT_{(C)} \vec{F} d\vec{r} && \\
+              &   \stackrel{\text{dot product}}{=}
+              &      \INT_{(C)} \big[P(x, y)dx + Q(x, y)dy\big] &&
+            \end{flalign*}
+        \end{itemize}
+
+% \colbreak
+
+  \hii{Independent of Path}
+    \hiii{Condition}
+      \par The line integral \tb{type 2} is \ti{independent of path}
+        if:
+        \begin{equation}
+          \pd{P}{y} = \pd{Q}{x}
+        \end{equation}
+
+    \hiii{Method}
+      \par Simplest path:
+        \begin{itemize}
+          \item Going horizontally $x_{A} \to x_{B}$ with $y = y_{A}$.
+          \item Going vertically $y_{A} \to y_{B}$ with $x = x_{B}$.
+        \end{itemize}
+
+        \begin{equation}
+          I = \INT_{x_{A}}^{x_{B}} P(x, y_{A})
+            + \INT_{y_{A}}^{y_{B}} Q(x_{B}, y)
+        \end{equation}
+
+    \hiii{Application}
+      \par If force field $\vec{F}$ is conservative:
+        \begin{align*}
+          \pd{P}{y} = \pd{Q}{x}
+        \end{align*}
+
+\colbreak
+
+  \hii{Green's theorem}
+    \hiii{Form}
+      \begin{itemize}
+        \item $(C)$ is a \tb{closed curve}.
+        \item \tb{Integral}
+          \begin{equation*}
+            I = \INT_{(C)} \big[P(x, y)\pmb{dx} + Q(x, y)\pmb{dy}\big]
+          \end{equation*}
+        \item \tb{Orientation}: walking on the boundary $(C)$ of the domain
+          $\to$ the domain is on the \tb{left}.
+      \end{itemize}
+    \hiii{Method}
+      \par Green's theorem
+        \begin{equation}
+          \OINT_{(C)} \big[P(x, y)dx + Q(x, y)dy\big]
+          = \INT_{D} \bigg( \pd{Q}{x} - \pd{P}{y} \bigg)dA
+        \end{equation}
+
+
+\end{multicols}

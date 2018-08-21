@@ -1,5 +1,3 @@
-%&tex
-
 \chapter{Vector Space}
 
 
@@ -30,7 +28,7 @@
       \item $\forall x \in V: x \cdot 1 = x$.
     \end{enumerate}
 
-  \hiiBEGIN{Notations}
+  \hii{Notations}
     \hiii{Real Vector Space}
       \par Let $V$ be a vector space over $\mathbb{R}$ that contains all
         tuples of $n$ numbers. $(n \in \mathbb{N*})$
@@ -48,13 +46,12 @@
       \par Let $V$ be a vector space that contains all polynomials with real
       coefficients and degree of $n$ or less.
       \par $V$ is denoted by: $P_{n}[x]$.
-  \hiiEND
 
 
 \hi{Linear Independence}
   \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
 
-  \hiiBEGIN{Linear Dependent Set \& Linear Independent Set}
+  \hii{Linear Dependent Set \& Linear Independent Set}
 
     \hiii{Linear Dependent Set}
       \par $M$ is called a \tb{linear dependent} set if:
@@ -76,11 +73,9 @@
           \alpha_{1} v_{1} + \alpha_{2} v_{2}
             + \ldots + \alpha_{m} v_{m} = 0 \\
           \rightarrow \alpha_{1} = \alpha_{2}
-            = \ldots = \alpha_{m} = 0 
+            = \ldots = \alpha_{m} = 0
       \end{align*}
       then $M$ is independent.
-
-  \hiiEND
 
   \hii{Linear Combination}
        \par $v$ is called a \tb{linear combination} of $M$ if:
@@ -116,7 +111,7 @@
     \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
     \par The \tb{rank} of the set $M$ is the \ti{maximum number of linear
     independent} vectors from $M$.
-    \par $r(M) = x$ means that:
+    \par $rank(M) = x$ means that:
     \begin{itemize}
       \item There exists $x$ linear independent vectors from $M$.
       \item Any subset of $M$ that contains more than $x$ vectors
@@ -128,17 +123,17 @@
     \par If $M$ is the \tb{set of row vectors} of $A$, and
             $N$ is the \tb{set of column vectors} of $A$, then:
     \[
-      r(A) = r(M) = r(N)
+      rank(A) = rank(M) = rank(N)
     \]
 
   \hii{Properties}
     \par Let $M = \{v_{1}, v_{2}, \ldots, v_{m}\} \subseteq V$.
     \begin{enumerate}
-      \item If $r(M) = m$ then $M$ is \tb{independent}.
-      \item If $r(M) < m$ then $M$ is dependent.
-      \item If $r(M) = dim(V)$ then $M$ is a \tb{spanning set} of $V$.
-      \item If $r(M) < dim(V)$ then $M$ is NOT a \tb{spanning set} of $V$.
-      \item If $r(M) = dim(V) = m$ then $M$ is a \tb{basis} of $V$.
+      \item If $rank(M) = m$ then $M$ is \tb{independent}.
+      \item If $rank(M) < m$ then $M$ is dependent.
+      \item If $rank(M) = dim(V)$ then $M$ is a \tb{spanning set} of $V$.
+      \item If $rank(M) < dim(V)$ then $M$ is NOT a \tb{spanning set} of $V$.
+      \item If $rank(M) = dim(V) = m$ then $M$ is a \tb{basis} of $V$.
     \end{enumerate}
 
 
@@ -164,6 +159,8 @@
 
 \hi{Coordinates}
   \hii{Coordinates}
+  \begin{itemize}
+    \item \tb{Definition}
     \par Let $E = \{e_{1}, e_{2}, \ldots, e_{n}\}$ be an \tb{ordered basis} for
     $V$ and $x \in V$.
     \[
@@ -181,107 +178,212 @@
         x_{n}  \\
       \end{pmatrix}
     \]
-    
-    \[
+    \par \tb{Equation}
+    \begin{eqbox}
       [x]_{E} = E^{-1} \cdot x
-    \]
+    \end{eqbox}
+
+    \par \tb{Explanantion}
+      \begin{smfont}
+        \par This form is a bit easier to interpret:
+          \begin{eqbox}
+            x = E \cdot [x]_{E}
+          \end{eqbox}
+        \par Interpretation: $[x]_{E}$ is the original vector.
+        $x$ is the result after applying the linear transformation $E$
+        on $[x]_{E}$.
+      \end{smfont}
+  \end{itemize}
 
   \hii{Change-of-basis Matrix}
-    \par Let
-    \begin{align*}
-      E  = \{e_{1},  e_{2},  \ldots, e_{n}\}  \\
-      E' = \{e_{1}', e_{2}', \ldots, e_{n}'\} \\
-    \end{align*}
-    be 2 bases of $V$.
+    \begin{itemize}
+      \item \tb{Equations}
+        \begin{eqbox}
+          [x]_{E} = A [x]_{E'} \\
+          A = E^{-1} \cdot E'
+        \end{eqbox}
+      \item \tb{Proof 1}
+        \begin{align*}
+          E  = \{e_{1},  e_{2},  \ldots, e_{n}\}  \\
+          E' = \{e_{1}', e_{2}', \ldots, e_{n}'\} \\
+        \end{align*}
+        be 2 bases of $V$.
 
-    \par Let $x$ be an element of $V$.
-    \begin{align*}
-      x = x_{1} e_{1}   + x_{2} e_{2}   + \ldots + x_{n} e_{n}
-        \Rightarrow [x]_{E} = 
+        \par Let $x$ be an element of $V$.
+        \begin{align*}
+          x = x_{1} e_{1}   + x_{2} e_{2}   + \ldots + x_{n} e_{n}
+            \Rightarrow [x]_{E} =
+              \begin{pmatrix}
+                x_{1}  \\
+                x_{2}  \\
+                \ldots \\
+                x_{n}  \\
+              \end{pmatrix} \qquad (1) \\
+          x = x_{1}' e_{1}' + x_{2}' e_{2}' + \ldots + x_{n}' e_{n}'
+            \Rightarrow [x]_{E'} =
+              \begin{pmatrix}
+                x_{1}'  \\
+                x_{2}'  \\
+                \ldots \\
+                x_{n}'  \\
+              \end{pmatrix} \qquad (2) \\
+        \end{align*}
+
+        \begin{align*}
+          e_{1}' = a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n} \\
+          e_{2}' = a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n1} e_{n} \\
+          \ldots \\
+          e_{n}' = a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n} \\
+        \end{align*}
+
+        \par Substitute into $(2)$:
+        \begin{align*}
+          x &= x_{1}'(a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n}) & \\
+            &+ x_{2}'(a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n2} e_{n}) & \\
+            &+ \ldots &\\
+            &+ x_{n}'(a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n}) &\\
+        \end{align*}
+
+        \begin{align*}
+          \Rightarrow \left\{
+          \begin{aligned}
+            x_{1} &= a_{11}x_{1}' + a_{12}x_{2}' + \ldots + a_{1n}x_{n}' \\
+            x_{2} &= a_{21}x_{1}' + a_{22}x_{2}' + \ldots + a_{2n}x_{n}' \\
+            \ldots & \ldots \\
+            x_{n} &= a_{n1}x_{1}' + a_{n2}x_{2}' + \ldots + a_{nn}x_{n}' \\
+          \end{aligned}
+          \right.
+        \end{align*}
+
+        \begin{align*}
+          \Leftrightarrow
           \begin{pmatrix}
             x_{1}  \\
             x_{2}  \\
             \ldots \\
             x_{n}  \\
-          \end{pmatrix} \qquad (1) \\
-      x = x_{1}' e_{1}' + x_{2}' e_{2}' + \ldots + x_{n}' e_{n}'
-        \Rightarrow [x]_{E'} = 
+          \end{pmatrix}
+          =
           \begin{pmatrix}
-            x_{1}'  \\
-            x_{2}'  \\
+            a_{11} & a_{12} & \ldots & a_{1n} \\
+            a_{21} & a_{22} & \ldots & a_{2n} \\
+            \vdots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \ldots & a_{nn} \\
+          \end{pmatrix}
+          \begin{pmatrix}
+            x_{1}' \\
+            x_{2}' \\
             \ldots \\
-            x_{n}'  \\
-          \end{pmatrix} \qquad (2) \\
-    \end{align*}
+            x_{n}' \\
+          \end{pmatrix}
+        \end{align*}
 
-    \begin{align*}
-      e_{1}' = a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n} \\
-      e_{2}' = a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n1} e_{n} \\
-      \ldots \\ 
-      e_{n}' = a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n} \\
-    \end{align*}
+        \begin{align*}
+          [x]_{E} = A[x]_{E'}
+        \end{align*}
 
-    \par Substitute into $(2)$:
-    \begin{align*}
-      x &= x_{1}'(a_{11} e_{1} + a_{21} e_{2} + \ldots + a_{n1} e_{n}) & \\
-        &+ x_{2}'(a_{12} e_{1} + a_{22} e_{2} + \ldots + a_{n2} e_{n}) & \\
-        &+ \ldots &\\
-        &+ x_{n}'(a_{1n} e_{1} + a_{2n} e_{2} + \ldots + a_{nn} e_{n}) &\\
-    \end{align*}
+        \par The matrix $A$ is called a \tb{change-of-basis matrix} from $E$ to $E'$.
 
-    \begin{align*}
-      \Rightarrow \left\{
-      \begin{aligned}
-        x_{1} &= a_{11}x_{1}' + a_{12}x_{2}' + \ldots + a_{1n}x_{n}' \\
-        x_{2} &= a_{21}x_{1}' + a_{22}x_{2}' + \ldots + a_{2n}x_{n}' \\
-        \ldots & \ldots \\
-        x_{n} &= a_{n1}x_{1}' + a_{n2}x_{2}' + \ldots + a_{nn}x_{n}' \\
-      \end{aligned}
-      \right.
-    \end{align*}
+        \par Also:
+        \begin{align*}
+          A &=
+          \begin{pmatrix}
+            [e_{1}']_{E} & [e_{2}']_{E} & \ldots & [e_{n}']_{E}
+          \end{pmatrix} \\
+          &=
+          \begin{pmatrix}
+            E^{-1}e_{1}' & E^{-1}e_{2}' & \ldots & E^{-1}e_{n}'
+          \end{pmatrix} \\
+          &= E^{-1}
+          \begin{pmatrix}
+            e_{1}' & e_{2}' & \ldots & e_{n}'
+          \end{pmatrix} \\
+          &= E^{-1} \times E'
+        \end{align*}
+      \item \tb{Proof 2}
+        \begin{smfont}
+          \par Let $[x]_{E}$ and $[x]_{E'}$ be two vectors.
+          \par After applying the linear transformations $E$ onto $[x]_{E}$ and
+            $E'$ onto $[x]_{E'}$, we obtain the same result x for both transformations.
+          \begin{flalign*}
+            & x = E \cdot [x]_{E} = E' \cdot [x]_{E'} && \\
+            & \ra [x]_{E} = E^{-1} \cdot E' \cdot [x]_{E} && \\
+            & \ra A = E^{-1} \cdot E' && \\
+          \end{flalign*}
+        \end{smfont}
+    \end{itemize}
 
-    \begin{align*}
-      \Leftrightarrow
-      \begin{pmatrix}
-        x_{1}  \\
-        x_{2}  \\
-        \ldots \\
-        x_{n}  \\
-      \end{pmatrix}
-      =
-      \begin{pmatrix}
-        a_{11} & a_{12} & \ldots & a_{1n} \\
-        a_{21} & a_{22} & \ldots & a_{2n} \\
-        \vdots & \vdots & \vdots & \vdots \\
-        a_{n1} & a_{n2} & \ldots & a_{nn} \\
-      \end{pmatrix}
-      \begin{pmatrix}
-        x_{1}' \\
-        x_{2}' \\
-        \ldots \\
-        x_{n}' \\
-      \end{pmatrix}
-    \end{align*}
 
-    \begin{align*}
-      [x]_{E} = A[x]_{E'}
-    \end{align*}
+\hi{Subspace}
+  \hii{Definition}
+    \par A subset $F$ of the vector space $V$ is called a \tb{subspace}
+      of $V$, if the subset $F$ is a vector space.
 
-    \par The matrix $A$ is called a \tb{change-of-basis matrix} from $E$ to $E'$.
+  \hii{Theorem}
+    \par A nonempty subset $F$ of the vector space $V$ over $K$ is a
+      subspace of $V$, if the following conditions hold:
+    \begin{itemize}
+      \item $\forall f_{1}, f_{2} \in F: (f_{1} + f_{2}) \in F$.
+      \item $\forall f \in F, \forall \alpha \in K: \alpha f \in F$.
+    \end{itemize}
 
-    \par Also:
-    \begin{align*}
-      A &=
-      \begin{pmatrix}
-        [e_{1}']_{E} & [e_{2}']_{E} & \ldots & [e_{n}']_{E}
-      \end{pmatrix} \\
-      &=
-      \begin{pmatrix}
-        E^{-1}e_{1}' & E^{-1}e_{2}' & \ldots & E^{-1}e_{n}'
-      \end{pmatrix} \\
-      &= E^{-1}
-      \begin{pmatrix}
-        e_{1}' & e_{2}' & \ldots & e_{n}'
-      \end{pmatrix} \\
-      &= E^{-1} \times E'
-    \end{align*}
+  \hii{Examples}
+    \begin{itemize}
+      \item $F$ is a straight line that passes through the origin.
+        \begin{itemize}
+          \item Basis: $\{\vec{a}\}$ where $\vec{a}$ is the
+            directional vector of the line.
+          \item $dim(F) = 1$ since there is $1$ element in the basis.
+        \end{itemize}
+      \item $F$ is a plane that contains the origin.
+        \begin{itemize}
+          \item Basis: $\{\vec{a_{1}}, \vec{a_{2}}\}$, where
+            $\vec{a_{1}}, \vec{a_{2}}$ are two vectors lying in
+            the plane.
+          \item $dim(F) = 2$
+        \end{itemize}
+      \item $F = \{(0, 0, 0)\}$
+        \begin{itemize}
+          \item Basis: No basis, because the zero vector cannot exists
+            in a basis.
+          \item $dim(F) = 0$
+        \end{itemize}
+      \item $F = R^{3}$
+        \begin{itemize}
+          \item Basis: $\{\vec{OA}, \vec{OB}, \vec{OC}\}$ where
+            $OABC$ is a tetrahedron.
+          \item $dim(F) = 3$
+        \end{itemize}
+    \end{itemize}
+
+  \hii{Subspace and the Origin}
+    \par \tb{Problem}: Prove that any subspace $F$ in $V = R^{3}$ must contain
+      the origin $(0, 0, 0)$.
+    \par \tb{Proof}: \\
+    \ti{
+      Suppose that $(0, 0, 0) \notin F$. \\
+      According to the theorem: $\forall f \in F, \forall \alpha \in K:
+        \alpha f \in F$.
+      \begin{flalign*}
+        &\ra 0 \cdot f = (0, 0, 0) \in F && \\
+      \end{flalign*}
+      This contradicts the assumption. Therefore, the subspace $F$ must contain
+      the origin.
+    }
+
+  \hii{Relationship of two subspaces}
+    \hiii{Intersection and Sum}
+      \par Let $F$ and $G$ be two subspaces of V.
+      \begin{itemize}
+        \item The subset $F \cap G = \{\forall x \in V | x \in F, x \in G\}$ is
+          called the \tb{intersection} of $F$ and $G$.
+        \item The subset $F + G = \{f + g | f \in F, g \in G\}$ is
+          called the \tb{sum} of $F$ and $G$.
+      \end{itemize}
+    \hiii{Theorem}
+      \par Let $F$ and $G$ be two subspaces of $V$.
+      \begin{itemize}
+        \item Both the intersection and the union of $F$ and $G$ are also
+          subspaces of $V$.
+        \item $dim(F + G) = dim(F) + dim(G) - dim(F \cap G)$
+      \end{itemize}

@@ -1,0 +1,293 @@
+\chapter{Linear Mapping - Linear Transformation}
+
+\hi{Linear Mapping}
+  \hii{Definition}
+    \par Let $V$ and $W$ be two vector spaces over $K$. A mapping
+      $f: V \to W$ is called a \tb{linear mapping} if the following
+      conditions hold:
+    \begin{enumerate}
+      \item $\forall x, y \in V, f(x + y) = f(x) + f(y)$
+      \item $\forall x \in V, \forall \alpha \in K: f(\alpha x) = \alpha f(x)$
+        \par \smf{\ti{Corollary}: $\forall x, y \in V,
+          \forall \alpha, \beta \in K,
+          f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)$}
+    \end{enumerate}
+    \par A linear mapping usually has a matrix representation:
+      \begin{eqbox}
+        f(x) = Mx
+      \end{eqbox}
+  \hii{Linear Mapping and Spanning Set}
+    \hiii{Explanation}
+      \par Let $f: V \to W$ be a linear mapping;
+        $x \in V$ and
+        $E = \{e_{1}, e_{2}, \ldots, e_{n}\}$ be a spanning set of $V$.
+      \begin{flalign*}
+        & x = \alpha_{1} e_{1}
+             + \alpha_{2} e_{2} + \ldots
+             + \alpha_{n} e_{n} && \\
+        & \ra f(x) = f(
+               \alpha_{1} e_{1}
+             + \alpha_{2} e_{2} + \ldots
+             + \alpha_{n} e_{n}
+        ) && \\
+        & \ra f(x) =
+               f(\alpha_{1} e_{1})
+             + f(\alpha_{2} e_{2}) + \ldots
+             + f(\alpha_{n} e_{n})
+        && \\
+        & \ra f(x) =
+               \alpha_{1}f(e_{1})
+             + \alpha_{2}f(e_{2}) + \ldots
+             + \alpha_{n}f(e_{n})
+        && \\
+      \end{flalign*}
+
+    \hiii{Problem}
+      \par Given $x \in V$, a spanning set $E$ of $V$ and
+        $f(e_{i}), i: 1 \to n$. Calculate $f(x)$.
+
+      \begin{itemize}
+        \item \tb{Method 1}: Using vector representation and linear system:
+          \begin{itemize}
+            \item \tb{Step 1}: Because $E$ is a spanning set of $V$:
+              \begin{flalign*}
+                & x = \SUM{_{i = 1}^{n} \alpha_{i} e_{i}} && \\
+                & f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})} && \\
+              \end{flalign*}
+            \item \tb{Step 2}: Solve the linear system for $a_{i}, i; 1 \to n$:
+              \begin{flalign*}
+                & x = \SUM{_{i = 1}^{n} \alpha_{i} e_{i}} && \\
+                & \ra
+                  \begin{cases}
+                    \alpha_{1}e_{11} + \alpha_{2}e_{21}
+                       + \ldots + \alpha_{n}e_{n1} = x_{1} \\
+                    \alpha_{1}e_{12} + \alpha_{2}e_{22}
+                       + \ldots + \alpha_{n}e_{n2} = x_{2} \\
+                    \ldots \\
+                    \alpha_{1}e_{1n} + \alpha_{2}e_{2n}
+                       + \ldots + \alpha_{n}e_{nn} = x_{n} \\
+                  \end{cases}
+                &&\\
+              \end{flalign*}
+            \item \tb{Step 3}: Calculate f(x):
+              \begin{flalign*}
+                f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})} 
+              \end{flalign*}
+          \end{itemize}
+
+        \item \tb{Method 2}: Using matrix representation:
+          \begin{itemize}
+            \item \tb{Step 1}: $E$ is a spanning set of $V$:
+              \begin{flalign*}
+                & x = \SUM{_{i = 1}^{n} \alpha_{i} e_{i}} && \\
+                & \ra x 
+                = \begin{pmatrix}
+                    e_{1} & e_{2} & \ldots & e_{n}
+                  \end{pmatrix}
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}                  
+                = E
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                && \\
+                & f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})} && \\
+                & \ra f(x) 
+                = \begin{pmatrix}
+                    f(e_{1}) & f(e_{2}) & \ldots & f(e_{n})
+                  \end{pmatrix}
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}                  
+                = F(E)
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                && \\
+              \end{flalign*}
+            \item \tb{Step 2}: Solve the linear system for $a_{i}, i; 1 \to n$:
+              \begin{flalign*}
+                & x = E
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                \ra
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                  = E^{-1} x    \qquad (1)
+                &&
+              \end{flalign*}
+            \item \tb{Step 3}: Calculate $f(x)$:
+              \begin{flalign*}
+                & f(x) = F(E)
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                \ra
+                  \begin{pmatrix}
+                    \alpha_{1} \\
+                    \alpha_{2} \\
+                    \ldots     \\
+                    \alpha_{n}
+                  \end{pmatrix}
+                  = F(E)^{-1} f(x)     \qquad (2)
+                &&
+              \end{flalign*}
+          \end{itemize}
+          \par From $(1)$ and $(2)$:
+              \begin{flalign*}
+                & E^{-1} x = F(E)^{-1} f(x) && \\
+                & \ra f(x) = F(E) E^{-1} x && \\
+              \end{flalign*}
+
+
+\hi{Matrix Representation of Linear Mapping}
+  \par Given:
+    \begin{itemize}
+      \item the linear mapping $f: V \to W$
+      \item basis of $V$: $E = \{e_{1}, e_{2}, \ldots, e_{n}\}$
+      \item basis of $W$: $F = \{w_{1}, w_{2}, \ldots, w_{n}\}$
+    \end{itemize}
+
+  \par A matrix:
+    \begin{eqbox}\label{motm-01}
+      A =
+      \begin{pmatrix}
+        [f(e_{1})]_{F} & [f(e_{2})]_{F} & \ldots & [f(e_{n})]_{F}
+      \end{pmatrix}
+    \end{align*}
+  is called the \tb{matrix of the mapping} in two bases $E$ and $F$.
+
+  \par $\forall x \in V$, we have:
+    \begin{eqbox} \label{motm-02}
+      [f(x)]_{F} = A[x]_{E}
+    \end{eqbox}
+
+  \par From equation \eqref{motm-01}:
+  \begin{flalign*}
+      & A =
+        \begin{pmatrix}
+          [f(e_{1})]_{F} & [f(e_{2})]_{F} & \ldots & [f(e_{n})]_{F}
+        \end{pmatrix}
+      && \\
+      & = F^{-1} 
+        \begin{pmatrix}
+          f(e_{1}) & f(e_{2}) & \ldots & f(e_{n})
+        \end{pmatrix}
+  \end{flalign*}   
+  \par Assume that $f(x) = Mx$.
+    \begin{flalign*}
+      & A = F^{-1}
+        \begin{pmatrix}
+          Me_{1} & Me_{2} & \ldots & Me_{n}
+        \end{pmatrix}
+      && \\
+      & = F^{-1} M
+        \begin{pmatrix}
+          e_{1} & e_{2} & \ldots & e_{n}
+        \end{pmatrix}      
+      && \\
+      & = F^{-1}ME
+    \end{flalign*}
+
+  \par From equation \eqref{motm-02}:
+  \begin{flalign*}
+    & [f(x)]_{F} = A[x]_{E} && \\
+    & \ra F^{-1} f(x) = A E^{-1} x && \\
+    & \ra f(x) = F A E^{-1} x && \\
+  \end{flalign*}
+
+  \begin{eqbox}
+    A = F^{-1} ME \\
+    f(x) = F M E^{-1} x
+  \end{eqbox}
+
+  \par If the mapping is $f: V \to V$, we have the similar results:
+  \begin{align*}
+    A = E^{-1} ME \\
+    f(x) = E M E^{-1} x
+  \end{align*}
+
+
+\hi{Kernel and Image of a Linear Mapping}
+  \hii{Definitions}
+    \par Let $f: V \to W$ be a linear mapping.
+    \begin{itemize}
+      \item The subset $ker(f) = \{\forall x \in V | f(x) = 0 \}$ is called
+        the \tb{kernel} of the linear mapping.
+      \item The subset $im(f) = \{\forall y \in W | \exists x \in V: y = f(x) \}$
+        is called the \tb{image} of the linear mapping.
+    \end{itemize}
+  \hii{Theorems}
+    \begin{itemize}
+      \item $ker(f)$ is a subspace of $V$.
+      \item $im(f)$ is a subspace of $W$.
+      \item $dim(ker(f)) + dim(im(f)) = dim(V)$
+    \end{itemize}
+  \hii{Problems}
+    \begin{enumerate}
+      \item Find one basis and a dimension of $ker(f)$.
+        \begin{itemize}
+          \item \tb{Step 1}:
+            \begin{flalign*}
+              & \forall x \in V, find f(x). &&
+            \end{flalign*}
+          \item \tb{Step 2}: 
+            \begin{flalign*}
+              & \forall x \in ker(f): f(x) = 0 && \\
+              & \ra Ax = 0 \qquad \mbox{(homogeneous system)} &&
+            \end{flalign*}
+            \par Solve the system, find a general solution.
+          \item \tb{Step 3}: From the general solution, deduce the
+            basis and the dimension of $ker(f)$.
+        \end{itemize}
+      \item Find one basis and a dimension of $im(f)$.
+        \begin{itemize}
+          \item \tb{Step 1}: Select a spanning set $E$ of $V$:
+            \begin{flalign*}
+              & E = \{e_{1}, e_{2}, \ldots, e_{n}\} &&
+            \end{flalign*}
+          \item \tb{Step 2}: Compute
+            \begin{flalign*}
+              & f(e_{1}), f(e_{2}), \ldots, f(e_{n}) &&
+            \end{flalign*}          
+          \item \tb{Step 3}:
+            \begin{flalign*}
+              & \forall y \in im(f): \exists x \in V: y = f(x) && \\
+              & \ra y = f(\alpha_{1}e_{1}
+                        + \alpha_{2}e_{2} + \ldots +
+                          \alpha_{n}e_{n}) && \\
+              & = \alpha_{1}f(e_{1}) + \alpha_{2}f(e_{2})
+                        + \ldots + \alpha_{n}f(e_{n}) && \\
+              & \ra \{f(e_{1}), f(e_{2}), \ldots, f(e_{n})} = B
+                \mbox{ is a spanning set for } im(f)
+              && \\
+              & \ra dim(im(f)) = rank(B) &&
+            \end{flalign*}
+            \par The basis of $im(f)$ is all nonzero rows of the Echelon form
+              of $B$.
+        \end{itemize}
+    \end{enumerate}

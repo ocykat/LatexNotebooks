@@ -1,0 +1,153 @@
+\chapter{Euclidean Space}
+
+\hi{Inner Product}
+  \hii{Inner Product}
+    \hiii{Notation}
+      $\iprod{x, y}$: inner product of $x$ and $y$
+    \hiii{Definition}
+      \par Let $V$ be a real vector space. An inner product in $V$ is a real
+        function:
+        \begin{eqbox}
+          \begin{array}{cccc}
+            f: & V \times V & \longrightarrow & R \\
+               & (x, y)     & \longrightarrow & \iprod{x, y}
+          \end{array}
+        \end{eqbox}
+        with 4 conditions:
+        \begin{itemize}
+          \item $\forall y \in V, \iprod{x, y} \geq 0 \mbox{ and }
+            \iprod{x, x} = 0 \ra x = 0$
+          \item $\forall x, y \in V, \iprod{x, y} = \iprod{y, x}$
+          \item $\forall x, y \in V, \forall \alpha \in \mathbb{R},
+            \iprod{\alpha x, y} = \alpha \iprod{x, y}$
+          \item $\forall x, y, z \in V,
+            \iprod{x + y, z} = \iprod{x, z} + \iprod{y, z}$
+        \end{itemize}
+
+  \hii{Euclidean Space}
+    \par A real finite dimensional vector space with inner products is called
+      an \tb{Euclidean space}.
+    \begin{smfont}
+      \par True definition: A real finite dimensional vector space with inner
+        products is called an \tb{inner product} space. An \tb{Euclidean space}
+        is an inner product space in which each inner product is a dot product.
+        In other words, an Euclidean space is one case of inner product space.
+    \end{smfont}
+
+  \hii{Quantities}
+    \begin{itemize}
+      \item The length of a vector $x$:
+        \begin{eqbox}
+          ||x|| = \sqrt{\iprod{x, x}}
+        \end{eqbox}
+      \item The distance between two vectors $x$ and $y$:
+        \begin{eqbox}
+          dist(x, y) = \|x - y\| = sqrt{\iprod{x - y, x - y}}
+        \end{eqbox}
+      \item The angle between two vectors $x$ and $y$:
+        \begin{eqbox}
+          \cos(\alpha) = \frac{\iprod{x, y}}{\|x\|\|y\|}
+        \end{eqbox}
+    \end{itemize}
+
+  \hii{Numeric Calculation}
+    \par Given two inner vectors:
+      \begin{align*}
+        x = (x_{1}, x_{2}, \ldots, x_{n}) \\
+        y = (y_{1}, y_{2}, \ldots, y_{n})
+      \end{align*}
+    and their inner product:
+      \begin{align*}
+        \iprod{x, y} = m_{11} x_{1}y_{1}
+                     + m_{12} x_{1}y_{2}
+                     + \ldots
+                     + m_{1n} x_{1}y_{n}
+                     + m_{21} x_{2}y_{1}
+                     + \ldots
+                     + m_{nn} x_{n}y_{n}
+      \end{align*}
+    \par We can organize all coefficient $m_{ij}$ into a matrix $M$:
+    \begin{align*}
+      M = \begin{pmatrix}
+        m_{11} & m_{12} & \ldots & m_{1n} \\
+        m_{21} & m_{22} & \ldots & m_{2n} \\
+        \vdots & \vdots & \vdots & \vdots \\
+        m_{n1} & m_{n2} & \ldots & m_{nn} \\
+      \end{pmatrix}
+    \end{align*}
+    \par The inner product of $x$ and $y$ can be written as:
+    \begin{eqbox}
+      \iprod{x, y} = xMy^{T}
+    \end{eqbox}
+    where $x$ and $y$ are both row matrices.
+
+
+\hi{Orthogonal complement of a subspace}
+  \hii{Definitions}
+    \par Let $V$ be an Euclidean space. Given two vectors $x, y \in V$.
+      \begin{enumerate}
+        \item $\iprod{x, y} = 0 \ra x \bot y$ ($x$ is orthogonal to $y$)
+        \item $\forall f \in M: x \bot f \ra x \bot M$
+          ($x$ is orthogonal to $M$)
+      \end{enumerate}
+    \par Let $F$ be a subspace of $V$. The orthogonal complement of $F$:
+      \begin{align*}
+        F^{\bot} = \{\forall v \in V | v \bot F\}
+      \end{align*}
+  \hii{Theorems}
+    \hiii{Theorem 1}
+      \par A vector $v$ is orthogonal to a subspace $F$ if and only if the
+        vector $v$ is orthogonal to a spanning set of $F$.
+        \begin{align*}
+          v \bot F \lra v \bot S_{F}
+        \end{align*}
+        where $S_{F}$ is a spanning set of $F$.
+    \hiii{Theorem 2}
+      \par Let $F$ be a subspace of $V$. These statements hold true:
+        \begin{enumerate}
+          \item $F^{\bot}$ is a subspace of $V$.
+          \item $F^{\bot} \cap F = {O}$ (the origin)
+          \item $F + F^{\bot} = V$
+          \item $dim(F) + dim(F^{\bot}) = dim(V)$
+          \item $\forall v \in V:
+                  \; !\exists f \in F, \; !\exists g \bot F: v = f + g$.
+            \begin{itemize}
+              \item The vector $f$ is called an \tb{orthogonal projection}
+                of $v$ onto $F$ and is denoted by $proj_{F}v = f$.
+              \item The length of the vector $g$ is called the distance from $v$
+                to $F$ and is denoted by $dist(v, F) = \|g\| = \|v - f\|$
+            \end{itemize}
+        \end{enumerate}
+  \hii{Problems}
+    \hiii{Find a basis of $F^{\bot}$ and $dim(F^{\bot}$}
+      \begin{itemize}
+        \item \tb{Step 1}: Find a spanning set $S_{F}$ of $F$.
+          \begin{flalign*}
+            S_{F} = \{f_{1}, f_{2}, \ldots, f_{m}\}
+          \end{flalign*}
+          \par \smf{Usually, a spanning set is enough. But to simplify the
+            next step, it is best to find a basis. To find a basis, try to
+            simplify the equations until obtaining the least number of
+            vectors.}
+        \item \tb{Step 2}: Find a basis of $F^{\bot}$:
+          \begin{flalign*}
+            & \forall x \in F^{\bot}: x \bot $F$ && \\
+            & \ra \forall x \in F^{\bot}: x \bot S_{F} && \\
+            & \ra
+            \begin{cases}
+              x \bot f_{1} \\
+              x \bot f_{2} \\
+              \ldots       \\
+              x \bot f_{m}
+            \end{cases}
+            \ra
+            \begin{cases}
+              \iprod{x, f_{1}} = 0 \\
+              \iprod{x, f_{2}} = 0 \\
+              \ldots               \\
+              \iprod{x, f_{m}} = 0 \\
+            \end{cases}
+          \end{flalign*}
+          \par Solve the system, find a general solution $\ra$ basis and
+            dimension of $F^{\bot}$.
+      \end{itemize}

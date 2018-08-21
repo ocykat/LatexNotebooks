@@ -1,0 +1,106 @@
+\chapter{Eigenvalueus and Eigenvectors}
+
+\hi{Eigenvalues and Eigenvectors}
+  \hii{Definitions}
+    \par Let $A$ be a \tb{square matrix} over $K$.
+    \par A number $\lambda_{0} \in K$ is called an \tb{eigenvalue} of the
+      matrix A, if there exists a nonzero vector $X_{0}$ such that
+      $AX_{0} = \lambda_{0} X_{0}$.
+    \par The vector $X_{0}$ such that $AX_{0} = \lambda_{0} X_{0}$ is called
+      an \tb{eigenvector} of $A$ corresponding to $\lambda_{0}$.
+  \hii{Characteristic Equation}
+    \par \tb{Equation}
+      \begin{eqbox}
+        det(A - \lambda I) = 0
+      \end{eqbox}
+    \par Explanation:
+      \begin{smfont}
+        \par Assume that $\lambda_{0}$ is an eigenvalue of $A$.
+          \begin{flalign*}
+            & \ra \exists X_{0} \neq 0: AX_{0} = \lambda_{0} X_{0} && \\
+            & \ra AX_{0} = \lambda_{0} X_{0} && \\
+            & \ra AX_{0} - \lambda_{0} X_{0} = 0 && \\
+            & \ra (A - \lambda_{0}I)X_{0} = 0
+          \end{flalign*}
+        \par Because $X_{0} \neq 0$:
+          \begin{flalign*}
+            & \ra det(A - \lambda_{0}I) = 0 \qquad (*)
+          \end{flalign*}
+      \end{smfont}
+  \hii{Problem: Find all eigenvalues and eigenvectors of a square matrix}
+    \begin{itemize}
+      \item \tb{Step 1}: Solve the characteristic equation.
+        \begin{align*}
+          det(A - \lambda I) = 0
+        \end{align*}
+        All roots of the equation are eigenvalues.
+      \item \tb{Step 2}: Find the corresonding eigenvectors for each eigenvalue.
+        \par Let $\lambda_{k}$ be any eigenvalue.
+        Solve the system:
+        \begin{align*}
+          (A - \lambda_{k}I)X = 0
+        \end{align*}
+        \par All nonzero solutions of the system are eigenvectors of the matrix
+          $A$ corresponding to $\lambda_{k}$.
+    \end{itemize}
+  \hii{Formula: Characteristic equation of 3-by-3 matrix}
+    \begin{eqbox}
+      - \lambda^{3} + trace(A) \lambda^{2} - (A_{11} + A_{22} + A_{33}) \lambda
+      + det(A) = 0
+    \end{eqbox}
+
+\hi{Diagonalization}
+  \hii{Definitions}
+    \hiii{Spectrum}
+      \par A set of all eigenvalues of the square matrix $A$ is called the
+        \tb{spectrum} of $A$ and is denoted by $\delta(A)$.
+    \hiii{Algebraic multiplicity}
+      \par Let $\lambda_{0}$ be an eigenvalue of $A$. The \tb{algebraic
+        multiplicity} of $\lambda_{0}$ is its multiplicity (degree)
+        as the root of the characteristic equation. 
+    \hiii{Eigenspace}
+      \par All solutions of the system $(A - \lambda_{k} I) X = 0$ form
+        a subspace $E_{\lambda_{k}}$. This subspace is called an \tb{eigenspace}
+        of $\lambda_{k}$.
+    \hiii{Geometric multiplicity}
+      \par The dimension of the eigenspace $E_{\lambda_{k}}$ is called
+        the \tb{geometric multiplicity} of $\lambda_{k}$.
+    \hiii{Diagonalizability}
+      \par A square matrix $A$ is \tb{diagonalizable} if
+      \begin{align*}
+        A = P D P^{-1}
+      \end{align*}
+      where $D$ is diagonal and $P$ is invertible.
+  \hii{Theorems}
+    \hiii{Theorem 1}
+      \begin{itemize}
+        \item $\forall \lambda_{0} \in \delta(A):
+          1 \leq geo(\lambda_{0}) \leq alg(\lambda_{0})$
+        \item Let $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ be $m$
+          distinct eigenvalues and $X_{1}, X_{2}, \ldots, X_{m}$ be $m$
+          eigenvectors of $A$ corresponding to $\lambda_{1},
+          \lambda_{2}, \ldots, \lambda_{m}$. Then the set
+          $\{X_{1}, X_{2}, \ldots, X_{m}\}$ 
+      \end{itemize}
+    \hiii{Theorem 2}
+      \par Let $A$ be a square matrix of order $n$. A is diagonalizable if
+        and only if there exists exactly $n$ linear independent eigenvectors.
+      \par \tb{Corollary}: A square matrix $A$ is diagonalizable if and only
+        if $\forall \lambda_{k} \in \delta(A)$:
+
+  \hii{Problem: Diagonalizing matrix $A$}
+    \begin{itemize}
+      \item \tb{Step 1}: Fiding eigenvalues and their algebraic multiplicity
+        by solving the characteristic equation.
+      \item \tb{Step 2}: Finding basis for every eigenspace by solving the
+        system $(A - \lambda I) X = 0$.
+        \begin{align*}
+          geo(\lambda_{k}) = dim(E_{\lambda_{k}})
+        \end{align*}
+      \item \tb{Step 3}: Conclusion
+        \par If $\forall \lambda_{k} \in \delta(A):
+          geo(\lambda_{k}) = alg(\lambda_{k})$ then $A$ is diagonalizable. 
+    \end{itemize}
+
+\hi{Orthogonal Diagonalization}
+  \hii{Definitions}

@@ -1,0 +1,80 @@
+\chapter{MSI Circuits}
+
+\hi{Decoder}
+  \hii{Introduction}
+    \par A decoder is a logic circuit that accepts a set of inputs that
+      represents a binary number and activates only the output that
+      corresponds to that input number. All other outputs remain inactive.
+
+  \hii{Inputs}
+    \par For a decoder which has $N$ inputs, it may not utilize all $2^{N}$
+      possible input codes but only certain ones. (BCD-to-decimal decoder is
+      one example). For decoders of this type, if any of the unused code is
+      applied to the input, none of the outputs will be activated.
+
+  \hii{Referring decoder}
+    \par Some examples:
+    \begin{itemize}
+      \item 3-line-to-8-line decoder: 3 input lines, 8 output lines
+      \item binary-to-octal decoder: convert a 3bit binary input and activates
+        one of the eight outputs corresponding to that code.
+      \item 1-of-8 decoder: only 1 of the 8 outputs is activated at one time
+    \end{itemize}
+
+  \hii{ENABLE Inputs}
+    \par Some decoders have one or more ENABLE inputs to control the decoder.
+
+  \hii{BCD-to-Decimal Decoders - Driver}
+    \par Difference between a decoder and a driver: the driver has
+      \footnotemark{open-collector} outputs that can operate at higher current
+      and voltage limits than a normal decoder output.
+      \footnotetext{Open-collector output: the output is connected to the base (B)
+        of a NPN transistor. If B is triggered, then there is electric current going
+        from collector (C) to emitter (E).}
+
+\hi{Encoder}
+  \hii{Introduction}
+    \par An \tb{encoder} has a number of input lines, only \tb{one} of which is
+    activated at a given time, and produces an $N$-bit output code, depending on
+    which input is activated.
+    \par Example: octal-to-binary encoder.
+  \hii{Priority Encoder}
+    \par Drawback of simple encoder: when more than one input is activated at one time,
+      the output is unexpected.
+    \par A \tb{priority encoder} ensure that when two or more inputs are activated, the
+    output code will correspond to the highest-numbered input.
+    \par Example: 74147 Decimal-to-BCD Priority Encoder
+  \hii{Switch Encoder}
+  \par Example: 74147: switch priority decoder
+    \par \tb{Switch encoder} is used whenever BCD data must be entered manually into a
+      digital system.
+    \par When a key is pressed, the BCD code for the corresponding digit is sent to a
+      four-bit FF register;
+    \par When another key is pressed, the BCD code for the corresponding digit is sent to
+      \ti{another} four-bit FF register;
+    \par A calculator that can handle eight digits will have eight four-bit registers to
+    store the BCD. Each four-bit register drives a decoder/driver and a numerical display. 
+
+\hi{Multiplexers (Data selectors)}
+  \hii{Introduction}
+    \par A \tb{digital multiplexer} or \tb{data selector} is a logic circuit that accepts
+      several digital data inputs and selects one of them at any given time to pass on to
+      the output.
+    \par The routing of the desired data input is controlled by SELECT (ADDRESS) inputs.
+  \hii{Two-Input Multiplexer}
+  \hii{Quad Two-Input MUX (74ALS157)}
+  \hii{Four-Input Multiplexer}
+    \par Another approach is to use tristate buffers.
+    \par The decoder is used to make sure that only one input is selected.
+  \hii{Eight-Input Multiplexer}
+    \par Example: 74ALS151
+
+\hi{Demultiplexers (Data Distributors)}
+  \hii{Introduction}
+    \par A \tb{demultiplexer} takes a single input and distributes it over several outputs.
+    \par 1 DATA input signal is transmitted to \tb{only 1 output} at the time. The output is
+      selected by SELECT inputs.
+  \hii{1-Line-to-8-Line Demultiplexer}
+    \par A single data input line $I$ is connected to all eight AND gates.
+    \par At any moment, only one AND gate is enabled.
+    \par Data input $I$ will appear at output of the only enabled AND gate.

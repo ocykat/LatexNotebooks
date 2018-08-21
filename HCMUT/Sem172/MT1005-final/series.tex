@@ -1,0 +1,79 @@
+\clearpage
+
+\begin{multicols}{2}
+
+\hi{Infinite Series}
+  \hii{Numerical Series}
+    \hiii{Definition}
+      \begin{itemize}
+        \item \tb{Series}
+          \begin{equation*}
+            \sum a_{n} = a_{1} + a_{2} + \ldots + a_{n}
+          \end{equation*}
+        \item \tb{Partial Sum}
+          \begin{equation*}
+            \sum S_{n} = a_{1} + a_{2} + \ldots + a_{n} = \SUM_{i = 1}^{n} a_{i}
+          \end{equation*}
+      \end{itemize}
+
+    \hiii{Convergence - Divergence}
+      \begin{itemize}
+        \item Case 1: $lim_{n \to \infty} S_{n}$ exists.
+          \par $\ra S_{n}$ converges, $\sum a_{n}$ is \tb{convergent}.
+        \item Case 2: $lim_{n \to \infty} S_{n}$ does not exists.
+          \par $\ra S_{n}$ diverges, $\sum a_{n}$ is \tb{divergent}.
+      \end{itemize}
+
+    \hiii{Geometric series}
+      \begin{itemize}
+        \item \tb{Series}
+          \begin{equation*}
+            a, ar^{1}, ar^{2}, \ldots, ar^{n}, \ldots
+          \end{equation*}
+        \item \tb{Simplified Series (SS)}
+          \begin{equation*}
+            \pmb{1}, r^{1}, r^{2}, \ldots, r^{n}, \ldots
+          \end{equation*}        
+        \item \tb{Sum of SS}
+          \begin{equation}
+            S = \pmb{1} + r^{1} + r^{2} + \ldots + r^{n} + \ldots
+              = \SUM_{\pmb{n = 0}}^{\infty} r^{n}
+          \end{equation}
+          \par \ti{Note: $n$ starts at $0$, first term is $1$}.
+          \begin{itemize}          
+            \item $|r| < 1$: converges
+              \begin{equation}
+                S = \frac{1}{1 - r}
+              \end{equation}
+            \item $|r| > 1$: diverges
+          \end{itemize}
+      \end{itemize}
+
+  \hii{Power series}
+    \hiii{Form}
+      \begin{equation*}
+        S = c_{0} + c_{1}x + c_{2}x^{2} + \ldots + c_{n}x^{n} \ldots = \SUM_{n = 0}^{n} c_{n}x^{n}
+      \end{equation*}
+    \hiii{Interval of Convergence (IoC)}
+      \begin{itemize}
+        \item \tb{Special case}: $\forall n: c_{n} = 1$ (geometric series)
+          \par $S$ converges $\lra |x| < 1$
+          $\ra$ \tb{IoC}: $x \in (-1, 1)$
+        \item \tb{General case}:
+          \par \tb{IoC}: $x \in (-R, R)$
+      \end{itemize}
+      \par \tb{Finding IoC}:
+        \begin{align*}
+          \lim_{n \to \infty} \sqrt[n]{|c_{n}x^{n}|} = |x| \cdot R^{-1} < 1 \ra x \in (-R, R)
+        \end{align*}
+    \hiii{Some useful limits}
+      \begin{flalign*}
+        &\lim_{n \to \infty} \sqrt[n]{n} = 1 && \\
+        &\lim_{n \to \infty} \bigg( 1 + \frac{1}{n} \bigg)^{n} = e && \\
+        &\lim_{n \to \infty} \frac
+                            {a_{\alpha}n^{\alpha} + a_{\alpha - 1}n^{\alpha - 1} + \ldots}
+                            {b_{\alpha}n^{\alpha} + b_{\alpha - 1}n^{\alpha - 1} + \ldots}
+                            = \frac{a_{\alpha}}{b_{\alpha}} &&
+      \end{flalign*}
+
+\end{multicols}

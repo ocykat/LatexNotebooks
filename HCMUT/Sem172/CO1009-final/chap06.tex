@@ -1,0 +1,41 @@
+\begin{multicols}{3}
+
+\hi{Digital Arithmetic}
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{1's complement}: obtained by convert $0 \to 1$ and $1 \to 0$.
+      \item \tb{2's complement}: obtained by adding 1 to 1's complement.
+      \item \tb{Signed numbers}: include positive and negative numbers.
+      \item \tb{Unsigned numbers}: include only non-negative numbers.
+      \item \tb{Sign bit}: the bit in front of the MSB to store the sign
+        of a signed number.
+    \end{itemize}
+
+  \hii{Number Representation}
+    \par Representing signed number requires two parts: magnitude and sign bit.
+    \begin{itemize}
+      \item \tb{Positive numbers}: magnitude is in \tb{true binary} form, sign bit is 0.
+      \item \tb{Negative numbers}: magnitude is in \tb{2's complement} form, sign bit is 1.
+    \end{itemize}
+
+  \hii{Operations}
+    \hiii{Negation}
+      \par To negate a number, take it 2's complement.
+    \hiii{Subtraction}
+      \par To subtract $a$ to $b$, add $a$ with the 2's complement of $b$.
+    \hiii{BCD Addition}
+      \par Add digit by digit. For each pair of digits:
+      \begin{itemize}
+        \item If sum is $\leq 9$: accept sum.
+        \item If sum is $> 9$: add 6 to sum and carry 1 to the next pair.
+      \end{itemize}
+    \hiii{HEX Addition}
+      \par Add digit by digit.
+      \begin{itemize}
+        \item If sum is $\leq F$: accept sum.
+        \item If sum is $> F$: subtract $F$ from sum and carry 1 to the next pair.
+      \end{itemize}
+    \hiii{HEX 2's Complement}
+      \par Subtract each digit \ti{from} $F$. Then add 1.
+
+\end{multicols}

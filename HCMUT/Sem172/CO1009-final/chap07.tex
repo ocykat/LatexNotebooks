@@ -1,0 +1,92 @@
+\begin{multicols}{3}
+
+\hi{Counters \& Registers}
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Asynchronous/Ripple Counter}: input $CLK$ connects to only
+        one FF
+      \item \tb{Synchronous Counter}: input $CLK$ connects to all FFs
+      \item \tb{Decade Counter}: any MOD10 counter
+      \item \tb{BCD Counter}: decade counter that counts from 0 to 9
+      \item \tb{Ring Counter}: in a ring counter, value of $Q_{(i - 1) \mod MOD}$
+        is passed to $Q_{i \mod MOD}$ after a transition. Simplest version is using
+        $D$ FFs (each $Q$ is connected to $D$ of the next FF).
+      \item \tb{Johnson Counter}: constructed exactly like a ring counter, except that
+        $D$ of the first FF is connected to $\bar{Q}$ of the last FF.
+    \end{itemize}
+
+  \hii{Asynchronous Counter Formulas}
+    \par Let $N$ be the number of FFs.
+    \hiii{MOD Number}
+      \begin{eqbox}
+        MOD = 2^{N}
+      \end{eqbox}
+    \hiii{Frequency}
+      \begin{eqbox}
+        f_{out} = \frac{f_{in}}{MOD} = \frac{f_{in}}{2^{N}}
+      \end{eqbox}
+    \hiii{Propagation Delay}
+      \begin{eqbox}
+        T_{clock} \geq N \times t_{PD} \\
+        f_{max} = \frac{1}{N \times t_{PD}}
+      \end{eqbox}
+
+  \hii{Designing Counter Problems}
+    \hiii{Asynchronous Counters}
+      \begin{itemize}
+        \item \tb{CLK inputs}
+          \begin{itemize}
+            \item \tb{UP} counter: $Q$ of the previous FF is connected to
+              $CLK$ of the next FF.
+            \item \tb{DOWN} counter: $\bar{Q}$ of the previous FF is connected to
+                $CLK$ of the next FF.
+          \end{itemize}
+        \item \tb{JK FF}
+          \par Both $J$ input and $K$ input are connected to $1$. (toggle state)
+        \item \tb{D FF}
+          \par The $D$ input is connected to the $\bar{Q}$ output of the same FF.    
+      \end{itemize}
+      
+    \hiii{Synchronous Counters}
+      \begin{itemize}
+        \item \tb{CLK inputs}
+          \par All $CLK$ inputs of all FFs are connected to \tb{one} common
+            clock signal.
+        \item \tb{JK FF}
+          \par Both $J$ input and $K$ input of the $i_{th}$ FF are connected to
+            $Q_{0} \cdot Q_{1} \cdot \ldots \cdot Q_{i - 1}$.
+            \begin{equation}
+              J_{i} = K_{i} = \PROD{_{j = 0}^{i - 1} Q_{j}}
+            \end{equation}
+        \item \tb{D FF}
+          \par The $D$ input of the $i_{th}$ FF is connected to
+            $Q_{0} \cdot Q_{1} \cdot \ldots \cdot Q_{i - 1} \cdot \bar{Q}$.
+            \begin{equation}
+              D_{i} = \bigg( \PROD{_{j = 0}^{i - 1} Q_{j}} \bigg) \cdot \bar{Q_{i}}
+            \end{equation}
+        \item \tb{$\pmb{MOD < 2^{N}}$}
+          \par All $Q$ outputs that are 1 if COUNTER $= MOD$ are inputs of a NAND gate.
+            The output of the NAND gate is connected to all asynchronous $CLR$ input
+            of all $FF$.
+        \item \tb{Special Counting Sequence}
+          \begin{itemize}
+            \item \tb{Step 1}: Create a previous state - next state table for all
+              state from $0$ to $2^{N} \geq MAX$ \ti{in binary order}.
+              \par \ti{All undefined state should be the previous state of state $0$}.
+            \item \tb{Step 2}: Determine the value of $J$s and $K$s (or $D$s) for
+              each transition.
+                \begin{tabular}{|c|c|c|}
+                  \hline
+                  \textbf{Transition} & \textbf{J} & \textbf{K} \\ \hline
+                  $0 \to 0$           & 0          & X          \\ \hline
+                  $0 \to 1$           & 1          & X          \\ \hline
+                  $1 \to 0$           & X          & 1          \\ \hline
+                  $1 \to 1$           & X          & 0          \\ \hline      
+                \end{tabular}
+            \item \tb{Step 3}: Use K-map to simplify each $J$ and $K$ (or $D$).
+            \item \tb{Step 4}: Construct the circuit.
+          \end{itemize}
+      \end{itemize}
+
+
+\end{multicols}

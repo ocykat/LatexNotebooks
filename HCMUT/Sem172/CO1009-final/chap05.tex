@@ -1,0 +1,103 @@
+\begin{multicols}{4}
+\hi{Flip-flops}
+  
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Combinational circuits}: circuit \ti{without} memory
+      \item \tb{Sequential circuits}: circuit \ti{with} memory
+      \item \tb{Latch}: memory device \ti{without} $CLK$
+      \item \tb{FF}: flip-flop - memory device \ti{with} $CLK$
+      \item \tb{PGT}: positive-going transition - when $CLK$ goes $0 \to 1$
+      \item \tb{NGT}: negative-going transition - when $CLK$ goes $1 \to 0$
+      \item \tb{Setup time ($t_{S}$)}: interval preceding the active transition
+        of $CLK$ during which the control input must be maintainted at proper
+        level.
+      \item \tb{Hold time ($t_{H}$)}: interval following the active transition
+        of $CLK$ during which the control input must be maintainted at proper
+        level.
+      \item \tb{Register}: device consists of FFs to store data
+      \item \tb{One-shot}: device for switch-debouncing
+
+    \end{itemize}
+
+  \hii{Function Tables}
+    \hiii{NAND Latch (active LOW)}
+      \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Set} & \textbf{Reset} & $\pmb{Q}$ \\
+      \hline
+      1            & 1              & NC         \\
+      \hline
+      0            & 1              & 1          \\
+      \hline
+      1            & 0              & 0          \\
+      \hline
+      0            & 0              & Invalid    \\
+      \hline         
+      \end{tabular}
+
+    \hiii{NOR Latch (active HIGH)}
+      \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Set} & \textbf{Reset} & $\pmb{Q}$ \\
+      \hline
+      0            & 0              & NC         \\
+      \hline
+      1            & 0              & 0          \\
+      \hline
+      0            & 1              & 1          \\
+      \hline
+      1            & 1              & Invalid    \\
+      \hline         
+      \end{tabular}
+
+    \hiii{SR-FF}
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $\pmb{S}$ & $\pmb{R}$ & $\pmb{CLK}\FNM$ & $\pmb{Q}$ \\ \hline
+      X         & X         & $\not\uparrow$ & NC        \\ \hline
+      0         & 0         & $\uparrow$     & NC        \\ \hline
+      1         & 0         & $\uparrow$     & 1         \\ \hline
+      0         & 1         & $\uparrow$     & 0         \\ \hline
+      1         & 1         & $\uparrow$     & Invalid   \\ \hline
+      \end{tabular}   
+
+    \hiii{JK-FF}
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $\pmb{J}$ & $\pmb{K}$ & $\pmb{CLK}\SFNM$ & $\pmb{Q}$ \\ \hline
+      X         & X         & $\not\uparrow$ & NC        \\ \hline
+      0         & 0         & $\uparrow$     & NC        \\ \hline
+      1         & 0         & $\uparrow$     & 1         \\ \hline
+      0         & 1         & $\uparrow$     & 0         \\ \hline
+      1         & 1         & $\uparrow$     & Toggle    \\ \hline
+      \end{tabular}
+
+    \hiii{D-FF}
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $\pmb{D}$ & $\pmb{CLK}\SFNM$ & $\pmb{Q}$ \\ \hline
+      X         & $\not\uparrow$ & NC        \\ \hline
+      0         & $\uparrow$     & 0         \\ \hline
+      1         & $\uparrow$     & 1         \\ \hline
+      \end{tabular}
+
+    \FNT{These FFs are assumed to be \tb{PGT}-triggered.}
+
+  \hii{FF Timing}
+    \begin{itemize}
+      \item Requirements:
+        \begin{itemize}
+          \item (Min) Setup \& Hold Times.
+          \item (Max) Propagation Delay.
+          \item (Max) Clock Frequency.
+          \item (Min) Clock HIGH \& LOW Times.
+          \item (Min) Asynchronous Active Pulse Width 
+          \item (Max) Clock Transition Times.
+        \end{itemize}
+      \item The FF output will go to a state determined by the
+        logic levels present at its synchronous control inputs
+        \ti{just prior} to the active clock transition.
+    \end{itemize}
+
+\end{multicols}

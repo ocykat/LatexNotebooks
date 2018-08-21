@@ -6,7 +6,7 @@
     \par An $m \times n$ matrix is a table of numbers that contains
     $m$ rows and $n$ columns.
     \begin{eqbox}
-      A = 
+      A =
       \begin{pmatrix}
         a_{11} & a_{12} & ... & a_{1n} \\
         a_{21} & a_{22} & ... & a_{2n} \\
@@ -29,7 +29,7 @@
   \hii{Square Matrix}
     \par If the number of rows equals the number of columns, then the
     matrix is called \tb{a square matrix of order $n$}.
-  
+
   \hii{Diagonal}
     \par All elements $a_{ij}$ where $i = j$ form a \tb{diagonal} in $A$.
 
@@ -51,7 +51,7 @@
       \end{cases}
     \]
       then $A$ is called an \tbi{identity matrix}, denoted by $I$.
-  
+
   \hii{Triangular Matrix}
     \par If $\forall i > j, a_{ij} = 0$, then $A$ is called an \tb{upper
       triangular matrix}.
@@ -92,7 +92,7 @@
     \]
 
   \hii{Matrix multiplication}
-    \par The operation can only be carry out if the number of columns of 
+    \par The operation can only be carry out if the number of columns of
     $A$ equals the number of rows of $B$.
     \par Given:
     \[
@@ -134,7 +134,7 @@
     \end{alignat*}
 
 \hi{Properties of Matrix Operations}
-  \hiiBEGIN{Properties of Summation}
+  \hii{Properties of Summation}
     \hiii{Commutative Rule}
       \[
         A + B = B + A
@@ -150,9 +150,7 @@
         A + 0 = A
       \]
 
-  \hiiEND
-
-  \hiiBEGIN{Properties of Scalar Multiplication}
+  \hii{Properties of Scalar Multiplication}
     \hiii{Commutative Rule}
       \[
         \alpha (A \times B) = (\alpha A) B = A (\alpha B)
@@ -161,9 +159,8 @@
       \[
         \alpha (A + B) = \alpha A + \alpha B
       \]
-  \hiiEND
 
-  \hiiBEGIN{Properties of Matrix Multiplication}
+  \hii{Properties of Matrix Multiplication}
     \hiii{Associative Rule}
       \[
         (A \times B) \times C = A \times (B \times C)
@@ -197,9 +194,7 @@
           \]
       \end{itemize}
 
-  \hiiEND
-
-  \hiiBEGIN{Properties of the Transpose of a Matrix}
+  \hii{Properties of the Transpose of a Matrix}
     \hiii{Transpose Property}
       \[
         (A^{T})^{T} = A
@@ -213,13 +208,12 @@
     \hiii{Scalar Multiplication}
       \[
         r(A^{T}) = (rA)^{T}
-      \]     
+      \]
 
     \hiii{Matrix Multiplication}
       \[
         (A + B)^{T} = B^{T} + A^{T}
       \]
-  \hiiEND
 
 
 \hi{Echelon form \& Elementary Row Operations}
@@ -228,11 +222,11 @@
     element of that row.
   \hii{Elementary Row Operations}
     \par There are 3 types of elementary operations for matrices:
-    \begin{itemize} 
+    \begin{itemize}
       \item Scaling: multiply a row by a non-zero number.
       \item Adding: add a constant $c$ times one row to another.
       \item Interchanging: interchange two rows.
-    \end{itemize} 
+    \end{itemize}
   \hii{Echelon form}
     \par A matrix is said to be in \tb{Echelon form} if:
     \begin{enumerate}
@@ -305,7 +299,7 @@
       \item $X$: column vector of unknowns
       \item $B$: column vector of free coefficients
     \end{itemize}
-    
+
     \par The matrix $(A|B)$ is called an \tb{augmented matrix}.
 
   \hii{Gaussian Elimination}
@@ -320,18 +314,18 @@
 \hi{Rank}
   \hii{Rank of a Matrix}
     \par Given matrix $A = (a_{ij})_{m \times n}$.
-    \par The rank of $A$, denoted by $r(A)$, is the number of non-zero rows of $A$
+    \par The rank of $A$, denoted by $rank(A)$, is the number of non-zero rows of $A$
     after it has been transformed to \tb{reduced Echelon form}.
 
   \hii{Rouche - Capelli theorem}
     \par Given a linear system $AX = B$ of $n$ unknowns.
     \begin{itemize}
-      \item If $r(A|B) \neq r(A)$, then the system is inconsistent.
-      \item If $r(A|B) = r(A)$, then the system is consistent.
+      \item If $rank(A|B) \neq rank(A)$, then the system is inconsistent.
+      \item If $rank(A|B) = rank(A)$, then the system is consistent.
         \begin{itemize}
-          \item $r(A|B) = r(A) = n$: the system has exactly one
+          \item $rank(A|B) = rank(A) = n$: the system has exactly one
             solution.
-          \item $r(A|B) = r(A) < n$: the system has infinitely
+          \item $rank(A|B) = rank(A) < n$: the system has infinitely
             many solutions.
         \end{itemize}
     \end{itemize}
@@ -356,9 +350,9 @@
     \[
       det(A) = \SUM{_{j = 1}^{n} a_{1j} A_{1j}}
     \]
-    \par Note that if $n = 1$, then $det(A) = 0$.
+    \par Note that if $n = 1$, then $det(A) = a{11}$.
 
-  \hiiBEGIN{Properties of Determinant}
+  \hii{Properties of Determinant}
     \hiii{Calculating Determinant}
       \par A determinant can be computed by expanding along any row $r$ or
       down any column $c$.
@@ -414,10 +408,9 @@
 
     \hiii{Determinang and Rank Relationship}
       \begin{align*}
-        det(A) \neq 0 \Rightarrow r(A) = n \\
-        det(A) = 0 \Rightarrow r(A) < n \\
+        det(A) \neq 0 \Rightarrow rank(A) = n \\
+        det(A) = 0 \Rightarrow rank(A) < n \\
       \end{align*}
-  \hiiEND
 
 
 \hi{Inverse of a Square Matrix}
@@ -435,7 +428,7 @@
     \par Matrix $B$ is called the inverse of $A$ and is denoted by $A^{-1}$.
     \par Thus: $A \times A^{-1} = I$.
 
-  \hiiBEGIN{Calculating the Inverse Matrix}
+  \hii{Calculating the Inverse Matrix}
     \hiii{Method 1}
       \[
         A = \frac{1}{det(A)} \times P_{A}
@@ -452,12 +445,11 @@
       \]
 
     \hiii{Method 2}
-    \[ 
+    \[
       (A|I) \xrightarrow[\text{only row operations}]{} (I|A^{-1})
-    \] 
-  \hiiEND
+    \]
 
-  \hiiBEGIN{Properties of Invertible Matrix}
+  \hii{Properties of Invertible Matrix}
     \hiii{The Inverse of Inverse Matrix}
       \[
         (A^{-1})^{-1} = A
@@ -472,7 +464,7 @@
       \[
         (\alpha A)^{-1} = \frac{1}{\alpha} \times A^{-1}
       \]
-    
+
     \hiii{Matrix Multiplication}
       \[
         (A \times B)^{-1} = B^{-1} \times A^{-1}
@@ -488,7 +480,3 @@
         det(P_{A}) = (det(A))^{n - 1}
       \]
       where $n$ is the order of $A$.
-
-
-
-  \hiiEND

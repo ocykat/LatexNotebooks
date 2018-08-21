@@ -1,0 +1,104 @@
+\begin{multicols}{3}
+\hi{Number Systems and Codes}
+
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Decimal}: base 10
+      \item \tb{Binary}: base 2
+      \item \tb{Gray Code}: binary code where two successive
+        values differ in only 1 bit
+      \item \tb{MSD}: most significant digit (left-most digit)
+      \item \tb{LSD}: least significant digit (right-most digit)
+      \item \tb{MSB}: most significant bit (left-most bit)
+      \item \tb{LSB}: least significant bit (right-most bit)
+      \item \tb{Byte}: 8-bit binary
+      \item \tb{Nibble}: 4-bit binary
+      \item \tb{ASCII}: American Standard Code for Information Interchange
+        - character encoding standard for electronic communication
+      \item \tb{Parity Method}: error detection method by adding a
+        \ti{parity bit} to the original code
+        \begin{itemize}
+          \item \ti{Even-parity}: parity bit is chosen so that the number of 1 is even.
+          \item \ti{Odd-parity}: parity bit is chosen so that the number of 1 is odd.
+        \end{itemize}
+    \end{itemize}
+
+  \hii{Conversions}
+    \begin{itemize}
+      \item{Decimal to $m$-ary(integral part)}
+        \lstinputlisting[language=Python]{code/dec_int_to_m_ary.py}
+      % \begin{algorithm}[H]
+      %   \begin{algorithmic}[1]
+      %     \Statex
+      %     \FUNCTION{DEC-TO-M-ARY}{n, m}
+      %       \LET{len}{0}
+      %       \WHILE{n \neq 0}
+      %         \LET{n}{n / m}
+      %         \LET{r[len]}{n \% m}
+      %         \LET{len}{len + 1}
+      %       \ENDWHILE
+      %       \RETURN{r[len-1..0]}
+      %     \ENDFUNCTION
+      %   \end{algorithmic}
+      % \end{algorithm}
+
+      \item{$m$-ary to Decimal}
+        \begin{eqbox}
+          (a_{n} a_{n-1} \ldots a_{0} \ldots a_{p - 1} a_{p})_{m}
+            = \SUM_{i = p}^{n} a_{i} m^{i}
+        \end{eqbox}
+
+      \item{Decimal to Binary(fractional part)}
+        \lstinputlisting[language=Python]{code/dec_frac_to_bin.py}
+      % \begin{algorithm}[ht]
+      %   \begin{algorithmic}[1]
+      %     \Statex
+      %     \FUNCTION{DECFRAC-TO-BIN}{f}
+      %       \LET{len}{0}
+      %       \WHILE{f \neq 0}
+      %         \LET{f}{f \times 2}
+      %         \IF{f \geq 1}
+      %           \LET{f}{f - 1}
+      %           \LET{s[len]}{1}
+      %         \ELSE
+      %           \LET{s[len]}{0}
+      %         \ENDIF
+      %         \LET{len}{len + 1}
+      %       \ENDWHILE
+      %       \RETURN{s[0..len - 1]}
+      %     \ENDFUNCTION
+      %   \end{algorithmic}
+      % \end{algorithm}
+
+      \item{Binary to Gray Code}
+        \lstinputlisting[language=Python]{code/bin_to_gray.py}
+
+      \item{Gray Code to Binary}
+        \lstinputlisting[language=Python]{code/gray_to_bin.py}
+    \end{itemize}
+
+
+      \hii{Number Table (range 16)}
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{DEC} & \textbf{BIN} & \textbf{HEX} & \textbf{BCD} & \textbf{GRAY} \\ \hline
+        0            & 0000         & 0            & 0000         & 0000          \\ \hline
+        1            & 0001         & 1            & 0001         & 0001          \\ \hline
+        2            & 0010         & 2            & 0010         & 0011          \\ \hline
+        3            & 0011         & 3            & 0011         & 0010          \\ \hline
+        4            & 0100         & 4            & 0100         & 0110          \\ \hline
+        5            & 0101         & 5            & 0101         & 0111          \\ \hline
+        6            & 0110         & 6            & 0110         & 0101          \\ \hline
+        7            & 0111         & 7            & 0111         & 0100          \\ \hline
+        8            & 1000         & 8            & 1000         & 1100          \\ \hline
+        9            & 1001         & 9            & 1001         & 1101          \\ \hline
+        10           & 1010         & A            & 0001 0000    & 1111          \\ \hline
+        11           & 1011         & B            & 0001 0001    & 1110          \\ \hline
+        12           & 1100         & C            & 0001 0010    & 1010          \\ \hline
+        13           & 1101         & D            & 0001 0011    & 1011          \\ \hline
+        14           & 1110         & E            & 0001 0110    & 1001          \\ \hline
+        15           & 1111         & F            & 0001 0101    & 1000          \\ \hline
+        \end{tabular}
+
+
+\end{multicols}

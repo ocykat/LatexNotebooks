@@ -1,0 +1,80 @@
+\clearpage
+
+\begin{multicols}{2}
+
+\hi{Surface Integrals}
+
+  \hii{Type 1}
+    \hiii{Form}
+      \begin{itemize}
+        \item \tb{Domain}: Surface $S$:
+          \begin{equation*}
+            S:
+              \begin{cases}
+                z = z(x, y) \\
+                (x, y) \in D \subset (Oxy)
+              \end{cases}
+          \end{equation*}
+        \item \tb{Integral}:
+          \begin{equation*}
+            I = \IINT_{S} f(x, y, z)\pmb{dS}
+          \end{equation*}
+      \end{itemize}
+
+    \hiii{Method}
+      \par General idea: convert to double integral of two variable.
+        \begin{equation}
+          I = \IINT_{(D)} f(x, y, z(x, y)) \sqrt{1 + z_{x}^{2} + z_{y}^{2}} dA
+        \end{equation}
+
+      \hiii{Application}
+        \par Mass of lamina $S$ given surface density $\rho(x, y, z)$.
+
+  \hii{Type 2}
+    \hiii{Form}
+      \begin{itemize}
+        \item \tb{Domain}: oriented surface $\sigma$:
+          \begin{equation*}
+            \sigma:
+              \begin{cases}
+                z = z(x, y) \\
+                (x, y) \in D \subset (Oxy) \\
+                \mbox{ orientation: } +/-
+              \end{cases}
+          \end{equation*}
+        \item \tb{Integral}:
+          \begin{equation*}
+            I = \IINT_{\sigma} \big[P(x, y, z)\pmb{dydz} + Q(x, y, z)\pmb{dzdx} + R(x, y, z)\pmb{dxdy}\big]
+          \end{equation*}
+      \end{itemize}
+
+    \hiii{Method}
+      \begin{itemize}
+        \item $(+)$ orientation: $\vec{n} = (-z_{x}, -z_{y}, 1)$
+          \begin{equation}
+            I = \IINT_{D} \big[-Pz_{x} - Qz_{y} + R\big] dA
+          \end{equation}
+        \item $(-)$ orientation: $\vec{n} = (z_{x}, z_{y}, -1)$
+          \begin{equation}
+            I = \IINT_{D} \big[+Pz_{x} + Qz_{y} - R\big] dA
+          \end{equation}
+      \end{itemize}
+
+    \hiii{Application}
+      \par Flux through a surface $\sigma$.
+      \begin{itemize}
+        \item \tb{Vector field}
+          \begin{equation*}
+            \vec{F} = \big[P(x, y, z), Q(x, y, z), R(x, y, z)\big]
+                    = P\vec{i} + Q\vec{j} + R\vec{k}
+          \end{equation*}
+        \item \tb{Normal vector} $\vec{n}$
+        \item \tb{Flux}
+          \begin{equation}
+            I = \IINT_{\sigma} \vec{F}\vec{n}dS
+              = \IINT_{\sigma} \big[Pdydz + Qdzdx + Rdxdy\big]
+          \end{equation}
+      \end{itemize}
+
+
+\end{multicols}

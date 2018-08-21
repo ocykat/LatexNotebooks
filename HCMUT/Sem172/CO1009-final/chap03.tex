@@ -1,0 +1,96 @@
+\begin{multicols}{4}
+
+\hi{Describing Logic Circuits}
+
+  \hii{Logic Gates}
+    \begin{itemize}
+      \item All gates can be replaced by NOR or NAND gates. They
+        are called \ti{universal gates}.
+      \item \tb{AND}, \tb{NAND},\tb{OR}, and \tb{NOR} gates are used in \tb{enable/disable circuits}.
+      \item \tb{XOR} and \tb{XNOR} gates is also known as \tb{controlled/selected inverter}.
+    \end{itemize}
+
+  \hii{Laws of Logic}
+    \begin{itemize}
+      \item{Identity Laws}
+        \begin{align*}
+          x + 0 = x \\
+          x \cdot 1 = x
+        \end{align*}
+      \item{Domination Laws}
+        \begin{align*}
+          x + 1 = 1 \\
+          x \cdot 0 = 0
+        \end{align*}
+      \item{Idempotent Laws}
+        \begin{align*}
+          x + x = x \\
+          x \cdot x = x
+        \end{align*}
+      \item{Double Negation Law}
+        \begin{align*}
+          \bar{\bar{x}} = x
+        \end{align*}
+      \item{Negation Laws}
+        \begin{align*}
+          x + \bar{x} &= 1 \\
+          x \cdot \bar{x} &= 0
+        \end{align*}
+      \item{Commutative Laws}
+        \begin{align*}
+          x + y &= y + x \\
+          x \cdot y &= y \cdot x
+        \end{align*}
+      \item{Associative Laws}
+        \begin{align*}
+          x + y + z &= x + (y + z) \\
+          x \cdot y \cdot z &= x \cdot (y \cdot z)
+        \end{align*}
+      \item{Absorption Laws}
+        \begin{align*}
+          x + (x \cdot y) &= x \\
+          x \cdot (x + y) &= x
+        \end{align*}
+      \item{Distributed Laws}
+        \begin{align*}
+          x \cdot (y + z) &= xy + xz \\
+          x + (y \cdot z) &= (x + y) \cdot (x + z)
+        \end{align*}
+      \item{Unnamed Laws}
+        \begin{align*}
+          x + \bar{x} \cdot y &= x + y \\
+          x \cdot (\bar{x} + y) &= x \cdot y
+        \end{align*}
+      \item{De Morgan's Laws}
+        \begin{align*}
+          \overline{x + y} &= \bar{x} \cdot \bar{y} \\
+          \overline{x \cdot y} &= \bar{x} + \bar{y}
+        \end{align*}
+      \item{Exclusive-OR}
+        \begin{align*}
+          x \oplus y = \bar{x}y + x\bar{y}
+        \end{align*}
+      \item{Consensus Laws}
+        \begin{align*}
+          xy + \bar{x} z + yz &= xy + \bar{x} z \\
+          (x + y)(\bar{x} + z)(y + z) + yz &= (x + y)(\bar{x} + z)
+        \end{align*}
+    \end{itemize}
+
+  \hii{Active State}
+    \begin{itemize}
+      \item Active HIGH: \ti{without} bubble
+      \item Active LOW: \ti{with} bubble
+    \end{itemize}
+
+  \hii{Problems}
+    \begin{enumerate}
+      \item \tb{Use only NANDs, no NAND as NOT allowed}
+        \begin{itemize}
+          \item \tb{Step 1}: Simplify until there are only
+            2-input ANDs and 2-input ORs.
+          \item \tb{Step 2}: Add bubbles to create NAND gates.
+        \end{itemize}
+    \end{enumerate}
+
+\end{multicols}
