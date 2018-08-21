@@ -4,7 +4,9 @@
 *.pdf
 *.out
 *.toc
-
+*.dvi
+*.fdb_latexmk
+*.fls
 *.synctex.gz
 
 # Images
@@ -24,3 +26,4 @@ img/
 
 # Others
 *.py
+*.pyc
