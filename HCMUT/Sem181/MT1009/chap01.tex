@@ -1,0 +1,148 @@
+\chapter{Nonlinear Equations}
+
+\hi{Absolute \& Relative Errors}
+  \hii{Exact value and approximative value}
+    \par Example:
+    \begin{itemize}
+      \item Exact value: $\pi$
+      \item Approximative value: $3.14, 3.1416, \ldots$
+    \end{itemize}
+
+  \hii{Absolute Error}
+    \par Denote:
+    \begin{itemize}
+      \item $A$ as the exact value
+      \item $a$ as the approximative value $\ra A \approx a$
+    \end{itemize}
+    \par \tb{Absolute error}:
+      \begin{eqbox}
+        \Delta = \abs{A - a}
+      \end{eqbox}
+    \par In practical use, a value $\Delta_{a}$ needs to be estimated such
+    that:
+    \begin{itemize}
+      \item it is as small as possible
+      \item $\abs{A - a} \leq \Delta_{a}
+        \lra a - \Delta_{a} \leq A \leq a + \Delta_{a}$ (*)
+    \end{itemize}
+    \par \tb{Note}: We denote (*) by: $A = a \pm \Delta_{a}$.
+    \par Method of estimating $\Delta_{a}$ given minimum and maximum
+      measurements:
+      \begin{flalign*}
+        & \begin{cases}
+            m_{min} = a - \Delta_{a}
+            m_{max} = a + \Delta_{a}
+          \end{cases}
+        && \\
+        & \ra a = \frac{m_{min} + m_{max}}{2} && \\
+        & \ra \Delta_{a} = a - m_{min} = m_{max} - a &&
+      \end{flalign*}
+    \par Example: Given $3.138 \leq \pi \leq 3.142$.
+      \begin{flalign*}
+        & \ra 3.14 - 0.002 \leq \pi \leq 3.14 + 0.002 && \\
+        & \ra \Delta_{a} = a - m_{min} = m_{max} - a &&
+      \end{flalign*}
+
+  \hii{Relative Error}
+    \begin{eqbox}
+      & \delta_{a} = \frac{\abs{A - a}}{\abs{A}} \approx \frac{\Delta_{a}}{\abs{a}}
+    \end{eqbox}
+
+
+\hi{Solving Equations}
+  \hii{Definition of root}
+    \par Consider the equation $f(x) = 0$.
+    \par The number $p$ is a \tb{root} of the equation if $f(p) = 0$.
+  \hii{Finding root procedure}
+    \par To find a root $p$ of an equation:
+    \begin{itemize}
+      \item \tb{Step 1}: Isolate the root
+      \item \tb{Step 2}: Construct a sequence $\{x_{n}\}_{n = 0}^{\infty}$:
+        \begin{align*}
+          \lim_{n \to \infty} x_{n} = p
+        \end{align*}
+        \par \tb{$p$ exists only if $\{x_{n}\}_{n = 0}^{\infty}$ converges.}
+      \item \tb{Step 3}: Fix the number $n$ (index of the sequence).
+        \begin{align*}
+          \ra x_{n} \approx p \ra \abs{p - x_{n}} \leq \Delta_{x_{n}} = ?
+        \end{align*}
+    \end{itemize}
+
+  \hii{Root-isolated interval}
+    \par \tb{Definition}: An interval $[a, b]$ is called a \tb{root-isolated}
+      interval of the root $p$ if:
+    \begin{itemize}
+      \item $!\exists p \in [a, b]$
+      \item $f(a) \cdot f(b) < 0$
+    \end{itemize}
+    \par \tb{Theorem}: If $f(x)$ is:
+      \begin{itemize}
+        \item continuous, monotonic on $[a, b]$
+        \item $f(a) \cdot f(b) < 0$
+      \end{itemize}
+      then $[a, b]$ is a root-isolated interval of the root $p \in [a, b]$.
+    \par Finding root-isolated intervals:
+    \begin{itemize}
+      \item \tb{Method 1}: using derivatives to look for monotonic intervals
+        \begin{itemize}
+          \item Solve the equation $f'(x) = 0$ and specify monotonic intervals
+            with interval table.
+          \item Create a table of segments, where each segment bound is an
+            integer. For each bound $x_{j}$, identify the sign of $f(x_{j})$.
+          \item From the two tables, conclude.
+        \end{itemize}
+      \item \tb{Method 2}: using graph
+        \begin{itemize}
+          \item Transform $f(x) = 0$ to $g(x) = h(x)$.
+          \item Sketch the graph of $g(x)$ and $h(x)$. Each intersection
+            of the two lines is a root $p_{i}$ of the equation.
+          \item For each root, specify its value if it can be shown clearly from
+            the graph, or just simply specify its root-isolated interval.
+        \end{itemize}
+    \end{itemize}
+
+  \hii{General Error - Estimated Formula}
+    \par Given a function $f(x)$ that is continuous and differentiable on $[a, b]$.
+      Define $m$ as the minimum value of $f'(x)$ on $[a, b]$:
+      \begin{align*}
+        m = \underset{[a, b]}{\min}(f'(x))
+      \end{align*}
+    \par If $[a, b]$ is a root-isolated interval of a root $p$, and $p*$ is
+      an approximative root for $p$, then:
+    \begin{eqbox}
+      \abs{p - p*} \leq \frac{\abs{f'(p*)}}{m} = \Delta_{p}
+    \end{eqbox}
+
+
+\hi{Bisection Method}
+  \par Given an equation $f(x) = 0$ and a root isolated interval $[a, b]$.
+  \par Using the Bisection method, we can obtain a sequence
+    $\{x_{n}\}_{n = 0}^{\infty}$ which is convergent to the root $p$.
+    \begin{algorithm}
+      \caption{Bisection-Method}
+      \begin{algorithmic}[1]
+        \Statex
+        \FUNCTION{Bisection}{a, b, p, n}
+          \LET{i}{0}
+          \LET{a[i]}{a}
+          \LET{b[i]}{b}
+          \LET{x[i]}{\dfrac{a + b}{2}}
+          \WHILE{i < n \AND x[i] \neq p}
+            \IF{f(x[i]) \cdot f(a[i]) < 0}
+              \LET{a[i + 1]}{a[i]}
+              \LET{b[i + 1]}{x[i]}
+            \ELSEIF{f(x[i]) \cdot f(b[i]) < 0}
+              \LET{a[i + 1]}{x[i]}
+              \LET{b[i + 1]}{b[i]}
+            \ENDIF
+            \LET{i}{i + 1}
+            \LET{x[i]}{\dfrac{a[i]+ b[i]}{2}}
+          \ENDWHILE
+          \RETURN{$x[i]$}
+        \ENDFUNCTION
+      \end{algorithmic}
+    \end{algorithm}
+  \par Estimated Formula for Bisection method:
+    \begin{eqbox}
+      \abs{p - x_{n}} \leq \frac{b - a}{2^{n + 1}} = \Delta_{x_{n}}
+    \end{eqbox}

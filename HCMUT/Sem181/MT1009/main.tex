@@ -1,0 +1,135 @@
+\documentclass[12pt, a4paper]{report}
+
+
+% MARGINS
+\usepackage[margin=0.75in]{geometry}
+
+
+% HEADINGS
+\setcounter{secnumdepth}{4}
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+% \newcommand{\hiiBEGIN}[1]{\subsection{#1} \begin{enumerate}}
+% \newcommand{\hiiEND}{\end{enumerate}}
+% \newcommand{\hiii}{\item\textbf}
+% \newcommand{\hiiiBEGIN}[1]{\item\textbf{#1} \begin{enumerate}}
+% \newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiii}{\subsubsection}
+% \newcommand{\hiiiBEGIN}[1]{\subsubsection \begin{enumerate}}
+% \newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+
+% INDENTATION
+\usepackage{indentfirst}
+
+
+% TABLE OF CONTENTS
+% links
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+
+% APPENDICES
+\usepackage[toc,page]{appendix}
+
+
+% TEXT
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+\newcommand{\smf}[1]{\small #1 \normalsize}
+\newenvironment{smfont}{\small}{\normalsize}
+
+
+% MATH
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+
+% Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}
+{
+  \setkeys{EmphEqEnv}{align}
+  \setkeys{EmphEqOpt}{box=\fbox}
+  \EmphEqMainEnv
+}
+{
+  \endEmphEqMainEnv
+}
+
+% Sum, product, limit
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
+\newcommand{\INT}[1]{\int\limits #1}
+
+% Inner Product
+\newcommand{\iprod}[1]{\langle #1 \rangle}
+
+% Macros
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\lra}{\Leftrightarrow}
+\usepackage{mathtools}
+
+% Absolute value
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+
+% PSEUDOCODE
+\usepackage{algpseudocode,algorithm,algorithmicx}
+\usepackage{caption}
+
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
+
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+\newcommand{\TO}{\textrm{ to }}
+\newcommand{\AND}{\textrm{ and }}
+\newcommand{\OR}{\textrm{ or }}
+\newcommand{\LET}[2]{\Let{$#1$}{$#2$}}
+\newcommand{\FOR}[1]{\For{$#1$}}
+\newcommand{\ENDFOR}{\EndFor}
+\newcommand{\IF}[1]{\If{$#1$}}
+\newcommand{\ELSEIF}[1]{\ElsIf{$#1$}}
+\newcommand{\ELSE}{\Else}
+\newcommand{\ENDIF}{\EndIf}
+\newcommand{\WHILE}[1]{\While{$#1$}}
+\newcommand{\ENDWHILE}{\EndWhile}
+\newcommand{\CALLFUNC}[2]{\Call{#1}{$#2$}}
+\newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
+\newcommand{\FUNCTION}[2]{\Function{#1}{$#2$}}
+\newcommand{\ENDFUNCTION}{\EndFunction}
+\newcommand{\RETURN}[1]{\State \Return{#1}}
+
+
+\begin{document}
+\tableofcontents
+
+\input{chap01}
+
+\begin{appendices}
+\end{appendices}
+
+\end{document}
