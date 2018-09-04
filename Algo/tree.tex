@@ -1,0 +1,191 @@
+\chapter{Tree}
+
+\hi{Basics}
+  \hii{Definition}
+    \par A \tb{tree} is a \tb{connected graph} with \tb{no cycle}.
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Internal node}: any node that has children
+    \end{itemize}
+
+
+\hi{Binary Search Tree}
+  \hii{Definition}
+    \par A \tb{Binary Search Tree (BST)} is a tree that has satisfy the
+      following condition:
+    \par Let $x$, $y$ be a nodes in a binary search tree. 
+      \begin{itemize}
+        \item If $y$ is in the left subtree of $x$, then $y.key \leq x.key$.
+        \item If $y$ is in the right subtree of $x$, then $y.key \geq x.key$.
+      \end{itemize}
+  \hii{Time Complexity}
+    \par Let $h$ be the height of the BST.
+      \begin{center}
+        \begin{tabular}{|l|l|}
+        \hline
+               &        \\ \hline
+        search & $O(h)$ \\ \hline
+        insert & $O(h)$ \\ \hline
+        remove & $O(h)$ \\ \hline
+        \end{tabular}
+      \end{center}
+
+
+\hi{AVL Tree}
+  \hii{Some notes}
+    \begin{itemize}
+      \item A tree is \tb{balanced} if $h = \theta(\log(n))$.
+      \item The \tb{height of a node} is the length of the longest path
+      from it down to a leaf.
+      \item The height of the tree is equals to the height of its root.
+      \begin{align*}
+        h(\mbox{node}) = max(h(\mbox{left child}), h(\mbox{right child})) + 1
+      \end{align*}
+      \item To avoid dealing with the special case, children of leaf have
+        height equals to $-1$.
+    \end{itemize}
+  \hii{Definition}
+    \par An \tb{AVL tree} require heights of left and right children of
+      every node to differ by at most $\pm 1$.
+  \hii{Proof for Balance property}
+    \par Worst case for AVL tree: right subtree has height 1 more than
+      left subtree for every node. (this worst case is derived from the
+      definition)
+    \par Define $n_{h}$ as the fewest node in an AVL tree of height $h$.
+    \par Formula for $n_{h}$:
+    \begin{align*}
+      \begin{cases}
+        n_{1} = 1 \\
+        n_{h} = 1 + n_{h - 1} + n_{h - 2} \\
+      \end{cases} \\
+    \end{align*}
+    \par Here we have 2 methods to deal with the recurrence:
+    \begin{itemize}
+      \item Method 1: Using Fibonacci sequence
+        \begin{flalign*}
+          & n_{h} = 1 + n_{h - 1} + n_{h - 2} && \\
+          & \Rightarrow n_{h} > fib_{h}
+            = fib_{h - 1} + fib_{h - 2} && \\
+          & \Rightarrow n_{h} > \frac{\Phi^{h}}{\sqrt{5}} && \\
+          & \Rightarrow n_{h} > \frac{\Phi^{h}}{\sqrt{5}} && \\
+          & \Rightarrow n_{h}\sqrt{5} > \Phi^{h} && \\
+          & \Rightarrow h < \log_{\Phi}(n_{h}\sqrt{5}) &&
+        \end{flalign*}
+        where $\Phi \approx 1.618$ is the golden ratio.
+      \item Method 2
+        \begin{flalign*}
+          & n_{h} = 1 + n_{h - 1} + n_{h - 2} && \\
+          & \Rightarrow n_{h} > 2n_{h - 2} = \Theta(2^{h/2}) && \\
+          & \Rightarrow h < 2\log_{2}(n) &&
+        \end{flalign*}
+    \end{itemize}
+  \hii{Operations}
+    \begin{itemize}
+      \item \tb{Insert}
+        \par Steps:
+        \begin{itemize}
+          \item BST insert
+          \item Fix AVL property
+        \end{itemize}
+    \end{itemize}
+
+
+\hi{Red-Black Tree}
+  \hii{Definition}
+    \par A \tb{red-black tree} is a \tb{binary tree} such that:
+    \begin{itemize}
+      \item Every node is red or black.
+      \item The root is black.
+      \item Leaves (NIL) are black.
+      \item If a node is red, its children are all black.
+      \item For each node, all simple paths from it to its decendant leaves
+        contain the same number of black nodes.
+    \end{itemize}
+  \hii{Terminology}
+    \par \tb{black-height}: the number of black notes on any simple path
+      from, but \ti{not including}, a node $x$ down to a leaf.
+  \hii{Maximum Height}
+    \par \tb{Lemma}: For a red black tree with $n$ internal nodes,
+      $h \leq 2\log(n + 1)$.
+    \par \tb{Proof}:
+    \par First, we need to prove that: a tree with $n$ nodes contains
+    at least $2^{bh(n)} - 1$ internal nodes.
+    \par By induction:
+      \begin{itemize}
+        \item \tu{Basis step}:
+          \par $bh(n) = 0$. If $bh(n) = 0$, then the tree has only a leaf,
+          containing $2^{bh(n)} - 1 = 2^{0} - 1 = 0$ internal nodes.
+        \item \tu{Inductive Hypothesis}:
+          \par Consider a tree with $n$ nodes. Then each of its subtree
+          (left and right) would have black-height of either
+          $bh(n)$ or $bh(n) - 1$ depends on
+          whether the subtree's root is red or black, respectively.
+          \par Apply the inductive hypothesis: each subtree has at least 
+          $2^{bh(n) - 1} - 1$ internal nodes. Therefore, the tree
+          contains at least $2 \times (2^{bh(n) - 1} - 1) + 1 = 2^{bh(n) - 1}$
+          internal nodes.
+      \end{itemize}
+    \par Let $h$ be the height of the tree.
+    \par Because a red node has all black children, $bh(n) \geq h/2$.
+      \begin{flalign*}
+        & \Rightarrow n \geq 2^{bh(n)} - 1 \geq 2^{h/2} - 1  &&\\
+        & \Rightarrow 2^{h/2} \leq n + 1 &&\\
+        & \Rightarrow h/2 \leq \log_{2}(n + 1) &&\\
+        & \Rightarrow h \leq 2\log_{2}(n + 1) &&\\
+      \end{flalign*}
+
+
+\hi{Fenwick Tree (Binary Indexed Tree)}
+  \hii{When to use}
+    \par Fenwick Tree is useful when we need to do two types of query:
+    \begin{itemize}
+      \item updating an element
+      \item calculate the prefix sum upto element $i^{th}$
+    \end{itemize}
+    \par Denote the prefix sum upto $i$ as $query(i)$.
+    \par Denote the value stored at position $i$ in the array as $tree(i)$.
+
+  \hii{General Idea}
+    \hiii{Naive query approach}
+      \par The naive approach is to accumulate the sum as follow:
+      \begin{align*}
+        a[i] += a[i - 1] \quad (2 \leq i \leq n)
+      \end{align*}
+      \par Query would cost $O(1)$ but update would cost $O(n)$.
+      \par To reduce update time downto $O(log(n))$, we need a better way to store the accumulated sum.
+    \hiii{Fenwick Tree Query}
+      \par To calculate $query(i)$, we consider the following fact:
+      \par Any number $i$ can be expressed as follow:
+      \begin{align*}
+        i = 2^{j_{n}} + 2^{j_{n - 1}} + \ldots + 2^{j_{1}} \quad (j_{n} > j_{n - 1} > \ldots > j_{1}) \quad (*)
+      \end{align*}
+      \par First, set the result to 0.
+      \par Then, step by step:
+      \begin{itemize}
+        \item Add $tree(2^{j_{n}} + 2^{j_{n - 1}} + \ldots + 2^{j_{1}})$ to the result.
+        \item Add $tree(2^{j_{n}} + 2^{j_{n - 1}} + \ldots + 2^{j_{2}})$ to the result.
+        \item Add $tree(2^{j_{n}})$ to the result.
+      \end{itemize}
+      \par Each time, the tree index is reduced by the smallest factor of 2 remaining
+        according to the sum (*). This factor can be extracted using the bitwise trick
+        mentioned later.
+
+  \hii{Bitwise trick}
+    \begin{itemize}
+      \item Every number can be represented as the sum of powers of two.
+      \item Given a number $x$. The operation $x \& (-x)$ returns the last 1-bit
+      together with all the 0-bits that comes after it.
+    \end{itemize}
+    \par \ti{Proof for the second statement}:
+    \par Represent the number $x$ in the form of $a1b$ where $b$ contains only
+      zeros. Then:
+    \begin{flalign*}
+      & (-x) = (a\bm{1}b)' + 1 = a'\bm{1}0\ldots01 && \\
+      & \Rightarrow x \& (-x) = [a \& a']\bm{1}[0\ldots0 \& 0\ldots1] && \\
+      & \Rightarrow x \& (-x) = \bm{1}0\ldots0 &&
+    \end{flalign*}
+
+
+\hi{Segment Tree}
+  \hii{Structure}
+    \par A segment tree

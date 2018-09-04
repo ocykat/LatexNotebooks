@@ -1,0 +1,44 @@
+\chapter{Graph}
+
+
+\hi{Graph}
+  \hii{Definition} 
+    \par A \tb{graph} $G = (V, E)$ consists of:
+    \begin{itemize}
+      \item $V$: a \ti{non-empty} set of vertices (nodes)
+      \item $E$: a set of edges
+    \end{itemize}
+    \par Each vertex associating with an edge is called an \tb{endpoint}.
+  \hii{Undirected Graph}
+    \hiii{Degree of Vertex}
+    \par The \tb{degree} of a vertex is the number of edges incident with it.
+    \par \tb{Handshaking theorem}
+    \begin{eqbox}
+      \SUM_{v \in V} deg(V) = 2\abs{E}
+    \end{eqbox}
+  \hii{Directed Graph}
+    \hiii{Conectivity}
+      \par A directed graph is \tb{strongly connected} if there is a path from
+        $u$ to $v$ every ordered-pair $(u, v)$ in the graph.
+  \hii{Graph Representations}
+    \par There are two common graph representations:
+      \begin{itemize}
+        \item adjacency-list representation
+        \item adjacency-matrix representation
+      \end{itemize}
+    \par Adjacency-list representation is better when the graph is \tb{sparse},
+      while the adjacency-matrix representation is better when the graph is
+      \tb{dense}.
+    \par A graph is dense if $\abs{E}$ is close to $\abs{V^{2}}$.
+
+
+\hi{Breadth-First Search (BFS)}
+  \hii{Theorem on correctness of BFS}
+    \par Define $\delta(s, v)$ as the \tb{shortest-path distance} from
+      $s$ to $v$ as the minimum number of edges in any path from $s$ to $v$.
+      If there is no path from $s$ to $v$, $\delta(s, v) = \infty$.
+    \par \tb{Theorem}:
+      \par Let $G = (V, E)$ be a directed graph. Suppose that BFS is run on G
+        from a given source vertex $s \in V$. Then during its execution, BFS
+        discovers every vertex $v \in V$ that is reachable from the source $s$,
+        and upon termination, $v.d = \delta(s, v) \forall v in V$.
