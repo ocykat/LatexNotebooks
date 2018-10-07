@@ -1,0 +1,53 @@
+\chapter{Data Structures}
+
+\hi{Heap}
+  \hii{Definition}
+    \par A \tb{max heap} is a nearly completed binary tree in which the
+      \tb{max heap property} holds:
+      \begin{align*}
+        heap[parent(i)] \geq heap[i]
+      \end{align*}
+    \par Usually, a heap can be implemented using an array.
+    \par If the array is 1-based, then for a node $i$:
+    \begin{itemize}
+      \item Parent: $\floor{i / 2}$
+      \item Left child: $2i$
+      \item Right child: $2i + 1$
+    \end{itemize}
+  \hii{Maintaining heap property}
+    \par The function \texttt{MAX-HEAPIFY(i)} assumes that: \tb{the binary
+      trees rooted at \texttt{LEFT(i)} and \texttt{RIGHT(i)} are heaps
+      already.}
+    \par Complexity of \texttt{MAX-HEAPIFY(i)}: $O(\log(n))$
+    \begin{algorithm}
+      %\caption{}
+      \begin{algorithmic}[1]
+        \FUNCTION{MAX-HEAPIFY}{i}
+        \ENDFUNCTION
+      \end{algorithmic}
+    \end{algorithm}
+  \hii{Building Heap}
+    \begin{algorithm}
+      %\caption{}
+      \begin{algorithmic}[1]
+        \PROCEDURE{BUILD-MAX-HEAP}{a}
+          \FOR{i}{\floor{a.length/2} \DOWNTO 1}
+            \CALLFUNC{MAX-HEAPIFY}{i}
+          \ENDFOR
+        \ENDPROCEDURE
+      \end{algorithmic}
+    \end{algorithm}
+    \par Loop invariant of \texttt{BUILD-MAX-HEAP}:
+    \begin{itemize}
+      \item \tb{Initialization}: Prior to the first iteration,
+        $i = \floor{n/2}$. $\forall j > \floor{n/2}$, $j$ is a leaf and thus
+        the root of a trivial max heap.
+      \item \tb{Maintenance}: $left(i) > i$ and $right(i) > i$ are both root
+        of max heaps. This is the required condition for \texttt{MAX-HEAPIFY}.
+        \texttt{MAX-HEAPIFY} ensures that all nodes from $i$ to $n$ are root
+        of max heap. Decrementing $i$ reestablishes the loop invariant for the
+        next iteration.
+      \item \tb{Termination}: At termination, $i = 0$. By the loop invariant,
+        all nodes from 1 to $n$ are roots of max heaps.
+    \end{itemize}
+

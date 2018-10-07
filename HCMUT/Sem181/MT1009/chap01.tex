@@ -1,5 +1,6 @@
 \chapter{Nonlinear Equations}
 
+
 \hi{Absolute \& Relative Errors}
   \hii{Exact value and approximative value}
     \par Example:
@@ -26,6 +27,9 @@
         \lra a - \Delta_{a} \leq A \leq a + \Delta_{a}$ (*)
     \end{itemize}
     \par \tb{Note}: We denote (*) by: $A = a \pm \Delta_{a}$.
+      \begin{eqbox}
+        \Delta = \abs{A - a} \leq \Delta_{a}
+      \end{eqbox}
     \par Method of estimating $\Delta_{a}$ given minimum and maximum
       measurements:
       \begin{flalign*}
@@ -101,7 +105,7 @@
         \end{itemize}
     \end{itemize}
 
-  \hii{General Error - Estimated Formula}
+  \hii{General Error Estimating Formula}
     \par Given a function $f(x)$ that is continuous and differentiable on $[a, b]$.
       Define $m$ as the minimum value of $f'(x)$ on $[a, b]$:
       \begin{align*}
@@ -121,7 +125,7 @@
     \begin{algorithm}
       \caption{Bisection-Method}
       \begin{algorithmic}[1]
-        \Statex
+        \ALGOPRE{$[a, b]$ is a root-isolated interval}
         \FUNCTION{Bisection}{a, b, p, n}
           \LET{i}{0}
           \LET{a[i]}{a}
@@ -142,7 +146,44 @@
         \ENDFUNCTION
       \end{algorithmic}
     \end{algorithm}
-  \par Estimated Formula for Bisection method:
+  \par EE Formula for Bisection method:
     \begin{eqbox}
       \abs{p - x_{n}} \leq \frac{b - a}{2^{n + 1}} = \Delta_{x_{n}}
     \end{eqbox}
+
+
+\hi{Iterative Method (Fixed-Point Iteration)}
+  \hii{Fixed point}
+    \par The number $p$ is a \tb{fixed point} of a function $g$ if $p$ is a
+      root of $x = g(x)$.
+  \hii{Theorem}
+    \par Theorem on the existence and uniqueness of a fixed-point root:
+      \begin{itemize}
+        \item If $\forall x \in [a, b]: g(x) \in [a, b]$,
+          then $!\exists p \in [a, b]$.
+        \item If $g(x)$ is differentiable on $[a, b]$ and $\exists k$ such
+          that:
+          \begin{align*}
+            \abs{g'(x)} \leq k < 1 \qquad
+              (\mbox{or } k = \underset{[a, b]}{max}(\abs{g(x)}) < 1)
+          \end{align*}
+          then there is exactly one fixed point in $[a, b]$.
+      \end{itemize}
+    \par If both conditions are satisfied, then the sequence
+      $\{x_{n}\}_{n = 0}^{\infty}$ defined by:
+      \begin{align*}
+        x_{n} =
+        \begin{cases}
+          \mbox{approximation if } n = 0 \\
+          g(x_{n - 1})
+        \end{cases}
+      \end{align*}
+      will converges to the fixed-point root $p$ for any initial value $x_{0}$.
+  \hii{EE Formula}
+    \begin{eqbox}
+      \abs{p - x_{n}} \leq \frac{k^{n}}{1 - k} \abs{x_{1} - x_{0}} = \Delta_{x_{n}} \\
+      \abs{p - x_{n}} \leq \frac{k}{1 - k} \abs{x_{1} - x_{0}} = \Delta_{x_{n}}
+    \end{eqbox}
+
+
+\hi{Newton - Raphson Method}

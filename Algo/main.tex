@@ -19,6 +19,7 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
+
 % INDENTATION
 \usepackage{indentfirst}
 
@@ -54,6 +55,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{gensymb}
+
 % Equation box
 \usepackage{empheq}
 \newenvironment{eqbox}
@@ -65,29 +67,43 @@
 {
   \endEmphEqMainEnv
 }
+
 % Sum, product, limit
 \newcommand{\SUM}[1]{\sum\limits #1}
 \newcommand{\PROD}[1]{\prod\limits #1}
 \newcommand{\INT}[1]{\int\limits #1}
+
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
-% Macros
+
+% Arrows
 \newcommand{\ra}{\Rightarrow}
 \newcommand{\lra}{\Leftrightarrow}
+
 % Bold in math mode
 \usepackage{bm}
+
 % Absolute value
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
-% Swap the definition of \abs* and \norm*, so that \abs
-% and \norm resizes the size of the brackets, and the 
-% starred version does not.
+%   Swap the definition of \abs* and \norm*, so that \abs
+%   and \norm resizes the size of the brackets, and the 
+%   starred version does not.
 \makeatletter
 \let\oldabs\abs
 \def\abs{\@ifstar{\oldabs}{\oldabs*}}
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+
+% Floor and ceiling
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% Disjoint symbol
+\usepackage{MnSymbol} % cupdot or bigcupdot
+\newcommand{\disjoint}{\bigcupdot}
 
 
 % FOOTNOTE
@@ -97,33 +113,41 @@
 % PSEUDOCODE
 \usepackage{algpseudocode,algorithm,algorithmicx}
 \usepackage{caption}
-\newcommand*\DNA{\textsc{dna}}
 
 \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
 
 \newcommand*\Let[2]{\State #1 $\gets$ #2}
 \algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
 \algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
-\newcommand{\TO}{\textrm{ to }}
-\newcommand{\AND}{\textrm{ and }}
-\newcommand{\OR}{\textrm{ or }}
 \newcommand{\LET}[2]{\Let{$#1$}{$#2$}}
-\newcommand{\FOR}[1]{\For{$#1$}}
+\newcommand{\FOR}[2]{\For{$#1 \gets #2$}}
 \newcommand{\ENDFOR}{\EndFor}
+\newcommand{\TO}{\textrm{ \tb{to} }}
+\newcommand{\DOWNTO}{\textrm{ \tb{downto} }}
+\newcommand{\AND}{\textrm{ \tb{and} }}
+\newcommand{\OR}{\textrm{ \tb{or} }}
+\newcommand{\XOR}{\textrm{ \tb{xor} }}
+\newcommand{\GETS}{\gets}
 \newcommand{\IF}[1]{\If{$#1$}}
-\newcommand{\ELSEIF}[1]{\Elseif{$#1$}}
+\newcommand{\ELSEIF}[1]{\ElsIf{$#1$}}
 \newcommand{\ELSE}{\Else}
 \newcommand{\ENDIF}{\EndIf}
 \newcommand{\WHILE}[1]{\While{$#1$}}
 \newcommand{\ENDWHILE}{\EndWhile}
-\newcommand{\CALLFUNC}[2]{\Call{#1}{$#2$}}
+\newcommand{\FUNCTION}[2]{\Function{#1}{$#2$}}
+\newcommand{\ENDFUNCTION}{\EndFunction}
+\newcommand{\PROCEDURE}[2]{\Procedure{#1}{$#2$}}
+\newcommand{\ENDPROCEDURE}{\EndProcedure}
+\newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
+\newcommand{\RETURN}[1]{\State \Return{#1}}
 
 
 \begin{document}
 
 \tableofcontents
 
+\input{ds}
 \input{graph}
 \input{tree}
 

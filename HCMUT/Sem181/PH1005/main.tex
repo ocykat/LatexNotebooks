@@ -54,26 +54,16 @@
 % Equation box
 \usepackage{empheq}
 \newenvironment{eqbox}
-{
-  \setkeys{EmphEqEnv}{align}
-  \setkeys{EmphEqOpt}{box=\fbox}
-  \EmphEqMainEnv
-}
-{
-  \endEmphEqMainEnv
-}
-
-% Sum, product, limit
-\newcommand{\SUM}[1]{\sum\limits #1}
-\newcommand{\PROD}[1]{\prod\limits #1}
-\newcommand{\INT}[1]{\int\limits #1}
-
-% Inner Product
-\newcommand{\iprod}[1]{\langle #1 \rangle}
+  {\setkeys{EmphEqEnv}{align}\setkeys{EmphEqOpt}{box=\fbox}\EmphEqMainEnv}
+  {\endEmphEqMainEnv}
 
 % Arrows
 \newcommand{\ra}{\Rightarrow}
 \newcommand{\lra}{\Leftrightarrow}
+
+% Sum, product, limit
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
 
 % Bold in math mode
 \usepackage{bm}
@@ -96,9 +86,48 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+% Inner Product
+\newcommand{\iprod}[1]{\langle #1 \rangle}
+
+% Derivatives
+\newcommand{\dif}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\ddif}[2]{\dfrac{d^2 #1}{d #2^2}}
+\newcommand{\difi}[2]{d #1/d #2}
+\newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
+\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
+\newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
+
+% Integrals
+\usepackage{esint}
+\newcommand{\INT}{\int \limits}
+\newcommand{\OINT}{\oint \limits}
+\newcommand{\IINT}{\iint \limits}
+\newcommand{\IIINT}{\iiint \limits}
+
 
 % FOOTNOTE
+%   one foot note stays on one page
 \interfootnotelinepenalty=10000
+
+\newcommand{\fnmark}{\footnotemark}
+\newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
+\newcommand{\fntext}{\footnotetext}
+
+
+% IMAGES
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\newcommand{\img}[2][]
+  {
+    \begin{figure}[H]
+      \centering
+      \includegraphics[#1]{#2}
+    \end{figure}
+}
 
 
 % PSEUDOCODE
@@ -139,12 +168,24 @@
 \newcommand{\RETURN}[1]{\State \Return{#1}}
 
 
+\newcommand{\BOOKTITLE}{University Physics with Modern Physics - 13th Edition}
+\newcommand{\BOOKSECTION}[1]{\smf{\ti{Section #1 - \BOOKTITLE}}}
+
+
 \begin{document}
 \tableofcontents
 
-\input{chap01}
+\setcounter{chapter}{8}
+\input{chap09}
+\input{chap10}
+\setcounter{chapter}{13}
+\input{chap14}
+\input{chap15}
+\setcounter{chapter}{32}
+\input{chap33}
 
 \begin{appendices}
+
 \end{appendices}
 
 \end{document}

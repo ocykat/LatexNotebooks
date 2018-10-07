@@ -1,0 +1,37 @@
+\chapter{Instructions: Language of the Computer}
+
+
+\hi{Operations of the Computer Hardware}
+  \BOOKSECTION{2.2}
+  \par \tb{Instruction types}:
+  \begin{itemize}
+    \item Arithmetic
+    \item Data transfer
+    \item Logical
+    \item Conditional branch
+    \item Unconditional jump
+  \end{itemize}
+
+\hi{Operands}
+  \hii{Registers}
+    \par In the MIPS architecture:
+    \begin{itemize}
+      \item the size of a register is \tb{32 bits}.
+      \item a group of 32 bits is called \tb{word}.
+      \item there are 32 different registers.
+      \item each word must start at addresses that are multiples of 4 (known
+        as alignment restriction).
+    \end{itemize}
+    \par The address of a register is the address of either its leftmost byte
+      (MSb) or its rightmost byte (LSb). Architecture that has register address
+      to be the MSb is called big-endian. Architecture that has register address
+      to be the LSb is called little-endian.
+  \hii{Arithmetic operands}
+    \par One arithmetic operand is followed by 3 registers.
+  \hii{Memory operands}
+    \par The data transfer instruction that copies data from memory to a
+      register is called \tb{load}.
+    \par The data transfer instruction that copies data from a register back
+      to memory is called \tb{store}.
+  \hii{Constant/Immediate Operands}
+    \par There is a special register: \code{$zero}.

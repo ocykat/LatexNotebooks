@@ -1,0 +1,67 @@
+\chapter{Rotation of Rigid Bodies}
+
+
+\hi{Angular Velocity and Acceleration}
+  \par Define $z$ as the axis of rotation.
+  \hii{Angular Velocity}
+    \par Average angular velocity:
+      \begin{eqbox}
+        \omega_z = \frac{\Delta\theta}{\Delta t}
+      \end{eqbox}
+    \par Instantaneous angular velocity:
+      \begin{eqbox}
+        \omega_z = \dif{\Delta\theta}{\Delta t}
+      \end{eqbox}
+  \hii{Angular Acceleration}
+    \par Average angular acceleration:
+      \begin{eqbox}
+        \alpha_z = \frac{\Delta\omega_z}{\Delta t}
+      \end{eqbox}
+    \par Instantaneous angular acceleration:
+      \begin{eqbox}
+        \alpha_z = \dif{\Delta\omega_z}{\Delta t} = \ddif{\Delta\theta}{\Delta t}
+      \end{eqbox}
+
+
+\hi{Rotation with Constant Angular Acceleration}
+
+
+\hi{Energy in Rotational Motion - Moment of Inertia}
+  \par Kinetic energy of a rotating particle:
+    \begin{align*}
+      K_i = \frac{1}{2} m_i v_i^2 = \frac{1}{2} m_i r_i^2 \omega_i^2
+    \end{align*}
+  \par For a rigid body consisting of particles:
+    \begin{align*}
+      K = \SUM_{i} \frac{1}{2}  m_i r_i^2 \omega_i^2
+    \end{align*}
+  \par For a rigid body, $\forall i, \omega_i = \omega$.
+    \begin{align*}
+      K = \frac{1}{2} \bigg(\SUM_{i} m_i r_i^2\bigg) \omega^2
+    \end{align*}
+  \par \tb{Moment of inertia} is defined as:
+  \begin{eqbox}
+    I = \SUM_{i} m_i r_i^2
+  \end{eqbox}
+  \par Then, rotational kinetic energy can be calculated by:
+  \begin{eqbox}
+    K = \frac{1}{2} I\omega^2
+  \end{eqbox}
+
+
+\hi{Parallel-Axis Theorem}
+  \begin{eqbox}
+    I_p = I_{CM} + md^2
+  \end{eqbox}
+  where
+  \begin{itemize}
+    \item $I_{CM}$: moment of inertia of the body about the axis through the
+      center of mass
+    \item $I_p$: moment of inertia of the body about an axis $p$ parallel to
+      the axis through the center of mass
+    \item $m$: mass of the body
+    \item $d$: distance between two axes
+  \end{itemize}
+
+
+\hi{Moment of inertia calculations}

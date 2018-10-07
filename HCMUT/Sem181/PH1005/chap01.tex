@@ -1,0 +1,74 @@
+\chapter{Periodic Motions}
+
+
+\hi{Describing Oscillation}
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{equilibrium}
+      \item \tb{restoring force}
+      \item \tb{cycle}
+      \item \tb{amplitude ($A$)}: the maximum magnitude of displacement from
+        equilibrium.
+        \begin{eqbox}
+          A = \max(\abs{x})
+        \end{eqbox}
+      \item \tb{period ($T$)}: the time for one cycle.
+        \par unit: $[s]$
+      \item \tb{frequency ($f$)}: the number of cycles in a unit of time.
+        \par unit: $[Hz]$
+        \begin{eqbox}
+          f = \frac{1}{T}
+        \end{eqbox}
+      \item \tb{angular frequency}:
+        \begin{eqbox}
+          \omega = 2\pi f = \frac{2\pi}{T}
+        \end{eqbox}
+    \end{itemize}
+
+
+\hi{Spring Pendulum}
+  \hii{Spring Pendulum}
+    \par In a ideal spring pendulum system, the restoring force $F_{x}$ is directly
+      propotional to the displacement (from equilibrium).
+    \begin{align*}
+      F_{x} = -kx
+    \end{align*}
+    \par When the restoring force is directly propotional to the displacement,
+      the oscillation is called \tb{simple harmonic motion} (SHM).
+    \begin{flalign*}
+      & a_{x} = \frac{d^{2}x}{dt^{2}} = -\frac{k}{m}x
+    \end{flalign*}
+    \par We can show that the movement of a body under the effect of a spring
+      pendulum is exactly the same with the movement of the $x$-component of
+      a rotational motion which $r = A/2$ and
+      $\omega_{pendulum} = \omega_{rotation}$.
+    \par Therefore:
+      \begin{align*}
+        x = A \cos(\omega t + \varphi)
+      \end{align*}
+    \par Angular frequency of spring pendulum:
+    \begin{eqbox}
+      \omega = \sqrt{\frac{k}{m}}
+    \end{eqbox}
+
+  \hii{Displacement, Velocity and Acceleration}
+    \hiii{Displacement}
+      \begin{eqbox}
+        x = A \cos(\omega t + \varphi)
+      \end{eqbox}
+      where
+      \begin{itemize}
+        \item $\omega$: angular frequency
+        \item $\varphi$: phase angle
+      \end{itemize}
+    \hiii{Velocity}
+      \begin{eqbox}
+        v = -\omega A \sin(\omega t + \varphi) = -\omega A \cos(\omega t + \varphi + \frac{\pi}{2})
+      \end{eqbox}
+    \hiii{Acceleration}
+      \begin{eqbox}
+        a = -\omega^{2} A \cos(\omega t + \varphi) = \omega^{2} A \cos(\omega t + \varphi + \pi)
+      \end{eqbox}
+
+  \hii{Amplitude and Period}
+    \par The amplitude of the SHM has no effect on the period/frequency of oscillation.

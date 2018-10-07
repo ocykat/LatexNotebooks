@@ -1,0 +1,83 @@
+\chapter{Dynamics of Rotational Motion}
+\hi{Torque}
+  \begin{itemize}
+    \item Vector form:
+    \begin{eqbox}
+      \tau_z = \vec{F} \times \vec{r}
+    \end{eqbox}
+
+    \item Magnitude:
+    \begin{eqbox}
+      \tau_z = Fr\sin(\theta) = F_{tan}r
+    \end{eqbox}
+    where
+    \begin{itemize}
+      \item $tau$: torque
+      \item $\vec{F}$: force
+      \item $\vec{r}$: lever arm
+    \end{itemize}
+
+  \end{itemize}
+
+
+\hi{Torque and Angular Acceleration for a Rigid Body}
+  \par According to Newton's Second Law, for a rotating particle under a force $F$:
+    \begin{align*}
+      F_{i.tan} = m_i a_{i.tan}
+    \end{align*}
+    where
+    \begin{itemize}
+      \item $F_{i.tan}$: tangential component of the force $F$
+      \item $m$: mass of the particle
+      \item $a_{i.tan}$: tangential component of acceleration
+    \end{itemize}
+  \par Relationship between tangential acceleration and rotational acceleration:
+  \begin{align*}
+    a_{i.tan} = r_i \alpha_z
+  \end{align*}
+  \par Therefore:
+  \begin{flalign*}
+    & \qquad F_{i.tan} = m_i r_i \alpha_z && \\
+    & \ra F_{i.tan} r_i = m_i r_i^2 \alpha_z && \\
+    & \ra \SUM (F_{i.tan} r_i) = \SUM (m_i r_i^2) \alpha_z && \\
+    & \ra \SUM (\tau_{z.i.tan}) = \SUM (I_i) \alpha_z && \\
+    & \ra \tau_z =  I \alpha_z &&
+  \end{flalign*}
+  \begin{eqbox}
+    \tau_z = I \alpha_z
+  \end{eqbox}
+  where
+  \begin{itemize}
+    \item $\tau_z$: torque
+    \item $I$: moment of inertia
+    \item $\alpha_z$: angular acceleration
+  \end{itemize}
+
+
+\hi{Angular Momentum}
+  \hii{Definition}
+    \BOOKSECTION{10.5}
+    \begin{align*}
+      \vec{L} = \vec{p} \times \vec{r} = m\vec{v} \times \vec{r}
+    \end{align*}
+    where:
+    \begin{itemize}
+      \item $\vec{L}$: angular momentum
+      \item $\vec{p}$: lever arm/radius of rotation
+      \item $\vec{r}$: linear momentum
+    \end{itemize}
+
+  \hii{Angular Momentum of a Rigid Body}
+    \par For a particle:
+    \begin{flalign*}
+      & L_i = m_i v_i r_i = m_i (\omega_i r_i) r_i = m_i r_i^2 \omega_i &&
+    \end{flalign*}
+    \par Then for a rigid body:
+    \begin{flalign*}
+      & \ra \SUM(L_i) = \SUM(m_i r_i^2 \omega_i) = \SUM(m_i r_i^2) \omega && \\
+      & \ra \SUM(L_i) = \SUM(I_i) \omega && \\
+      & \ra L = I \omega &&
+    \end{flalign*}
+    \begin{eqbox}
+      L = I \omega
+    \end{eqbox}

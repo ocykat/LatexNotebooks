@@ -1,0 +1,109 @@
+\chapter{Waves}
+
+\hi{Introduction}
+  \hii{Definition}
+    \par A \tb{mechanical wave} is a disturbance that travels through some
+      material or substance called \tb{medium}.
+  \hii{Types of wave}
+    \begin{itemize}
+      \item A \tb{traverse wave} is a wave in which the displacements of the
+        medium are perpendicular (or traverse) to the direction of travel of
+        the wave.
+      \item A \tb{longitudinal wave} is a wave in which the particles of the
+        medium are back and forth along the same direction that the wave
+        travels.
+    \end{itemize}
+
+\hi{Periodic Waves}
+  \hii{Definition}
+    \par A \tb{periodic wave} is a wave in which every particle undergo
+      periodic motion.
+  \hii{Wavelength}
+    \par Terminology:
+    \begin{itemize}
+      \item crest
+      \item trough
+    \end{itemize}
+    \par The \tb{wavelength} is the distance between two nearest crests,
+      or two nearest trough, or any two nearest points oscillating with the
+      same phase (or oscillating in phase with each other).
+    \begin{eqbox}
+      v = \lambda f
+    \end{eqbox}
+    where:
+    \begin{itemize}
+      \item $v$: wave speed/speed of propagation
+      \item $\lambda$: wavelength
+      \item $f$: frequency
+    \end{itemize}
+  \hii{Other quantities}
+    \par The period $T$ of a wave is the time interval for the wave to travel
+      a distance equals to one wavelength.
+    \par Frequency
+    \par Amplitude
+
+\hi{Wave function}
+  \hii{Displacement at arbitrary position of sinusoidal tranverse wave}
+    \par Displacement of the left end of the string $x = 0$, where the wave
+      originates, is given by:
+      \begin{flalign*}
+        & y(x = 0, t) = A\cos(\omega t) = A\cos(2\pi ft) &&
+      \end{flalign*}
+
+    \par The motion of arbitrary point $x$ at time $t$ is the same as the motion
+      of point $x = 0$ at the earlier time $t - x/v$. Hence:
+      \begin{flalign*}
+        &
+          y(x, t) = A\cos\bigg[\omega\bigg(t - \frac{x}{v} \bigg) \bigg] 
+                  = A\cos\bigg[\omega\bigg(\frac{x}{v} - t \bigg) \bigg] 
+        && \\
+        &
+          \ra y(x, t) = A\cos\bigg[2 \pi \bigg(\frac{x}{\lambda} - \frac{t}{T} \bigg) \bigg] 
+        &&
+      \end{flalign*}
+    
+    \par Define $k$ as the \tb{wave number}:
+      \begin{align*}
+        k = \frac{2 \pi}{\lambda}
+      \end{align*}
+      \begin{flalign*}
+        &
+          \ra y(x, t) = A\cos(\omega t - kx)
+        &&
+      \end{flalign*}
+
+  \hii{Wave Equation}
+    \begin{flalign*}
+      &
+        y(x, t) = A\cos(\omega t - kx)
+      && \\
+      & \ra
+        \begin{cases}
+            \pd{y}{t} = -\omega A\sin(\omega t - kx) \\
+            \pd{y}{x} = kA\sin(\omega t - kx)
+          \end{cases}
+        && \\
+      & \ra
+        \begin{cases}
+          \pdds{y}{t} = -\omega^2  A\cos(\omega t - kx) \\
+          \pdds{y}{x} = -k^2 A\cos(\omega t - kx)
+        \end{cases}
+      && \\
+      & \ra
+        \frac{pddsi{y}{t}}{pddsi{y}{x}} = \frac{\omega^2}{k^2} = v^2
+      && \\
+      & \ra
+        \frac{\partial^2 y(x, t)}{\partial x^2}
+          = \frac{1}{v^2} \frac{\partial^2 y(x, t)}{\partial t^2}
+      &&
+    \end{flalign*}
+
+\hi{Speed of Traverse Wave}
+  \begin{eqbox}
+    v = \sqrt{\frac{F}{\mu}}
+  \end{eqbox}
+  \begin{itemize}
+    \item $v$: speed of traverse wave
+    \item $F$: force
+    \item $\mu$: mass per unit length
+  \end{itemize}

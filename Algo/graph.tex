@@ -30,10 +30,24 @@
       while the adjacency-matrix representation is better when the graph is
       \tb{dense}.
     \par A graph is dense if $\abs{E}$ is close to $\abs{V^{2}}$.
+  \hii{Cut}
+    \par A \tb{cut} is a partition of the vertices of a graph into two disjoint
+      subsets $G_{1}$ and $G_{2}$.
+    \par Any cut determines a \tb{cut set} $C$ such that:
+    \begin{align*}
+      \forall (u, v) \in C: (u \in G_{1} \land v \in G_{2}) \lor (u \in G_{2} \land v \in G_{1})
+    \end{align*}
 
 
 \hi{Breadth-First Search (BFS)}
-  \hii{Theorem on correctness of BFS}
+  \hii{Time Complexity}
+    \begin{itemize}
+      \item Queue operations: $O(V)$
+      \item Traversing adjacency lists: $O(E)$
+    \end{itemize}
+    \par Total time complexity: $O(V + E)$
+
+  \hii{Theorem on correctness of BFS and shortest path}
     \par Define $\delta(s, v)$ as the \tb{shortest-path distance} from
       $s$ to $v$ as the minimum number of edges in any path from $s$ to $v$.
       If there is no path from $s$ to $v$, $\delta(s, v) = \infty$.
@@ -41,4 +55,95 @@
       \par Let $G = (V, E)$ be a directed graph. Suppose that BFS is run on G
         from a given source vertex $s \in V$. Then during its execution, BFS
         discovers every vertex $v \in V$ that is reachable from the source $s$,
-        and upon termination, $v.d = \delta(s, v) \forall v in V$.
+        and upon termination, $\forall v \in V: v.d = \delta(s, v)$.
+
+
+\hi{Depth-First Search (DFS)}
+  \hii{Edge types}
+    \begin{itemize}
+      \item \tb{Tree edge}: an edge in the DF forest. More specifically,
+        $(u, v)$ is a tree edge if $v$ was first discovered by $(u, v)$.
+      \item \tb{Back edge}: any edge $(u, v)$ which has $u$ as a descendant of $v$.
+      \item \tb{Forward edge}: any \ti{nontree} edge $(u, v)$ which has $u$ as
+        an ancestor of $v$.
+      \item \tb{Cross edge}: every edge which does not fall into the 3
+        mentioned categories. A cross edge can be edge between vertices in
+        the same tree with no relationship, or vertices of different DF trees,
+    \end{itemize}
+
+  \hii{Theorems}
+    \hiii{Parenthesis theorem}
+      \par In a DFS of a graph $G = (V, E)$ (di/undi), $\forall (u, v)$:
+        exactly one of the three conditions holds:
+        \begin{itemize}
+          \item $[u.enter, u.leave] \disjoint [v.enter, v.leave]$
+          \item $[u.enter, u.leave] \subset [v.enter, v.leave]$
+          \item $[v.enter, v.leave] \subset [u.enter, u.leave]$
+        \end{itemize}
+      \par Corollary: $v$ is a \ti{proper descendant} of $u$ in the DF forest
+        for a graph $G$ iff
+        \begin{align*}
+          u.enter < v.enter < v.leave < u.leave
+        \end{align*}
+
+    \hiii{White-path theorem}
+      \par In a DF forest of a graph $G$ (undi/di), $v$ is a descendant of $u$
+        iff at $u.enter$ there is a path $u \to v$ consists entirely of white
+        vertices (vertices that have not been visited by DFS).
+
+    \hiii{Edge Type theorem}
+      \par In a DFS of an undirected graph $G$, every edge of $G$ is either a
+        tree edge or a back edge.
+
+
+\hi{Strongly Connected Component}
+  \hii{Definition}
+    \par A \tb{strongly connected component} (SCC) of a directed graph
+      $G = (V, E)$ is a maximal set of vertices $C \subseteq V$ such that for
+      every pair of vertices $(u, v)$, we have both paths $u \to v$ and $v \to u$.
+
+  \hii{Component Graph}
+    \par A \tb{component graph} $G^{SCC} = \{ V^{SCC}, E^{SCC} \}$ is a graph
+      obtained from $G$ by compressing every SCC into one vertex.
+    \par \tb{Property}: A component graph is a \tb{DAG}.
+    \par \tb{Lemma}: Let $C$ and $C'$ be distinct SCCs in $G$. Let $u, v \in C$,
+      $u', v' \in C'$. Suppose that $G$ contains a path $u \leadsto u'$.
+      Then $G$ cannot also contain a path $v' \to v$.
+      \begin{smfont}
+        \par \tb{Proof}: If there is a path $u \leadsto u'$, then there is also
+          a path $u \leadsto v'$. If there is a path $v' to v$, then $C$ and
+          $C'$ are strongly connected. This contradicts the assumption that $C$
+          and $C'$ are distinct.
+      \end{smfont}
+    \par Define $C.enter = x_{0}.enter$ where $x_{0} \in C$ and $x_{0}.enter$
+      is \tb{minimum}.
+    \par Define $C.leave = x_{0}.leave$ where $x_{0} \in C$ and $x_{0}.enter$
+      is \tb{maximum}.
+    \par \tb{Lemma}: Let $C$ and $C'$ be distinct SCCs. Suppose that there is
+      an edge $u \to v$ where $u \in C$ and $v \in C'$. Then
+      $C.leave > C'.leave$.
+      \begin{smfont}
+        \par \tb{Proof}: There are two different cases:
+          \begin{itemize}
+            \item $C.enter < C'.enter$: Let $x_{0}$ be the first vertex
+              discovered in $C$. At $x_{0}.enter$, the path from $x$ to any
+              vertex in $C$ or $C'$ consists of only white vertices. By the
+              white path theorem, $x_{0}$ is the ancestor of all vertices in
+              $C$ and $C'$. Therefore, $C.leave = x_{0}.leave > C'.leave$.
+          \end{itemize}
+      \end{smfont}
+
+
+\hi{Minimum Spanning Tree}
+  \hii{Cut property}
+    \par For any cut $C$ of the graph, if the weight of an edge $e$ in the cut set of $C$
+      is strictly smaller than the weights of all other edges of the cut-set of $C$, then
+      this edge belongs to all MSTs of the graph.
+    \par \tb{Proof}:
+    \begin{smfont}
+      \par Define $T$ as the MST of $G$. Assume that $e \not \in T$.
+      \par The cut $C$ partition the graph into $G_{1}$ and $G_{2}$.
+      If $e \not \in T$, then $\exists e' \in C: e' \not \equiv e \land e' \in T$ connecting $G_{1}$
+      and $G_{2}$. By adding $e$ and removing $e'$ from $T$, we get a MST that
+      is strictly smaller weight than $T$. This contradicts the assumption.
+    \end{smfont}

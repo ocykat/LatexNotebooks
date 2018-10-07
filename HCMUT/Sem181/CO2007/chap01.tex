@@ -1,0 +1,105 @@
+\chapter{Computer Abstractions and Technology}
+
+\hi{Terminology}
+  \BOOKSECTION{1.1 - 1.5}
+  \begin{itemize}
+    \item \tb{integrated circuit (chip)}: is a device consists of transistors.  
+    \item \tb{central processing unit (CPU, processor)}: the active part of the
+      computer that contains the datapath and control and which adds number,
+      tests numbers, signals I/O devices to acivate, and so on.
+
+    \item \tb{datapath}: the component of the processor that performs arithmetic
+      operations.
+
+    \item \tb{control}: the component of the processor that commands the datapath,
+      memory, and I/O devices according to the instructions of the program.
+
+    \item \tb{memory}: the storage area in which programs are kept when they are
+      running and that contains the data needed by the running programs.
+
+    \item \tb{dynamic random access memory (DRAM)}: memory built as an integrated
+      circuit; it provides random access to any location.
+
+    \item \tb{cache memory}: a smalll, fast memory that acts as a buffer for
+      a slower, larger memory.
+
+    \item \tb{static random access memory (SRAM)}: memory built as an integrated
+      circuit; it is faster and less dense than DRAM.
+
+    \item \tb{instruction set architecture (architecture)}: an abstract interface
+      between the the hardware and the lowest-level software that encompasses all
+      the information necessary to write a machine language program that will
+      run correctly, including instructions registers, memory access, I/O, and
+      so on.
+
+    \item \tb{application binary interface (ABI)}: the user portion of the
+      instruction set plus the operating system interfaces used by application
+      programmers. It defines a standard for binary portability accross all
+      computers.
+
+    \item \tb{main memory}: (a.k.a \tb{primary memory}) memory used to hold
+      programs while they are running; typically consists of DRAM
+    
+    \item \tb{secondary memory}: nonviolatile memory used to store programs and data
+      between runs (nonviolatile: unchanged)
+
+    \item \tb{magnetic disk/hard disk}: a form of nonviolatile secondary memory
+      composed of rotating platters coated with a magnetic recording material.
+
+    \item \tb{flash memory}: a nonviolatile semiconductor memory
+  \end{itemize}
+
+\hi{Performance}
+  \BOOKSECTION{1.6}
+
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{execution time/response time}: the time between the start and completion of a task
+      \item \tb{throughput/bandwidth}: the total amount of work done in a given
+        time
+    \end{itemize}
+
+  \hii{Performance}
+    \par Performance is defined as:
+    \begin{eqbox}
+      \text{Performance}_x = \frac{1}{\text{Execution time}_x}
+    \end{eqbox}
+    \par Relative performance:
+    \begin{eqbox}
+      \ratio{\text{Performance}}{a}{b} = \ratio{\text{Execution time}}{b}{a} 
+    \end{eqbox}
+
+  \hii{CPU execution time}
+    \begin{itemize}
+      \item \tb{CPU execution time/CPU time}: the time the CPU spends computing
+        for one task and does not include time spent waiting for I/O or running
+        other programs.
+      \item \tb{Clock cycle}: clock period
+      \item \tb{Clock rate}: clock frequency
+    \end{itemize}
+    
+    \begin{eqbox}
+      \text{CPU time} = \text{\# Clock cycles} \times \text{Clock cycle} \\
+      t = n_{cycles} \times T
+    \end{eqbox}
+
+    \begin{eqbox}
+      \text{CPU time} = \frac{\text{\# Clock cycles}}{\text{Clock cycle}} \\
+      t = \frac{n_{cycles}}{f}
+    \end{eqbox}
+
+  \hii{Number of Cycles for a program}
+    \begin{eqbox}
+      \text{\# Clock cycles}
+      = \text{\# Instructions} \times \text{(average) \# Cycles per instruction}
+    \end{eqbox}
+    \begin{eqbox}
+      \text{\# Clock cycles}
+      = \text{Instruction count} \times \text{CPI}
+    \end{eqbox}
+    \par Composed formula: 
+    \begin{eqbox}
+      \text{CPU time}
+      = \frac{\text{Instruction count} \times \text{CPI}}{\text{Clock rate}}
+    \end{eqbox}
+
