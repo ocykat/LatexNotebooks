@@ -72,7 +72,7 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 %   Swap the definition of \abs* and \norm*, so that \abs
-%   and \norm resizes the size of the brackets, and the 
+%   and \norm resizes the size of the brackets, and the
 %   starred version does not.
 \makeatletter
 \let\oldabs\abs
@@ -170,15 +170,23 @@
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
 
+% THIS FILE ONLY
+\usepackage{listings}
+\usepackage{courier}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+
 
 \newcommand{\BOOKTITLE}{Computer Organization and Design - David Patterson - 5th Edition}
 \newcommand{\BOOKSECTION}[1]{\smf{\ti{Section #1 - \BOOKTITLE}}}
+
+\newcommand{\reg}[1]{\texttt{\${}#1}}
 
 
 \begin{document}
 \tableofcontents
 
 \input{chap01}
+\input{chap02}
 
 \begin{appendices}
 

@@ -28,10 +28,20 @@
       to be the LSb is called little-endian.
   \hii{Arithmetic operands}
     \par One arithmetic operand is followed by 3 registers.
+    \begin{lstlisting}
+# $s1 contains value of a
+# $s2 contains value of b
+# $t0 contains value of c
+add $s1, $s2, $t0 # a = b + c
+    \end{lstlisting}
   \hii{Memory operands}
     \par The data transfer instruction that copies data from memory to a
       register is called \tb{load}.
     \par The data transfer instruction that copies data from a register back
       to memory is called \tb{store}.
+    \begin{lstlisting}
+# $s3 keeps the address of array a
+lw $t0, 8($s3) # reg $t0 gets the value of a[8]
+    \end{lstlisting}
   \hii{Constant/Immediate Operands}
-    \par There is a special register: \code{$zero}.
+    \par There is a special register: \reg{zero}.
