@@ -87,7 +87,7 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 %   Swap the definition of \abs* and \norm*, so that \abs
-%   and \norm resizes the size of the brackets, and the 
+%   and \norm resizes the size of the brackets, and the
 %   starred version does not.
 \makeatletter
 \let\oldabs\abs
@@ -110,15 +110,20 @@
 \interfootnotelinepenalty=10000
 
 
-% PSEUDOCODE
-\usepackage{algpseudocode,algorithm,algorithmicx}
+% === PSEUDOCODE ===
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
 \usepackage{caption}
 
 \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
 
 \newcommand*\Let[2]{\State #1 $\gets$ #2}
-\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
-\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\newcommand{\INPUT}[1]{\Require{#1} \Statex}
+\newcommand{\OUTPUT}[1]{\Ensure{#1} \Statex}
+\newcommand{\INPUTOUTPUT}[2]{\Require{#1} \Ensure{#2} \Statex}
 \newcommand{\LET}[2]{\Let{$#1$}{$#2$}}
 \newcommand{\FOR}[2]{\For{$#1 \gets #2$}}
 \newcommand{\ENDFOR}{\EndFor}
@@ -141,7 +146,6 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
-
 
 \begin{document}
 

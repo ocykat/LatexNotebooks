@@ -43,7 +43,12 @@
 \newcommand{\tu}[1]{\underline{#1}}
 \newcommand{\tbu}[1]{\textbf{\underline{#1}}}
 \newcommand{\smf}[1]{\small #1 \normalsize}
-\newenvironment{smfont}{\small}{\normalsize}
+\newenvironment{smfont}{\small}{\normalsize}\
+
+
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
+% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
 
 
 % === MATH ===
@@ -73,7 +78,7 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 %   Swap the definition of \abs* and \norm*, so that \abs
-%   and \norm resizes the size of the brackets, and the 
+%   and \norm resizes the size of the brackets, and the
 %   starred version does not.
 \makeatletter
 \let\oldabs\abs
@@ -123,15 +128,18 @@
 
 % === IMAGES ===
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\newcommand{\img}[2][]
-  {
-    \begin{figure}[H]
-      \centering
-      \includegraphics[#1]{#2}
-    \end{figure}
+\newcommand{\img}[3][]
+{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption*{#3}
+  \end{figure}
 }
+% Usage: \img[width=...]{<path_to_img>}{<caption>}
 
 
 % === PSEUDOCODE ===
@@ -170,6 +178,15 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
+
+
+% === CODE ===
+\usepackage{listings}
+\usepackage{inconsolata}
+\lstset
+{
+  basicstyle=\ttfamily,
+}
 
 
 % === BOOK SECTION MARKER ===
