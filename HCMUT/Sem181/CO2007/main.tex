@@ -1,9 +1,13 @@
 \documentclass[12pt, a4paper]{report}
 
-
 % MARGINS
 \usepackage[margin=0.75in]{geometry}
 
+% FONT
+\renewcommand{\familydefault}{\sfdefault}
+
+% LINE SPACING
+\setlength{\parskip}{6pt}
 
 % HEADINGS
 \setcounter{secnumdepth}{4}
@@ -14,10 +18,8 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-
 % INDENTATION
 \usepackage{indentfirst}
-
 
 % TABLE OF CONTENTS
 % links
@@ -30,10 +32,8 @@
   urlcolor=black
 }
 
-
 % APPENDICES
 \usepackage[toc,page]{appendix}
-
 
 % TEXT
 % Bold, italic, underlined text
@@ -44,7 +44,6 @@
 \newcommand{\tbu}[1]{\textbf{\underline{#1}}}
 \newcommand{\smf}[1]{\small #1 \normalsize}
 \newenvironment{smfont}{\small}{\normalsize}
-
 
 % MATH
 \usepackage{amsmath}
@@ -110,7 +109,6 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
-
 % FOOTNOTE
 %   one foot note stays on one page
 \interfootnotelinepenalty=10000
@@ -118,7 +116,6 @@
 \newcommand{\fnmark}{\footnotemark}
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
-
 
 % IMAGES
 \usepackage{graphicx}
@@ -131,7 +128,6 @@
       \includegraphics[#1]{#2}
     \end{figure}
 }
-
 
 % PSEUDOCODE
 \usepackage{algorithm}
@@ -169,17 +165,37 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
+\newcommand{\SHIFTLEFT}{\ll}
+\newcommand{\SHIFTRIGHT}{\gg}
 
-% THIS FILE ONLY
+% FRENCH CONVENTION FOR VERTICAL ARITHMETIC
+\usepackage{xlop}
+
+% CODE
 \usepackage{listings}
-\usepackage{courier}
-\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+%\makeatletter
+%\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+%\@empty\z@\@empty
+%\makeatother
+\usepackage{inconsolata}
+\lstset{
+  language=[x86masm]Assembler,
+  aboveskip=1mm,
+  belowskip=1mm,
+  numbers=left,
+  frame=tb,
+  % language=[mips]Assembler,
+  basicstyle=\ttfamily
+  \footnotesize,
+  breaklines=true,
+  mathescape=false
+}
 
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\reg}[1]{\texttt{\${}#1}}
 
 \newcommand{\BOOKTITLE}{Computer Organization and Design - David Patterson - 5th Edition}
 \newcommand{\BOOKSECTION}[1]{\smf{\ti{Section #1 - \BOOKTITLE}}}
-
-\newcommand{\reg}[1]{\texttt{\${}#1}}
 
 
 \begin{document}
@@ -187,6 +203,8 @@
 
 \input{chap01}
 \input{chap02}
+\input{chap03}
+\input{chap04}
 
 \begin{appendices}
 

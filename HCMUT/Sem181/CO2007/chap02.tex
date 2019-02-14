@@ -1,6 +1,5 @@
 \chapter{Instructions: Language of the Computer}
 
-
 \hi{Operations of the Computer Hardware}
   \BOOKSECTION{2.2}
   \par \tb{Instruction types}:
@@ -13,6 +12,11 @@
   \end{itemize}
 
 \hi{Operands}
+  \par The operands of arithmetic instructions must be from a limited number
+    of special locations built directly in hardware called \ti{registers}.
+  \par The three operands of MIPS arithmetic instructions must each be chosen
+    from one of the 32 32-bit registers.
+
   \hii{Registers}
     \par In the MIPS architecture:
     \begin{itemize}
@@ -22,10 +26,7 @@
       \item each word must start at addresses that are multiples of 4 (known
         as alignment restriction).
     \end{itemize}
-    \par The address of a register is the address of either its leftmost byte
-      (MSb) or its rightmost byte (LSb). Architecture that has register address
-      to be the MSb is called big-endian. Architecture that has register address
-      to be the LSb is called little-endian.
+
   \hii{Arithmetic operands}
     \par One arithmetic operand is followed by 3 registers.
     \begin{lstlisting}
@@ -34,14 +35,246 @@
 # $t0 contains value of c
 add $s1, $s2, $t0 # a = b + c
     \end{lstlisting}
+
   \hii{Memory operands}
+    \par \tb{Data transfer instructions} are instructions that transfer data
+      between memory and registers.
     \par The data transfer instruction that copies data from memory to a
       register is called \tb{load}.
     \par The data transfer instruction that copies data from a register back
       to memory is called \tb{store}.
+
     \begin{lstlisting}
 # $s3 keeps the address of array a
 lw $t0, 8($s3) # reg $t0 gets the value of a[8]
     \end{lstlisting}
+
+    \par In the example:
+      \begin{itemize}
+        \item The constant 8 is called the \tb{offset}.
+        \item The register added to form the address \reg{s3} is called
+          \tb{base register}.
+      \end{itemize}
+
+    \par \tb{Big-endian and Little-endian}: There are two types of architecture:
+      \begin{itemize}
+        \item Using the address of the leftmost byte, or MSb, of the word address.
+          This type of architecture is called \tb{big-endian}.
+        \item Using the address of the rightmost byte, or LSb, byte of the word
+          adress. This type of architecture is called \tb{little-endian}.
+      \end{itemize}
+
   \hii{Constant/Immediate Operands}
-    \par There is a special register: \reg{zero}.
+    \par There is a special register: \reg{zero}, which stores the number 0 and
+      cannot be overwritten.
+
+
+\hi{Representing Signed and Unsigned Numbers}
+  \par \ti{Two's complement}
+
+
+\hi{Representing Instructions in the Computer}
+  \par Each MIPS instruction are exactly 32 bits long.
+  \par A MIPS instruction when converted into 32-bit binary code consists of
+    different parts called fields.
+
+  \hii{R-format instructions}
+    \par \tb{R-format} (R for register) is the kind of format used for
+      arithmetic instructions and bit-shifting instructions.
+    \par The fields of R-format are:
+    \begin{itemize}
+      \item \tb{op}: (6 bits) Opcode, or basic operation of the instruction
+      \item \tb{rs}: (5-bits) The first source register
+      \item \tb{rt}: (5-bits) The second source register
+      \item \tb{rd}: (5-bits) The destination register
+      \item \tb{shamt}: (5-bits) Shift amount
+      \item \tb{funct}: (6-bits) Function code, which selects the specific
+        variant of the operation in the \tb{op} field.
+    \end{itemize}
+
+  \hii{I-format instructions}
+    \par \tb{I-format} (I for immediate) is the kind of format used for
+      immediate and data transfer instructions.
+    \par The fields of I-format are:
+    \begin{itemize}
+      \item \tb{op}: (6 bits) Opcode, or basic operation of the instruction
+      \item \tb{rs}: (5-bits) The first source register
+      \item \tb{rt}: (5-bits) The second source register
+      \item \tb{constant or address}: (16-bit) Constant or address
+    \end{itemize}
+
+
+\hi{Logical operations}
+  \begin{itemize}
+    \item Shift left: \code{sll}
+    \item Shift right: \code{srl}
+    \item Bit-by-bit AND: \code{and}, \code{andi}
+    \item Bit-by-bit OR: \code{or}, \code{ori}
+    \item Bit-by-bit NOT: \code{nor}
+  \end{itemize}
+  \par Note: Bit-by-bit NOT is replaced by NOR with 0.
+\begin{lstlisting}
+nor $t0, $t1, $zero
+\end{lstlisting}
+
+
+\hi{Instructions for Making Decisions}
+  \begin{itemize}
+    \item \code{beq}, \code{bne}
+    \item \code{j}
+    \item \code{slt, slti}
+  \end{itemize}
+
+\hi{Supporting Procedures in Computer Hardware}
+  \hii{Procedure Execution Steps}
+    \par Steps in the execution of a procedure:
+    \begin{enumerate}
+      \item Put parameters in a place where the procedure can access them
+      \item Transfer control to the procedure
+      \item Acquire the storage resources needed for the procedure
+      \item Perform the task
+      \item Put the result value in a place where the calling program can access
+        it
+      \item Return control to the point of origin, since a procedure can be
+        called from several points in a program
+    \end{enumerate}
+
+  \hii{Registers}
+    \begin{itemize}
+      \item \reg{a0} - \reg{a3}: four argument registers in which to pass
+        parameters
+      \item \reg{v0} - \reg{v1}: two value registers in which to return values
+      \item \reg{ra}: one return address register to return to the point of
+        origin
+    \end{itemize}
+
+  \hii{Instructions}
+    \begin{itemize}
+      \item \code{jal}: stands for jump-and-link. This instruction jumps to the
+        address of the procedure and simultaneously saves the address of the
+        \code{jal} instruction in the register \reg{ra}.
+      \item \code{jr}: stands for jump register. This instruction jumps to the
+        address which is currently saved in the \reg{ra} register. It is often
+        used to return to the previous address after a procedure finishes its
+        execution.
+    \end{itemize}
+
+  \hii{Program Counter}
+    \par The \tb{program counter}, abbreviated PC, is a register holding the
+      address of the current instruction being executed.
+    \par The \lstinline{jal} instruction actually saves PC + 4 in the register
+      \reg{ra} to link to the folloing instruction to set up the procedure
+      return.
+
+  \hii{Using More Registers}
+    \hiii{Spilling}
+      \par The advantage of using registers is speed. However, a computer has
+        limited number of registers. Therefore, not all variables can be
+        assigned to registers.
+      \par A \tb{spilled variable} is a variable in main memory rather than in
+        a register.
+      \par The operation of moving a variable from a register to memory is
+        called \tb{spilling}, while the reverse operation of moving a variable
+        from memory to a register is called \tb{filling}.
+
+    \hiii{Situation}
+      \par Suppose a compiler needs more registers for a procedure than the
+        4 argument and 2 return value registers. We cannot simply use other
+        registers, because after a procedure, we must restore the value of all
+        other registers to their state before the procedure is called.
+      \par In this situation, we need to move spill registers to memory.
+
+    \hiii{Stack}
+      \par The data structure for spilling registers is a \tb{stack}.
+      \par A stack needs a pointer to the most recently allocated address in
+        the stack to show where the next procedure should place the registers
+        to be spilled or where old register values are found. For each register
+        that is saved or restored, The \tb{stack pointer} is adjusted by 1 word.
+      \par The stack pointer of MIPS is stored in register \reg{sp} - number 29.
+      \par A stack grows from higher addresses to lower addresses.
+      \par Example:
+      \begin{itemize}
+        \item C code:
+          \begin{lstlisting}
+int leaf_example (int g, int h, int i, int j)
+{
+  int f;
+  f = (g + h) – (i + j);
+  return f;
+}
+          \end{lstlisting}
+          \item MIPS code:
+            \begin{lstlisting}
+leaf_example:
+  addi $sp, $sp, -12 # adjust stack to make room for 3 items
+  sw $t1, 8($sp) # save register $t1 for use afterwards
+  sw $t0, 4($sp) # save register $t0 for use afterwards
+  sw $s0, 0($sp) # save register $s0 for use afterwards
+
+  add $t0,$a0,$a1 # register $t0 contains g + h
+  add $t1,$a2,$a3 # register $t1 contains i + j
+  sub $s0,$t0,$t1 # f = $t0 – $t1, which is (g + h) – (i + j)
+
+  add $v0,$s0,$zero # returns f ($v0 = $s0 + 0)
+
+  lw $s0, 0($sp) # restore register $s0 for caller
+  lw $t0, 4($sp) # restore register $t0 for caller
+  lw $t1, 8($sp) # restore register $t1 for caller
+  addi $sp,$sp,12 # adjust stack to delete 3 items
+            \end{lstlisting}
+      \end{itemize}
+
+    \hiii{Register Use Convention}
+      \par To reduce register spilling, we follow the following convention:
+      \begin{itemize}
+        \item \reg{t0} - \reg{t9}: temporary register that are \tb{not}
+          preserved by the callee (procedure) on a procedure call
+        \item \reg{s0} - \reg{s7}: saved registers that must be preserved on
+          a procedure call (if used, the callee saves and restores them by
+          spilling)
+      \end{itemize}
+
+    \hiii{Nested Procedures}
+      \par Procedures that do not call others are called \tb{leaf procedures}.
+      \par Procedures that call others are called \tb{non-leaf procedures}.
+        For non-leaf procedures, use stack!
+
+\hi{MIPS Addressing for 32-bit Immediate and Addresses}
+  \hii{32-bit Immediate Operands}
+    \par The R-format instructions only preserve 16 bits for constants.
+    \par To work with 32-bit immediate, one can use the \lstinline{lui}
+      instruction, which stands for \ti{load upper immediate} to load the
+      upper 16 bits of the immediate into the register.
+    \par Example: Load the constant $4,000,000$ into the register \reg{s0}.
+    \begin{lstlisting}
+  # 4,000,000 decimal = 0000 0000 0011 1101 0000 1001 0000 0000 binary
+  lui $s0, 61        # 61 decimal = 0000 0000 0011 1101 binary = upper 16 bits
+  ori $s0, $s0, 2304 # 61 decimal = 0000 1001 0000 0000 binary = lower 16 bits
+    \end{lstlisting}
+
+  \hi{Addressing in Branch and Jumps}
+    \hii{J-format}
+      \par The \lstinline{j} instruction is a J-format instruction:
+      \par The fields of J-format are:
+      \begin{itemize}
+        \item \tb{op}: (6 bits) Opcode
+        \item \tb{addr}: (26 bits) Address to jump to
+      \end{itemize}
+      \par Unlike the \lstinline{j} instruction, the conditional branch
+        instruction must specify two operands in addition to the branch address.
+    
+    \hii{Dealing with addresses}
+      \par If the addresses are limited to $2^{16}$, then the program will be
+        far too small for realistic use.
+      \par To deal with that problem, relative addressing is used instead of
+        absolute addressing:
+        \begin{align*}
+          \mbox{ Program Counter } = \mbox{ Register } + \mbox { Branch Address }
+        \end{align*}
+      \par This form of branch addressing is called \tb{PC-relative
+        addressing}.
+      \par Usually, conditional branch instructions tend to branch to a nearby
+        instructions. On the other hand, unconditional jump instructions do
+        not. Normally, they would use other forms of addressing. The MIPS
+        architecture offers long addresses for procedure calls by using the
+        J-format for both jump and jump-and-link instructions.

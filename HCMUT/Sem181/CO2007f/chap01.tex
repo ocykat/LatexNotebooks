@@ -1,0 +1,56 @@
+\begin{multicols}{2}
+\hi{Computer Abstraction}
+
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{execution time/response time}: the time between the start and completion of a task
+      \item \tb{throughput/bandwidth}: the total amount of work done in a given
+        time
+    \end{itemize}
+
+  \hii{Performance}
+    \par Performance is defined as:
+    \begin{eqbox}
+      \text{Performance}_x = \frac{1}{\text{Execution time}_x}
+    \end{eqbox}
+    \par Relative performance:
+    \begin{eqbox}
+      \ratio{\text{Performance}}{a}{b} = \ratio{\text{Execution time}}{b}{a} 
+    \end{eqbox}
+
+  \hii{CPU execution time}
+    \begin{itemize}
+      \item \tb{CPU execution time/CPU time}: the time the CPU spends computing
+        for one task and does not include time spent waiting for I/O or running
+        other programs.
+      \item \tb{Clock cycle}: clock period
+      \item \tb{Clock rate}: clock frequency
+    \end{itemize}
+    
+    \begin{eqbox}
+      \text{CPU time} = \text{\# Clock cycles} \times \text{Clock cycle} \\
+      t = n_{cycles} \times T
+    \end{eqbox}
+
+    \begin{eqbox}
+      \text{CPU time} = \frac{\text{\# Clock cycles}}{\text{Clock cycle}} \\
+      t = \frac{n_{cycles}}{f}
+    \end{eqbox}
+
+  \hii{Number of Cycles for a program}
+    \begin{eqbox}
+      \text{\# Clock cycles}
+      = \text{\# Instructions} \times \text{(average) \# Cycles per instruction}
+    \end{eqbox}
+    \begin{eqbox}
+      \text{\# Clock cycles}
+      = \text{Instruction count} \times \text{CPI}
+    \end{eqbox}
+    \par Composed formula: 
+    \begin{eqbox}
+      \text{CPU time}
+      = \frac{\text{Instruction count} \times \text{CPI}}{\text{Clock rate}}
+    \end{eqbox}
+
+\end{multicols}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

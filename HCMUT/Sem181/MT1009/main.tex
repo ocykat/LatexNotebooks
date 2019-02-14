@@ -1,11 +1,11 @@
 \documentclass[12pt, a4paper]{report}
 
 
-% MARGINS
+% === MARGINS ===
 \usepackage[margin=0.75in]{geometry}
 
 
-% HEADINGS
+% === HEADINGS ===
 \setcounter{secnumdepth}{4}
 \newcommand{\hi}{\section}
 \newcommand{\hii}{\subsection}
@@ -15,11 +15,11 @@
 \newcommand{\hiv}{\item\textbf}
 
 
-% INDENTATION
+% === INDENTATION ===
 \usepackage{indentfirst}
 
 
-% TABLE OF CONTENTS
+% === TABLE OF CONTENTS ===
 % links
 \usepackage{hyperref}
 \hypersetup{
@@ -31,11 +31,11 @@
 }
 
 
-% APPENDICES
-\usepackage[toc,page]{appendix}
+% === APPENDICES ===
+\usepackage[toc, page]{appendix}
 
 
-% TEXT
+% === TEXT ===
 % Bold, italic, underlined text
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
@@ -46,7 +46,13 @@
 \newenvironment{smfont}{\small}{\normalsize}
 
 
-% MATH
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
+% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
+
+
+% === MATH ===
+% Basic packages
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{gensymb}
@@ -54,26 +60,16 @@
 % Equation box
 \usepackage{empheq}
 \newenvironment{eqbox}
-{
-  \setkeys{EmphEqEnv}{align}
-  \setkeys{EmphEqOpt}{box=\fbox}
-  \EmphEqMainEnv
-}
-{
-  \endEmphEqMainEnv
-}
-
-% Sum, product, limit
-\newcommand{\SUM}[1]{\sum\limits #1}
-\newcommand{\PROD}[1]{\prod\limits #1}
-\newcommand{\INT}[1]{\int\limits #1}
-
-% Inner Product
-\newcommand{\iprod}[1]{\langle #1 \rangle}
+  {\setkeys{EmphEqEnv}{align}\setkeys{EmphEqOpt}{box=\fbox}\EmphEqMainEnv}
+  {\endEmphEqMainEnv}
 
 % Arrows
 \newcommand{\ra}{\Rightarrow}
 \newcommand{\lra}{\Leftrightarrow}
+
+% Sum, product, limit
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
 
 % Bold in math mode
 \usepackage{bm}
@@ -82,7 +78,7 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
 %   Swap the definition of \abs* and \norm*, so that \abs
-%   and \norm resizes the size of the brackets, and the 
+%   and \norm resizes the size of the brackets, and the
 %   starred version does not.
 \makeatletter
 \let\oldabs\abs
@@ -96,12 +92,65 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+% Inner Product
+\newcommand{\iprod}[1]{\langle #1 \rangle}
 
-% FOOTNOTE
+% Derivatives
+\newcommand{\dif}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\ddif}[2]{\dfrac{d^2 #1}{d #2^2}}
+\newcommand{\difi}[2]{d #1/d #2}
+\newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
+\newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
+\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
+
+% Integrals
+\usepackage{esint}
+\newcommand{\INT}{\int \limits}
+\newcommand{\OINT}{\oint \limits}
+\newcommand{\IINT}{\iint \limits}
+\newcommand{\IIINT}{\iiint \limits}
+
+% Ratios
+\newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
+
+% Hand-written-like fonts
+\usepackage{eucal}
+
+% Superscript+subscript
+\newcommand{\spc}[2]{{#1}^{#2}}
+\newcommand{\sbc}[2]{{#1}_{#2}}
+\newcommand{\ssc}[3]{{#1}^{#2}_{#3}}
+
+
+% === FOOTNOTE ===
+%   one foot note stays on one page
 \interfootnotelinepenalty=10000
 
+\newcommand{\fnmark}{\footnotemark}
+\newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
+\newcommand{\fntext}{\footnotetext}
 
-% PSEUDOCODE
+
+% === IMAGES ===
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\newcommand{\img}[3][]
+{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption*{#3}
+  \end{figure}
+}
+% Usage: \img[width=...]{<path_to_img>}{<caption>}
+
+
+% === PSEUDOCODE ===
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage[noend]{algpseudocode}
@@ -139,10 +188,25 @@
 \newcommand{\RETURN}[1]{\State \Return{#1}}
 
 
+% === CODE ===
+\usepackage{listings}
+\usepackage{inconsolata}
+\lstset
+{
+  basicstyle=\ttfamily,
+}
+
+
+% === BOOK SECTION MARKER ===
+\newcommand{\booktitle}{}
+\newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
+
 \begin{document}
 \tableofcontents
 
-\input{chap01}
+% \input{chap01}
+\input{chap03}
+\input{chap05}
 
 \begin{appendices}
 \end{appendices}

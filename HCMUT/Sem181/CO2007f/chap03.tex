@@ -1,0 +1,174 @@
+\begin{multicols}{3}
+
+\hi{Arithmetics}
+  
+  \hii{Overflow}
+    \par \tb{Overflow} cannot occur by:
+      \begin{itemize} 
+        \item adding operands of different sign
+        \item subtracting operands of the same sign
+      \end{itemize}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \tb{Operation} & \tb{A} & \tb{B} & \tb{Result indicating overflow} \\ \hline
+    A + B            & +          & +          & -                     \\ \hline
+    A + B            & -          & -          & +                     \\ \hline
+    A - B            & +          & -          & -                     \\ \hline
+    A - B            & -          & +          & +                     \\ \hline
+    \end{tabular}
+
+  \hii{Multiplication}
+      \par If sign bit is ignore: n bits $\times$ m bits = (n$+$m) bits
+      \begin{algorithm}[H]
+        %\caption{}
+        \begin{algorithmic}[1]
+          \Procedure{MULTIPLY}{a, b}
+            \Let{prod}{0}
+            \For{i = 1 to 32}
+              \If{\Call{LSB}{b} = 1}
+                \Let{prod}{prod + a}
+              \ENDIF
+              \Let{a}{a $\SHIFTLEFT$ 1}
+              \Let{b}{b $\SHIFTRIGHT$ 1}
+            \ENDFOR
+          \ENDPROCEDURE
+        \end{algorithmic}
+      \end{algorithm}
+    \par A 64-bit register is required to store the multiplicand, since it has to
+      be shifted left 32 times.
+     \par Instructions for multiplication:
+      \begin{itemize}
+        \item \lstinline{mult rs, rt}: multiply two signed numbers and store the
+          64-bit product in HI/LO
+        \item \lstinline{multu rs, rt}: multiply two unsigned numbers and store the
+          64-bit product in HI/LO
+        \item \lstinline{mfhi rd}: move the value of \lstinline{HI} to \lstinline{rd}
+        \item \lstinline{mflo rd}: move the value of \lstinline{LO} to \lstinline{rd}
+        \item \lstinline{rd, rs, rt}: store the least-significant 32 bits of
+          the product to rd.
+      \end{itemize} 
+
+  \hii{Division}
+      \begin{algorithm}[H]
+        %\caption{}
+        \begin{algorithmic}[1]
+          \Procedure{DIVIDE}{a, b}
+            \Let{q}{0}
+            \Let{r}{a}
+            \Let{b}{b $\SHIFTLEFT$ 32}
+            \For{i = 1 to 33}
+              \Let{r}{r - a}
+              \If{r $\geq$ 0}
+                \Let{q}{q $\SHIFTLEFT$ 1}
+                \Let{\Call{LSB}{q}}{1}
+              \Else
+                \Let{q}{q $\SHIFTLEFT$ 1}
+                \Let{\Call{LSB}{q}}{0}
+                \Let{r}{r + a}
+              \ENDIF
+              \Let{b}{b $\SHIFTRIGHT$ 1}
+            \ENDFOR
+          \ENDPROCEDURE
+        \end{algorithmic}
+      \end{algorithm}
+    \par The correct signed division algorithm negates the quotient if the
+    signs of the operands are opposite and makes the sign of the nonzero
+    remainder match the dividend.
+    \par Instructions for division:
+      \begin{itemize}
+        \item \lstinline{div rs, rt}: does division on two signed numbers and
+          store the results in HI/LO.
+        \item \lstinline{divu rs, rt}: does division on two unsigned numbers and
+          store the 64-bit product in HI/LO
+        \item \lstinline{mfhi rd}: move the value of \lstinline{HI} to \lstinline{rd}
+        \item \lstinline{mflo rd}: move the value of \lstinline{LO} to \lstinline{rd}
+      \end{itemize}
+    \par The HI register stores the remainder and the LO register stores the
+      quotient after a division.
+
+  \hii{IEEE 754 floating-point standard}
+    \par Order from MSB to LSB: 1 sign bit, exponent bits, fraction bits.
+    \par For \tb{single-precision} numbers:
+      \begin{itemize}
+        \item exponent: 8 bits
+        \item fraction: 23 bits
+      \end{itemize}
+    \par For \tb{double-precision} numbers:
+      \begin{itemize}
+        \item exponent: 11 bits
+        \item fraction: 20 + 32 = 52 bits
+      \end{itemize}
+    \par Representation of floating-point numbers:
+        \begin{align*}
+          (-1)^{S} \times (1 + \mbox{ Fraction }) \times 2^{(\mbox{ Exponent }
+          - \mbox{ Bias }}
+        \end{align*}
+      \begin{itemize}
+        \item For single precision: the bias is \tb{127}.
+        \item For double precision: the bias is \tb{1023}.
+      \end{itemize}
+
+  \hii{Floating-Point Addition}
+    \par \tb{Algorithm}:
+    \begin{algorithm}[H]
+      %\caption{}
+      \begin{algorithmic}[1]
+        \Function{FPAdd}{addend1, addend2}
+          \Let{a}{\Call{Larger}{addend1, addend2}}
+          \Let{b}{\Call{Smaller}{addend1, addend2}}
+          \While{b.exponent $!=$ a.exponent}
+            \Let{b}{b $\SHIFTRIGHT$ 1}
+          \EndWhile
+          \Let{s}{a + b}
+          \While{s \tb{not} normalized}
+            \If{s $\geq$ 10}
+              \While{s \tb{not} normalized}
+                \Let{s}{s $\SHIFTRIGHT$ 1}
+                \Let{s.exponent}{s.exponent + 1}
+              \EndWhile
+            \ElsIf{s $\leq$ 0}
+              \While{s \tb{not} normalized}
+                \Let{s}{s $\SHIFTLEFT$ 1}
+                \Let{s.exponent}{s.exponent - 1}
+              \EndWhile
+            \EndIf
+            \If{overflow \tb{or} underflow} \tb{throw} Exception
+            \EndIf
+            \State \Call{Round}{s}
+          \EndWhile
+          \RETURN{s}
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+
+      \hii{Floating-Point Multiplication}
+    \par \tb{Algorithm}:
+    \begin{algorithm}[H]
+      %\caption{}
+      \begin{algorithmic}[1]
+        \Function{FPMult}{a, b}
+          \Let{prod.exponent}{a.exponent + b.exponent - bias}
+          \Let{prod}{a $\times$ b}
+          \While{prod \tb{not} normalized}
+            \If{prod $\geq$ 10}
+              \While{prod \tb{not} normalized}
+                \Let{prod}{prod $\SHIFTRIGHT$ 1}
+                \Let{prod.exponent}{prod.exponent + 1}
+              \EndWhile
+            \ElsIf{prod $\leq$ 0}
+              \While{prod \tb{not} normalized}
+                \Let{prod}{prod $\SHIFTLEFT$ 1}
+                \Let{prod.exponent}{prod.exponent - 1}
+              \EndWhile
+            \EndIf
+            \If{overflow \tb{or} underflow} \tb{throw} Exception
+            \EndIf
+            \State \Call{Round}{prod}
+          \EndWhile
+          \RETURN{prod}
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+  
+\end{multicols}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

@@ -1,0 +1,345 @@
+\chapter{Arithmetic For Computers}
+
+\hi{Introduction}
+  \par This chapter deals with these issues of arithmetic for computers:
+  \begin{itemize}
+    \item Fractions and floating-point numbers
+    \item Overflows
+    \item Multiplications and Divisions
+  \end{itemize}
+
+\hi{Addition and Subtraction}
+  \hii{How Addition and Subtraction works}
+    \par For \tb{addition}, digits are added bit by bit from right to left, with
+      carries passes to the next digit to the left.
+    \par For \tb{subtraction}, the subtrahend is transformed to its two's
+      complement before it is added to the minuend.
+
+\hi{Overflow}
+  \hii{When overflow occurs}
+  \par \tb{Overflow} occurs when the result from an operation cannot be
+    represented  with the available hardware, in this case, the 32-bit word.
+  \par \tb{Overflow} cannot occur by:
+    \begin{itemize} 
+      \item adding operands of different sign
+      \item subtracting operands of the same sign
+    \end{itemize}
+  \par To detect overflow, one can use the result of the operation.
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \tb{Operation} & \tb{A} & \tb{B} & \tb{Result indicating overflow} \\ \hline
+    A + B            & +          & +          & -                     \\ \hline
+    A + B            & -          & -          & +                     \\ \hline
+    A - B            & +          & -          & -                     \\ \hline
+    A - B            & -          & +          & +                     \\ \hline
+    \end{tabular}
+    \end{center}
+
+  \hii{Overflow in programming languages}
+    \par Overflow is ignored in some languages (C) while will cause exception
+      in some others (Fortran).
+    \par Usually, unsigned number are used for memory addresses where overflows
+      are ignored. Therefore, add unsigned and add immediate unsigned do not
+      cause exceptions on overlow. Only instructions working with signed
+      number will.
+
+\hi{Multiplication}
+  \hii{Introduction}
+    \opmul[displayintermediary=all]{1000}{1001}
+
+    \par The first operand is called the \tb{multiplicand} and the second is
+      called the \tb{multiplier}.
+    \par If we ignore the sign bit, the multiplication of a n-bit multiplicand
+      and a m-bit multiplier is a product that is n + m bits long.
+
+  \hii{Algorithm and Hardware}
+    \smf{\ti{Refer to page 184 for the picture of the hardware}}
+
+    \par The multiplication algorithm is as follow:
+
+      \begin{algorithm}[H]
+        %\caption{}
+        \begin{algorithmic}[1]
+          \Procedure{MULTIPLY}{a, b}
+            \Let{prod}{0}
+            \For{i = 1 to 32}
+              \If{\Call{LSB}{b} = 1}
+                \Let{prod}{prod + a}
+              \ENDIF
+              \Let{a}{a $\SHIFTLEFT$ 1}
+              \Let{b}{b $\SHIFTRIGHT$ 1}
+            \ENDFOR
+          \ENDPROCEDURE
+        \end{algorithmic}
+      \end{algorithm}
+
+    \par A 64-bit register is required to store the multiplicand, since it has to
+      be shifted left 32 times.
+
+  \hii{Multiplication in MIPS}
+    \par MIPS provides a separate pair of 32-bit registers to contain the
+    64-bit product: \lstinline{HI} and \lstinline{LO}.
+    \par Instructions for multiplication:
+      \begin{itemize}
+        \item \lstinline{mult rs, rt}: multiply two signed numbers and store the
+          64-bit product in HI/LO
+        \item \lstinline{multu rs, rt}: multiply two unsigned numbers and store the
+          64-bit product in HI/LO
+        \item \lstinline{mfhi rd}: move the value of \lstinline{HI} to \lstinline{rd}
+        \item \lstinline{mflo rd}: move the value of \lstinline{LO} to \lstinline{rd}
+        \item \lstinline{rd, rs, rt}: store the least-significant 32 bits of
+          the product to rd.
+      \end{itemize}
+    \par Usually, we want a 32-bit result when we multiply two 32-bit numbers.
+    In that case, we can use the HI register to check for overflow.
+
+\hi{Division}
+  \hii{Introduction}
+    \opdiv[maxdivstep=4]{1001010}{1000}
+    \par The first operand is called the \tb{dividend} and the second is called
+    the \tb{divisor}. The result is called the \tb{quotient}, followed by a
+    reminder.
+    \begin{align*}
+      \mbox{ Dividend } = \mbox{ Quotient } \times \mbox{ Divisor } + \mbox{
+        Remainder } \qquad \mbox{ where Remainder } < \mbox{ Divisor }
+    \end{align*}
+
+  \hii{Algorithm and Hardware}
+    \img[width=12cm]{img/divisor-01.png}
+
+    \par Input:
+    \begin{itemize}
+      \item Dividend can be 64-bit.
+      \item Divisor must be 32-bit.
+      \item Quotient and remainder are 32-bit.
+    \end{itemize}
+    \par At the beginning:
+    \begin{itemize}
+      \item The 32-bit quotient register is set to 0.
+      \item The divisor is placed in the left half of the 64-bit divisor
+        register. In each step, the divisor is shifted right one digit to align
+        with the dividend.
+      \item The 64-bit remainder register is initialized with the dividend.
+    \end{itemize}
+
+    \par The division algorithm is as follow:
+      \begin{algorithm}[H]
+        %\caption{}
+        \begin{algorithmic}[1]
+          \Procedure{DIVIDE}{a, b}
+            \Let{q}{0}
+            \Let{r}{a}
+            \Let{b}{b $\SHIFTLEFT$ 32}
+            \For{i = 1 to 33}
+              \Let{r}{r - a}
+              \If{r $\geq$ 0}
+                \Let{q}{q $\SHIFTLEFT$ 1}
+                \Let{\Call{LSB}{q}}{1}
+              \Else
+                \Let{q}{q $\SHIFTLEFT$ 1}
+                \Let{\Call{LSB}{q}}{0}
+                \Let{r}{r + a}
+              \ENDIF
+              \Let{b}{b $\SHIFTRIGHT$ 1}
+            \ENDFOR
+          \ENDPROCEDURE
+        \end{algorithmic}
+      \end{algorithm}
+
+  \hii{Signed Division}
+    \par The correct signed division algorithm negates the quotient if the
+    signs of the operands are opposite and makes the sign of the nonzero
+    remainder match the dividend.
+
+  \hii{Division in MIPS}
+    \par The HI register stores the remainder and the LO register stores the
+      quotient after a division.
+    \par Instructions for division:
+      \begin{itemize}
+        \item \lstinline{div rs, rt}: does division on two signed numbers and
+          store the results in HI/LO.
+        \item \lstinline{divu rs, rt}: does division on two unsigned numbers and
+          store the 64-bit product in HI/LO
+        \item \lstinline{mfhi rd}: move the value of \lstinline{HI} to \lstinline{rd}
+        \item \lstinline{mflo rd}: move the value of \lstinline{LO} to \lstinline{rd}
+      \end{itemize}
+    \par There is no instruction that handles divide-by-0. Therefore, the
+      software must perform manual check if required.
+
+\hi{Floating Points}
+  \hii{Normalized Form}
+    \par A floating-point number is in \tb{normalized form} if there is exactly
+    one nonzero number to the left of the \ti{binary} point. In binary, the
+    form is:
+    \begin{align*}
+      1.xxxxxxxx_{two} \times 2^{yyyy}
+    \end{align*}
+    where
+    \begin{itemize}
+      \item $xxxxxxx$: fraction
+      \item $yyyy$: exponent
+    \end{itemize}
+
+  \hii{Representation}
+    \hiii{Compromise between fraction and exponent}
+      \par There must be a compromise between the size of the \tb{fraction} and
+      the size of the \tb{exponent}.
+      \begin{itemize}
+        \item Increasing the size of the fraction enhances the precision
+        \item Increasing the size of the exponent increase the range of numbers
+          that can be represented.
+      \end{itemize}
+      \par In general, floating-point numbers are of the form:
+        \begin{align*}
+          (-1)^{S} \times F \times 2^{E}
+        \end{align*}
+        where $S$: sign, $F$: fraction, $E$: exponent.
+
+    \hiii{Underflow and overflow}
+      \par Overflow occurs when the exponent is too large to be represented in
+        the exponent field.
+      \par Undervlow means the nonzero fraction has become so small that it
+        cannot be represented.
+
+    \hiii{Double Precision}
+      \par To reduce chances of underflow or overflow, the \tb{double
+        precision} format is offered. The representation of a double precision
+        floating-point number takes two MIPS words instead of one like single
+        precision.
+
+  \hii{IEEE 754 floating-point standard}
+    \par Order from MSB to LSB: 1 sign bit, exponent bits, fraction bits.
+    \par For \tb{single-precision} numbers:
+      \begin{itemize}
+        \item exponent: 8 bits
+        \item fraction: 23 bits
+      \end{itemize}
+    \par For \tb{double-precision} numbers:
+      \begin{itemize}
+        \item exponent: 11 bits
+        \item fraction: 20 + 32 = 52 bits
+      \end{itemize}
+    \par IEEE 754 also makes the leading 1-bit of normalized binary numbers
+      implicit. Hence, a single precision number with 23 bits for fraction is
+      24-bit long and a double precision number with 52 bits for fraction is
+      53-bit long.
+    \par Exponent is placed before the fraction for comparison purpose: for two
+      exponent having the same sign, the number with bigger exponent is bigger.
+    \par Also, negative exponent would complicate comparison. The solution is
+      \tb{biased notation}. In bias notation, the exponent is replaced by
+      exponent $-$ bias:
+      \begin{itemize}
+        \item For single precision: the bias is \tb{127}.
+        \item For double precision: the bias is \tb{1023}.
+      \end{itemize}
+    \par The final representation of floating-point number is:
+        \begin{align*}
+          (-1)^{S} \times (1 + \mbox{ Fraction }) \times 2^{(\mbox{ Exponent }
+          - \mbox{ Bias }}
+        \end{align*}
+    \par \tb{Example}: Show the IEEE 754 binary representation of the number
+      $-0.75_{10}$ in single and double precision.
+      \begin{itemize}
+        \item Convert to binary:
+          \par $-0.75_{10} = -0.11_{2}$
+        \item Normalize the number:
+          \par $-0.11_{2} = -0.11_{2} \times 2^{0} = -1.1_{2} \times 2^{-1}$
+        \item The single precision representation of the number $-1.1_{2}
+          \times 2^{-1}$ is:
+          \par $(-1)^{1} \times (1 + .1000 0000 0000 0000 0000 000_{2}) \times
+            2^{126 - 127}$ (23 numbers after binary point)
+        \item The double precision representation of the number $-1.1_{2}
+          \times 2^{-1}$ is:
+          \par $(-1)^{1} \times (1 + .1000 0000 0000 0000 0000 0000 0000 0000
+          0000 0000 0000 0000 0000_{2}) \times 2^{1022 - 1023}$ (52 numbers
+          after binary point)
+      \end{itemize}
+
+  \hii{Range and Encoding}
+
+  \hii{Floating-Point Addition}
+    \par \tb{Algorithm}:
+    \begin{algorithm}[H]
+      %\caption{}
+      \begin{algorithmic}[1]
+        \Function{FPAdd}{addend1, addend2}
+          \Let{a}{\Call{Larger}{addend1, addend2}}
+          \Let{b}{\Call{Smaller}{addend1, addend2}}
+          \While{b.exponent $!=$ a.exponent}
+            \Let{b}{b $\SHIFTRIGHT$ 1}
+          \EndWhile
+          \Let{s}{a + b}
+          \While{s \tb{not} normalized}
+            \If{s $\geq$ 10}
+              \While{s \tb{not} normalized}
+                \Let{s}{s $\SHIFTRIGHT$ 1}
+                \Let{s.exponent}{s.exponent + 1}
+              \EndWhile
+            \ElsIf{s $\leq$ 0}
+              \While{s \tb{not} normalized}
+                \Let{s}{s $\SHIFTLEFT$ 1}
+                \Let{s.exponent}{s.exponent - 1}
+              \EndWhile
+            \EndIf
+            \If{overflow \tb{or} underflow} \tb{throw} Exception
+            \EndIf
+            \State \Call{Round}{s}
+          \EndWhile
+          \RETURN{s}
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+
+    \par \tb{Example}:
+      \par Add $0.5_{10}$ and $-0.4375_{10}$ in binary. Expected result should
+        be a single-precision number and we keep 4 bits of precision.
+      \begin{itemize}
+        \item Step 0: Convert to binary
+          \par $0.5_{10} = 0.1_{2} = 0.1_{2} \times 2^{0} = 1 \times 2^{-1}$
+          \par $-0.4375_{10} = -0.0111_{2} = -0.0111_{2} \times 2^{0} =
+            -1.11_{2} \times 2^{-2}$
+        \item Step 1: The sigificand of the number with the lesser exponent is
+          shifted right until its exponent matches the larger number:
+          \par $-1.11_{2} \times 2^{-2} = -0.111_2 \times 2^{-1}$
+        \item Step 2: Add the significands:
+          \par $1 \times 2^{-1} + (-0.111_{2}) \times 2^{-1} = 0.001_{2} \times
+            2^{-1}$
+        \item Step 3: Normalized the sum and check for overflow or underflow:
+          \par $0.001_{2} \times 2^{-1} = 1 \times 2^{-4}$
+          \par Since $-4$ is in the range $[-126, 127]$, there is no overflow
+          or underflow. (The biased exponent must be in the range $[1, 254]$).
+        \item Step 4: Round the sum.
+          \par Since the sum $1.000 \times 2^{-4}$ already fits exactly in 4
+          bits, there is no change to the bits due to rounding.
+      \end{itemize}
+
+  \hii{Floating-Point Multiplication}
+    \par \tb{Algorithm}:
+    \begin{algorithm}[H]
+      %\caption{}
+      \begin{algorithmic}[1]
+        \Function{FPMult}{a, b}
+          \Let{prod.exponent}{a.exponent + b.exponent - bias}
+          \Let{prod}{a $\times$ b}
+          \While{prod \tb{not} normalized}
+            \If{prod $\geq$ 10}
+              \While{prod \tb{not} normalized}
+                \Let{prod}{prod $\SHIFTRIGHT$ 1}
+                \Let{prod.exponent}{prod.exponent + 1}
+              \EndWhile
+            \ElsIf{prod $\leq$ 0}
+              \While{prod \tb{not} normalized}
+                \Let{prod}{prod $\SHIFTLEFT$ 1}
+                \Let{prod.exponent}{prod.exponent - 1}
+              \EndWhile
+            \EndIf
+            \If{overflow \tb{or} underflow} \tb{throw} Exception
+            \EndIf
+            \State \Call{Round}{prod}
+          \EndWhile
+          \RETURN{prod}
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+

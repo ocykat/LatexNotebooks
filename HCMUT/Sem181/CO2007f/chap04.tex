@@ -1,0 +1,108 @@
+\clearpage
+\begin{multicols}{2}
+\hi{The Processor}
+
+  \hii{Control Signals}
+    \begin{tabular}{|p{2cm}|p{3.5cm}|p{4cm}|}
+    \hline
+    \textbf{Signal}   & \textbf{0}                                                                    & \textbf{1}                                                       \\ \hline
+    \textbf{RegDst}   & write register = rt{[}20:16{]} (I-format)                                     & write register = rd{[}15:11{]} (R-format \& beq)                 \\ \hline
+    \textbf{RegWrite} & -                                                                             & control signal for writing data to register                      \\ \hline
+    \textbf{ALUSrc}   & \begin{tabular}[c]{@{}c@{}}second ALU operand = rt\\  (R-format)\end{tabular} & second ALU operand = {[}15:0{]} (sign-extend)                    \\ \hline
+    \textbf{PCSrc}    & PC = PC + 4                                                                   & PC = branch target                                               \\ \hline
+    \textbf{MemRead}  & -                                                                             & Data are read from memory (lw) and put on DataMemory.ReadOutput  \\ \hline
+    \textbf{MemWrite} & -                                                                             & Data are put on DataMemory.WriteInput and written in memory (sw) \\ \hline
+    \textbf{MemToReg} & write register is fed from ALU                                                & write register is fed from DataMemory                            \\ \hline
+    \end{tabular}
+
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \textbf{I/O}                      & \textbf{Instruction} & \textbf{R-format} & \textbf{lw} & \textbf{sw} & \textbf{beq} \\ \hline
+    \multirow{6}{*}{\textbf{Inputs}}  & \textbf{Op5}         & 0                 & 1           & 1           & 0            \\ \cline{2-6} 
+                                      & \textbf{Op4}         & 0                 & 0           & 0           & 0            \\ \cline{2-6} 
+                                      & \textbf{Op3}         & 0                 & 0           & 1           & 0            \\ \cline{2-6} 
+                                      & \textbf{Op2}         & 0                 & 0           & 0           & 1            \\ \cline{2-6} 
+                                      & \textbf{Op1}         & 0                 & 1           & 1           & 0            \\ \cline{2-6} 
+                                      & \textbf{Op0}         & 0                 & 1           & 1           & 0            \\ \hline
+    \multirow{9}{*}{\textbf{Outputs}} & \textbf{RegDst}      & 1                 & 0           & X           & X            \\ \cline{2-6} 
+                                      & \textbf{ALUSrc}      & 0                 & 1           & 1           & 0            \\ \cline{2-6} 
+                                      & \textbf{MemToReg}    & 0                 & 1           & X           & X            \\ \cline{2-6} 
+                                      & \textbf{RegWrite}    & 1                 & 1           & 0           & 0            \\ \cline{2-6} 
+                                      & \textbf{MemRead}     & 0                 & 1           & 0           & 0            \\ \cline{2-6} 
+                                      & \textbf{MemWrite}    & 0                 & 0           & 1           & 0            \\ \cline{2-6} 
+                                      & \textbf{Branch}      & 0                 & 0           & 0           & 1            \\ \cline{2-6} 
+                                      & \textbf{ALUOp1}      & 1                 & 0           & 0           & 0            \\ \cline{2-6} 
+                                      & \textbf{ALUOp0}      & 0                 & 0           & 0           & 1            \\ \hline
+    \end{tabular}
+
+  \hii{States of Instruction Execution}
+    \begin{itemize}
+      \item \tb{IF}: Instruction fetch
+      \item \tb{ID}: Instruction decode \& register file read
+      \item \tb{EX}: Execution or address calculation
+      \item \tb{MEM}: Data memory access
+      \item \tb{WB}: Write back
+    \end{itemize}
+
+  \hii{Data Hazard}
+    \hiii{Forwarding}
+      \par \tb{Hazard conditions}:
+\begin{multicols}{2}
+      \begin{enumerate}[1.]
+        \item EX hazard:
+          \begin{enumerate}[a.]
+            \item \lstinline{EX/Mem.Rd = ID/EX.Rs}
+            \item \lstinline{EX/Mem.Rd = ID/EX.Rt}
+          \end{enumerate}
+        \item MEM hazard:
+          \begin{enumerate}[a.]
+            \item \lstinline{Mem/WB.Rd = ID/EX.Rs}
+            \item \lstinline{Mem/WB.Rd = ID/EX.Rt}
+          \end{enumerate}
+      \end{enumerate}
+\end{multicols}
+      \par \tb{EX hazard}:
+\begin{lstlisting}
+if (EX/MEM.RegWrite && EX/MEM.Rd != 0 && EX/MEM.Rd == ID/EX.RegRs)
+  ForwardA = 10
+if (EX/MEM.RegWrite && EX/MEM.Rd != 0 && EX/MEM.Rd == ID/EX.RegRt)
+  ForwardB = 10
+\end{lstlisting}
+      \par \tb{MEM hazard}:
+\begin{lstlisting}
+if (MEM/WB.RegWrite && MEM/WB.Rd != 0 && MEM/WB.Rd == ID/EX.RegRs)
+  ForwardA = 01
+if (MEM/WB.RegWrite && MEM/WB.Rd != 0 && MEM/WB.Rd == ID/EX.RegRt)
+  ForwardB = 01
+\end{lstlisting}
+
+\begin{tabular}{|c|c|p{8cm}|}
+\hline
+\textbf{MUX Control}   & \textbf{Source} & \textbf{Explanation}                                                \\ \hline
+\textbf{ForwardA = 00} & \textbf{ID/EX}  & 1st ALU operand comes from register file                            \\ \hline
+\textbf{ForwardA = 10} & \textbf{EX/MEM} & 1s ALU operand is forwarded from the prior ALU result               \\ \hline
+\textbf{ForwardA = 01} & \textbf{MEM/WB} & 1st ALU operand is forwarded from data memory or earlier ALU result \\ \hline
+\textbf{ForwardB = 00} & \textbf{ID/EX}  & 2nd ALU operand comes from register file                            \\ \hline
+\textbf{ForwardB = 10} & \textbf{EX/MEM} & 2nd ALU operand is forwarded from the prior ALU result              \\ \hline
+\textbf{ForwardB = 01} & \textbf{MEM/WB} & 2nd ALU operand is forwarded from data memory or earlier ALU result \\ \hline
+\end{tabular}
+
+    \hiii{Stalling}
+      \par Happen in only one case: \lstinline{lw} following by a read of the
+        same register.
+\begin{lstlisting}
+if (ID/EX.MemRead && ((ID/EX.Rt == IF/ID.Rs) or (ID/EX.Rt == IF/ID.Rt)))
+  stall pipeline
+\end{lstlisting}
+
+  \hii{Control Hazard}
+    \par Solutions:
+      \begin{itemize}
+        \item Predict that branch not taken: flush instructions in the IF, ID,
+          EX if branch is taken
+        \item Move branch execution from MEM to ID to reduce delay
+        \item Dynamic branch prediction: 1-bit/2-bit
+      \end{itemize}
+\end{multicols}
+
+

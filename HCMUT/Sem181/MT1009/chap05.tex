@@ -1,0 +1,71 @@
+\chapter{Differential Equations}
+
+\hi{The Initial-Value Problem (Cauchy's Problem)}
+  \par \tb{Problem}: Determine the function $y(x)$ that is differentiable
+    for $x \geq x_0$ and satisfies:
+    \begin{align*}
+      \begin{cases}
+        \dif{y}{x} = y'(x) = f(x, y(x)) \\
+        y(x_0) = y_0
+      \end{cases}
+    \end{align*}
+    where $f(x, y)$ is a continuous two-variable function.
+    \par This is called the \tb{initial-value} problem.
+
+\hi{Euler's Method}
+  \hii{General Idea of Euler's Method}
+    \par The Euler's Method is based on the idea that: the continuous
+      approximation to the solution $y(x)$ is not obtained, but
+      approximation to $y(x)$ will be generated at various values, called
+      \tb{mesh points}, in the interval $[a, b]$.
+    \par Suppose that the mesh points are evenly distributed throughout the
+      interval $[a, b]$, dividing this segment into $n$ equal subsegments. Then:
+      \begin{align*}
+        x_k - x_{k - 1} = \frac{b - a}{h} \qquad \mbox{ and } \qquad x_k = x_0 + kh
+      \end{align*}
+    \par Taking the idea from the Taylor's theorem, geometrically we have:
+    \begin{flalign*}
+      & y'(x_0) = f(x_0, y_0) && \\
+      & \rightarrow \mbox{ The tangent line of the curve } (C): y = y(x)
+        \mbox{ at } (x_0, y_0): &&\\
+      & y(x) = y_0 + y'(x_0)(x - x_0) &&\\
+      & \rightarrow y(x) = y_0 + f(x_0, y(x_0))(x - x_0) &&\\
+      & \mbox {Substitute  $x_1$ into $x$, we have:} &&\\
+      & y(x_1) \approx y_1 = y_0 + f(x_0, y(x_0))(x_1 - x_0) && \\
+      & \rightarrow y(x_1) \approx y_1 = y_0 + hf(x_0, y(x_0)) &&
+    \end{flalign*}
+      where $y_1$ is the approximation of $y(x_1)$.
+    \par We obtain the \tb{general Euler's formula}:
+      \begin{equation}
+        y(x_k) \approx y_k = y_{k - 1} + hf(x_{k - 1}, y_{k - 1})
+        \quad \forall k = 1, 2, \ldots, n
+      \end{equation}
+
+  \hii{Improved Euler's Method}
+    \par Define:
+      \begin{itemize}
+        \item $\vec{p_0}$ as the directional vector of the tangent line of $y(x)$
+          at $x_0$.
+        \item $\vec{p_1}$ as the directional vector of the tangent line of $y(x)$
+          at $x_1$.
+        \item $d$ as the bisection line of $\vec{p_0}$ and $\vec{p_1}$.
+      \end{itemize}
+    \par We have:
+      \begin{itemize}
+        \item The slope of the tangent line at $x_0$:  $m_0 = f(x_0, y(x_0))$
+        \item The slope of the tangent line at $x_1$:  $m_1 = f(x_1, y(x_1))$
+      \end{itemize}
+      then the slope of $d$ would be:
+      \begin{align*}
+        \frac{m_0 + m_1}{2} = \frac{f(x_0, y(x_0)) + f(x_1, y(x_1))}{2}
+      \end{align*}
+    \par $y(x_1)$ can be estimated as follow:
+      \begin{align*}
+      & y(x_1) \approx y_1 = y_0 + h\frac{f(x_0, y(x_0)) + f(x_1, y(x_1))}{2} && \\
+      \end{align*}
+    \par The Euler's formula can be improved as follow:
+      \begin{align*}
+        K_1 = hf(x_0, y_0) \\
+        K_2 = hf(x_0 + h, y_0 + K_1) \\
+        y(x_1) \approx y_1 = y_0 + \frac{1}{2} (K_1 + K_2)
+      \end{align*}

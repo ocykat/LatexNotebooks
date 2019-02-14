@@ -1,0 +1,45 @@
+\chapter{Pointers and Memory}
+
+\hi{Pointers}
+  \hii{Memory Address}
+    \par When variables are stored in the memory, each variable has its own
+      address. The computer uses this address to locate where a variable is
+      when it is called.
+
+  \hii{Pointers}
+    \par A \tb{pointer} is a variable whose value is an address.
+
+  \hii{Operations related to pointers}
+
+    \hiii{Address-of operator (\&)}
+      \par An \tb{address-of} operator \tb{obtains the address} of a variable in
+        the memory.
+      \par \ti{Note}: An address-of operator should be applied on a \ti{normal variable}.
+
+\begin{lstlisting}[language=C++]
+int a = 10;
+int* p = &a; // p stores the address of variable a
+\end{lstlisting}
+
+    \hiii{Deference operator(*)}
+      \par A \tb{deference} operator \tb{obtains the value} located at the memory
+        address stored by the pointer.
+      \par \ti{Note}:
+        \begin{enumerate}[1.]
+          \item A deference operator should be applied on a \tb{pointer}.
+          \item Do not mistake between two different uses of the \lstinline{*}
+            symbol. The first use is to declare a pointer. The second use is to
+            deference a pointer.
+        \end{enumerate}
+\begin{lstlisting}[language=C++]
+int a = 10;
+int* p = &a; // p stores the address of variable a
+int b = *p;  // b = 10
+\end{lstlisting}
+
+\hi{Memory}
+  \hii{Types of memory}
+    \par When doing programming, we should distinguish between two different
+      types of memory: \tb{stack memory} and \tb{heap memory}.
+    \par In a computer, stack and heap are both parts of the RAM memory:
+

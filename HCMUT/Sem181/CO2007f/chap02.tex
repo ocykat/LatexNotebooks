@@ -1,0 +1,35 @@
+\begin{multicols}{2}
+
+\hi{ISA}
+  \hii{Big-endian and Little-endian}
+    \par There are two types of architecture:
+    \begin{itemize}
+      \item Using the address of the leftmost byte, or MSb, of the word address.
+        This type of architecture is called \tb{big-endian}.
+      \item Using the address of the rightmost byte, or LSb, byte of the word
+        adress. This type of architecture is called \tb{little-endian}.
+    \end{itemize}
+
+  \hii{Addressing for 32-bit Immediate and Addresses}
+    \hiii{Immediate}
+    \begin{lstlisting}
+  # 4,000,000 decimal = 0000 0000 0011 1101 0000 1001 0000 0000 binary
+  lui $s0, 61        # 61 decimal = 0000 0000 0011 1101 binary = upper 16 bits
+  ori $s0, $s0, 2304 # 61 decimal = 0000 1001 0000 0000 binary = lower 16 bits
+    \end{lstlisting}
+    \hiii{Addresses}
+      \par To deal with that problem: PC-relative addressing
+        \begin{align*}
+          \mbox{ Program Counter } = \mbox{ Register } + \mbox { Branch Address }
+        \end{align*}
+
+  \hii{Stack}
+    \par A stack grows from higher addresses to lower addresses.
+            \begin{lstlisting}
+addi $sp, $sp, -12 # adjust stack to make room for 3 items
+...
+addi $sp,$sp,12 # adjust stack to delete 3 items
+            \end{lstlisting}
+
+\end{multicols}
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}

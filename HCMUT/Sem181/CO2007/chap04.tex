@@ -1,0 +1,38 @@
+\chapter{The Processor}
+
+\hi{Introduction}
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{Register file}: an array of processor registers
+    \end{itemize}
+
+  \hii{Basic MIPS Implementation}
+    \par In this part, we consider the basic subset of MIPS instructions,
+    including:
+    \begin{itemize}
+      \item \tb{Memory reference} instructions: \lstinline{lw} and
+        \lstinline{sw}.
+      \item \tb{Arithmetic-Logical} instructions: \lstinline{add},
+        \lstinline{sub}, \lstinline{AND}, \lstinline{OR} and \lstinline{slt}.
+      \item \tb{Branch} instructions: \lstinline{beq} and \lstinline{j}.
+    \end{itemize}
+    \par For each instructions, the first two steps are identical:
+    \begin{enumerate}[1.]
+      \item Send the PC to the memory that contains the code and fetch the
+        instruction from that memory.
+      \item Read 1 or 2 registers accoding to the instruction.
+    \end{enumerate}
+    \par After the first two steps, the actions required to complete the
+      instruction depend on the instruction class.
+
+  \hii{Multiplexor}
+
+\hi{Logic Design Conventions}
+  \par \ti{This part deals largely with the topic of the previous course,
+    including}:
+    \begin{itemize}
+      \item Combinational circuit vs. Sequential circuit
+      \item Clock
+    \end{itemize}
+
+\hi{Building Datapath}

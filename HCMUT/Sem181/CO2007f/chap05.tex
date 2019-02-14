@@ -1,0 +1,20 @@
+\begin{multicols}{2}
+\hi{Memory Hierarchy}
+  \hii{Direct Mapped Cache}
+    \par Cache Location = (Block Address) modulo (Number of blocks in Cache)
+    \par Lower address bits: cache location
+    \par Higher address bits: tag for matching
+    \par Valid bit: 1 if present data, 0 if empty
+  \hii{Block Address and Block Number}
+    \par Cache with $n$ blocks, $m$ bytes per block. Address $x$ would map:
+    \begin{itemize}
+      \item Block Address: $\floor{x / m}$
+      \item Block Number: $\floor{x / m} mod n$
+    \end{itemize}
+  \hii{Writing Methods}
+    \begin{itemize}
+      \item Write-through: update memory immediately $\ra$ takes time
+      \item Write buffer: only update memory if buffer is full
+      \item Write back: update memory when updating block if block is dirty
+    \end{itemize}
+\end{multicols}
