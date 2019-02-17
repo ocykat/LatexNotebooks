@@ -1,0 +1,63 @@
+\hi{Dijkstra Algorithm}
+
+  \par \ti{A lot of people can pronounce the name Van \tb{Dijk} (a football
+    player) without any problem, while they would pronounce the name
+    \tb{Dijk}stra incorrectly any day of the week}.
+
+  \hii{Introduction}
+
+    \par The \tb{Dijkstra Algorithm} solves the single-source shortest path
+      problem: Given a weighted graph and a source vertex. Find the shortest
+      path from source to all other vertices in the graph.
+
+    \par Dijkstra \tb{does not work on graph with negative weights}.
+
+  \hii{Notations}
+    \par Given a graph $G = (V, E)$, that $\forall e = (u, v, w) \in E: w \geq
+    0$, and a source vertex $s$.
+    \par We denote:
+    \begin{itemize}
+      \item $u.d$ as the distance from vertex $s$ to vertex $u$.
+      \item $Q$ as the min-priority-queue storing the vertices keyed by the
+        $d$ values. \ti{Note that all vertices are distinct}.
+      \item $S$ as the set of vertices that have their min distance from source
+        determined already.
+    \end{itemize}
+
+    \begin{algorithm}[H]
+      \caption{Dijkstra}
+      \begin{algorithmic}[1]
+        \Function{Dijkstra}{$G$, $s$}
+          \For{$u \in G$}
+            \Let{$u.d$}{$\infty$}
+          \EndFor
+          \State\Call{Push}{$Q$, $s$}
+          \Let{$s.d$}{$0$}
+          \While{$Q \neq \emptyset$}
+            \Let{$u$}{\Call{ExtractMin}{$Q$}}
+            \For{$e$ in $G.adj[u]$}
+              \State\Call{Relax}{$u$, $e.v$, $e.w$}
+            \EndFor
+          \EndWhile
+        \EndFunction
+
+        \State
+
+        \Function{Relax}{$u$, $v$, $w$}
+          \If{$u.d + w < v.d$}
+            \Let{$v.d$}{$u.d + w$}
+            \State\Call{Push}{$Q$, $v$}
+          \EndIf
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+
+  \hii{Proof Of Correctness}
+    \par \tb{Statement}: \ti{For any vertex $u$ that has been popped out of the
+    $Q$, $u.d$ is the smallest possible}.
+    \par \tb{Proof}: By mathematical induction:
+    \begin{itemize}
+      \item \tb{Base case}: $u \equiv s$.
+    \end{itemize}
+
+    
