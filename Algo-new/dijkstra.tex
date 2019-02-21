@@ -1,10 +1,10 @@
-\hi{Dijkstra Algorithm}
+\hii{Dijkstra Algorithm}
 
   \par \ti{A lot of people can pronounce the name Van \tb{Dijk} (a football
     player) without any problem, while they would pronounce the name
     \tb{Dijk}stra incorrectly any day of the week}.
 
-  \hii{Introduction}
+  \hiii{Introduction}
 
     \par The \tb{Dijkstra Algorithm} solves the single-source shortest path
       problem: Given a weighted graph and a source vertex. Find the shortest
@@ -12,31 +12,37 @@
 
     \par Dijkstra \tb{does not work on graph with negative weights}.
 
-  \hii{Notations}
+  \hiii{Notations}
     \par Given a graph $G = (V, E)$, that $\forall e = (u, v, w) \in E: w \geq
     0$, and a source vertex $s$.
     \par We denote:
     \begin{itemize}
-      \item $u.d$ as the distance from vertex $s$ to vertex $u$.
+      \item $(u, v)$ as the edge from vertex $u$ to vertex $v$.
+      \item $w_{uv}$ as the weight of the edge from vertex $u$ to vertex $v$.
+      \item $d[u]$ as the distance from vertex $s$ to vertex $u$.
+      \item $\delta[u]$ as the \tb{minimum} distance from vertex $s$ to vertex
+        $u$.
       \item $Q$ as the min-priority-queue storing the vertices keyed by the
         $d$ values. \ti{Note that all vertices are distinct}.
       \item $S$ as the set of vertices that have their min distance from source
         determined already.
     \end{itemize}
 
+  \hiii{Pseudocode}
     \begin{algorithm}[H]
       \caption{Dijkstra}
       \begin{algorithmic}[1]
         \Function{Dijkstra}{$G$, $s$}
           \For{$u \in G$}
-            \Let{$u.d$}{$\infty$}
+            \Let{$d[u]$}{$\infty$}
           \EndFor
           \State\Call{Push}{$Q$, $s$}
-          \Let{$s.d$}{$0$}
+          \Let{$d[s]$}{$0$}
           \While{$Q \neq \emptyset$}
             \Let{$u$}{\Call{ExtractMin}{$Q$}}
-            \For{$e$ in $G.adj[u]$}
-              \State\Call{Relax}{$u$, $e.v$, $e.w$}
+            \Let{$S$}{$S \cup \set{u}$}
+            \For{all vertices $v \in G.adj[u]$}
+              \State\Call{Relax}{$u$, $v$, $w$}
             \EndFor
           \EndWhile
         \EndFunction
@@ -44,20 +50,79 @@
         \State
 
         \Function{Relax}{$u$, $v$, $w$}
-          \If{$u.d + w < v.d$}
-            \Let{$v.d$}{$u.d + w$}
-            \State\Call{Push}{$Q$, $v$}
+          \If{$d[u] + w < d[v]$}
+            \Let{$d[v]$}{$d[u] + w$}
+            \If{$v \in Q$}
+              \State\Call{Push}{$Q$, $v$}
+            \Else
+              \State\Call{DecreaseKey}{$Q$, $v$, $w$}
+            \EndIf
           \EndIf
         \EndFunction
       \end{algorithmic}
     \end{algorithm}
 
-  \hii{Proof Of Correctness}
-    \par \tb{Statement}: \ti{For any vertex $u$ that has been popped out of the
-    $Q$, $u.d$ is the smallest possible}.
+  \hiii{Proof Of Correctness}
+    \par \tb{Statement}:
+    \par \fbox{
+      \begin{fboxenv}
+        \par For every vertices $u$ added to $S$, the distance between $u$ and
+        $s$ is the shortest possible and will not be changed.
+				\[
+					\forall u \in S, d[u] = \delta[u]
+				\]
+      \end{fboxenv}
+    }
     \par \tb{Proof}: By mathematical induction:
     \begin{itemize}
-      \item \tb{Base case}: $u \equiv s$.
+      \item \tb{Base case}: $|S| = 1$. This case is trivial.
+      \item \tb{Inductive Step}:
+        \par \ti{Inductive Hypothesis}: Suppose that the statement is true
+          $\forall u \in S$ up to the previous iteration.
+        \par Let $v$ be the vertex added to $S$ in the current iteration.
+        \par Let $u'$ be the vertex that $v$ is relaxed from. This means that
+          $u'$ has been added to $S$ in a previous iteration. According to
+          the inductive hypothesis, $d[u'] = \delta[u']$. Based on the
+          relaxation step, it is clear that:
+          \[
+            \not \exists u \in Q, u \not \equiv u':
+              \delta[u] + w_{uv} < \delta[u'] + w_{u'v} = d[v]
+          \]
+        \par We interpret this as follow: if there exists a shorter path to
+          $v$, then that path must contain at least 1 vertex not in $S$.
+        \par Let $P$ be the shortest path from $s$ to $v$ that is not the
+        currently explored path. This means:
+				\[
+          l(P) = \delta[v] < d[v] \mbox{ and } (u', v) \not \in P \eqnumber{1}
+				\]
+        \par $P$ can be split into two parts:
+          \begin{itemize}
+            \item $P_1$ which contains only vertices in $S$ and ends with vertex
+              $x$.
+            \item $P_2$ starts with vertex $y \not \in S$.
+          \end{itemize}
+        \par Because $y$ comes before $v$ on the shortest path $P$, and also
+        because the graph only contains positive weights:
+        \[
+          \delta[y] < \delta[v] \eqnumber{2}
+        \]
+        \par $y$ is on the shortest path from $s$ to $v$, meaning that $P_1 +
+        (x, y)$ must also be the shortest path from $s$ to $y$. At the moment,
+        since $x \in S$, $d[y]$ must have been updated by relaxation from $x$.
+        Therefore:
+        \[
+          d[y] = \delta[y] = \delta[x] + w_{xy} \eqnumber{3}
+        \]
+        \par On the other hand, in this iteration, $v$ is chosen from $Q$
+        instead of $y$, which means:
+        \[
+          d[v] < d[y] \eqnumber{4}
+        \]
+        \par Combining the inequalities (1), (2), (3), and (4), we obtain the
+        following result:
+        \[
+          \bm{d[v]} < d[y] = \delta[y] < \delta[v] < \bm{d[v]}
+        \]
+        \par By contradiction, such path $P$ does not exists. Therefore,
+        $d[v] = \delta[v]$. (Q.E.D)
     \end{itemize}
-
-    

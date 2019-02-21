@@ -84,6 +84,7 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\set\{\}
 
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
@@ -108,6 +109,9 @@
 
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
+
+% Manual equation number
+\newcommand{\eqnumber}[1]{\qquad\mbox{\tb{{(#1)}}}}
 
 % FOOTNOTE
 %   one foot note stays on one page
@@ -191,6 +195,16 @@
   mathescape=false
 }
 
+% 
+\usepackage{varwidth}
+\newenvironment{fboxenv}
+  {
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+  }
+  {
+    \end{minipage}
+  }
+
 % SOURCE
 %\newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\refsource}[1]{Source: {#1}}
@@ -198,7 +212,7 @@
 \begin{document}
 \tableofcontents
 
-\input{dijkstra}
+\input{content}
 
 \begin{appendices}
 
