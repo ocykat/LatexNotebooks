@@ -10,10 +10,10 @@
 *.synctex.gz
 
 # Images
-*.PNG
-*.png
-*.jpg
-*.JPEG
+# *.PNG
+# *.png
+# *.jpg
+# *.JPEG
 
 # Shell scripts
 *.sh
@@ -22,7 +22,7 @@
 Makefile
 
 # image directories
-img/
+# img/
 
 # Others
 *.py

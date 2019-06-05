@@ -1,0 +1,26 @@
+\chapter*{UNIX Process Memory}
+
+\par Memory of a process can be divided into segments:
+  \begin{itemize}
+    \item \tb{code segment}: contains the binary code of the program which is running as a process
+    \item \tb{data segment}: contains the initialized global variables and data structures.
+    \item \tb{BSS (block started by symbol}:  contains the uninitialized global data structures
+    \item \tb{stack segment}: contains the local variables, return addresses, etc. for a particular process
+  \end{itemize}
+
+\par A process can execute in two modes:
+  \begin{itemize}
+    \item \tb{Kernel mode}: When a process makes a system call, the kernel takes control and does the requested service on behalf of the process. The process is said to be ``in kernel space” during this time.
+    \item \tb{User mode}: Normal mode of a process. The process is said to be ``in userland" during this time.
+  \end{itemize}
+
+\par Userland’s view of the segments:
+\begin{itemize}
+  \item \tb{code segment}: consists of the code of the program, including all functions. If \lstinline{p = foo()} where \lstinline{foo()} is an arbitrary function, then \lstinline{p} must point to some location within the code segment.
+  \item \tb{data segment}: consists of the initialized global variables of a program. If \lstinline{N} is a global variable, then the address of \lstinline{N} must be in the data segment.
+  \item \tb{BSS}: consists of the uninitialized global variables of a program. If \lstinline{N} is a global variable, then the address of \lstinline{N} must be in the data segment.
+  \item \tb{stack}: consists of local variables.
+  \item \tb{heap}: consists of memory dynamically allocated during process run time.
+\end{itemize}
+
+

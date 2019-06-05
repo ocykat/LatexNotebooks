@@ -1,15 +1,11 @@
 \documentclass[12pt, a4paper]{report}
 
-% MARGINS
+
+% === MARGINS ===
 \usepackage[margin=0.75in]{geometry}
 
-% FONT
-\renewcommand{\familydefault}{\sfdefault}
 
-% LINE SPACING
-\setlength{\parskip}{6pt}
-
-% HEADINGS
+% === HEADINGS ===
 \setcounter{secnumdepth}{4}
 \newcommand{\hi}{\section}
 \newcommand{\hii}{\subsection}
@@ -18,10 +14,12 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-% INDENTATION
+
+% === INDENTATION ===
 \usepackage{indentfirst}
 
-% TABLE OF CONTENTS
+
+% === TABLE OF CONTENTS ===
 % links
 \usepackage{hyperref}
 \hypersetup{
@@ -32,10 +30,12 @@
   urlcolor=black
 }
 
-% APPENDICES
-\usepackage[toc,page]{appendix}
 
-% TEXT
+% === APPENDICES ===
+\usepackage[toc, page]{appendix}
+
+
+% === TEXT ===
 % Bold, italic, underlined text
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
@@ -45,7 +45,14 @@
 \newcommand{\smf}[1]{\small #1 \normalsize}
 \newenvironment{smfont}{\small}{\normalsize}
 
-% MATH
+
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
+% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
+
+
+% === MATH ===
+% Basic packages
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{gensymb}
@@ -84,7 +91,6 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclarePairedDelimiter\set\{\}
 
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
@@ -96,8 +102,8 @@
 \newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
 \newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
 \newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
-\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
 \newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
+\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
 \newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
 
 % Integrals
@@ -110,10 +116,8 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
-% Manual equation number
-\newcommand{\eqnumber}[1]{\qquad\mbox{\tb{{(#1)}}}}
 
-% FOOTNOTE
+% === FOOTNOTE ===
 %   one foot note stays on one page
 \interfootnotelinepenalty=10000
 
@@ -121,19 +125,24 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
-% IMAGES
+
+% === IMAGES ===
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\newcommand{\img}[2][]
-  {
-    \begin{figure}[H]
-      \centering
-      \includegraphics[#1]{#2}
-    \end{figure}
-  }
+\newcommand{\img}[3][]
+{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption*{#3}
+  \end{figure}
+}
+% Usage: \img[width=...]{<path_to_img>}{<caption>}
 
-% PSEUDOCODE
+
+% === PSEUDOCODE ===
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage[noend]{algpseudocode}
@@ -169,33 +178,17 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
-\newcommand{\SHIFTLEFT}{\ll}
-\newcommand{\SHIFTRIGHT}{\gg}
 
-% FRENCH CONVENTION FOR VERTICAL ARITHMETIC
-\usepackage{xlop}
 
-% CODE
+% === CODE ===
 \usepackage{listings}
-%\makeatletter
-%\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
-%\@empty\z@\@empty
-%\makeatother
 \usepackage{inconsolata}
-\lstset{
-  language=[x86masm]Assembler,
-  aboveskip=1mm,
-  belowskip=1mm,
-  numbers=left,
-  frame=tb,
-  % language=[mips]Assembler,
-  basicstyle=\ttfamily
-  \footnotesize,
-  breaklines=true,
-  mathescape=false
+\lstset
+{
+  basicstyle=\ttfamily,
 }
 
-% TEXTBOX
+% === TEXTBOX ===
 \usepackage{varwidth}
 \newenvironment{fboxenv}
   {
@@ -205,14 +198,22 @@
     \end{minipage}
   }
 
-% SOURCE
-%\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\refsource}[1]{Source: {#1}}
+% \newcommand{\textbox}[1]{\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape #1 }}}
+\newcommand{\textbox}[1]{\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{#1 }}}
+
+
+% === BOOK SECTION MARKER ===
+\newcommand{\booktitle}{}
+\newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
+
 
 \begin{document}
 \tableofcontents
 
-\input{content}
+\input{chap01}
+\setcounter{chapter}{2}
+\input{chap03}
+\input{chap04}
 
 \begin{appendices}
 

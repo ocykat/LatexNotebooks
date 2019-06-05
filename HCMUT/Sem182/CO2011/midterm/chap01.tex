@@ -1,0 +1,51 @@
+\hi{Linear Programming}
+
+\hi{Linear Program}
+  \hii{Generic Form}
+  \par  A linear program is the problem of minimizing a given linear function over the set of all vectors that satisfy a given system of linear equations and inequalities. Each linear program can easily be transformed to the form:
+      \begin{align*}
+        \text{minimize } & c^T x \\
+        \text{s.t. } & Ax \leq b \\
+        & x \in R^n
+      \end{align*}
+
+  \hii{Types of Solution}
+    \begin{itemize}
+      \item Any vector $x \in R^n$ satisfying all constraints of a given linear program is a \tb{feasible solution}.
+      \item Each $x^* \in R^n$ that gives the maximum possible value of $c^T x$ among all feasible $x$ is called an \tb{optimal solution}, or \tb{optimum}.
+    \end{itemize}
+
+  \hii{Standard form of a linear program}
+      \begin{align*}
+        \text{maximize } & c^T x \\
+        \text{subject to } & Ax = b \\
+        & x \geq 0
+      \end{align*}
+
+  \hii{Basic}
+    \par A \tb{basic feasible solution} of the linear program
+      \begin{align*}
+        \text{maximize } & c^T x \\
+        \text{subject to } & Ax = b \\
+        & x \geq 0
+      \end{align*}
+    is a feasible solution $x \in R^n$ for which there exists an $m$-element set $B \subseteq  \{1, 2, \ldots n\}$ such that:
+    \begin{itemize}
+      \item The square matrix $A_B$ is nonsigular, or \tb{all columns indexed by $B$ are linearly independent}
+      \item $x_j = 0 \forall j \not \in B$
+    \end{itemize}
+
+  \par We call the variables $x_j$ with $j \in B$ the \tb{basic variables}, while the remaining variables are called nonbasic.
+
+\hi{Simplex Method}
+  \par \tb{Steps}:
+  \begin{itemize}
+    \item Create the tableau
+    \item Select a basic matrix $B$ with $m$ linear-independent columns from $A$.
+    \item Transform $B$ into $I$ with row operations.
+    \item Transform any value of $r_i \neq 0$ for $i \in B$ with row operations.
+    \item Choose any $x_i$ with $r_i > 0$ as entering variable.
+    \item On the column $i$, look for $a_{ij} > 0$ with $\dfrac{b_i}{a_{ij}}$ is \tb{minimum}. This step determines the leaving variable.
+    \item With the new basis, redo all steps.
+    \item The algorithm stop when there is no $r_i > 0$.
+  \end{itemize}

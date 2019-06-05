@@ -1,0 +1,30 @@
+\chapter{Continuous Random Variables and Probability Distributions}
+
+\hi{Probability Distributions and Probability Density Functions}
+  \par For a continuous random variable $X$, a \tb{probability density
+  function} $f(x)$ is a function such that:
+    \begin{itemize}
+      \item $f(x) \geq 0$
+      \item $\INT{_{-\infty}^{\infty}} f(x)dx = 1$
+      \item $P(a \leq X \leq b) = \INT{_{a}^{b}} f(x)dx = $ area under $f(x)$
+        from $a$ to $b$
+    \end{itemize}
+
+\hi{Cumulative Distribution Functions}
+  \par The \tb{cummulative disitribution function} of a continuous random
+    variable $X$ is
+    \[
+      F(x) = P(X \leq x) = \INT{_{-\infty}^{x}} f(u)du
+    \]
+
+\hi{Mean and Variance of a Continuous Random Variable}
+  \hii{Mean}
+    \par Suppose that $X$ is a continuous random variable with probability
+      density function $f(x)$.
+      \begin{itemize}
+        \item The \tb{mean} or \tb{expected value} of $X$, denoted as $\mu$ or
+          $E(X)$ is:
+          \[
+            \mu = E(X) = \INT{_{-\infty}^{\infty}} x f(x) dx
+          \]
+      \end{itemize}

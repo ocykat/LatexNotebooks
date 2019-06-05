@@ -1,0 +1,182 @@
+\documentclass[9pt, landscape, a4paper]{article}
+
+% === MARGINS ===
+\usepackage{geometry}
+\geometry{top=0.75cm,bottom=0.75cm,left=1cm,right=1cm,includehead,includefoot}
+
+% === FONT ===
+% \renewcommand{\familydefault}{\sfdefault}
+
+% LINE SPACING
+% \setlength{\parskip}{6pt}
+
+% === HEADER % FOOTER ===
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{HCM City University of Technology}
+\fancyhead[R]{Dept. of Computer Science \& Technology}
+\fancyfoot[L]{Nhat M. Nguyen - 1752039}
+\fancyfoot[R]{\thepage}
+
+\fancypagestyle{plain}
+{
+\fancyhead[L]{HCM City University of Technology}
+\fancyhead[R]{Dept. of Computer Science \& Technology}
+\fancyfoot[L]{Nhat M. Nguyen}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+}
+
+% === MULTICOLUMN ===
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{0.2pt}
+\newcommand{\colbreak}{\vfill\null\columnbreak}
+
+% === TOC ===
+\usepackage{tocloft}
+%\renewcommand*{\ttdefault}{pcr}
+%\renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
+%\renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
+%\renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
+%\renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
+%\renewcommand\cftsecafterpnum{\vspace{-1ex}}
+%\renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
+
+% === HEADINGS ===
+\setcounter{secnumdepth}{4}
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiii}{\subsubsection}
+\newcommand{\hiiiBEGIN}[1]{\subsubsection \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% === INDENTATION ===
+\usepackage{indentfirst}
+
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
+
+% === TEXT ===
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+
+% === TEXTBOX ===
+\usepackage{varwidth}
+\newenvironment{fboxenv}
+  {
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+  }
+  {
+    \end{minipage}
+  }
+
+\newcommand{\textbox}[1]{\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape #1 }}}
+
+
+% === MATH ===
+% Basic packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+
+% Equation box
+\usepackage{empheq}
+\newenvironment{eqbox}
+  {\setkeys{EmphEqEnv}{align}\setkeys{EmphEqOpt}{box=\fbox}\EmphEqMainEnv}
+  {\endEmphEqMainEnv}
+
+% Arrows
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\lra}{\Leftrightarrow}
+
+% Sum, product, limit
+\newcommand{\SUM}[1]{\sum\limits #1}
+\newcommand{\PROD}[1]{\prod\limits #1}
+
+% Bold in math mode
+\usepackage{bm}
+
+% Absolute value
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+%   Swap the definition of \abs* and \norm*, so that \abs
+%   and \norm resizes the size of the brackets, and the
+%   starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+% Floor and ceiling
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% Inner Product
+\newcommand{\iprod}[1]{\langle #1 \rangle}
+
+% Derivatives
+\newcommand{\dif}[2]{\dfrac{d #1}{d #2}}
+\newcommand{\ddif}[2]{\dfrac{d^2 #1}{d #2^2}}
+\newcommand{\difi}[2]{d #1/d #2}
+\newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
+\newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
+\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
+
+% Integrals
+\usepackage{esint}
+\newcommand{\INT}{\int \limits}
+\newcommand{\OINT}{\oint \limits}
+\newcommand{\IINT}{\iint \limits}
+\newcommand{\IIINT}{\iiint \limits}
+
+% Ratios
+\newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
+
+% Hand-written-like fonts
+\usepackage{eucal}
+
+% Superscript+subscript
+\newcommand{\spc}[2]{{#1}^{#2}}
+\newcommand{\sbc}[2]{{#1}_{#2}}
+\newcommand{\ssc}[3]{{#1}^{#2}_{#3}}
+
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{10pt}{5pt}
+\titlespacing{\subsection}{0pt}{10pt}{3pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{3pt}
+\titlespacing{\subsubsubsection}{0pt}{10pt}{3pt}
+% \usepackage[parfill]{parskip}           % For compact enumerations
+
+% INFO
+\title{\vspace{-4ex}\Large{Mathematical Modeling - Midterm}}
+\author{Nhat M. Nguyen - ID: 1752039}
+\date{April 2019}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
+
+  \clearpage
+
+  \input{chap01}
+  \input{chap02}
+  % \input{chap03}
+  % \input{chap04}
+  % \input{terms}
+\end{document}

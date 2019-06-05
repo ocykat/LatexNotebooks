@@ -1,0 +1,29 @@
+#+TITLE: DISTRIBUTIONS
+
+* Discrete Distributions
+
+* Continuous Distributions
+
+** Continuous Uniform Distribution
+*** Definition
+  A continuous random variable $X$ is called a *continuous uniform random variable* if its density function is:
+    \begin{align*}
+        f(x) = \frac{1}{(b - a)}
+    \end{align*}
+
+*** Mean and Variance
+  If $X$ is a continuous uniform random variable over $a \leq x \leq b$, then:
+    \begin{align*}
+        E(X) &= \mu  = \frac{a + b}{2} \\
+        V(X) &= \sigma^2  = \frac{(b - a)^2}{2}
+    \end{align*}
+
+
+** Normal Distribution
+*** Intuitive meaning of Normal Distribution
+  A random variable $X$ follows a normal distribution if $X$ is the result of a random experiment where the occurence of the mean value is the highest.
+*** Definition
+*** Notation
+$X ~ N(\mu, \sigma^2)$
+where $\mu$ is the mean and $\sigma^2$ is the variance of $X$.
+

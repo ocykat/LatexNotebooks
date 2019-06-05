@@ -1,0 +1,438 @@
+\chapter{Propositional Logic}
+
+\hi{Proposition/Declarative Sentences}
+  \hii{Definition}
+  \par A \tb{proposition} or a \tb{declarative sentence} is a sentence that is either \tb{True} or \tb{False} but not both.
+
+  \hii{Atomic Declarative Sentence and Notation}
+  \par Usually, \tb{atomic} or \tb{indecomposable} sentences are considered.
+  \par Each \tb{atomic declarative sentence} is assign a symbol $p$, $q$, $r$, etc.
+
+\hi{Logical Connectives}
+  \par \tb{Logical Connective }
+  \par Let $p$, and $q$ be propositions (or declarative sentences).
+
+  \hii{Negation}
+    \hiii{Definition}
+      \begin{itemize}
+        \item The \tb{negation} of $p$, denoted by $\lnot p$, is the statement ``It is not the case that $p$".
+        \item $\lnot p$ is read ``\tb{NOT} p".
+        \item The truth value of $\lnot p$ is the opposite of the truth value of $p$.
+      \end{itemize}
+    \hiii{Truth Table}
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          $p$ & $\lnot p$ \\
+          \hline
+          $\lT$ & $\lF$ \\
+          \hline
+          $\lF$ & $\lT$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+
+  \hii{Conjunction}
+    \hiii{Definition}
+      \begin{itemize}
+        \item The \tb{conjunction} of $p$ and $q$, denoted by $p \land q$, is the proposition ``$p$ and $q$".
+        \item The conjunction $p \land q$ is \tb{True} when both $p$ and $q$ are \tb{True}
+        and is \tb{False} otherwise.
+      \end{itemize}
+
+    \hiii{Truth Table}
+      \begin{center}
+        \begin{tabular}{|c|c|c|}
+          \hline
+          $p$ & $q$ & $p \land q$ \\
+          \hline
+          $\lT$ & $\lT$ & $\lT$ \\
+          \hline
+          $\lT$ & $\lF$ & $\lF$ \\
+          \hline
+          $\lF$ & $\lT$ & $\lF$ \\
+          \hline
+          $\lF$ & $\lF$ & $\lF$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+
+  \hii{Disjunction}
+    \hiii{Definition}
+      \begin{itemize}
+        \item Let $p$ and $q$ be propositions. The \tb{disjunction}
+        of $p$ and $q$, denoted by $p \lor q$, is the proposition ``$p$ or $q$".
+        \item The disjunction $p \lor q$ is \tb{False} when both $p$ and $q$ are \tb{False} and is \tb{True} otherwise.
+      \end{itemize}
+
+    \hiii{Truth Table}
+      \begin{center}
+        \begin{tabular}{|c|c|c|}
+          \hline
+          $p$ & $q$ & $p \lor q$ \\
+          \hline
+          $\lT$ & $\lT$ & $\lT$ \\
+          \hline
+          $\lT$ & $\lF$ & $\lT$ \\
+          \hline
+          $\lF$ & $\lT$ & $\lT$ \\
+          \hline
+          $\lF$ & $\lF$ & $\lF$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+
+  \hii{Exclusive Disjunction}
+    \hiii{Definition}
+      \begin{itemize}
+        \item The \tb{exclusive disjunction} of $p$ and $q$, denoted by $p \lxor q$, is the proposition that is \tb{True} when
+        exactly one of $p$ and $q$ is \tb{True} and is \tb{False} otherwise.
+      \end{itemize}
+
+    \hiii{Truth Table}
+    \begin{center}
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \lxor q$ \\
+        \hline
+        $\lT$ & $\lT$ & $\lF$ \\
+        \hline
+        $\lT$ & $\lF$ & $\lT$ \\
+        \hline
+        $\lF$ & $\lT$ & $\lT$ \\
+        \hline
+        $\lF$ & $\lF$ & $\lF$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+  \hii{Implication}
+    \hiii{Definition}
+      \begin{itemize}
+        \item Let $p$ and $q$ be propositions. The conditional statement $p \limpl q$ is the proposition ``if p, then q".
+        \item The conditional statement $p \limpl q$ is \tb{False} when $p$
+        is \tb{True} and $q$ is \tb{False}, and \tb{True} otherwise.
+        \item $p$ is called the \tb{assumption} and $q$ is called the \tb{conclusion} of the \tb{implication} $p \limpl q$. \fnmark
+        \fntext{This definition is according to Huth and Ryan's book. In Rosen's book, $p$ is called the \tb{hypothesis} (or antedecent or premise) and $q$ is called the \tb{conclusion} (or consequence).}
+      \end{itemize}
+
+    \hiii{Truth Table}
+      \begin{center}
+        \begin{tabular}{|c|c|c|}
+          \hline
+          $p$ & $q$ & $p \limpl q$ \\
+          \hline
+          $\lT$ & $\lT$ & $\lT$ \\
+          \hline
+          $\lT$ & $\lF$ & $\lF$ \\
+          \hline
+          $\lF$ & $\lT$ & $\lT$ \\
+          \hline
+          $\lF$ & $\lF$ & $\lT$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+
+  \hii{Biconditional}
+    \hiii{Definition}
+      \begin{itemize}
+        \item Let $p$ and $q$ be propositions. The \tb{biconditional statement}
+        $p \liff q$ is the proposition ``$p$ if and only if $q$".
+        \item The \tb{biconditional} is \tb{True} when $p$ and $q$ have the same
+        truth value, and is \tb{False} otherwise.
+      \end{itemize}
+
+    \hiii{Truth Table}
+    \begin{center}
+      \begin{tabular}{|c|c|c|}
+        \hline
+        $p$ & $q$ & $p \liff q$ \\
+        \hline
+        $\lT$ & $\lT$ & $\lT$ \\
+        \hline
+        $\lT$ & $\lF$ & $\lF$ \\
+        \hline
+        $\lF$ & $\lT$ & $\lF$ \\
+        \hline
+        $\lF$ & $\lF$ & $\lT$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+  \hii{Logical Equivalences}
+    \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Equivalence} & \textbf{Name} \\
+        \hline
+
+        $p \land \lT \equiv p$ & \multirow{2}{*}{Identity laws} \\
+        $p \lor \lF \equiv p$ & \\
+        \hline
+
+        $p \land \lF \equiv \lF$ & \multirow{2}{*}{Domination laws} \\
+        $p \lor \lT \equiv \lT$ & \\
+        \hline
+
+        $p \land p \equiv p$ & \multirow{2}{*}{Idempotent laws} \\
+        $p \lor p \equiv p$ & \\
+        \hline
+
+        $\lnot (\lnot p) \equiv p$ & Double negation laws \\
+        \hline
+
+        $p \land q \equiv q \land p$ & \multirow{2}{*}{Commutative laws} \\
+        $p \lor q \equiv q \lor p$ & \\
+        \hline
+
+        $(p \land q) \land r \equiv p \land (q \land r)$
+          & \multirow{2}{*}{Associative laws} \\
+        $(p \lor q) \lor r \equiv p \lor (q \lor r)$ & \\
+        \hline
+
+        $\lnot (p \land q) \equiv \lnot p \lor \lnot q$
+          & \multirow{2}{*}{De Morgan's laws} \\
+        $\lnot (p \land q) \equiv \lnot p \lor \lnot q$ & \\
+        \hline
+
+        $p \land (p \lor q) \equiv p$
+          & \multirow{2}{*}{Absorption laws} \\
+        $p \lor (p \land q) \equiv p$ & \\
+        \hline
+
+        $p \lor \lnot p \equiv \lT$ & \multirow{2}{*}{Negation laws} \\
+        $p \land \lnot p \equiv \lF$ & \\
+        \hline
+
+        $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$
+          & \multirow{2}{*}{Distributed laws} \\
+        $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$ & \\
+        \hline
+
+        $p \limpl q \equiv \lnot p \lor q$
+        & \multirow{5}{*}{Logical Equivalences Involving Conditional Statements} \\
+        $(p \limpl q) \land (p \limpl r) \equiv p \limpl (q \land r)$
+        & \\
+        $(p \limpl q) \lor (p \limpl r) \equiv p \limpl (q \lor r)$
+        & \\
+        $(p \limpl q) \land (q \limpl r) \equiv (p \lor q) \limpl r$
+        & \\
+        $(p \limpl q) \lor (q \limpl r) \equiv (p \land q) \limpl r$
+        & \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+\hi{Binding Priority}
+  \begin{itemize}
+
+  \end{itemize}
+
+\hi{Natural Deduction}
+  \hii{Premises and Conclusion}
+    \par Suppose we have:
+    \begin{itemize}
+      \item a set of formulas $\phi_1, \ldots, \phi_n$ called \tb{premises}.
+      \item a formula $\psi$ called \tb{conclusion}.
+    \end{itemize}
+
+  \hii{Sequent}
+    \par The intention is by applying \tb{proof rules} to the premises, we finally obtain the conclusion. This intention can be denoted by:
+    \begin{align*}
+      \phi_1, \ldots, \phi_n \lyeild \psi
+    \end{align*}
+    \par The expression is called a \tb{sequent}.
+    \par A \tb{sequent} is \tb{valid} if a proof for it can be found.
+
+  \hii{Natural Deduction}
+    \par A natural deduction can be denoted by:
+    \begin{center}
+      \AxiomC{$\phi_1$}
+      \AxiomC{$\phi_2$}
+      \AxiomC{$\ldots$}
+      \AxiomC{$\phi_n$}
+      \RightLabel{[Rule Name]}
+      \QuaternaryInfC{$\psi$}
+      \DisplayProof
+    \end{center}
+
+  \hii{Rules for Natural Deduction}
+    \hiii{Rules for Conjunction (AND)}
+
+      \begin{enumerate}[a.]
+        \item \tb{Introduction Rule} is denoted by $\land i$.
+          \begin{center}
+            \AxiomC{$\phi$}
+            \AxiomC{$\psi$}
+            \RightLabel{$\land i$}
+            \BinaryInfC{$\phi \land \psi$}
+            \DisplayProof
+          \end{center}
+
+        \item \tb{Elimination Rule} is denoted by $\land e$.
+          \begin{center}
+            \AxiomC{$\phi \land \psi$}
+            \RightLabel{$\land e_1$}
+            \UnaryInfC{$\phi$}
+            \DisplayProof
+            \hskip 2cm
+            \AxiomC{$\phi \land \psi$}
+            \RightLabel{$\land e_2$}
+            \UnaryInfC{$\psi$}
+            \DisplayProof
+          \end{center}
+      \end{enumerate}
+
+    \hiii{Rules for Double Negation}
+
+      \begin{enumerate}[a.]
+        \item \tb{Introduction Rule} is denoted by $\lnotnot i$.
+          \begin{center}
+            \AxiomC{$\phi$}
+            \RightLabel{$\lnotnot i$}
+            \UnaryInfC{$\lnotnot \phi$}
+            \DisplayProof
+          \end{center}
+
+        \item \tb{Elimination Rule} is denoted by $\lnotnot e$.
+          \begin{center}
+            \AxiomC{$\lnotnot \phi$}
+            \RightLabel{$\lnotnot e$}
+            \UnaryInfC{$\phi$}
+            \DisplayProof
+          \end{center}
+      \end{enumerate}
+
+    \hiii{Rules for Implication}
+      \begin{enumerate}[a.]
+        \item \tb{Elimination Rule}, also known as \tb{modus ponens}, is denoted by $\limpl e$. Another related well-known rule is modus tollens, mentioned in the Derived Rules part.
+          \begin{center}
+            \AxiomC{$\phi$}
+            \AxiomC{$\phi \limpl \psi$}
+            \RightLabel{$\limpl e$}
+            \BinaryInfC{$\psi$}
+            \DisplayProof
+          \end{center}
+
+        \item \tb{Introduction Rule} is denoted by $\limpl i$.
+          \begin{center}
+            \alwaysNoLine
+            \AxiomC{$\phi$}
+            % \noLine
+            \UnaryInfC{$\vdots$}
+            % \noLine
+            \UnaryInfC{$\psi$}
+            \RightLabel{$\limpl i$}
+            \alwaysSingleLine
+            \UnaryInfC{$\phi \limpl \psi$}
+            \DisplayProof
+          \end{center}
+      \end{enumerate}
+
+    \hiii{Rules for Disjunction (OR)}
+
+      \begin{enumerate}[a.]
+        \item \tb{Introduction Rule} is denoted by $\lor i$.
+          \begin{center}
+            \AxiomC{$\phi$}
+            \RightLabel{$\lor i_1$}
+            \UnaryInfC{$\phi \lor \psi$}
+            \DisplayProof
+            \hskip 2cm
+            \AxiomC{$\psi$}
+            \RightLabel{$\lor i_2$}
+            \UnaryInfC{$\phi \lor \psi$}
+            \DisplayProof
+          \end{center}
+
+        \item \tb{Elimination Rule} is denoted by $\lor e$.
+          \begin{center}
+            \AxiomC{$\phi \lor \psi$}
+              \alwaysNoLine
+              \AxiomC{$\phi$}
+              \UnaryInfC{$\vdots$}
+              \UnaryInfC{$\chi$}
+              \alwaysNoLine
+              \AxiomC{$\psi$}
+              \UnaryInfC{$\vdots$}
+              \UnaryInfC{$\chi$}
+            \RightLabel{$\lor e$}
+            \alwaysSingleLine
+            \TrinaryInfC{$\chi$}
+            \DisplayProof
+          \end{center}
+      \end{enumerate}
+
+  \hiii{Rules for Contradiction}
+    \par A \tb{contradiction} is an expression of the form
+    \[
+    \phi \land \lnot \phi
+    \]
+    where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
+    \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
+      \begin{center}
+        \AxiomC{$\lcontrad$}
+        \UnaryInfC{$\phi$}
+        \DisplayProof
+      \end{center}
+
+  \hiii{Rules for Negation}
+      \begin{enumerate}[a.]
+        \item \tb{Introduction Rule} is denoted by $\lnot i$.
+          \begin{center}
+            \alwaysNoLine
+            \AxiomC{$\phi$}
+            \UnaryInfC{$\ldots$}
+            \UnaryInfC{$\psi$}
+            \RightLabel{$\lnot i$}
+            \alwaysSingleLine
+            \UnaryInfC{$\phi \lnot \psi$}
+            \DisplayProof
+          \end{center}
+
+        \item \tb{Elimination Rule} is denoted by $\lnot e$.
+          \begin{center}
+            \AxiomC{$\phi$}
+            \AxiomC{$\lnot \phi$}
+            \RightLabel{$\lnot e$}
+            \BinaryInfC{$\lcontrad$}
+            \DisplayProof
+          \end{center}
+      \end{enumerate}
+
+  \hii{Derived Rules}
+    \hiii{Modus Tollens}
+      \begin{center}
+        \AxiomC{$\phi \limpl \psi$}
+        \AxiomC{$\lnot \psi$}
+        \RightLabel{MT}
+        \BinaryInfC{$\lnot \phi$}
+        \DisplayProof
+      \end{center}
+
+    \hiii{Proof By Contradiction (PCB)}
+      \begin{center}
+        \alwaysNoLine
+        \AxiomC{$\lnot \phi$}
+        \UnaryInfC{$\vdots$}
+        \UnaryInfC{$\lcontrad$}
+        \RightLabel{PBC}
+        \alwaysSingleLine
+        \UnaryInfC{$\phi$}
+        \DisplayProof
+      \end{center}
+
+    \hiii{Law of the Excluded Middle (LEM)}
+      \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
+      \begin{center}
+        % \AxiomC{$\phi$}
+        % \AxiomC{$\lnot \phi$}
+        \AxiomC{}
+        \RightLabel{LEM}
+        \UnaryInfC{$\phi \lor \lnot \phi$}
+        \DisplayProof
+      \end{center}
+
+  \hii{Provable Equivalence}
+    \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say
+that $\phi$ and $\psi$ are provably equivalent iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.

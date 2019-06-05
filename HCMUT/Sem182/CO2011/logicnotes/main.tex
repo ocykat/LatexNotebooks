@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+
+
+% === HEADINGS ===
+\setcounter{secnumdepth}{4}
+\newcommand{\hi}{\section}
+\newcommand{\hii}{\subsection}
+\newcommand{\hiii}{\subsubsection}
+\newcommand{\hiiiBEGIN}[1]{\subsubsection \begin{enumerate}}
+\newcommand{\hiiiEND}{\end{enumerate}}
+\newcommand{\hiv}{\item\textbf}
+
+% === TEXT ===
+% Bold, italic, underlined text
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\tbu}[1]{\textbf{\underline{#1}}}
+\newcommand{\smf}[1]{\small #1 \normalsize}
+\newenvironment{smfont}{\small}{\normalsize}
+
+
+\begin{document}
+
+\par \tb{Binary search}
+\begin{itemize}
+  \item{Precondition}
+    \begin{itemize}
+      \item $ \forall i, [i > 0 \land i < length(a) - 2]: a[i] \leq a[i + 1]$
+      \item $l, u \in Z^{+} \cup {0}$
+    \end{itemize}
+
+  \item{Postcondition}
+    \begin{itemize}
+      \item $e \in a \rightarrow True$
+    \end{itemize}
+\end{itemize}
+
+\par \tb{Swap}
+  \begin{itemize}
+    \item Precondition: $x = X \land y = Y$
+    \item Postcondition: $x = Y \land y = X$
+  \end{itemize}
+
+\begin{itemize}
+    \item true, valid, satisfiable
+\end{itemize}
+
+\end{document}
+

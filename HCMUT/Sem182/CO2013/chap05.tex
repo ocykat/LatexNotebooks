@@ -1,0 +1,188 @@
+\chapter{The Relational Data Model and Relational Database Constraints}
+
+\hi{Relational Model Concepts}
+  \par The relational model represents database as a collection of \tb{relations}.
+  \par Each relation resembles a \tb{table of values} (or a \ti{flat file}) of records.
+  \par Each \tb{row} in the table represent a collection of related data values.
+  \par The table name and column names help interpret the meaning of the values in each row.
+
+  \hii{Domain, Attributes, Tuples and Relations}
+
+    \hiii{Domain}
+      \par A \tb{domain} $D$ is:
+
+        \begin{itemize}
+          \item a set of all available values.
+          \item a set of atomic values (values that cannot be further divided).
+        \end{itemize}
+
+      \par Examples of domains:
+
+        \begin{itemize}
+          \item \lstinline{usa_phone_number}: The set of ten-digit phone numbers valid in the United States.
+          \item \lstinline{social_security_number}: The set of nine-digit Social Security numbers.
+          \item \lstinline{grade_point_averages}: Possible values of computed grade point averages; each must be a real (floating-point) number between 0 and 10.
+          \item \lstinline{employee_ages}: Possible ages of employees in a company; each must be an integer value between 18 to 60.
+          \item \lstinline{subject_codes}: The set of subject codes, such as: `CO2007", `MT2001", etc.
+        \end{itemize}
+
+      \par A domain should have:
+      \begin{itemize}
+        \item A \tb{data type} (or \tb{format}).
+      \end{itemize}
+
+    \hiii{Relation Schema}
+      \par A \tb{relation schema} (or \tb{relation scheme}) $R$, denoted by $R(A_1, A_2, \ldots, A_n)$ is made up of:
+
+      \begin{itemize}
+        \item A \tb{relation name} $R$.
+        \item A \tb{list of attributes} $A_1, A_2, \ldots, A_n$.
+        \item Each attribute $A_i$ is the name of a role played by some domain $D_i$ in the relation relation schema $R$. $D_i$ is caled the \tb{domain} of $A_{i}$ and is denoted by $dom(A_i)$.
+        \item The \tb{degree} (or \tb{arity}) of a relation is the number of attributes $n$ of its relation schema.
+        \item A \tb{relation} (or \tb{relation state}) $r$ of the relation schema $R(A_1, A_2, \ldots, A_n)$, denoted by $r(R)$, is a set of $\bm{n}$-\tb{tuples} $r = \{t_1, t_2, \ldots, t_m\}$. Each $n$-tuple $t_i$ is an ordered list of $n$ values $t = \langle v_1, v_2, \ldots, v_n \rangle$, where each value $v_i$ is an element of $dom(A_i)$ or is a special \lstinline{NULL} value.
+        \item The $i$th value in tuple $t$, which corresponds to the attribute $A_i$, is referred to as $t[A_i]$ or $t.A_i$ (or $t[i]$ if we use the positional notation).
+        \item The \tb{extension} of a given relation is the set of tuples appearing in that relation at a given instance.
+        \item The \tb{intention} of a given relation is independent of time. It is the permanent part of the relation. It corresponds to what is specified in the relational schema. The intension thus defines all allowed extensions. The intension is a combination of two things: a structure and a set of integrity constraints.
+        \item The relation (or relation state) $r$ is also called the \tb{relation intension} for the schema $R$ and \tb{relation extension} for a relation state $r(R)$.
+        \item \tb{The integrity constraints} can be subdivided into key constraints, referential constraints, and other constraints.
+      \end{itemize}
+    \par Mathematically defined, a relation (or relation state) $r(R)$ is a \tb{mathematical relation} of degree $n$ on the domains $dom(A_1), dom(A_2), \ldots, dom(A_n)$, which is a \tb{subset} of the \tb{Cartesian product} of the domains that define $R$:
+      \begin{align*}
+        r(R) \subseteq [dom(A_1) \times dom(A_2) \times \ldots \times dom(A_n)]
+      \end{align*}
+    \begin{itemize}
+      \item The total number of possible instances or tuples that can ever exists in any relational state $r(R)$ is:
+        \begin{align*}
+          |r(R)| = |dom(A_1)| \times |dom(A_2)| \times \ldots \times |dom(A_n)|
+        \end{align*}
+      \item Of all these possible combinations, a relation state at a given time, called \tb{the current relation state}, reflects only the valid tuples that represent a particular state of the real word.
+      \item The relation state may change but the schema $R$ rarely does.
+    \end{itemize}
+
+  \hii{Characteristics of Relations}
+    \hiii{Ordering of Tuples in a Relation}
+      \par A relation \tb{does not} define an \tb{ordering} of tuples. However, when a relation is displayed in a file, there is a specific ordering of the rows in the table.
+
+    \hiii{Ordering of Values within a Tuple and an Alternative Definition of a Relation}
+      \par Based on the definition of tuples, values in a tuple \tb{have a specific ordering}. However, at a more abstract level, the order of attributes and their values is not that important as long as the correspondence between attributes and values is maintained.
+      \par An \tb{alternative definition} of a relation is a set of attributes in a relational schema $R$. The alternative definition makes the ordering of attributes unnecessary.
+      \par According to the definition of alternative definition, the relation state $r(R)$ is a finite set of mappings $r = \{t_1, t_2, \ldots, t_m\}$ where each tuple $t_i$ is a \tb{mapping} from $R$ to $D$, where $D = D_1 \cup D_2 \cup \ldots D_n$. In this definition, $t[A_i]$ must be in $D_i$ for each mapping $t_i$ in $r$. Each mapping $t_i$ is called a tuple.
+      \par According to the definition of tuple as a mapping, a \tb{tuple} can be considered as a set of $(\mbox{attribute}, \mbox{value})$ pairs, where each pair gives the value of the mapping from an attribute $A_i$ to a value $v_i \in D_i$.
+      \par The normal notation (using tuples) simplify much of the notation, while the alternative notation is more general.
+
+    \hiii{Values and NULLs in the Tuples}
+      \par Values in a tuple are \tb{atomic} values, meaning they are not divisible. Hence, composite and multivalued attributes are not allowed.
+      \par The special value \lstinline{NULL} is used when an attribute is unknown or not apply to a tuple. The meaning of \lstinline{NULL} value can be \ti{value unknown}, \tb{value exists but is not available, or attribute does not apply to this tuple (value undefined)}.
+
+    \hiii{Interpretation (Meaning) of a Relation}
+
+  \hii{Relational Model Notation}
+    \begin{itemize}
+      \item A \tb{relation schema} $R$ of degree $n$ is denoted by $R(A_1, A_2, \ldots, A_n)$.
+      \item The \tb{relation names} are denoted by upper case letters $Q$, $R$, $S$.
+      \item The \tb{relation states} are denoted by lower case letters $q$, $r$, $s$.
+      \item In general, a specific name of a relation schema, such as \lstinline{STUDENT}, also indicates the current set of tuples in that relation, or current relation state, whereas \lstinline{Student(Name, SSN)} refers only to the relation schema.
+      \item An attribute $A$ can be qualified with the relation name $R$ to which it belongs by using the dot notation $R.A$.
+      \item An $n$-tuple $t$ in a relation $r(R)$ is denoted by $t = \langle v_1, v_2, \ldots, v_n \rangle$, where $v_i$ is the value corresponding to the attribute $A_i$.
+        \begin{itemize}
+          \item $t[A_i]$, or $t.A_i$, or $t[i]$, refers to the value $v_i$ in $t$ for attribute $A_i$.
+          \item $t[A_u, A_w, \ldots, A_z]$, or $t(A_u, A_w, \ldots, A_z)$, refers to a subtuple $\langle v_u, v_w, \ldots, v_z \rangle$ from $t$ corresponding to the given attributes.
+        \end{itemize}
+    \end{itemize}
+
+\hi{Relational Model Constraints and Relational Database Schemas}
+  \par Constraints on databases can generally be divided into 3 main categories:
+
+  \begin{itemize}
+    \item Constraints that can be inherent in the data model. These are called \tb{inherent model-based constraints} or \tb{implicit constraints}.
+    \item Constrains that can be directly expressed in the schemas of the data model, typically by specifying them in the data definition language (DDL). These are called \tb{schema-based constraints} or \tb{explicit constraints}.
+    \item Constraints that cannot be directly expressed in the schemas of the data model, and hence must be expressed and enforced by the application pro-grams or in some other way. These are called \tb{application-based} or \tb{semantic-constraints} or \tb{business rules}.
+  \end{itemize}
+
+  \par The characteristics of relations are the inherent constraints of the relational model and belong to the first category.
+  \par The constraints \tb{in this section} are of the \tb{second category}, namely, constraints
+that can be expressed in the schema of the relational model via the DDL.
+  \par Constraints in the third category are more general, relate to the meaning as well as behavior of attributes, and are difficult to express and enforce within the data model, so they are
+usually checked within the application programs that perform database updates.
+
+  \hii{Domain Constraints}
+    \par Within each tuple, the value of each attribute $A$ must be an atomic value from the domain $dom(A)$.
+
+  \hii{Key Constraints and Constraints on NULL Values}
+    \par A \tb{relation} is a \tb{set of tuples}. All elements of a set must be distinct by definition; hence, all tuples must be distinct, meaning no two tuples can have the same combinations of values for \ti{all} their attributes.
+    \par A \tb{subset of attributes} of a relation schema $R$ with the property that there are no two tuples in any relation state $r(R)$ having the same combinataion of values for these attributes is called the \tb{superkey} of the relation schema $R$.
+    \par A \tb{key} $k$ of a relation schema $R$ is a superkey of $R$ with the additional property that removing any attribute $A$ from $K$ leaves a set of attributes $K'$ that is not a superkey of $R$ any more. Hence, a key satisfies two properties:
+    \begin{itemize}
+      \item Two distinct tuples in any state of the relation cannot have identical values
+        of the key attribute.
+      \item It is a \tb{minimal superkey}, that is, a superkey from which we cannot remove
+any attributes and still have the uniqueness constraint hold.
+    \end{itemize}
+    \par A relation schema may have more than one key. In this case, each of the keys is called a \tb{candidate key}.
+    \par A \tb{primary key} is a candidate key that is used to \ti{indentify} tuples in the relation. Usually, the primary key should be a single attribute or just a small number of attributes. The other candidate keys are designated as \tb{unique keys}.
+
+  \hii{Relational Databases and Relational Database Schemas}
+    \par A relational database schema $S$ is a set of relation schemas $S = \{R_1, R_2, \ldots, R_m\}$ and a set of integrity constraints $IC$.
+    \par A relational database state 10 DB of S is a set of relation states $DB = \{r_1, r_2, \ldots, r_m\}$ such that each $r_i$ is a state of $R_i$ and such that the $r_i$ relation states satisfy the integrity constraints specified in $IC$.
+    \par When we refer to a relational database, we implicitly include both its schema and its
+    current state. A database state that does not obey all the integrity constraints is called \tb{not valid}, and a state that satisfies all the constraints in the defined set of
+integrity constraints $IC$ is called a \tb{valid state}.
+    \par Integrity constraints are specified on a database schema and are expected to hold on
+    every valid database state of that schema.
+
+  \hii{Entity Integrity, Referential Integrity, and Foreign Keys}
+    \hiii{Entity Integrity}
+      \par The \tb{entity integrity constraint} states that no primary key value can be NULL.
+      \par This is because primary key is used to identify individual tuples, and having NULL values for the primary key means that we cannot identify some tuples.
+
+    \hiii{Referential Integrity Constraint: Informal Definition}
+      \par Key constraints and entity integrity constraints are specified on individual relations.
+The referential integrity constraint is specified between two relations and is used to
+maintain the consistency among tuples in the two relations.
+      \par \ti{Informal definition}: \tb{the referential integrity constraint} states that a tuple $t_1$ in one relation $R_1$ that refers to another relation $R_2$ must refer to an existing tuple $t_2$ in that relation.
+
+
+    \hiii{Foreign Key and Formal Definition of Referential Integrity Contraint}
+      \par A set of attributes $FK$ in relation schema $R_1$ is a \tb{foreign key} of $R_1$ that references relation $R_2$ if it satisfies the following rules:
+      \begin{itemize}
+        \item The attributes in $FK$ have the same domains as the primary key attributes $PK$ of $R_2$. The attributes $FK$ are said to reference or refer to the relation $R_2$.
+        \item A value of $FK$ in a tuple t 1 of the current state $r_1(R_1)$ either occurs as a value of $PK$ for some tuple $t_2$ in the current state $r_2(R_2)$, or is \lstinline{NULL}. In the former case, we have $t_1[FK] = t_2[PK]$, and we say that the tuple $t_1$ references or refers to the tuple $t_2$.
+      \end{itemize}
+
+      \par In this definition, $R_1$ is called the \tb{referencing relation} and $R_2$ is the \tb{referenced relation}. If these two conditions hold, a referential integrity constraint from $R_1$ to $R_2$ is said to hold.
+
+  \hii{Other types of constraints}
+
+\hi{Update Operations, Transactions, and Dealing with Constraint Violations}
+  \par The operations of the relational model can be categorized into \tb{retrievals} and \tb{updates}.
+
+  \par In this section, we concentrate on the database modification or update operations.
+
+  \hii{The Insert Operation}
+    \par The \tb{Insert} operation provides a list of attribute values for a new tuple $t$ that is to be inserted into a relation $R$.
+
+    \par Insert can violate any of the four types of constraints:
+
+    \begin{itemize}
+      \item \tb{Domain constraints}: violated if an attribute value does not appear in the corresponding domain or is not of the appropriate data type.
+      \item \tb{Key constraints}: violated if a key value in the new tuple $t$ already exists in another tuple in the relation $r(R)$.
+      \item \tb{Entity integrity}: violated if any part of the primary key of the new tuple $t$ is NULL.
+      \item \tb{Referential integrity}: violated if the value of any foreign key in $t$ refers to a tuple that does not exist in the referenced relation.
+    \end{itemize}
+
+  \hii{The Delete Operation}
+    \par The \tb{Delete} operation can violate only referential integrity. This occurs if the tuple being deleted is referenced by foreign keys from other tuples in the database.
+
+    \par If a Delete operation causes a violation, there are some options:
+    \begin{itemize}
+      \item \tb{Restrict}: reject the deletion
+      \item \tb{Cascade}: attempt to cascade (or propagate) the deletion by deleting tuples that reference the tuple that is being deleted.
+      \item \tb{Set null} or \tb{set default}: modify the referencing attribute values that cause the violation, each such value is either set to NULL or changed to reference another default valid tuple.
+    \end{itemize}
+
+  \hii{The Update Operation}
+    \par The \tb{Update} (or \tb{Modify}) operation is used to change the values of one or more
+attributes in a tuple (or tuples) of some relation $R$.
+    \par Updating an attribute that is neither part of a primary key nor part of a foreign key usually causes no problems.
+    \par Modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples. Hence, the issues of both Insert operation and Delete operation come into play.
+

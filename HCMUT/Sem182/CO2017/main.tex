@@ -121,17 +121,20 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
-% IMAGES
+% === IMAGES ===
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\newcommand{\img}[2][]
-  {
-    \begin{figure}[H]
-      \centering
-      \includegraphics[#1]{#2}
-    \end{figure}
-  }
+\newcommand{\img}[3][]
+{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption*{#3}
+  \end{figure}
+}
+% Usage: \img[width=...]{<path_to_img>}{<caption>}
 
 % PSEUDOCODE
 \usepackage{algorithm}
@@ -195,7 +198,7 @@
   mathescape=false
 }
 
-% TEXTBOX
+%
 \usepackage{varwidth}
 \newenvironment{fboxenv}
   {
@@ -212,10 +215,13 @@
 \begin{document}
 \tableofcontents
 
-\input{content}
+\input{chap01}
+\setcounter{chapter}{2}
+\input{chap03}
+\input{chap04}
 
 \begin{appendices}
-
+  \input{app01}
 \end{appendices}
 
 \end{document}

@@ -1,0 +1,232 @@
+\chapter{Theory of Linear Programming}
+
+\hi{Standard form of a Linear Program}
+  \hii{Definition}
+    \par A generic linear program has the form:
+      \begin{align*}
+        \text{Maximize } & c^T x \\
+        \text{subject to } & Ax \leq b \\
+        & x \in R^n
+      \end{align*}
+
+    \par However, the \tb{simplex method} requires a different form called the \tb{standard form} or \tb{equational form}.
+
+    \par \textbox {
+      \tb{Standard form of a linear program}
+        \begin{align*}
+          \text{maximize } & c^T x \\
+          \text{subject to } & Ax = b \\
+          & x \geq 0
+        \end{align*}
+    }
+
+  \hii{Transforming a linear program to standard form}
+    \par \tb{Example}:
+    \begin{align*}
+      \text{maximize } \qquad
+        & 3x_1 - 2x_2
+      & \\
+      \text{subject to } \qquad
+        & 2x_1 - x_2 \leq 4 & (1) \\
+        & x_1 + 3x_2 \geq 5 & (2) \\
+        & x_2 \geq 0        & (3)
+    \end{align*}
+    \par \tb{Steps}:
+      \begin{enumerate}[1)]
+        \item Convert inequality (1): $2x_1 - x_2 \leq 4$ into an equation:
+          \par Introduce a new variable $x_3 \geq 0$ and transform the inequality (1) into the equation $2x_1 - x_2 + x_3 = 4$. $x_3$ is called a \tb{slack variable}.
+        \item Convert inequality (2): $x_1 + 3x_2 \geq 5$ into an equation:
+          \par Multiply both side by $-1$ to reverse the direction of the inequality. Then,introduce another slack variable $x_4 \geq 0$ and replace the inequality by the equation $−x_1 − 3x_2 + x_4 = −5$.
+        \item Eliminate $x_1$ in the original linear program, which is allowed to attain both positive and negative values.
+          \par Introduce two new variables $y_1 \geq 0$ and $z_1 \geq 0$, then substitute for $x_1$ the difference $y_1 − z_1$ everywhere. The variable $x_1$ itself disappears.
+      \end{enumerate}
+    \par After these steps, the resulting form of the linear program is:
+    \begin{align*}
+      \text{maximize } \qquad
+        & 3y_1 - 3z_1 - 2x_2
+      & \\
+      \text{subject to } \qquad
+        & 2y_1 - 2z_1 - x_2 + x_3 = 4 & (1) \\
+        & -y_1 + z_1 - 3x_2 + x_4 = -5 & (2) \\
+        & y_1 \geq 0, z_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0& (3)
+    \end{align*}
+    \par To comply with the conventions of the equational form in full, the variables should be renamed to $x_1, \ldots, x_5$.
+    \begin{align*}
+      \text{maximize } \qquad
+        & 3x_1 - 3x_2 - 2x_3
+      & \\
+      \text{subject to } \qquad
+        & 2x_1 - 2x_2 - x_3 + x_4 = 4 & (1) \\
+        & -x_1 + 2x_2 - 3x_3 + x_5 = -5 & (2) \\
+        & x \geq 0 & (3)
+    \end{align*}
+
+  \hii{Geometry of a linear program in standard form}
+    \par In linear algebra, the set of all solutions of the system $Ax = b$ is an affine subspace $F$ of the space $R^n$. Hence the set of all feasible solutions of the linear program is the intersection of $F$ with the nonnegative orthant, which is the set of all points in $R^n$ with all coordinates nonnegative.
+    \par \tb{In human language}: For easy explanation, we will take \tb{3-dimentional} space (or vector space) as an example.
+    \begin{itemize}
+      \item A \tb{subspace} can be the origin $(0, 0, 0)$, or any line through the origin, or any plane through the origin.
+      \item An \tb{affine subspace} can be any point, any line or any plane that \tb{does not need to go through the origin}.
+      \item In 3D space, a nonnegative \tb{orthant} is the region in which $x_1 > 0$, $x_2 > 0$ and $x_3 > 0$.
+    \end{itemize}
+
+  \img[width=10cm]{img/001.png}{$x_1 + x_2 + x_3 = 1$ with $x > 0$}
+
+  \hii{Assumption}
+    \par A solution of the system $Ax = b$ may have positive, negative, or zero components. Thus, \tb{a solution of this system may not be a feasible solution of the linear program}.
+    \par However, \tb{if the system has no solution, then the linear program has no feasible solution}.
+    \par If we change the system $Ax = b$ by some transformation that preserves the set of solutions, such as a row operation in Gaussian elimination, it \tb{does not} influence the feasible solutions nor the optimal solutions of the linear program.
+    \par If the system $Ax = b$ has a solution and if some row of $A$ is a linear combination of the other rows, then the corresponding equation is redundant and it can be deleted from the system without changing the set of solutions. We may thus assume that the matrix $A$ has $m$ linearly independent rows and (therefore) rank $m$.
+
+    \vspace{0.75cm}
+
+    \par \textbox {
+      \tb{Assumption}: Consider only linear programs in equational form such that
+      \begin{itemize}
+        \item the system of equations $Ax = b$ has at least one solution, and
+        \item the rows of the matrix $A$ are linearly independent.
+      \end{itemize}
+    }
+
+\hi{Basic Feasible Solutions}
+  \img[width=7cm]{img/002.png}{Among $p$, $q$ and $r$, only $r$ is basic}
+  \par Let $A$ be a matrix with $m$ rows and $n$ columns $(n \leq m)$ of rank $m$. For a subset $B \subseteq \{1, 2, \ldots n\}$, let $A_B$ denote theh matix consisting of the columns of $A$ whose indices belong to $B$. For instance:
+
+  \begin{align*}
+    A =
+    \begin{pmatrix}
+      1 & 5 & 3 & 4 & 6 \\
+      0 & 1 & 3 & 5 & 6
+    \end{pmatrix}
+    \quad \text{and} \quad B = \{2, 4\} \quad \text{we have} \quad
+    A_B =
+    \begin{pmatrix}
+      5 & 4 \\
+      1 & 5
+    \end{pmatrix}
+  \end{align*}
+
+  \par \textbox {
+    A \tb{basic feasible solution} of the linear program
+      \begin{align*}
+        \text{maximize } & c^T x \\
+        \text{subject to } & Ax = b \\
+        & x \geq 0
+      \end{align*}
+    is a feasible solution $x \in R^n$ for which there exists an $m$-element set $B \subseteq  \{1, 2, \ldots n\}$ such that:
+    \begin{itemize}
+      \item The square matrix $A_B$ is nonsigular, or \tb{all columns indexed by $B$ are linearly independent}
+      \item $x_j = 0 \forall j \not \in B$
+    \end{itemize}
+  }
+  \vspace{0.5cm}
+
+  \par We call the variables $x_j$ with $j \in B$ the \tb{basic variables}, while the remaining variables are called nonbasic.
+
+  \par \tb{Proposition}: A basic feasible solution is uniquely determined by the set $B$. That is, for one set $B$, there exists at most one feasible solution $x \in R^n$ with $x_j = 0 \forall j \not \in B$.
+
+  \par A set $B$ with $A_B$ nonsingular is called \tb{a basis}. If, moreover, $B$ determines a
+basic feasible solution, then we call $B$ a \tb{feasible basis}.
+
+  \par \tb{Theorem}:
+    \begin{itemize}
+      \item If there is at least one feasible solution and the objective function is bounded from above on the set of all feasible solutions, then there exists an optimal solution.
+      \item If an optimal solution exists, then there is a basic feasible solution that is optimal.
+    \end{itemize}
+
+  \par \textbox{
+    A linear program in equational form has finitely many basic feasible solutions, and if it is feasible and bounded, then at least one of the basic feasible solutions is optimal.
+    Consequently, any linear program that is feasible and bounded has an optimal solution.
+  }
+
+\hi{Convexity and Convex Polyhedra}
+  \hii{Convexity}
+    \par A \tb{set} $X \subseteq R^n$ is a \tb{convex set} if for every two points $x, y \in X$ it also contains
+the segment $xy$.
+    \par Expressed differently:
+    \begin{align*}
+      \forall x, y \in X: \forall t \in [0, 1]: tx + (1 - t)y \in X
+    \end{align*}
+
+    \par A \tb{function} $y = f(x)$ is a \tb{convex function} if and only if its epigraph, i.e., the set $\{(x, y) \in R^2: y \geq f(x)\}$, is a convex set in a plane. In general, a function $f: X \to R$ is called convex if:
+    \begin{align*}
+       \forall (x, y) \in X: \forall t \in [0, 1]: f(tx + (1 - t)y) \leq tf(x) + (1 - t) f(y)
+    \end{align*}
+
+  \hii{Convex Hull}
+    \par \tb{Property}: The intersection of a collection of convex sets is again a convex set.
+    \par Let $X \subset R^n$ be a set. The \tb{convex hull} of $X$ is the intersection of all convex sets that contains $X$. Thus, it is \tb{the smallest convex set} containing $X$.
+
+  \hii{Convex Combination}
+    \par The convex hull can also be described using \tb{convex combinations}.
+    \par Let $x_1, x_2, \ldots, x_m$ be points in $R_n$. Every point of the form
+      \begin{align*}
+        t_1 x_1 + \ldots + t_m x_m, \text{where } t_i \geq 0, \forall i = 1, \ldots, m \text{ and } \sum\limits_{i = 1}^m t_i = 1
+      \end{align*}
+      is called a convex combination of $x_1, \ldots, x_m$.
+
+    \par Geometrical image:
+    \begin{itemize}
+      \item The convex combinations of two points $x$ and $y$ is the segment $xy$.
+      \item The convex combinations of three points $x$, $y$, and $z$ is the triangle $xyz$.
+    \end{itemize}
+
+    \par \tb{Lemma}: The convex hull $C$ of a set $X \subseteq R^n$ equals the set
+      \begin{align*}
+        C = \bigg\{
+          \sum\limits_{i = 1}^m t_i x_i: m \geq 1 \forall x_1, \ldots, x_m \in X, t_1, \ldots, t_m \geq 0, \sum\limits_{i = 1}^m = 1
+        \bigg\}
+      \end{align*}
+      of all convex combinations of finitely many points of $X$.
+
+  \hii{Hyperplanes, Half-spaces and Polyhedra}
+    \par \tb{A hyperplane} in $R^n$ is an affine subspace of dimension $n - 1$. In other words, it is the set of all solutions of a single linear equation of the form
+    \begin{align*}
+      a_1 x_1 + \ldots + a_n x_n = b,
+    \end{align*}
+    where $a_1, \ldots, a_n$ are not all 0. Hyperplanes in $R^2$ are lines and hyperplanes in $R^3$ are ordinary planes.
+    \par A hyperplane divides R n into two half-spaces and it constitutes their common boundary. For the hyperplane with equation $a_1 x_1 + \ldots + a_n x_n = b$, the two half-spaces have the following analytic expression:
+    \begin{align*}
+      &x \in R^n: a_1 + \ldots + a_n x_n \leq b \\
+      &\text{and} \\
+      &x \in R^n: a_1 + \ldots + a_n x_n \geq b
+    \end{align*}
+    \par More exactly, these are \tb{closed half-spaces} that contain their boundary.
+    \par A \tb{convex polyhedron} is an intersection of finitely many closed half-spaces in $R^n$.
+    \par A convex polyhedron can be unbounded. A bounded convex polyhedron, i.e. one that can be placed inside some large enough ball, is called a \tb{convex polytope}.
+    \par The dimension of a convex polyhedron $P \in R^n$ is the smallest dimension of an affine subspace containing $P$.
+
+  \hii{Simplex}
+    \par The regular $n$-dimensional \tb{simplex} can be defined as a subset of $R^{n + 1}$:
+    \begin{align*}
+      {x \in R^{n + 1}: x_1, \ldots, x_{n+1} \geq 0, x_1 + \ldots + x_n = 1}
+    \end{align*}
+    \img[width=10cm]{img/003.png}{Examples of simplex}
+
+\hi{Vertices and Basic Feasible Solutions}
+  \hii{Vertices}
+    \par A vertex of a convex polyhedron can be thought of as a ``tip" or ``spike". For instance, a three-dimensional cube has 8 vertices, and a regular octahedron has 6 vertices.
+    \par Mathematically, a vertex is defined as a point where some linear function attains a unique maximum. 
+    \par A point $v$ is called a \tb{vertex} of a convex polyhedron $P \subset R^n$ if
+    \begin{itemize}
+      \item $v \in P$
+      \item there \tb{exists a nonzero vector} $c \in R^n$ such that $c^T v > c^T y, \forall y \in P \setminus \{v\}$.
+    \end{itemize}
+    \img[width=10cm]{img/004.png}{}
+
+  \hii{Theorem}
+    \par \tb{Theorem}: Let $P$ be the set of all feasible solutions of a linear program in equational form (so $P$ is a convex polyhedron). Then the following two conditions for a point $v \in P$ are equivalent:
+    \begin{itemize}
+      \item $v$ is a vertex of the polyhedron $P$.
+      \item $v$ is a basic feasible solution of the linear program.
+    \end{itemize}
+
+  \hii{Basic Feasible Solution}
+    \par A basic feasible solution of a linear program with $n$ variables is a feasible solution for which some $n$ linearly independent constraints hold with equality.
+
+    \par For a general linear program none of the optimal solutions have to be basic. It is one of the advantages of the standard form.
+
+  \hii{Extreme Points}
+    \par A point $x$ is an extremal point of a convex set $C \subseteq R^n$ if $x \in C$ and there are no two points $y, z \in C$ different from $x$ such that $x$ lies on the segment $yz$.
+    \par For a \tb{convex polyhedron}, \tb{the extreme points are exactly the vertices}.
+    \par A convex polytope is the convex hull of its vertices.

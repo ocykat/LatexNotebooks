@@ -1,0 +1,115 @@
+\hi{Automata}
+\hii{Defintion of Automata}
+  \par An \tb{automata} consists of:
+    \begin{itemize}
+      \item States
+      \item Transitions between states
+    \end{itemize}
+
+\hii{Alphabet}
+  \hiii{Definitions}
+    \par An \tb{alphabet} is a finite set of symbols (or characters).
+    \par A string/word $u$ over $\Sigma$ is a finite sequence (possibly empty) of symbols (or characters) in $\Sigma$.
+    \par An empty string is denoted by $\epsilon$.
+    \par The length of the string $u$, denoted by $|u|$, is the number of characters.
+    \par All strings over $\Sigma$ is denoted by $\Sigma^*$.
+
+\hii{Operations on Languages}
+  \par Let $L$, $L_1$, $L_2$ be languages over $\Sigma$.
+  \begin{itemize}
+    \item Union
+    \[
+      L_1 \cup L_2 = \{ u \in \Sigma^* | u \in L_1 \text{ or } u \in L_2 \}
+    \]
+    \item Intersection
+    \[
+      L_1 \cap L_2 = \{ u \in \Sigma^* | u \in L_1 \text{ and } u \in L_2 \}
+    \]
+    \item Difference
+    \[
+      L_1 \setminus L_2 = \{ u \in \Sigma^* | u \in L_1 \text{ and } u \not \in L_2 \}
+    \]
+    \item Complement
+    \[
+      \bar{L} = \Sigma^* \setminus L
+    \]
+    \item Multiplication (Concatenation)
+    \[
+      L_1 L_2 = \{uv | u \in L_1, v \in L_2\},
+    \]
+    \item Product
+    \[
+      L_0 = \{\epsilon\}, \quad L^n = L^{n - 1} \times L \text{ for } n \geq 1
+    \]
+    \item Transitive Closure
+    \[
+      L^* = \bigcup\limits_{i = 0}^{\infty} L_i
+    \]
+    \[
+      L^+ = \bigcup\limits_{i = 1}^{\infty} L_i
+    \]
+  \end{itemize}
+
+\hii{Regular Expressions}
+  \hiii{Regular operations on languages}
+    \begin{itemize}
+      \item Union: $+$
+      \item Concatenation: $.$
+      \item Transitive Closure: $*$
+    \end{itemize}
+
+  \hiii{Regular Language}
+    \par Language $L \subseteq \Sigma^*$ is regular if and only if there exists a regular expression over $\Sigma$ representing language $L$.
+
+\hii{Finite Automata}
+  \par A \tb{finite automata} consists of:
+  \begin{itemize}
+    \item \tb{one} initial state
+    \item \tb{one or several} final/accepting states
+  \end{itemize}
+  and \tb{the number of states must be finite}.
+
+\hii{Nondeterministic Finite Automata (NFA)}
+  \par A \tb{NFA} is defined by a 5-tuplet $(Q, \Sigma, q_0, \delta, F)$ where:
+  \begin{itemize}
+    \item $Q$ a finite set of states.
+    \item $\Sigma$ is the alphabet of the automata.
+    \item $q0 \in Q$ is the initial state.
+    \item $\delta$ : $Q × \Sigma \to Q$ is a transition function.
+    \item $F \subseteq Q$: is the set of final/accepting states.
+  \end{itemize}
+  \par In a NFA, from a state, each input may correspond to \tb{multiple transaction from that state}. 
+
+\hii{Deterministic Finite Automata (DFA)}
+    \par A \tb{DFA} is also defined by a 5-tuplet $(Q, \Sigma, q_0, \delta, F)$.
+    \par However, in a DFA, from a state, each input corresponds to \tb{one and only one transaction from that state}.
+
+\hii{Configurations and Executions}
+  \par A configuration of automata $A$ is a couple $(q, u)$ where $q \in Q$ and $u \in \Sigma^*$.
+  \par An execution of automata $A$ is a sequence of configurations $(q0, u0) \to (qn, un)$ such that $(qi, ui) \to (qi+1, ui+1)$, for $i = 0, 1, \to, n − 1$.
+
+\hii{Recognized Language}
+  \par A language $L \subseteq \Sigma∗$ over an alphabet $\Sigma$, is \tb{recognized} if there exists a finite automata accepting all strings of $L$.
+  \par If $L_1$ and $L_2$ are \tb{recognized languages}, then:
+  \begin{itemize}
+    \item $L_1 \cup L_2$ and $L_1 \cap L_2$ are also recognized.
+    \item $L_1 \dot L_2$ and $L_1^*$ are also recognized.    
+  \end{itemize}
+
+\hii{NFA to DFA}
+  \par Create a transition table with $k + 1$ columns, where $k = |\Sigma|$ (the number of characters of the language).
+    \begin{itemize}
+      \item The first column (theoretically) list alls possible subset of the state set $Q$ of the NFA. We can omit the unnessary subsets in practice, by only including newly-created subsets in this column.
+      \item The remaining $k$ columns, each correspond to a character of the language. For a NFA, each input character would result in a subset of state $Q$. Any newly-created subset is then add to the first column.
+    \end{itemize}
+  \par In the end, each valid subset in the first column is a state of the DFA.
+
+\hii{DFA Minimization}
+  \par One method of minimization is partitioning states into groups of similar characteristics.
+  \par \tb{Steps}:
+  \begin{enumerate}
+    \item Create a table with $k + 1$ rows, where $k = |\Sigma|$ is the number of characters of the language. The first row indicates the current partition. Each of the following row corresponds to a character.
+    \item For each cell in the following $k$ rows, write the group number of the next state.
+    \item After finishing the table, try to alter the grouping and create a new table based on the new grouping.
+    \item The algorithm stops if two consecutive tables are indentical.
+  \end{enumerate}

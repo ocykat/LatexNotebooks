@@ -192,6 +192,19 @@
   stringstyle = \color{mauve}
 }
 
+% === TEXTBOX ===
+\usepackage{varwidth}
+\newenvironment{fboxenv}
+  {
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+  }
+  {
+    \end{minipage}
+  }
+
+\newcommand{\textbox}[1]{\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape #1 }}}
+
+
 % === BOOK SECTION MARKER ===
 \newcommand{\booktitle}{}
 \newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
@@ -200,6 +213,8 @@
 
 \setcounter{chapter}{1}
 \input{chap02}
+\input{chap03}
+\input{chap04}
 
 \tableofcontents
 

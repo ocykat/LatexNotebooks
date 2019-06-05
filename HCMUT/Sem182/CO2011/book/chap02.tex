@@ -1,0 +1,39 @@
+\chapter{Bitcoin Basics}
+
+\par In our experience, the simplest way to get a person excited about Bitcoin is to have him purchase something with it. That’s how we got hookedourselves. In this chapter, we’ll help you perform your first Bitcoin transaction, without worrying about too much technical stuff. Along the way, though, we’ll discuss how Bitcoin works. After reading this chapter, you’ll understand the basics of Bitcoin—enough to chat about it at any cocktail party.
+
+\hi{How Bitcoin Works in Simple Terms}
+
+\par In the Bitcoin system, everyone cooperates to keep track of everyone else’s money, and as mentioned in Chapter 1, no central authority (e.g., bank or government) is involved. To best understand how the system works, let’s walk through an example using dollars first.
+
+\par Imagine only \$21 million exists in the world, and therealso exists a detailed list of all the people who possess that money. Everyone, including you (even though you have only \$5), has a copy of this list. When you give \$2 to your friend, you must subtract \$2 from your entry on the list and add \$2 to her entry. After informing her of the transaction, she updates her list as well. In fact, everyone in the world needs to update the list;otherwise, the list would be inaccurate. Therefore, not only do you need to notify your friend, but you also need to publicly announce that you are updating the list. If you tried to cheat the system and send your friend \$1000, your cheating attempt would be easy to catch because everyone knows you have only \$5 to give.
+
+\par Now, imagine that alltransactions are carried out on computers that communicate via the Internet, and replace dollars with bitcoins. This is how Bitcoin works. Pretty simple actually. So why does Bitcoin seem so complex?
+
+\par The answer is threefold: First is the tricky question of how the units of any new currency system (whether bitcoins or seashells) shouldbe valued. Should a haircut be worth 5000 bitcoins or 0.005 bitcoins? Second, many small details are involved in implementing and using Bitcoin, even though the overall concept is fairly straightforward. For example, how do you obtain a copy of the list, and how are bitcoins initially distributed? Third, an entire lexicon of new and unfamiliar words (e.g.,mining) is used in the Bitcoin world.
+
+\par We’ll leave the first point about the value of bitcoins for a later chapter. In this chapter, we’ll address the last two points by explaining the major concepts used in Bitcoin, namely the Bitcoin address, the private key, the Bitcoin wallet, and the blockchain. We’ll also briefly discuss Bitcoinmining and walk you through the process of receiving and sending your first bitcoins so you can see how the system works. But first, you need to understand the Bitcoin units in more detail.
+
+\hi{Bitcoin Units}
+
+\par As explained in Chapter 1, Bitcoin refers collectively to the entire currency system, whereas bitcoins are the units of the currency. Although the total currency supply is capped at 21 million bitcoins, each one can be subdivided into smaller denominations; for example, 0.1 bitcoins and 0.001 bitcoins. The smallest unit, a hundred millionth of a bitcoin (0.00000001 bitcoins), is called a satoshi in honor of Satoshi Nakamoto. As a result, goods can be priced in Bitcoin very precisely, and people caneasily pay for those goods in exact change (e.g., a merchant can price a gallon of milk at 0.00152374 bitcoins, or 152,374 satoshis).
+
+\par Rather than writing the term bitcoins on price tags, merchants commonly use the abbreviated currency code BTC or XBT; 5 bitcoins would be written as 5 BTC. Despite the fact that the BTCabbreviation has been widely used since the beginning of Bitcoin’s development, more recently some merchants and websites have started using XBT because it conforms better to certain international naming standards. 1 As bitcoins have appreciated in value, it has become increasingly common to work with thousandths or even millionths of bitcoins,which are called millibitcoins (mBTC) and microbitcoins (\micro BTC), respectively. Many people have suggested simpler names for Bitcoin’s smaller denominations, and one that has gained traction is referring to microbitcoins (quite a mouthful) as simply as bits.
+
+\begin{itemize}
+  \item 1 bitcoin = 1 BTC or 1 XBT
+  \item 1 BTC = 1,000 mBTC1 mBTC = 1,000 \micro BTC
+  \item 1 \micro BTC = 100 satoshis = 1 bit
+\end{itemize}
+
+\par Now that you know the terms for various Bitcoin units, you need to increase your Bitcoin vocabulary, so let’s talk about what is meant by a Bitcoin address.
+
+\hi{The Bitcoin Address}
+
+\par Bitcoin uses a public ledgerthat indicates the number of bitcoins and their owners at any given time. But instead of associating names of people with accounts, the ledger only lists Bitcoin addresses. Each address can be thought of as a pseudonym for a person (or group of people, business, etc.), and the use of pseudonyms is why people can use bitcoins without revealing personalinformation. The following is an example of a Bitcoin address:
+
+\par \texttt{13tQ1fbTMB6GxUJfMqCSDgivc8f}
+
+\par Like a bank account number, a Bitcoin address consists of a string of letters and numbers (usually beginning with the number 1). To send bitcoins to others (e.g., an online merchant, a friend, or a family member),you only need to know their Bitcoin address. In turn, when you share your address with others, they can send you bitcoins. Because Bitcoin addresses are cumbersome to type, many people use quick response (QR) codes to represent their address (see Figure 2-1). 2 For convenience, you can put your Bitcoin address, either typed or as a QR code (orboth), on your business card, personal website, or storefront (if you’re a merchant). Although you need an Internet connection to send bitcoins, you don’t need to be connected to receive them. For example, if you work for a charity and pass out thousands of business cards containing your Bitcoin address and a statement like “Please consider donating inbitcoins,” your organization can collect bitcoins while you sleep.
+
+\imgc[width=4cm]{img/chap02-01.jpg}{QR codes can be used to represent arbitrary data. They are easy to scan with smartphones and so are conveninent for sharing the long strings of characters used for Bitcoin addresses}
