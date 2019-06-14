@@ -1,0 +1,26 @@
+\chapter{Functional Dependencies and Normalization for Relational Databases}
+
+\hi{Informal Design Guidelines for Relation Schemas}
+
+  \par Four design guidelines discussed are:
+
+  \begin{itemize}
+    \item Making sure that the semantics of the attributes is clear in the schema
+    \item Reducing the redundant information in tuples
+    \item Reducing the NULL values in tuples
+    \item Disallowing the possibility ofgenerating spurious tuples
+  \end{itemize}
+
+  \hii{Imparting Clear Semantics to Attributes in Relations}
+    \par The \tb{semantics} of a relation refers to its meaning resulting from the interpretation of attribute values in a tuple.
+    \par The easier it is to explain the semantics of the relation, the better the relation schema design will be.
+    \par \tb{Guideline 1}:
+    \begin{itemize}
+      \item Design a relation schema so that it is easy to explain its meaning.
+      \item Do not combine attributes from different entity types into a single relation.
+      \item Do not combine attributes from different relationship types into a single relation.
+      \item Do not combine attributes from different entity types and relationship types into a single relation.
+    \end{itemize}
+
+  \hii{Redundant Information in Tuples and Update Anomalies}
+    \par \tb{Guideline 2}: Design the base relation schemas so that no insertion, deletion, or modification anomalies are present in the relations. If any anomalies are present, note them clearly and make sure that the programs that update the database will operate correctly.
