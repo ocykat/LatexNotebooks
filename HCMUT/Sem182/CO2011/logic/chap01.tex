@@ -223,216 +223,260 @@
       \end{tabular}
     \end{center}
 
-\hi{Binding Priority}
-  \begin{itemize}
+\hi{Binding Priority and Association}
+  \par The binding priority from high to low is as follows:
+    \begin{itemize}
+      \item Negation $\lnot$
+      \item Conjunction $\land$ and Disjunction $\lor$
+      \item Implication $\land$
+    \end{itemize}
+  \par Implication is right-associative, meeaning that $p \limpl q \limpl r$ is equivalent to $p \limpl (q \limpl r)$.
 
-  \end{itemize}
-
-\hi{Natural Deduction}
-  \hii{Premises and Conclusion}
+\hi{Premises, Conclusion and Sequent}
     \par Suppose we have:
     \begin{itemize}
       \item a set of formulas $\phi_1, \ldots, \phi_n$ called \tb{premises}.
       \item a formula $\psi$ called \tb{conclusion}.
     \end{itemize}
-
-  \hii{Sequent}
     \par The intention is by applying \tb{proof rules} to the premises, we finally obtain the conclusion. This intention can be denoted by:
     \begin{align*}
-      \phi_1, \ldots, \phi_n \lyeild \psi
+      \phi_1, \ldots, \phi_n \lprove \psi
     \end{align*}
     \par The expression is called a \tb{sequent}.
     \par A \tb{sequent} is \tb{valid} if a proof for it can be found.
 
-  \hii{Natural Deduction}
-    \par A natural deduction can be denoted by:
+\hi{Natural Deduction}
+  \par A natural deduction can be denoted by:
+  \begin{center}
+    \AxiomC{$\phi_1$}
+    \AxiomC{$\phi_2$}
+    \AxiomC{$\ldots$}
+    \AxiomC{$\phi_n$}
+    \RightLabel{[Rule Name]}
+    \QuaternaryInfC{$\psi$}
+    \DisplayProof
+  \end{center}
+
+  \hii{Rules for Conjunction (AND)}
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule} is denoted by $\land i$ and read \tb{``and-introduction"}.
+        \begin{center}
+          \AxiomC{$\phi$}
+          \AxiomC{$\psi$}
+          \RightLabel{$\land i$}
+          \BinaryInfC{$\phi \land \psi$}
+          \DisplayProof
+        \end{center}
+
+      \item \tb{Elimination Rule}: is denoted by $\land e$ and read \tb{``and-elimination"}.
+        \begin{center}
+          \AxiomC{$\phi \land \psi$}
+          \RightLabel{$\land e_1$}
+          \UnaryInfC{$\phi$}
+          \DisplayProof
+          \hskip 2cm
+          \AxiomC{$\phi \land \psi$}
+          \RightLabel{$\land e_2$}
+          \UnaryInfC{$\psi$}
+          \DisplayProof
+        \end{center}
+    \end{enumerate}
+  
+    \par \tb{Example}: Prove that $p \land q, r \lprove q \land r$.
+    \snote{Example 1.4, page 6}
+      \begin{logicproof}{1} % 1 = maximum number of subproofs
+        p \land q & premise \\
+        r         & premise \\
+        q         & $\land e_2$ 1 \\
+        q \land r & $\land i$ 3, 2
+      \end{logicproof}
+
+  \hii{Rules for Double Negation}
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule} is denoted by $\lnotnot i$.
+        \begin{center}
+          \AxiomC{$\phi$}
+          \RightLabel{$\lnotnot i$}
+          \UnaryInfC{$\lnotnot \phi$}
+          \DisplayProof
+        \end{center}
+
+      \item \tb{Elimination Rule} is denoted by $\lnotnot e$.
+        \begin{center}
+          \AxiomC{$\lnotnot \phi$}
+          \RightLabel{$\lnotnot e$}
+          \UnaryInfC{$\phi$}
+          \DisplayProof
+        \end{center}
+    \end{enumerate}
+
+    \par \tb{Example}: Prove the sequent $p, \lnotnot (q \land r) \lprove \lnotnot p \land r$.
+    \snote{Example 1.5, page 8}
+      % =================================== [[[
+      \begin{logicproof}{1} % 1 = maximum number of subproofs
+        p                    & premise \\
+        \lnotnot (q \land r) & premise \\
+        \lnotnot p           & $\lnotnot i$ 1 \\
+        q \land r            & $\lnotnot e$ 2 \\
+        r                    & $\land e_2$ 4 \\
+        \lnotnot p \land r   & $\land i$ 3, 5
+      \end{logicproof}
+      % =================================== ]]]
+
+  \hii{Rules for Implication}
+    \begin{enumerate}[a.]
+      \item \tb{Elimination Rule} is denoted by $\limpl e$ and read \tb{``implies-elimination"}. A, also known as \tb{modus ponens}.
+        % ================================= [[[
+        \begin{center}
+          \AxiomC{$\phi$}
+          \AxiomC{$\phi \limpl \psi$}
+          \RightLabel{$\limpl e$}
+          \BinaryInfC{$\psi$}
+          \DisplayProof
+        \end{center}
+        % ================================= ]]]
+
+      \par A well-known related rule is modus tollens, denoted by MT. It is also an elimination rule.
+        % ================================= [[[
+        \begin{center}
+          \AxiomC{$\phi \limpl \psi$}
+          \AxiomC{$\lnot \psi$}
+          \RightLabel{MT.}
+          \BinaryInfC{$\lnot \phi$}
+          \DisplayProof
+        \end{center}
+        % ================================= ]]]
+
+        \par \tb{Example}: Prove that $p \limpl (q \limpl r), p, \lnot r \lprove \lnot q$
+
+      \item \tb{Introduction Rule} is denoted by $\limpl i$ and read \tb{``implies-introduction"}.
+        % ================================= [[[
+        \newsavebox\ImplIntroAssump
+        \sbox\ImplIntroAssump{
+          \fbox{
+            \AxiomC{$\phi$}
+            \noLine
+            \UnaryInfC{$\vdots$}
+            \noLine
+            \UnaryInfC{$\psi$}
+            \DisplayProof
+          }
+        }
+
+        \begin{center}
+          \AxiomC{\usebox\ImplIntroAssump}
+          \RightLabel{$\limpl i$}
+          \UnaryInfC{$\phi \limpl \psi$}
+          \DisplayProof
+        \end{center}
+        % ================================= ]]]
+
+        \par Here, to prove $\phi \limpl \psi$, we need to make a temporary \tb{assumption} $\theta$. \tb{A box} is opened when \tb{an assumption} is made. When the proof no longer depends on the assumption, the box is closed.
+    \end{enumerate}
+
+  \hii{Rules for Disjunction (OR)}
+
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule} is denoted by $\lor i$.
+        \begin{center}
+          \AxiomC{$\phi$}
+          \RightLabel{$\lor i_1$}
+          \UnaryInfC{$\phi \lor \psi$}
+          \DisplayProof
+          \hskip 2cm
+          \AxiomC{$\psi$}
+          \RightLabel{$\lor i_2$}
+          \UnaryInfC{$\phi \lor \psi$}
+          \DisplayProof
+        \end{center}
+
+      \item \tb{Elimination Rule} is denoted by $\lor e$.
+        \begin{center}
+          \AxiomC{$\phi \lor \psi$}
+            \alwaysNoLine
+            \AxiomC{$\phi$}
+            \UnaryInfC{$\vdots$}
+            \UnaryInfC{$\chi$}
+            \alwaysNoLine
+            \AxiomC{$\psi$}
+            \UnaryInfC{$\vdots$}
+            \UnaryInfC{$\chi$}
+          \RightLabel{$\lor e$}
+          \alwaysSingleLine
+          \TrinaryInfC{$\chi$}
+          \DisplayProof
+        \end{center}
+    \end{enumerate}
+
+\hii{Rules for Contradiction}
+  \par A \tb{contradiction} is an expression of the form
+  \[
+  \phi \land \lnot \phi
+  \]
+  where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
+  \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
     \begin{center}
-      \AxiomC{$\phi_1$}
-      \AxiomC{$\phi_2$}
-      \AxiomC{$\ldots$}
-      \AxiomC{$\phi_n$}
-      \RightLabel{[Rule Name]}
-      \QuaternaryInfC{$\psi$}
+      \AxiomC{$\lcontrad$}
+      \UnaryInfC{$\phi$}
       \DisplayProof
     \end{center}
 
-  \hii{Rules for Natural Deduction}
-    \hiii{Rules for Conjunction (AND)}
+\hii{Rules for Negation}
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule} is denoted by $\lnot i$.
+        \begin{center}
+          \alwaysNoLine
+          \AxiomC{$\phi$}
+          \UnaryInfC{$\ldots$}
+          \UnaryInfC{$\psi$}
+          \RightLabel{$\lnot i$}
+          \alwaysSingleLine
+          \UnaryInfC{$\phi \lnot \psi$}
+          \DisplayProof
+        \end{center}
 
-      \begin{enumerate}[a.]
-        \item \tb{Introduction Rule} is denoted by $\land i$.
-          \begin{center}
-            \AxiomC{$\phi$}
-            \AxiomC{$\psi$}
-            \RightLabel{$\land i$}
-            \BinaryInfC{$\phi \land \psi$}
-            \DisplayProof
-          \end{center}
+      \item \tb{Elimination Rule} is denoted by $\lnot e$.
+        \begin{center}
+          \AxiomC{$\phi$}
+          \AxiomC{$\lnot \phi$}
+          \RightLabel{$\lnot e$}
+          \BinaryInfC{$\lcontrad$}
+          \DisplayProof
+        \end{center}
+    \end{enumerate}
 
-        \item \tb{Elimination Rule} is denoted by $\land e$.
-          \begin{center}
-            \AxiomC{$\phi \land \psi$}
-            \RightLabel{$\land e_1$}
-            \UnaryInfC{$\phi$}
-            \DisplayProof
-            \hskip 2cm
-            \AxiomC{$\phi \land \psi$}
-            \RightLabel{$\land e_2$}
-            \UnaryInfC{$\psi$}
-            \DisplayProof
-          \end{center}
-      \end{enumerate}
+\hi{Derived Rules}
+  \hii{Modus Tollens}
+    \begin{center}
+      \AxiomC{$\phi \limpl \psi$}
+      \AxiomC{$\lnot \psi$}
+      \RightLabel{MT}
+      \BinaryInfC{$\lnot \phi$}
+      \DisplayProof
+    \end{center}
 
-    \hiii{Rules for Double Negation}
+  \hii{Proof By Contradiction (PCB)}
+    \begin{center}
+      \alwaysNoLine
+      \AxiomC{$\lnot \phi$}
+      \UnaryInfC{$\vdots$}
+      \UnaryInfC{$\lcontrad$}
+      \RightLabel{PBC}
+      \alwaysSingleLine
+      \UnaryInfC{$\phi$}
+      \DisplayProof
+    \end{center}
 
-      \begin{enumerate}[a.]
-        \item \tb{Introduction Rule} is denoted by $\lnotnot i$.
-          \begin{center}
-            \AxiomC{$\phi$}
-            \RightLabel{$\lnotnot i$}
-            \UnaryInfC{$\lnotnot \phi$}
-            \DisplayProof
-          \end{center}
+  \hii{Law of the Excluded Middle (LEM)}
+    \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
+    \begin{center}
+      % \AxiomC{$\phi$}
+      % \AxiomC{$\lnot \phi$}
+      \AxiomC{}
+      \RightLabel{LEM}
+      \UnaryInfC{$\phi \lor \lnot \phi$}
+      \DisplayProof
+    \end{center}
 
-        \item \tb{Elimination Rule} is denoted by $\lnotnot e$.
-          \begin{center}
-            \AxiomC{$\lnotnot \phi$}
-            \RightLabel{$\lnotnot e$}
-            \UnaryInfC{$\phi$}
-            \DisplayProof
-          \end{center}
-      \end{enumerate}
-
-    \hiii{Rules for Implication}
-      \begin{enumerate}[a.]
-        \item \tb{Elimination Rule}, also known as \tb{modus ponens}, is denoted by $\limpl e$. Another related well-known rule is modus tollens, mentioned in the Derived Rules part.
-          \begin{center}
-            \AxiomC{$\phi$}
-            \AxiomC{$\phi \limpl \psi$}
-            \RightLabel{$\limpl e$}
-            \BinaryInfC{$\psi$}
-            \DisplayProof
-          \end{center}
-
-        \item \tb{Introduction Rule} is denoted by $\limpl i$.
-          \begin{center}
-            \alwaysNoLine
-            \AxiomC{$\phi$}
-            % \noLine
-            \UnaryInfC{$\vdots$}
-            % \noLine
-            \UnaryInfC{$\psi$}
-            \RightLabel{$\limpl i$}
-            \alwaysSingleLine
-            \UnaryInfC{$\phi \limpl \psi$}
-            \DisplayProof
-          \end{center}
-      \end{enumerate}
-
-    \hiii{Rules for Disjunction (OR)}
-
-      \begin{enumerate}[a.]
-        \item \tb{Introduction Rule} is denoted by $\lor i$.
-          \begin{center}
-            \AxiomC{$\phi$}
-            \RightLabel{$\lor i_1$}
-            \UnaryInfC{$\phi \lor \psi$}
-            \DisplayProof
-            \hskip 2cm
-            \AxiomC{$\psi$}
-            \RightLabel{$\lor i_2$}
-            \UnaryInfC{$\phi \lor \psi$}
-            \DisplayProof
-          \end{center}
-
-        \item \tb{Elimination Rule} is denoted by $\lor e$.
-          \begin{center}
-            \AxiomC{$\phi \lor \psi$}
-              \alwaysNoLine
-              \AxiomC{$\phi$}
-              \UnaryInfC{$\vdots$}
-              \UnaryInfC{$\chi$}
-              \alwaysNoLine
-              \AxiomC{$\psi$}
-              \UnaryInfC{$\vdots$}
-              \UnaryInfC{$\chi$}
-            \RightLabel{$\lor e$}
-            \alwaysSingleLine
-            \TrinaryInfC{$\chi$}
-            \DisplayProof
-          \end{center}
-      \end{enumerate}
-
-  \hiii{Rules for Contradiction}
-    \par A \tb{contradiction} is an expression of the form
-    \[
-    \phi \land \lnot \phi
-    \]
-    where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
-    \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
-      \begin{center}
-        \AxiomC{$\lcontrad$}
-        \UnaryInfC{$\phi$}
-        \DisplayProof
-      \end{center}
-
-  \hiii{Rules for Negation}
-      \begin{enumerate}[a.]
-        \item \tb{Introduction Rule} is denoted by $\lnot i$.
-          \begin{center}
-            \alwaysNoLine
-            \AxiomC{$\phi$}
-            \UnaryInfC{$\ldots$}
-            \UnaryInfC{$\psi$}
-            \RightLabel{$\lnot i$}
-            \alwaysSingleLine
-            \UnaryInfC{$\phi \lnot \psi$}
-            \DisplayProof
-          \end{center}
-
-        \item \tb{Elimination Rule} is denoted by $\lnot e$.
-          \begin{center}
-            \AxiomC{$\phi$}
-            \AxiomC{$\lnot \phi$}
-            \RightLabel{$\lnot e$}
-            \BinaryInfC{$\lcontrad$}
-            \DisplayProof
-          \end{center}
-      \end{enumerate}
-
-  \hii{Derived Rules}
-    \hiii{Modus Tollens}
-      \begin{center}
-        \AxiomC{$\phi \limpl \psi$}
-        \AxiomC{$\lnot \psi$}
-        \RightLabel{MT}
-        \BinaryInfC{$\lnot \phi$}
-        \DisplayProof
-      \end{center}
-
-    \hiii{Proof By Contradiction (PCB)}
-      \begin{center}
-        \alwaysNoLine
-        \AxiomC{$\lnot \phi$}
-        \UnaryInfC{$\vdots$}
-        \UnaryInfC{$\lcontrad$}
-        \RightLabel{PBC}
-        \alwaysSingleLine
-        \UnaryInfC{$\phi$}
-        \DisplayProof
-      \end{center}
-
-    \hiii{Law of the Excluded Middle (LEM)}
-      \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
-      \begin{center}
-        % \AxiomC{$\phi$}
-        % \AxiomC{$\lnot \phi$}
-        \AxiomC{}
-        \RightLabel{LEM}
-        \UnaryInfC{$\phi \lor \lnot \phi$}
-        \DisplayProof
-      \end{center}
-
-  \hii{Provable Equivalence}
-    \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say
-that $\phi$ and $\psi$ are provably equivalent iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.
+\hi{Provable Equivalence}
+  \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say that $\phi$ and $\psi$ are provably equivalent iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.

@@ -116,10 +116,6 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
-% Logic
-\usepackage{bussproofs} % prooftree
-\usepackage{logicproof}
-
 % Logical operators
 \newcommand{\lnotnot}{\lnot \lnot}
 \newcommand{\lxor}{\oplus}
@@ -134,6 +130,8 @@
 \newcommand{\lproverev}{\dashv}
 \newcommand{\lproveeq}{\vdash \dashv}
 
+% Logic related
+\usepackage{bussproofs}
 
 
 % === FOOTNOTE ===
@@ -211,18 +209,12 @@
 
 
 % === BOOK SECTION MARKER ===
-\newcommand{\snote}[1]{\par {\footnotesize #1}}
 \newcommand{\booktitle}{}
 \newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
 
 
 \begin{document}
-\tableofcontents
 
-\input{chap01}
-
-\begin{appendices}
-
-\end{appendices}
+\input{content}
 
 \end{document}
