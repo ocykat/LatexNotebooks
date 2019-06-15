@@ -1,5 +1,4 @@
-\chapter{Disk Storage, Basic Structures, Hashing, and Modern Storage
-Architectures}
+\chapter{Disk Storage, Basic Structures, Hashing, and Modern Storage Architectures}
 
 \hi{Introduction}
 %  \hii{Storage Hierarchy}
@@ -45,29 +44,20 @@ Architectures}
 
   \hii{Storage Organization and Databases}
     \begin{itemize}
-      \item \tb{Persistent data}: data that must persist over long periods of
-        time
-      \item \tb{Transient data}: data that persist for only a limited time
-        during program execution
+      \item \tb{Persistent data}: data that must persist over long periods of time
+      \item \tb{Transient data}: data that persist for only a limited time during program execution
     \end{itemize}
-    \par \tb{Most databases are stored permanently (or persistently) on
-    magnetic disk secondary storage} for the following reasons:
+    \par \tb{Most databases are stored permanently (or persistently) on magnetic disk secondary storage} for the following reasons:
     \begin{itemize}
       \item Databases are too large to fit entirely in main memory.
-      \item Data loss occurs less often thanks to the \tb{nonvolatile} nature
-        of magnetic disks.
-      \item Cost of storage per unit of secondary storage is less than primary
-        storage.
+      \item Data loss occurs less often thanks to the \tb{nonvolatile} nature of magnetic disks.
+      \item Cost of storage per unit of secondary storage is less than primary storage.
     \end{itemize}
-    \par Typical database applications need only a small portion of the database at a time for
-        processing. Whenever a certain portion of the data is needed, it must be located on
-        disk, copied to main memory for processing, and then rewritten to the disk if the
-        data is changed. The data stored on disk is organized as files of records. Each record
-        is a collection of data values that can be interpreted as facts about entities, their
-        attributes, and their relationships.
-    \par There are several primary file organizations, which determine how the file records are physically placed on the disk, and hence how the records can be accessed. 
+    \par Typical database applications need only a small portion of the database at a time for processing. Whenever a certain portion of the data is needed, it must be located on disk, copied to main memory for processing, and then rewritten to the disk if the data is changed. The data stored on disk is organized as files of records. Each record is a collection of data values that can be interpreted as facts about entities, their attributes, and their relationships.
+    \par There are several primary file organizations, which determine how the file records are physically placed on the disk, and hence how the records can be accessed.
     \begin{itemize}
       \item A heap file (or unordered file): places the records on disk in no
         particular order by appending new records at the end of the file.
       \item A sorted file (or sequential file) keeps the records ordered by the value of a particular field (called the sort key). A hashed file uses a hash function applied to a particular field (called the hash key) to determine a record’s placement on disk. Other primary file organizations, such as B-trees, use tree structures.
-    \par \tb{Primary file organization} determines how the file records are 
+    \end{itemize}
+    \par \tb{Primary file organization} determines how the file records are

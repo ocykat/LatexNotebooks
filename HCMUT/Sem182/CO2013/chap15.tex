@@ -1,0 +1,136 @@
+\chapter{Relational Database Design Algorithms and Further Dependencies}
+
+\hi{Further Topics in Functional Dependencies: Inference Rules, Equivalence, and Minimal Cover}
+  \hii{Inference Rules}
+    \par Let $F$ be the set of functional dependencies that are specified on a relation schema $R$.
+
+    \hiii{Inferred Functional Dependencies}
+      \par An FD $X \to Y$ is \tb{inferred from} or \tb{implied by} a set of dependencies $F$ specified on $R$ if $X \to Y$ holds in \tb{every} legal relation state $r$ of $R$.
+
+    \hiii{Closure of Functional Dependencies}
+      \par The set of all dependencies that include $F$ as well as dependencies that can be inferred from $F$ is called the \tb{closure} of $F$ and is denoted by $F^{+}$.
+
+    \hiii{Some Notations}
+      \begin{itemize}
+        \item $F |= X \to Y$: the FD $X \to Y$ is inferred from $F$
+        \item $\{X, Y\} \to Z$ can be abbreviated to $XY \to Z$
+        \item $\{X, Y, Z\} \to \{U, V\}$ can be abbreviated to $XYZ \to UV$
+      \end{itemize}
+
+    \hiii{Inference Rules}
+      \par Aarmstrong's Axioms:
+      \begin{itemize}
+        \item \tb{IR1: Reflexive Rule}:
+          $X \supseteq Y \Rightarrow X \to Y$
+        \item \tb{IR2: Augmentation Rule}:
+          $\{ X \to Y \} |= XZ \to YZ$
+        \item \tb{IR3: Transitive Rule}:
+          $\{ X \to Y, Y \to Z \} |= X \to Z$
+      \end{itemize}
+      \par Other rules:
+      \begin{itemize}
+        \item \tb{IR4: Decomposition Rule/Projective Rule}:
+          $\{ X \to YZ \} |= X \to Y$
+        \item \tb{IR5: Union Rule/Additive Rule}:
+          $\{ X \to Y, X \to Z \} |= X \to YZ$
+        \item \tb{IR6: Pseudotransitive Rule}:
+          $\{ X \to Y, WY \to Z \} |= WX \to Z$
+      \end{itemize}
+
+    \hiii{Closure of Attributes under The FD Set}
+      \par Let $X$ be a set of attributes of $R$. Then \tb{the closure of $X$ under $F$}, denoted by $X^{+}$, are all attributes that are functional determined by $X$ based on $F$.
+      \par \tb{Algorithm}:
+        \begin{algorithm}[H]
+          \caption{Determine $X^{+}$ of $X \subseteq R$ under $F$}
+          \begin{algorithmic}[1]
+            \State $X^{+} := X$
+            \While{\texttt{True}}
+              \State $oldX^{+}$ := $X^{+}$
+              \For{each $Y \to Z \in F$}
+                \If{$X^{+} \supseteq Y$}
+                  \State $X^{+}$ := $X^{+} \cup Z$
+                \EndIf
+              \EndFor
+              \If{$oldX^{+} = X^{+}}$
+                \State break
+              \EndIf
+            \EndWhile
+          \end{algorithmic}
+        \end{algorithm}
+
+  \hii{Equivalence of Sets of Functional Dependencies}
+      \hiii{Cover Relationship}
+        \par A set of functional dependencies $F$ is said to cover another set of functional dependencies $E$ if every FD in $E$ is also in $F^+$ - meaning that every dependencies in $E$ can be \tb{inferred} from $F$.
+
+      \hiii{Equivalent Set of FDs}
+        \par Two sets of FDs $E$ and $F$ are \tb{equivalent} if $E^+ = F^+$.
+  
+  \hii{Minimal Sets of Functional Dependencies}
+    \hiii{Extraneous Attribute}
+      \par An attribute in a functional dependency is considered an extraneous attribute if we can remove it without changing the closure of the set of dependencies.
+    
+    \hiii{Canonical Form of Set of FDs}
+      \par An FD is said to be in \tb{canonical form} if it only has a single attribute on the right-hand side.
+      \par A set of FDs $F$ is said to be in \tb{canonical form} if for every FD in $F$, there is only a single attribute on the right-hand side.
+      \par Example: If $X \to YZ \in F$, then $F$ is not in canonical form.
+    
+    \hiii{Minimal Set of FDs}
+      \par A set of FDs $F$ is said to be \tb{minimal} if it satisfies the following conditions:
+      \begin{itemize}
+        \item $F$ is in canonical form
+        \item Given that $X \supset Y$, we cannot replace $X \to A$ in $F$ with $Y \to A$ and still have a set of dependencies that is equivalent to $F$.
+        \item We cannot remove any dependency from $F$ and still have a set of dependencies that is equivalent to $F$.
+      \end{itemize}
+      \par In short, a minimal set of dependencies must be in \tb{standard} or \tb{canonical form} (condition 1) and has \tb{no redundancies} (conditions 2 and 3).
+    
+    \hiii{Minimal Cover}
+      \par A \tb{minimal cover} of a set of functional dependencies $E$ is a \tb{minimal set of dependencies} that is equivalent to $E$. We can always find \tb{at least one} minimal cover $F$ for any set of dependencies $E$ using the following algorithm:
+        \begin{algorithm}[H]
+          \caption{Determine the minimal cover $F$ for a set of FDs $E$}
+          \Input{set of FDs $E$}
+          \begin{algorithmic}[1]
+            \State $F := E$
+            \For{each FD $X \to \{ A_1, \ldots, A_n \} \in F$}
+              \State Replace with $X \to A_1, \ldots, X \to A_n$
+              \Comment{Place the FD in a canonical form}
+            \EndFor
+            \For{each FD $X \to A \in F$}
+              \For{each attribute $B \in X$}
+                \If{$ F - \{ X \to A \} + \{ (X - \{B\}) \to A \}$ is equivalent to $F$}
+                  \State Replace $X \to A$ with $(X - \{B\}) \to A$ in $F$
+                  \Comment{Remove all extraneous attributes}
+                \EndIf
+              \EndFor
+            \EndFor
+            \For{each remaining FD $X \to A \in F$}
+              \If{$F - \{X \to A\}$ is equivalent to $F$}
+                \State Remove $X \to A$ from $F$
+                \Comment{Remove all remaining redundant FDs}
+              \EndIf
+            \EndFor
+          \end{algorithmic}
+        \end{algorithm}
+      \par Note that on line 6 I used the plus ($+$) symbol instead of the union ($\cup$) symbol (like in the book) for easy-reading.
+
+    \hiii{Determine the Key of a Relation}
+      \begin{algorithm}[H]
+        \caption{Determine the key $K$ of a relation $R$}
+        \Input{$R$ and the set of FDs $F$ of $R$}
+        \begin{algorithmic}[1]
+          \State $K := R$
+          \For{each attribute $A \in K$}
+            \State Compute $(K - A)^+$ with respect to $F$
+            \If{$(K - A)^+$ contains all attributes in $R$}
+              \State $K := K - \{A\}$
+            \EndIf
+          \EndFor
+        \end{algorithmic}
+      \end{algorithm}
+
+\hi{Properties of Relational Decompositions}
+  \hii{Relation Decomposition and Insufficiency of Normal Forms}
+    \par The relation schema $D = \{R_1, \ldots, R_m\}$ resulting from decomposing the relation schema $R$ is called a \tb{decomposition} of $R$.
+    \par \tb{Attribute preservation condition of a decomposition}: each attribute in $R$ will appear in at least one relation schema $R_i$ in the decomposition so that no attributes are lost:
+    \[
+      \bigcup\limits_{i = 1}^{m} R_i = R
+    \]

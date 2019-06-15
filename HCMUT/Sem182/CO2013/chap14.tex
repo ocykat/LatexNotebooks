@@ -155,4 +155,7 @@
     \end{itemize}
 
   \hii{Boyce-Codd Normal Form}
-    \par
+    \par Boyce-Codd normal form (BCNF) is simpler but stricter than 3NF.
+    \par Every relation that is in BCNF is also in 3NF, but a relation in 3NF does not necessary in BCNF.
+    \par \tb{Definition of BCNF}: A relation schema $R$ is in BCNF if: whenever a nontrivial functional dependency $X \to A$ holds in $R$, then $X$ is a superkey of $R$.
+    \par (The second condition in 3NF is excluded).
