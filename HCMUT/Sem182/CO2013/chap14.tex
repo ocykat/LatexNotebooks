@@ -23,4 +23,97 @@
     \end{itemize}
 
   \hii{Redundant Information in Tuples and Update Anomalies}
+    \par Storing natural joins of base relations (relations of entity types and relationship types) leads to an additional problem refered to as \tb{update anomalies}. There are three types of update anomalies:
+    \begin{itemize}
+      \item \tb{Insertion Anomalies}
+      \item \tb{Deletion Anomalies}
+      \item \tb{Modification Anomalies}
+    \end{itemize}
     \par \tb{Guideline 2}: Design the base relation schemas so that no insertion, deletion, or modification anomalies are present in the relations. If any anomalies are present, note them clearly and make sure that the programs that update the database will operate correctly.
+
+  \hii{NULL Values in Tuples}
+    \par \tb{Guideline 3}: As far as possible, avoid placing attributes in a base relation whose values may frequently be NULL. If NULLs are unavoidable, make sure that they apply in exceptional cases only and do not apply to a majority of tuples in the relation.
+
+  \hii{Generation of Spurious Tuples}
+    \par \tb{Guideline 4}: Design relation schemas so that they can be joined with equality conditions on attributes that are appropriately related (primary key, foreign key) pairs in a way that guarantees that no spurious tuples are generated.
+
+
+\hi{Functional Dependencies}
+  \hii{Definition}
+    \par Suppose that the relational database schema has $n$ attributes $A_1 , \ldots, A_n$. The database can be described by one single \tb{universal relation schema} $R = \{A_1, \ldots, A_n\}$. Define:
+    \begin{itemize}
+      \item $X$ and $Y$ as subsets of attributes of $R$.
+      \item $r$ as a relation state of $R$ (relation state is the set of all tuples in the relation schema).
+      \item $t_1$ and $t_2$ as two tuples in $r$.
+    \end{itemize}
+    \par A \tb{functional dependency} $X \to Y$ specifies the constraint that: for any two tuples $t_1$ and $t_2$ in $r$, if $t_1[X] = t_2[X]$, then $t_1[Y] = t_2[Y]$.
+    \par The value of the $Y$ component of a tuple in $r$ is determined by the value of the $X$ component; alternatively, the values of the $X$ component of a tuple uniquely/functionally determine the value of the $Y$ component. (with 1 $X$ there can only be 1 corresponding $Y$)
+    \par If $X$ is a \tb{candidate key} of $R$, then $X \to R$.
+    \par If $X \to Y$, it does not guarantee whether $Y \to X$ or not.
+    \par Functional dependency is a property of the \tb{semantics} or \tb{meaning of the attributes}.
+    \par The purpose of functional dependency is to further describe a relation schema $R$ by specifying constraints on its attributes that must hold at all time. Relation states $r(R)$ that satisfy the functional dependency constraints are called \tb{legal relation states}.
+
+\hi{Normal Forms Based on Primary Keys}
+  \hii{Normalization of Relations}
+    \par \tb{Normalization} process takes a relation schema through a series of tests to certify whether it satisfies a certain \tb{normal form}.
+    \par \tb{Normalization of data}: a process of analyzing the given relation schemas based on their FDs and primary keys to
+    \begin{itemize}
+      \item Minimize redundancy
+      \item Minimize insertion, deletion, update anomalies
+    \end{itemize}
+    \par In this process, a relation schema that does not meet the condition for a normal form is decomposed into smaller relation schemas that meet the \tb{normal form test} (condition for a normal form) that is not met by the original relation.
+    \par The normalization process through decomposition must confirm the existence of some properties including two properties:
+    \begin{itemize}
+      \item The nonadditive join or loseless join property: there is no spurious tuple generated with respect to the relation schemas created after decomposition.
+      \item The dependency preservation property: each functional dependency is represented in some individual relation resulting after decomposition.
+    \end{itemize}
+    \par The first property is extremely critical and \tb{must be achieved at any cost}. The second property, although desirable, is sometimes sacrified.
+
+  \hii{Practical Use of Normal Forms}
+    \par In practice, normalization up to 3NF, BCNF, or at most 4NF is used. Higher normal forms are hard to understand or to detect for database designers and users.
+    \par Database designers \tb{need not} normalize to the highest possible normal form. Relations may be left in a lower normalization status for performance reasons.
+    \par \tb{Definition}: \tb{Denormalization} is the process of storing the join of higher normal form relations as a base relation which is in a lower normal form.
+
+  \hii{Definition of Keys and Attributes Participating in Keys}
+    \par We revisit some definition in the previous chapter. Given a relation schema $R = \{A_1, \ldots, A_n\}$.
+    \begin{itemize}
+      \item \tb{superkey}: a super key is a set of attributes $S \subseteq R$ with the property that no two tuples $t_1$ and $t_2$ in a legal relation state $r$ of $R$ will have $t_1[S] = t_2[S]$.
+      \item \tb{key}: a key $K$ is a super key with the additional property that removal of any attribute from $K$ will cause $K$ not to be a superkey anymore. We can say that a key is a minimal superkey.
+      \item \tb{candidate key}: if a relation schema has more than one key, each is called a candidate key.
+      \item \tb{primary key}: if a relation schema has more than one key, then one can be chosen arbitrarily to be the primary key. If the relation schema only has one key, then that only key is the primary key.
+      \item \tb{secondary key}: any candidate key that is not a primary key
+    \end{itemize}
+  \par \tb{Definition}: An attribute of relation schema $R$ is called a \tb{prime attribute} of $R$ if it is a member of some candidate key of $R$. An attribute is called \tb{nonprime} if it is not a prime attribute.
+
+  \hii{First Normal Form}
+    \par First Normal Form (1NF) disallow relations within relations or relations as attribute values within tuples. \tb{The only attribute values permitted by 1NF are \tu{single atomic} (or \tu{indivisible}) values.}
+
+  \hii{Second Normal Form (based on Primary Key)}
+    \par Second Normal Form (2NF) is based on the concept of \tb{full functional dependency}.
+    \par A functional dependency $X \to Y$ is a \tb{full functional dependency} if removal of any attribute $A$ from $X$ means that the dependency does not hold anymore.
+    \par A functional dependency $X \to Y$ is a \tb{partial functional dependency} if some attribute $A$ can be removed from $X$ and the dependency still holds.
+    \par \tb{Definition of 2NF}: A relation schema $R$ is in 2NF if every nonprime attribute $A$ in $R$ is \tb{fully functional dependent} on the primary key of $R$.
+    \par \tb{Example}:
+    \img[width=12cm]{img/2nf-01.png}{}
+    \par In the figure,
+      \begin{itemize}
+        \item FD2 violates 2NF: \ilc{Ename} can be functionally determined by \ilc{Ssn} only.
+        \item FD3 violates 2NF: both \ilc{Pname} and \ilc{Plocation} can be functionally determined by \ilc{Pnumber} only.
+      \end{itemize}
+
+  \hii{Third Normal Form (based on Primary Key)}
+    \par Third Normal Form (3NF) is based on the concept of \tb{transitive dependency}.
+    \par A functional dependency $X \to Y$ is a \tb{transitive dependency} if $\exists Z \subseteq R$:
+    \begin{itemize}
+      \item $Z$ is neither a candidate key nor subset of any key of $R$
+      \item $X \to Z$ and $Z \to Y$ holds.
+    \end{itemize}
+    \par \tb{Definition of 3NF}: A relation schema $R$ is in 3NF if it satisfies 2NF \tb{and} no nonprime attribute of $R$ is transitively dependent on the primary key.
+    \img[width=12cm]{img/3nf-01.png}{}
+    \par In the figure, the relation schema \ilc{EMP_DEPT} is in 2NF but not in 3NF because of the transitive dependency of \ilc{Dmgr_ssn} and \ilc{Dname} on \ilc{Ssn} via \ilc{Dnumber}.
+
+\hi{General Definitions of Second and Third Normal Forms}
+    \par In general, partial and transitive dependencies should be avoided because they cause the update anomalies.
+
+  \hii{General Definition of 2NF}
+    \par \tb{General definition of 2NF}: A relation schema $R$ is in 2NF if every nonprime attribute $A$ in $R$ is not partially dependent on any key of $R$.
