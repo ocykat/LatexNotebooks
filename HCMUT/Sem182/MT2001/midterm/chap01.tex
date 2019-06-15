@@ -1,0 +1,118 @@
+\begin{multicols*}{3}
+
+\hi{Probability}
+  \hii{Terms}
+  \begin{itemize}[noitemsep,nolistsep]
+    \item \tb{random experiment}: an experiment that can result in different outcomes,
+        even though it is repeated in the same manner every time
+      \item \tb{sample space}: ($\omega$) set of all possible outcomes of a random
+        experiment
+      \item \tb{discrete sample space}: a finite or countable infinite set of outcomes.
+      \item \tb{continuous sample space}: an interval (either finite or infinite) of real numbers.
+      \item \tb{event}: a subset of the sample space of a random experiment.
+      \item \tb{outcome}: only one result of a random experiment.
+  \end{itemize}
+
+  \hii{Set Operations}
+    \begin{itemize}[noitemsep,nolistsep]
+      \item \tb{Union}: $E = E_1 + E_2$: $E$ contains all outcomes which are either in $E_1$ or $E_2$.
+      \item \tb{Intersecion}: $E = E_1 E_2$: $E$ contains all outcomes which are both in $E_1$ and $E_2$.
+      \item \tb{Complement}: $\bar{E} = \omega - E$: $\bar{E}$ contains all outcomes that are in $\omega$ but are not in $E$.
+    \end{itemize}
+
+  \hii{Disjoint Events}
+    \par $E_1$ and $E_2$ are disjoint if:
+    \[
+      E_1 E_2 = \emptyset
+    \]
+
+  \hii{Algebra of Events' Operation}
+    \hiii{Laws}
+      \begin{enumerate}[1.,noitemsep,nolistsep]
+        \item Distributive Laws
+          \begin{itemize}
+            \item $A(B + C) = AB + AC$
+            \item $A + (BC) = (A + B)(A + C)$
+          \end{itemize}
+        \item De Morgan's Laws
+          \begin{itemize}
+            \item $\overline{A + B} = \bar{A} \bar{B}$
+            \item $\overline{AB} = \bar{A} + \bar{B}$
+          \end{itemize}
+        \item Difference Laws
+          \begin{itemize}
+            \item $A - (B + C) = (A - B)(A - C)$
+            \item $A - (BC) = (A - B) + (A - C)$
+          \end{itemize}
+      \end{enumerate}
+
+    \hiii{Tricks}
+      \[
+        P(\overline{A + B}) = P(\bar{A} \bar{B}) = P(\bar{A}) P(\bar{B})
+      \]
+
+  \hii{Addition Rules}
+    \par For \tb{two events}:
+      \[
+        P(A + B) = P(A) + P(B) - P(AB)
+      \]
+    \par If $A$ and $B$ are \tb{disjoint}:
+      \[
+        P(A + B) = P(A) + P(B)
+      \]
+    \par For \tb{three events}:
+    \begin{align*}
+    P(A + B  + C) = &P(A) + P(B) + P(C) \\ &- P(AB) - P(BC) - P(CA) + P(ABC)
+    \end{align*}
+    \par Visualization: \tb{Venn diagram}
+
+  \hii{Conditional Probability}
+    \[
+      P(B|A) = \frac{P(AB)}{P(A)}
+    \]
+
+  \hii{Multiplication and Total Probability Rules}
+    \hiii{Multiplication Rule}
+      \par For \tb{two events}:
+        \[
+          P(AB) = P(B|A) P(A) = P(A|B) P(B)
+        \]
+      \par For \tb{three events}:
+        \[
+          P(ABC) = P(A) P(B|A) P(C|BA)
+        \]
+
+    \hiii{Total Probability Rules}
+      \par For \tb{two events}:
+        \[
+          P(B) = P(BA) + P(B\bar{A}) = P(B|A) P(A) + P(B|\bar{A}) P(\bar{A})
+        \]
+      \par For multiple events:
+        \begin{align*}
+                P(B) &= P(BE_1) + P(BE_2) + \ldots P(BE_k) \\
+               &= P(B|E_1) P(E_1) + P(B|E_2) P(E_2) + \ldots P(B|E_k) P(E_k)
+        \end{align*}
+      \par Visualization: \tb{Probability Tree}
+
+    \hiii{Probability Tree}  
+      \par Different paths: add
+      \par On one path: multiply
+
+  \hii{Independence}
+      \par $A$ and $B$ are \tb{independent} with one of these conds:
+        \begin{itemize}[noitemsep]
+          \item $P(A|B) = P(A)$
+          \item $P(B|A) = P(B)$
+          \item $P(AB) = P(A) P(B)$
+        \end{itemize}
+      \par If $E_1, E_2, \ldots, E_k$ are independent events, then:
+        \[
+          P(E_1 E_2 \ldots E_k) = P(E_1) P(E_2) \ldots P(E_k)
+        \]
+
+  \hii{Bayes' Theorem}
+    \[
+      P(A|B) = \frac{P(B|A) P(A)}{P(B)} \qquad \mbox{ for } P(B) > 0
+    \]
+
+\end{multicols*}

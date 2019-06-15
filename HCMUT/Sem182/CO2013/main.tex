@@ -1,9 +1,15 @@
 \documentclass[12pt, a4paper]{report}
 
-% === MARGINS ===
+% MARGINS
 \usepackage[margin=0.75in]{geometry}
 
-% === HEADINGS ===
+% FONT
+\renewcommand{\familydefault}{\sfdefault}
+
+% LINE SPACING
+\setlength{\parskip}{6pt}
+
+% HEADINGS
 \setcounter{secnumdepth}{4}
 \newcommand{\hi}{\section}
 \newcommand{\hii}{\subsection}
@@ -12,13 +18,10 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-% === INDENTATION ===
+% INDENTATION
 \usepackage{indentfirst}
 
-% === LINE SPACING ===
-\setlength{\parskip}{6pt}
-
-% === TABLE OF CONTENTS ===
+% TABLE OF CONTENTS
 % links
 \usepackage{hyperref}
 \hypersetup{
@@ -29,9 +32,10 @@
   urlcolor=black
 }
 
-% === APPENDICES ===
-\usepackage[toc, page]{appendix}
+% APPENDICES
+\usepackage[toc,page]{appendix}
 
+% TEXT
 % Bold, italic, underlined text
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
@@ -41,12 +45,7 @@
 \newcommand{\smf}[1]{\small #1 \normalsize}
 \newenvironment{smfont}{\small}{\normalsize}
 
-% === ENUMERATE ===
-\usepackage[shortlabels]{enumitem}
-% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
-
-% === MATH ===
-% Basic packages
+% MATH
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{gensymb}
@@ -85,6 +84,7 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\set\{\}
 
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
@@ -96,8 +96,8 @@
 \newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
 \newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
 \newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
-\newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
 \newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
 \newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
 
 % Integrals
@@ -110,7 +110,13 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
-% === FOOTNOTE ===
+% Manual equation number
+\newcommand{\eqnumber}[1]{\qquad\mbox{\tb{{(#1)}}}}
+
+% Script fonts
+\usepackage[mathscr]{euscript}
+
+% FOOTNOTE
 %   one foot note stays on one page
 \interfootnotelinepenalty=10000
 
@@ -118,22 +124,19 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
-% === IMAGES ===
+% IMAGES
 \usepackage{graphicx}
-\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\newcommand{\img}[3][]
-{
-  \begin{figure}[H]
-    \centering
-    \includegraphics[#1]{#2}
-    \caption*{#3}
-  \end{figure}
-}
-% Usage: \img[width=...]{<path_to_img>}{<caption>}
+\newcommand{\img}[2][]
+  {
+    \begin{figure}[H]
+      \centering
+      \includegraphics[#1]{#2}
+    \end{figure}
+  }
 
-% === PSEUDOCODE ===
+% PSEUDOCODE
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage[noend]{algpseudocode}
@@ -169,40 +172,87 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
+\newcommand{\SHIFTLEFT}{\ll}
+\newcommand{\SHIFTRIGHT}{\gg}
 
-% === CODE ===
+% FRENCH CONVENTION FOR VERTICAL ARITHMETIC
+\usepackage{xlop}
+
+% CODE
 \usepackage{listings}
+%\makeatletter
+%\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+%\@empty\z@\@empty
+%\makeatother
 \usepackage{inconsolata}
-\usepackage{color}
+% \lstset{
+%   language=[x86masm]Assembler,
+%   aboveskip=1mm,
+%   belowskip=1mm,
+%   numbers=left,
+%   frame=tb,
+%   % language=[mips]Assembler,
+%   basicstyle=\ttfamily
+%   \footnotesize,
+%   breaklines=true,
+%   mathescape=false
+% }
+% \lstdefinestyle{SQL}{
+% \lstset{
+%    language=SQL,
+%    showspaces=false,
+%    basicstyle=\ttfamily,
+%    numbers=left,
+%    numberstyle=\tiny,
+%    commentstyle=\color{gray}
+%    frame=tb,
+%    breaklines=true,
+%    mathescape=false
+%    aboveskip=1mm,
+%    belowskip=1mm,
+%   emph={%
+%     AUTHORIZATION%
+%     },emphstyle={\color{red}\bfseries\underbar}%
+% }%
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
+\usepackage[cache=false]{minted}
 
-\lstset {
-  language=C++,
-  aboveskip=1mm,
-  belowskip=1mm,
-  numbers=left,
-  frame=tb,
-  basicstyle=\ttfamily,
-  numberstyle=\tiny\color{gray},
-  commentstyle = \color{dkgreen},
-  keywordstyle = \color{blue},
-  stringstyle = \color{mauve}
-}
 
-% === BOOK SECTION MARKER ===
-\newcommand{\booktitle}{}
-\newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
+%
+\usepackage{varwidth}
+\newenvironment{fboxenv}
+  {
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+  }
+  {
+    \end{minipage}
+  }
+
+% SOURCE
+%\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\refsource}[1]{Source: {#1}}
+
+\newcommand{\fieldname}[1]{\langle \mbox{#1} \rangle}
+
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
 
 \begin{document}
-
-\input{chap01}
-
 \tableofcontents
 
+\input{chap01}
+\input{chap02}
+\setcounter{chapter}{4}
+\input{chap05}
+\input{chap06}
+\input{chap07}
+\input{chap08}
+
 \begin{appendices}
+
 \end{appendices}
 
 \end{document}

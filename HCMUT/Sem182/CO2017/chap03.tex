@@ -1,0 +1,110 @@
+\chapter{Processes}
+
+\hi{Process Concept}
+  \hii{The Process}
+    \par A \tb{process} is a running program.
+    \par A \tb{process} consists of:
+      \begin{itemize}
+        \item \tb{text section}: the program code
+        \item \tb{program counter}: a value stored in the processor's register
+          which keeps track of the currently executed instruction of the
+          program
+        \item \tb{stack}: the memory section which stores temporary data (local
+          variables, function parameters, etc.)
+        \item \tb{data section}: the memory section which stores the global
+          variables
+        \item \tb{heap}: memory section that is dynamically allocated during
+          process run time.
+      \end{itemize}
+    \par \ti{Distinguishing between a program and a process}:
+      \begin{itemize}
+        \item A \ti{program} is a passive entity, such as a file containing a
+          list of instructions stored on disk, often called an executable file.
+        \item A \ti{process} is an active entity, with a program counter
+          specifying the next instruction to execute and a set of associated
+          resources.
+      \end{itemize}
+  
+  \hii{Process State}
+    \par As a process executes, it changes \tb{state}. A process may be in one
+      of the following states:
+      \begin{itemize}
+        \item \tb{New}: The process is being created
+        \item \tb{Running}: Instructions are being executed
+        \item \tb{Waiting}: The process is waiting for some event to occur
+          (such as an I/O completion or reception of a signal)
+        \item \tb{Ready}: The process is waiting to be assigned to a processor
+        \item \tb{Terminated}: The process has finished execution.
+      \end{itemize}
+
+    \img[width=12cm]{img/process-state.png}
+
+  \hii{Process Control Block (PCB)}
+    \par Each process is represented in the operating system by a \tb{process
+      control block (PCB)}, or \ti{task control block}.
+    \par A PCB contains information associated with a specific process,
+    including:
+      \begin{itemize}
+        \item \tb{Process state}
+        \item \tb{Program counter (PC)}
+        \item \tb{CPU registers}
+        \item \tb{CPU-scheduling information}
+        \item \tb{Memory-management information}
+        \item \tb{I/O status information}
+      \end{itemize}
+
+  \hii{Threads}
+
+
+\hi{Process Scheduling}
+  \hii{Objectives}
+    \begin{itemize}
+      \item The objective of \ti{multiprogramming} is to maximize CPU
+        utilization by having some process running at all times.
+      \item The objective of \ti{time sharing} is to switch the CPU among
+        processes so frequently that users can interact with each program while
+        it is running.
+    \end{itemize}
+    \par To meet these objectives, the \tb{process scheduler} selects an
+      available process for program execution on the CPU.
+
+  \hii{Scheduling Queues}
+    \par Some types of queues:
+      \begin{itemize}
+        \item \tb{Job queue}: The queue of all processes in the system.
+        \item \tb{Ready queue}: The list of  processes that are residing in main
+          memory and are ready and waiting to execute.
+        \item \tb{Device queue}: The list of processes waiting for a particular
+          I/O device. Each device has its own device queue.
+      \end{itemize}
+    \par A new process is initially put in the ready queue. It waits there
+      until it is selected for execution, or is \tb{dispatched}.
+
+  \hii{Schedulers}
+    \hiii{Types of Schedulers}
+      \par A process migrates among various scheduling queues throughout its
+        lifetime. The operating system must select, for scheduling purposes,
+        processes from these queues in some fashion. The selection process is
+        carried out by the appropriate \tb{scheduler}.
+      \par Types of scheduler:
+      \begin{itemize}
+        \item \tb{Long-term scheduler/Job scheduler}: In a batch system, more
+          processes are submitted than can be executed immediately. These
+          processes are sent to a mass-storage device (typically a disk), where
+          they are kept for later execution.
+        \item \tb{Short-term scheduler/CPU scheduler}: A CPU scheduler selects
+          from among the processes that are ready to execute and allocates the
+          CPU to one of them.
+      \end{itemize}
+      \par The \tb{short-term scheduler} executes much more frequently than a
+        \tb{long-term scheduler}.
+
+    \hiii{Types of Processes}
+      \par Most processes can be described as either I/O bound or CPU bound:
+      \begin{itemize}
+        \item An \tb{I/O-bound process} is one that spends more of its time
+          doing I/O than it spends doing computations.
+        \item A \tb{CPU-bound process}, in contrast, generates I/O request
+          infrequently, using more of its time doing computations.
+      \end{itemize}
+

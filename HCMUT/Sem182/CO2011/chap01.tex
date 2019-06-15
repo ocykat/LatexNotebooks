@@ -1,0 +1,60 @@
+\chapter{A Linear Program}
+\hi{Definition}
+  \par In a linear program, we try to find a vector $x^* \in R^n$ maximizing (or minimizing) the value of a given linear function among all vectors $x \in R^n$ that satisfy a given system of linear equations and inequality.
+
+\hi{Objective Function}
+  \par The function to be maximized (or minimized) is called \tb{objective function}.
+  \par Form:
+    \begin{align*}
+      c^T x = c_1 x_1 + \ldots + c_n x_n
+    \end{align*}
+    where $c \in R^n$ is a given vector.
+
+\hi{Constraints}
+  \par The linear equations and inequalities in the linear program are called the \tb{constraints}.
+  \par \ti{The number of constraints is often denoted by $m$}.
+
+\hi{Generic Form of a Linear Program}
+  \begin{itemize}
+    \item A linear program is often written using matrices and vectors - similar to the notation $Ax = b$ for a system of linear equations.
+    \item Each equation ($=$) can be replaced by two opposite inequalities ($\leq$ and $\geq$).
+    \item All inequalities with the $\geq$ sign can be transformed to the $\leq$ sign.
+    \item Minimizing $c^T x$ is equivalent to maximizing $-c^T x$.
+  \end{itemize}
+
+  \par In general, a linear program can be expressed as follows:
+  \begin{align*}
+    & \text{Maximize the value of} & c^T x \\
+    & \text{among all vectors } x \in R^n \text{ satisfying } & Ax \leq b
+  \end{align*}
+  where $A$ is a given $m \times n$ real matrix and $c \in R^n$, $b \in R^m$ are given vectors. Here the relation $\leq$ holds for two vectors of equal length if and only if it holds componentwise.
+
+\hi{Solutions of a Linear Program}
+  \hii{Types of Solution}
+    \begin{itemize}
+      \item Any vector $x \in R^n$ satisfying all constraints of a given linear program is a \tb{feasible solution}.
+      \item Each $x^* \in R^n$ that gives the maximum possible value of $c^T x$ among all feasible $x$ is called an \tb{optimal solution}, or \tb{optimum}.
+    \end{itemize}
+
+  \hii{Number of Optimal Solutions}
+    \par A linear program may have:
+      \begin{itemize}
+        \item A single optimal solution
+        \item Infinitely many optimal solutions
+        \item No optimal solution.
+      \end{itemize}
+    \par A linear program with \ti{no optimal solution} is called \tb{infeasible}.
+    \par An optimal solution may not exist even though the linear program has feasible solutions. This happens when the objective function can attain arbitrarily large values. Such linear program is called \tb{unbounded}.
+
+\hi{Definition of linear program}
+  \par \textbox {
+    A linear program is the problem of maximizing a given linear function over the set of all vectors that satisfy a given system of linear equations and inequalities. Each linear program can easily be transformed to the form:
+      \begin{align*}
+        \text{Maximize } & c^T x \\
+        \text{subject to } & Ax \leq b \\
+        & x \in R^n
+      \end{align*}
+  }
+
+\hi{Solution Set}
+  \par Geometrically, the set of all solutions of a system of linear inequalities is an intersection of finitely many half-spaces in $R^n$. Such a set is called a \tb{convex polyhedron}.

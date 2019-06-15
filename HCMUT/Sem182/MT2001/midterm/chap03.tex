@@ -1,0 +1,151 @@
+\begin{multicols*}{3}
+
+\hi{Distributions}
+  \hii{Discrete Distributions}
+
+  \hiii{Binomial Distribution}
+    \begin{itemize}
+      \item \tb{Intepretation}:
+        \begin{itemize}
+          \item The number of winning game in $n$ games, given that the chance to win any one game is $p$.
+          \item The number of red balls obtained after picking \tb{with replacement} from $n$ balls from a box of red and blue balls, given that the chance to pick a red ball at one time is $p$.
+        \end{itemize}
+      \item \tb{Notation}:
+        \[
+          X \sim B(n, p)
+        \]
+      \item \tb{P.M.F}:
+        \[
+          f(k) = P(X = k) = {n \choose k} p^k q^{n - k}
+        \]
+      \item \tb{Expectation}:
+        \[
+          \mu = E(X) = np
+        \]
+      \item \tb{Variance}:
+        \[
+          \sigma^2 = V(X) = npq = np(1 - p)
+        \]
+    \end{itemize}
+
+  \hiii{Hypergeometric Distribution}
+    \begin{itemize}
+      \item \tb{Intepretation}:
+        \begin{itemize}
+          \item The number of red balls obtained after picking \tb{without replacement} $n$ balls from $N$ balls from a box of red and blue balls, given that the number of red balls in the box is $m$.
+        \end{itemize}
+      \item \tb{Notation}:
+        \[
+          X \sim H(N, m, n)
+        \]
+      \item \tb{P.M.F}:
+        \[
+          f(k) = P(X = k) = \dfrac{{m \choose k} {N - m \choose n - k}}{{N \choose n}}
+        \]
+      \item \tb{Expectation}:
+        \[
+          \mu = E(X) = np, \text{ where } p = \frac{m}{N}
+        \]
+      \item \tb{Variance}:
+        \[
+          \sigma^2 = V(X) = npq \frac{N - n}{N - 1}, \text{ where } p = \frac{m}{N}
+        \]
+    \end{itemize}
+
+  \hiii{Poisson Distribution}
+    \begin{itemize}
+      \item \tb{Intepretation}:
+        \begin{itemize}
+          \item The number of events occuring in a fixed period of time.
+        \end{itemize}
+      \item \tb{Notation}:
+        \[
+          X \sim Po(\lambda)
+        \]
+      \item \tb{P.M.F}:
+        \[
+          f(k) = P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda}
+        \]
+      \item \tb{Expectation}:
+        \[
+          \mu = E(X) = \lambda
+        \]
+      \item \tb{Variance}:
+        \[
+          \sigma^2 = V(X) = \lambda
+        \]
+    \end{itemize}
+
+  \hii{Continuous Distributions}
+
+  \hiii{Uniform Distribution}
+    \begin{itemize}
+      \item \tb{Notation}:
+        \[
+          X \sim U(a, b)
+        \]
+      \item \tb{P.D.F}:
+        \[
+          f(x) =
+            \begin{cases}
+              \dfrac{1}{b - a} & x \in [a, b]\\
+              0 & \text{otherwise}
+            \end{cases}
+        \]
+      \item \tb{C.D.F}:
+        \[
+          F(x) =
+            \begin{cases}
+              0 & x < a \\
+              \dfrac{x - a}{b - a} & x \in [a, b)\\
+              1 & x \geq b
+            \end{cases}
+        \]
+      \item \tb{Expectation}:
+        \[
+          \mu = E(X) = \frac{a + b}{2}
+        \]
+      \item \tb{Variance}:
+        \[
+          \sigma^2 = V(X) = \frac{(b - a)^2}{12}
+        \]
+    \end{itemize}
+
+  \hiii{Normal Distribution}
+    \begin{itemize}
+      \item \tb{Notation}:
+        \[
+          X \sim N(\mu, \sigma^2)
+        \]
+      \item \tb{Standardizing}:
+        \[
+          Y = \frac{X - \mu}{\sigma} \sim N(0, 1)
+        \]
+      \item \tb{C.D.F}:
+        \par For $X \sim N(0, 1)$:
+        \[
+          \Phi(x) = \int\limits_{-\infty}^{x} f(u) du
+        \]
+      \item \tb{Expectation}:
+        \[
+          \mu = E(X) = \mu
+        \]
+      \item \tb{Variance}:
+        \[
+          \sigma^2 = V(X) = \sigma^2
+        \]
+      \item \tb{Properties}
+        \begin{itemize}
+          \item If $X \sim N(\mu, \sigma^2)$ and $Y = aX + b$:
+            \[
+              Y \sim N(a\mu + b, a^2 \sigma^2)
+            \]
+          \item If $X \sim N(\mu, \sigma^2)$:
+            \[
+              \sum\limits_{i = 1}^{n} X_i \sim N\bigg( \sum\limits_{i = 1}^{n} \mu_i, \sum\limits_{i = 1}^{n} \sigma_i^2 \bigg)
+            \]
+        \end{itemize}
+    \end{itemize}
+
+
+\end{multicols*}

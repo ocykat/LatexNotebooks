@@ -71,7 +71,7 @@
               \end{flalign*}
             \item \tb{Step 3}: Calculate f(x):
               \begin{flalign*}
-                f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})} 
+                f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})}
               \end{flalign*}
           \end{itemize}
 
@@ -80,7 +80,7 @@
             \item \tb{Step 1}: $E$ is a spanning set of $V$:
               \begin{flalign*}
                 & x = \SUM{_{i = 1}^{n} \alpha_{i} e_{i}} && \\
-                & \ra x 
+                & \ra x
                 = \begin{pmatrix}
                     e_{1} & e_{2} & \ldots & e_{n}
                   \end{pmatrix}
@@ -89,7 +89,7 @@
                     \alpha_{2} \\
                     \ldots     \\
                     \alpha_{n}
-                  \end{pmatrix}                  
+                  \end{pmatrix}
                 = E
                   \begin{pmatrix}
                     \alpha_{1} \\
@@ -99,7 +99,7 @@
                   \end{pmatrix}
                 && \\
                 & f(x) = \SUM{_{i = 1}^{n} \alpha_{i} f(e_{i})} && \\
-                & \ra f(x) 
+                & \ra f(x)
                 = \begin{pmatrix}
                     f(e_{1}) & f(e_{2}) & \ldots & f(e_{n})
                   \end{pmatrix}
@@ -108,7 +108,7 @@
                     \alpha_{2} \\
                     \ldots     \\
                     \alpha_{n}
-                  \end{pmatrix}                  
+                  \end{pmatrix}
                 = F(E)
                   \begin{pmatrix}
                     \alpha_{1} \\
@@ -162,7 +162,7 @@
                 & E^{-1} x = F(E)^{-1} f(x) && \\
                 & \ra f(x) = F(E) E^{-1} x && \\
               \end{flalign*}
-
+      \end{itemize}
 
 \hi{Matrix Representation of Linear Mapping}
   \par Given:
@@ -193,11 +193,11 @@
           [f(e_{1})]_{F} & [f(e_{2})]_{F} & \ldots & [f(e_{n})]_{F}
         \end{pmatrix}
       && \\
-      & = F^{-1} 
+      & = F^{-1}
         \begin{pmatrix}
           f(e_{1}) & f(e_{2}) & \ldots & f(e_{n})
         \end{pmatrix}
-  \end{flalign*}   
+  \end{flalign*}
   \par Assume that $f(x) = Mx$.
     \begin{flalign*}
       & A = F^{-1}
@@ -208,7 +208,7 @@
       & = F^{-1} M
         \begin{pmatrix}
           e_{1} & e_{2} & \ldots & e_{n}
-        \end{pmatrix}      
+        \end{pmatrix}
       && \\
       & = F^{-1}ME
     \end{flalign*}
@@ -255,7 +255,7 @@
             \begin{flalign*}
               & \forall x \in V, find f(x). &&
             \end{flalign*}
-          \item \tb{Step 2}: 
+          \item \tb{Step 2}:
             \begin{flalign*}
               & \forall x \in ker(f): f(x) = 0 && \\
               & \ra Ax = 0 \qquad \mbox{(homogeneous system)} &&
@@ -273,7 +273,7 @@
           \item \tb{Step 2}: Compute
             \begin{flalign*}
               & f(e_{1}), f(e_{2}), \ldots, f(e_{n}) &&
-            \end{flalign*}          
+            \end{flalign*}
           \item \tb{Step 3}:
             \begin{flalign*}
               & \forall y \in im(f): \exists x \in V: y = f(x) && \\

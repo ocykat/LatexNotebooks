@@ -132,6 +132,15 @@
       \includegraphics[#1]{#2}
     \end{figure}
   }
+\newcommand{\imgc}[3][]
+  {
+    \begin{figure}[H]
+      \centering
+      \includegraphics[#1]{#2}
+      \caption{#3}
+    \end{figure}
+  }
+
 
 % PSEUDOCODE
 \usepackage{algorithm}
@@ -195,7 +204,7 @@
   mathescape=false
 }
 
-% TEXTBOX
+%
 \usepackage{varwidth}
 \newenvironment{fboxenv}
   {
@@ -212,10 +221,10 @@
 \begin{document}
 \tableofcontents
 
-\input{content}
+\input{chap01}
+\input{chap02}
 
 \begin{appendices}
-
 \end{appendices}
 
 \end{document}

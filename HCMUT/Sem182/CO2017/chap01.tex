@@ -1,0 +1,44 @@
+\chapter{Introduction}
+
+\hi{What Operating System Do?}
+
+  \hii{Computer System}
+    \par A \tb{computer system} consists of 4 components:
+
+    \begin{itemize}
+      \item \tb{hardware}
+      \item \tb{operating system}
+      \item \tb{application programs}
+      \item \tb{users}
+    \end{itemize}
+
+\hi{Computer System Organization}
+
+  \hii{Computer System Operations}
+    \begin{itemize}
+      \item \tb{Bootstrap program}: the initial program that run when the computer
+        starts up, initializes all aspects of the system, from CPU registers to
+          device controllers to memory content. It locates and loads into the
+          memory the operating system kernel. It is usually stored in the ROM
+          or EEPROM, known as firmware.
+        \begin{itemize}
+          \item ROM: read-only memory
+          \item EEPROM: electrical erasable programmable read-only memory
+        \end{itemize}
+      \item \tb{Interrupt}: a signal from the hardware or the software.
+        Hardware may trigger an interrupt any time by sending the signal to the
+        CPU. Software may trigger interrupt by executing a special operation
+        called a \tb{system call} (or \tb{monitor call}). When the CPU is
+        interrupt, it stops what it is doing and immediately transfer execution
+        to a fixed location. This location contains the starting address where
+        the service routine for the interrupt is located.
+      \item \tb{Interrupt vector}: a table of pointers stored in low memory
+        holding the addresses of the interrupt service routine for various
+        devices. The technique of using interrupt vector is to speed up
+        interrupt handling.
+    \end{itemize}
+
+  \hii{Storage Structure}
+    \par All forms of memory provide an \tb{array of words}. Each word has its
+      own address. Interaction is achived through a sequence of \tb{load} and
+      \tb{store} instructions to specific memory address.

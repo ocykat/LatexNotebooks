@@ -10,7 +10,7 @@
     \hiii{Definition}
       \par \tb{Definition}: The set of all possible outcomes of a random
         experiment is called the \tb{sample space} of the experiment.
-        \par The sample space is denoted as $S$.
+        \par The sample space is denoted as $S$ or $\Omega$.
 
     \hiii{Discrete and Continuous Sampe Spaces}
       \par A sample space is \tb{discrete} if it consists of a finite or
@@ -22,34 +22,263 @@
     \hiii{Definition}
       \par \tb{Defintion}: An \tb{event} is a subset of the sample space of a
         random experiment.
+      \par \ti{Note: Event vs. Outcome}
+        \begin{itemize}
+          \item An \tb{outcome} is one result of a random experiment.
+          \item An \tb{event} is a \ti{set of outcome} of a random experiment.
+        \end{itemize}
 
     \hiii{Set Operations}
       \par Because events are sets, we can apply sets operations on them:
       \begin{itemize}
         \item The \tb{union} $E$ of two events $E_1$ and $E_2$, denoted $E =
-          E_1 \cup E_2$, is the event that conists of all outcomes that are
-          contained in \ti{either} of the two events $E_1$ or $E_2$.
+          E_1 \cup E_2 = E_1 + E_2$, is the event that consists of all outcomes
+          that are contained in \ti{either} of the two events $E_1$ or $E_2$.
         \item The \tb{intersection} $E$ of two events $E_1$ and $E_2$, denoted
-          $E = E_1 \cap E_2$, is the event that conists of all outcomes that
-          are contained in \ti{both} of the two events $E_1$ or $E_2$.
-        \item The \tb{complement} $E'$ of an event $E$ \ti{in a sample space}
-          is the set of outcomes in the sample space that are not in the event.
+          $E = E_1 \cap E_2 = E_1 E_2$, is the event that conists of all
+          outcomes that are contained in \ti{both} of the two events $E_1$ or
+          $E_2$.
+        \item The \tb{complement} $\bar{E}$ (or $E'$) of an event $E$
+          \ti{in a sample space} is the set of outcomes in the sample space
+          that are not in the event.
       \end{itemize}
 
     \hiii{Mutually Exclusive Events}
       \par Two events, $E_1$ and $E_2$, are said to be \tb{mutually exclusive}
         if:
         \begin{align*}
-          E_1 \cap E_2 = \emptyset
+          E_1 \cap E_2 = E_1 E_2 = \emptyset
         \end{align*}
 
-  \hii{Counting Techniques}
-    \hiii{Multiplication Rule}
-      \par \tb{Rule}: Assume an operation can be described as a sequence of $k$
-      steps, where the number of ways of completing the $i^{th}$ step $(1 \leq i
-      \leq k$ is $n_i$. The total of ways of completing the operation is:
+\hi{Counting Techniques}
+  \hii{Multiplication Rule}
+    \par \tb{Rule}: Assume an operation can be described as a sequence of $k$
+    steps, where the number of ways of completing the $i^{th}$ step $(1 \leq i
+    \leq k$ is $n_i$. The total number of ways of completing the operation is:
+    \begin{align*}
+      n = \PROD{_{i = 1}^{k}} n_i = n_1 \times n_2 \times \ldots \times n_k
+    \end{align*}
+
+  \hii{Permutations}
+    \par The number of permutations of $n$ different elements is
+    \[
+      n! = 1 \times 2 \times \ldots \times n
+    \]
+    \par The number of permutations of subsets of $r$ elements selected
+      from a set of $n$ different elements is
+    \[
+      \frac{n!}{(n - r)!} =  1 \times 2 \times \ldots \times (n - r + 1)!
+    \]
+    \par \textbox {
+      The number of permutations of $n = n_1 + n_2 + \ldots + n_r$ objects
+      of which $n_1$ are of one type, $n_2$ are of a second type, $\ldots$, and
+      $n_r$ are of an $r^{th}$ type is
+      \[
+        \frac{n!}{n_1! n_2! \ldots n_r!}
+      \]
+    }
+
+  \hii{Combinations}
+    \textbox{
+      The number of combinations, subsets of $r$ elements that can be
+      selected from a set of $n$ elements, is denoted as $C_{r}^{n}$ and
+      \[
+        C_{r}^{n} = \frac{n!}{r! (n - r)!}
+      \]
+    }
+
+\hi{Algebra of Events' Operations}
+  \par \textbox {
+    \begin{enumerate}[1.]
+      \item Distributive Laws
+        \begin{itemize}
+          \item $A(B + C) = AB + AC$
+          \item $A + (BC) = (A + B)(A + C)$
+        \end{itemize}
+      \item De Morgan's Laws
+        \begin{itemize}
+          \item $\overline{A + B} = \bar{A} \bar{B}$
+          \item $\overline{AB} = \bar{A} + \bar{B}$
+        \end{itemize}
+      \item Difference Laws
+        \begin{itemize}
+          \item $A - (B + C) = (A - B)(A - C)$
+          \item $A - (BC) = (A - B) + (A - C)$
+        \end{itemize}
+    \end{enumerate}
+  }
+
+\hi{Interpretations and Axioms of Probability}
+  
+  \hii{Types of Probability}
+    \begin{itemize}
+      \item \tb{Degree of belief} or \tb{subjective probability}
+      \item \tb{Relative frequency}: based on how often an event occurs over
+        a very large sample space.
+      \item \tb{Probability with equally likely outcomes}: Whenever a sample
+        space consists of $n$ possible outcomes that are equally likely, the
+        probability of each outcome is $1/n$.
+    \end{itemize}
+
+  \hii{Probability of an Event}
+    \par \textbox {
+      For a discrete sample space, the \tb{probability of an event} $E$,
+      denoted as $P(E)$, equals the sum of the probabilties of the outcomes
+      in $E$.
+    }
+
+  \hii{Axioms of Probability}
+    \par \tb{Axioms}:
+    \par \textbox {
+      \par Probability is a number that is assigned to each member of a
+      collection of events from a random experiment that satisfies the
+      following properties:
+      \par If $S$ is the sample space and $E$ is any event in a random
+      experiment:
+      \begin{enumerate}[(1)]
+        \item $P(S) = 1$
+        \item $0 \leq P(E) \leq 1$
+        \item For two mutually exclusive (disjoint) events $E_1$ and $E_2$
+          ($E_1 E_2 = \emptyset$):
+          \[
+            P(E_1 + E_2) = P(E_1) + P(E_2)
+          \]
+      \end{enumerate}
+    }
+    \par \tb{Corollaries}:
+    \begin{itemize}
+      \item $P(\emptyset) = 0$
+      \item $P(\bar{E}) = 1 - P(E)$
+    \end{itemize}
+
+\hi{Addition Rules}
+  \hii{Addition Rule for Two Events}
+    \par \textbox {
+      The probability of the event $A$ or $B$, or $P(A + B)$, can be evaluated
+      as follow:
+      \[
+        P(A + B) = P(A) + P(B) - P(AB)
+      \]
+      If $A$ and $B$ are \tb{disjoint}, or $AB = \emptyset$ and $P(AB) = 0$:
+      \[
+        P(A + B) = P(A) + P(B)
+      \]
+    }
+
+  \hii{Addition Rule for Three or More Events}
+    \par For three events:
+    \[
+      P(A + B  + C) = P(A) + P(B) + P(C) - P(AB) - P(BC) - P(CA) + P(ABC)
+    \]
+
+  \hii{Mutually Exclusive Events}
+    \par A collection of events $E_1, E_2, \ldots, E_k$ is said to be
+      \tb{mutually exclusive} or \tb{disjoint} if for every pair of events
+      $E_i$, $E_j$:
+    \[
+      E_i E_j = \emptyset
+    \]
+    \par For $k$ mutually exclusive (disjoint) events:
+    \[
+      P(E_1 E_2 \ldots E_k) = P(E_1) + P(E_2) + \ldots + P(E_k)
+    \]
+
+
+\hi{Conditional Probability}
+  \par The \tb{conditional probability} of an event $B$ given an event $A$,
+  denoted as $P(B|A)$, is:
+  \[
+    P(B|A) = \frac{P(AB)}{P(A)}
+  \]
+
+\hi{Multiplication and Total Probability Rules}
+
+  \hii{Multiplication Rule}
+    \par \textbox {
+      \[
+        P(AB) = P(B|A) P(A) = P(A|B) P(B)
+      \]
+    }
+
+  \hii{Total Probability Rule for Two Events}
+    \par \textbox {
+      \[
+        P(B) = P(BA) + P(B\bar{A}) = P(B|A) P(A) + P(B|\bar{A}) P(\bar{A})
+      \]
+    }
+
+  \hii{Total Probability Rule for Multiple Events}
+    \par A collection of sets $E_1, E_2, \ldots, E_k$ such that $E_1 \cup E_2
+    \cup \ldots \cup E_k = \Omega$ is said to be exhaustive.
+
+    \par \textbox {
+      Assume $E_1, E_2, \ldots, E_k$ are $k$ mutually exclusive (disjoint) and
+      exhaustive sets. Then:
       \begin{align*}
-        n = \PROD{_{i = 1}^{k}} n_i = n_1 \times n_2 \times \ldots \times n_k
+        P(B) &= P(BE_1) + P(BE_2) + \ldots P(BE_k) \\
+             &= P(B|E_1) P(E_1) + P(B|E_2) P(E_2) + \ldots P(B|E_k) P(E_k)
+      \end{align*}
+    }
+ 
+\hi{Independence}
+  \hii{Independence of Two Events}
+    \par \textbox {
+      Two events are \tb{independent} if any one of the following equivalent
+      statements is true:
+        \begin{itemize}
+          \item $P(A|B) = P(A)$
+          \item $P(B|A) = P(B)$
+          \item $P(AB) = P(A) P(B)$
+        \end{itemize}
+    }
+
+  \hii{Independence of Multiple Events}
+    \par \textbox {
+      If $E_1, E_2, \ldots, E_k$ are independent events, then:
+      \[
+        P(E_1 E_2 \ldots E_k) = P(E_1) P(E_2) \ldots P(E_k)
+      \]
+    }
+
+
+\hi{Bayes' Theorem}
+    \par \textbox {
+      \[
+        P(A|B) = \frac{P(B|A) P(A)}{P(B)} \qquad \mbox{ for } P(B) > 0
+      \]
+    }
+    \par \textbox {
+      If $E_1, E_2, \ldots, E_k$ are $k$ mutually exclusive (disjoint) and
+      exhaustive events, and $B$ is any event, then
+      \[
+        P(E_1|B) = \frac{P(B|E_1) P(E_1)}{P(B)} = \frac{P(B|E_1) P(E_1)}{
+          P(B|E_1) P(E_1) + P(B|E_2) P(E_2) + \ldots + P(B|E_k) P(E_k)
+        }
+      \]
+    }
+
+\hi{Random Variables}
+  \hii{Definition}
+    \par A \tb{random variable} is a function $X$ that assigns a
+      real number $X(u)$ to each outcome $u$ in the sample space of a random
+      experiment.
+      \begin{align*}
+        X: \quad & \Omega \to R \\
+                  & u \to X(u)
       \end{align*}
 
-    \hiii{
+  \hii{Notation}
+    \par A random variable is denoted by an uppercase letter such as $X$. After
+      an experiment is conducted, the measured value of the random variable is
+      denoted by a lowercase letter such as $x$. ($X$ and $x$ are in italic).
+
+  \hii{Discrete and Continuous Random Variables}
+    \begin{itemize}
+      \item A \tb{discrete random variable} is a random variable with a finite,
+        or countably infinite range. \ti{Its value are often obtained by
+        counting.}
+      \item A \tb{continuous random variable} is a random variable with an
+        interval (either finite or infinite) of real numbers of its range.
+        \ti{Its value is often obtained by measuring}.
+    \end{itemize}
+

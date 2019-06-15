@@ -1,16 +1,116 @@
 \chapter{Databases and Database Users}
 
 \hi{Introduction}
+
+  \hii{Terminology}
+    \begin{itemize}
+      \item \tb{data}: known facts that can be recorded and have implicit
+        meaning.
+      \item \tb{database}: collection of related data 
+      \item \tb{database management system (DBMS)}: computerized system that
+        enables users to create and maintain database. The DBMS is a
+        \ti{general-purpose software system} that facililtates the processes of
+        defining, constructing, manipulating, and sharing databases among various
+        users and applications.
+        \begin{itemize}
+          \item \tb{Defining} a database involves specifying the datatypes,
+            structures, and constraints of the data to be stored in the database.
+            The database definition or descriptive information is also stored by
+            the DBMS in the form of databas catalog or dictionary, called
+            \tb{meta-data}.
+          \item \tb{Constructing} the database is the process of storing the data
+            on some storage medium that is controlled by the DBMS.
+          \item \tb{Manipulating} a database includes functions such as querying,
+            updating, and generating reports from the data.
+          \item \tb{Sharing} a database allows multiple users and programs to
+            access the database \ti{simultaneously}.
+        \end{itemize}
+      \item A \tb{query} causes some data to be retreived
+      \item A \tb{transaction} causes some data to be read and some data to be
+        written into the database.
+      \item A \tb{data record} is a row in a table.
+      \item A \tb{data element} is a cell in a row. Each data element has a
+        \tb{data type}.
+    \end{itemize}
+
+\hi{Characteristics of the Database Approach}
   \begin{itemize}
-    \item \tb{data}: known facts that can be recorded and have implicit
-      meaning.
-    \item \tb{database}: collection of related data 
-    \item \tb{database management system (DBMS)}: computerized system that
-      enables users to create and maintain database. The DBMS is a
-      \ti{general-purpose software system} that facililtates the processes of
-      defining, constructing, manipulating, and sharing databases among various
-      users and applications.
-      \begin{itemize}
-        \item 
-      \end{itemize}
+    \item Self-describing nature of a database system
+    \item Insulation between programs and data, and data abstraction
+    \item Support of multiple views of the data
+    \item Sharing of data and multiuser transaction processing
+  \end{itemize}
+  
+  \hii{Self-Describing Nature of a Database System}
+    \par A fundamental characteristic of the database approach is that the
+      database system contains not only the database itself but also a
+      complete definition or description of the database structure and
+      constraints. The definition or description, called \tb{meta data}, is
+      stored in the DBMS catalog.
+
+  \hii{Insulation between Programs and Data, and Data Abstraction}
+    \begin{itemize}
+      \item \tb{Program-data independence}: In the traditional data files
+        approach, the structures of the files is embedded in the application
+        programs, resulting in any changes to the structure of a file may
+        require changing all programs that access that file. By contrast,
+        DBMS access programs do not require such changes, since the structure
+        of data files is stored in the DBMS catalog separately from the
+        program. This property is called \tb{program-data independence}.
+      \item \tb{Program-operation independence}: The characteristic that
+        allows the \ti{interface} and the \ti{implementation} of an operation
+        to separate so that a change in the implementation will not affect the
+        interace.
+        \begin{itemize}
+          \item \tb{Operation}: a function or a method. An operation is
+            specified in two parts: interface and implementation.
+          \item \tb{Interface}: (also known as \ti{signature}) of an
+            operation includes the operation name and the data types of its
+            arguments (or parameters).
+        \end{itemize}
+      \item \tb{Data abstraction}: The characteristic that allows
+        program-data independence and program-operation independence is
+        called \tb{data abstraction}.
+      \item \tb{Conceptual representation}: the representation of data of the
+        DBMS that does not include many of the details of how the data is
+        sotred or how the operation are implemented.
+      \item \tb{Data model}: a type of data abstraction that is used to
+        provide a conceptual representation. The data model uses logical
+        concepts, such as objects, their properties, and their
+        interrelationships, that may be easier for most users to understand
+        than computer storage concepts. Hence, the data model hides storages
+        and implementation details that are not of interest to most database
+        users.
+    \end{itemize}
+
+  \hii{Support of Multiple Views of the Data}
+    \par A database typically has many types of users, each of whom may
+    require a different perspective or \tb{view} of the database.
+
+  \hii{Sharing of Data and Multiuser Transaction Processing}
+    \par The DBMS must include \tb{concurrency control} software to ensure
+    that several users trying to update the same data do so in a controlled
+    manner so that the result of the updates is correct.
+    \begin{itemize}
+      \item \tb{Online Transaction Processing (OLTP)}: An application of this
+        type facillitates and manages transaction-oriented applications,
+        typically for data entry and retrieval transaction processing.
+      \item \tb{Transaction}: An executing program or process that includes
+        one or more database accesses, such as reading or updating of
+        database records. Each transaction is supposed to execute a logically
+        correct database access if executed in its entirety without
+        interference from other transactions.
+      \item \tb{Isolation}: A DBMS transaction property ensuring that each
+        transaction appears to execute in isolation from other transactions,
+        even though hundreds of transactions may be executing concurrently.
+      \item \tb{Atomicity}: A DBMS property ensuring that either all the
+        database operations in a transaction are executed or none are.
+    \end{itemize}
+
+\hi{DBMS Users}
+  \begin{itemize}
+    \item \tb{Database Administrators}
+    \item \tb{Database Designers} (*)
+    \item \tb{End Users}
+    \item \tb{System Analysts and Application Programmers (Software Engineers)}
   \end{itemize}

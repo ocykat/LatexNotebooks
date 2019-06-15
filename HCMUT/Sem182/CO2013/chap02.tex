@@ -1,0 +1,153 @@
+\chapter{Database System Concepts and Architecture}
+
+\hi{Data Models, Schemas, and Instances}
+  \begin{itemize}
+    \item \tb{Data abstraction} generally refers to the suppression of details
+      of data organization and storage, and the highlighting of the essential
+      features for an improved understanding of data. One of the main
+      characteristics of the database approach is to support data abstraction
+      so that different users can perceive data at their preferred level of
+      detail.
+    \item \tb{Data model}: A collection of concepts that can be used to
+      describe the structure of a database - provides the necessary means to
+      achieve this abstraction.
+    \item \tb{Structure of a database}: including the data types,
+      relationships, and constraints that apply to the data.
+  \end{itemize}
+
+  \hii{Categories of Data Models}
+    \begin{itemize}
+      \item \tb{High-level} or \tb{conceptual data models}: provide concepts
+        that are close to the way many users perceive data.
+      \item \tb{Representational} or \tb{implementation data models}: provide
+        concepts that may be easily understood by end users but that are not
+        too far removed from the way data is organized in computer storage.
+        Representational data models hide many details of data storage on disk
+        but can be implemented on a computer system directly.
+      \item \tb{Low-level} or \tb{physical data models}: provide concepts that
+        describe the details of how data is stored on the computer storage
+        media.
+      \item \tb{Self-describing data models}: combines the description of the
+        data with the data value themselves.
+    \end{itemize}
+
+    \hiii{Conceptual Data Models}
+      \begin{itemize}
+        \item An \tb{entity} represents a real-world object or concept.
+        \item An \tb{attribute} represents some property of interest that
+          further describe an entity.
+        \item A \tb{relationship} among two or more entities represents an
+          association among the entities.
+      \end{itemize}
+
+    \hiii{Representational Data Model}
+      \par Representational data models include the widely used \tb{relational
+        data model}, as well as the legacy \tb{network and hierarchical
+        models}.
+      \par Representational data models represent data by using record
+        structures and hence are sometimes called \tb{record-based data
+        models}.
+      \par \tb{Object data model} is an example of a new family of higer-level
+        implementation data models that are closer to conceptual data models.
+
+    \hiii{Physical Data Models}
+      \par \tb{Physical data models} describe how data is stored as files in
+        the computer by representing information such as record formats, record
+        orderings, and access path.
+      \begin{itemize}
+        \item An \tb{access path} is a search structure that makes the search
+          for particular database records efficient, such as indexing or
+          hashing.
+        \item An \tb{index} is an example of an acess path that allows direct
+          access to data using an index term or a keyword.
+      \end{itemize}
+
+    \hiii{Self-describing Data Models}
+      \par Different from traditional data models, \tb{self-describing data
+        models} combines the description of the data with the data balues
+        themselves. These models include \tb{XML} as well as many of the
+      \tb{key-value stores} and \tb{NOSQL systems} that were recently created
+        for managing big data.
+
+  \hii{Schemas, Instances, and Database States}
+    \hiii{Schemas}
+      \begin{itemize}
+        \item The \tb{database schema} is the description of a database, which
+          is specified during database design and is not expected to change
+          frequently. Most data models have certain conventions for displaying
+          schemas as diagrams.
+        \item A \tb{schema diagram} is a displayed schema. A schema diagram
+          displays only \ti{some aspects} of constraints. Other aspects are not
+          specified in the schema diagram.
+        \item A \tb{schema construct} is an object in the schema.
+      \end{itemize}
+
+    \hiii{Instances}
+      \begin{itemize}
+        \item A \tb{database state} or \tb{snapshot} is the database at a
+          particular moment in time. It is also called the current set of
+          \tb{occurrence} or \tb{instances} in the database.
+      \end{itemize}
+    
+    \hii{Database States}
+      \begin{itemize}
+        \item When we \tb{define} a new database, we specify its database schema
+          only to the DBMS. At this point, the corresponding database state is
+          the \ti{empty state} with no data.
+        \item We get the \tb{initial state} of the data when the database is
+          first \tb{populated} or \tb{loaded} with the initial data. From then
+          on, every time an update operation is applied to the database, we get
+          another \tb{database state}.
+        \item A \tb{valid state} is a state that satisfies the structure and
+          constraints specified in the schema. \ti{Hence, specifying a correct
+          schema to the DBMS is extremely important}.
+        \item \tb{Meta-data} are the descriptions of the schema constructs and
+          constraints, stored by the DBMS in the catalog so that DBMS software
+          can refer to the schema whenever it needs to.
+        \item The \tb{schema} is sometimes called the \tb{intension}, and the
+          database state is called an \tb{extension} of the schema.
+        \item A \tb{schema evolution} is a change in the schema.
+      \end{itemize}
+
+\hi{Three-Schema Architecture and Data Independence}
+  \par As discussed in chapter 1, the important characteristics of the database
+    approach are:
+    \begin{itemize}
+      \item Self-describing nature of a database system
+      \item Insulation between programs and data, and data abstraction
+      \item Support of multiple views of the data
+      \item Sharing of data and multiuser transaction processing
+    \end{itemize}
+  \par The first three characteristics can be archieved an visualized by an
+  architecture for database systems called the \tb{three-schema} architecture.
+
+  \hii{The Three-Schema Architecture}
+    \par The goal of the \tb{three-schema} architecture is to separate the user
+      applications from the physical database.
+    \par In this architecture, the schema can be defined at the following three
+      levels:
+      \begin{itemize}
+        \item The \tb{internal level} has an \tb{internal schema}, which
+          describes the physical storage structure of the database.
+        \item The \tb{conceptual level} has a \tb{conceptual schema}, which
+          describes the structure of the whole database for a community or
+          user.
+        \item The \tb{external} or \tb{view level} includes a number of
+          \tb{external schemas} or \tb{user views}.
+      \end{itemize}
+    \par The three-level schema are only \ti{descriptions of data}; the actual
+      data is stored at the physical level only. In the three-level schema,
+      each user group refers to its own external schema. Hence, the DBMS must
+      transform a request specified on an external schema into a request
+      against the conceptual schema, and then into a request on the internal
+      schema for processing over the stored database. If the request is a
+      database retrieval, the data extracted from the stored database must be
+      reformatted to match the user's external view.
+    \par The processes of transforming requests and results between levels are
+    called \tb{mappings}.
+  
+  \hii{Data Independence}
+    \par The three-level architecture can be used to further explain the
+    concept of \tb{data independence}, which can be defined as the capacity to
+    change the schema at one level of a database system without having to
+    change the schema at the next higher level.

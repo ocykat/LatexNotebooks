@@ -1,0 +1,97 @@
+\begin{multicols*}{3}
+
+\hi{Random Variables}
+
+  \hii{Terminology}
+    \begin{itemize}[noitemsep]
+      \item \tb{discrete random variable}: r. v. with a finite, or countably infinite range; its value are often obtained by \tb{counting}.
+      \item \tb{continuous random variable}: r. v. with an interval (either finite or infinite) of real numbers of its range; its value is often obtained by \tb{measuring}.
+    \end{itemize}
+
+  \hii{Discrete Distribution}
+    \hiii{Probability Mass Function}
+      \[
+        P(X = u) = f(u)
+      \]
+
+    \hiii{Properties}
+      \begin{itemize}
+        \item $f(u) \geq 0, \forall u$
+        \item $\sum\limits_{u} f(u) = 1$
+      \end{itemize}
+
+  \hii{Continuous Distribution}
+    \hiii{Probability Density Function}
+      \[
+        P(a < X < b) = \int\limits_{a}^{b} f(u)du
+      \]
+      \par \ti{Note: $<$ is equivalent to $\leq$}.
+
+    \hiii{Properties}
+      \begin{itemize}
+        \item $f(u) \geq 0, \forall u$
+        \item $\int\limits_{-\infty}^{+\infty} f(u) = 1$
+      \end{itemize}
+
+  \hii{Cummulative Distribution Function}
+      \begin{align*}
+        F(u) = P(X \leq u) &= \sum\limits_{k \leq u} f(k) & \qquad \text{(discrete)}\\
+                           &= \int\limits_{\infty}^{u} f(t)dt & \qquad \text{(continuous)}
+      \end{align*}
+
+  \hii{Expectation}
+    \hiii{Expectation of Random Variable}
+      \begin{align*}
+        \mu = E(X) &= \sum\limits_{u} uf(u) & \qquad \text{(discrete)}\\
+             &= \int\limits_{-\infty}^{+\infty} uf(u)du & \qquad \text{(continuous)}
+      \end{align*}
+
+    \hiii{Properties}
+      \begin{align*}
+        E(aX + b) &= aE(X) + b \\
+        E(X + Y)  &= E(X) + E(Y)
+      \end{align*}
+
+    \hiii{Expectation of Function of Random Variable}
+      \begin{align*}
+        E[g(X)] &= \sum\limits_{u} g(u) f(u) & \qquad \text{(discrete)}\\
+                &= \int\limits_{-\infty}^{+\infty} g(u) f(u) du & \qquad \text{(continuous)}
+      \end{align*}
+
+    \hiii{Second Moment of Random Variable}
+      \begin{align*}
+        E(X^2) &= \sum\limits_{u} u^2 f(u) & \qquad \text{(discrete)}\\
+             &= \int\limits_{-\infty}^{+\infty} u^2 f(u)du & \qquad \text{(continuous)}
+      \end{align*}
+
+  \hii{Variance}
+    \hiii{Variance of Random Variable}
+      \begin{align*}
+        \sigma^2 = V(X) &= [E(X - \mu)]^2 \\
+                        &= \sum\limits_{u} (u - \mu)^2 f(u) & \qquad \text{(discrete)}\\
+                        &= \int\limits_{-\infty}^{+\infty} (u - \mu)^2 f(u)du & \qquad \text{(continuous)}
+      \end{align*}
+
+    \hiii{Standard Deviation}
+    \[
+        SD(X) = \sigma = \sqrt{V(X)}
+    \]
+
+    \hiii{Computational Formula}
+      \[
+        V(X) = E(X^2) - [E(X)]^2
+      \]
+
+    \hiii{Variance and Standard Deviation of Function of Random Variable}
+      \begin{align*}
+        V(aX + b) &= a^2 V(X) \\
+        Sd(aX + b) &= a SD(X)
+      \end{align*}
+
+    \hiii{Independent Random Variables}
+      \par If $X$ and $Y$ are independent:
+      \[
+        V(X + Y) = V(X) + V(Y)
+      \]
+
+\end{multicols*}
