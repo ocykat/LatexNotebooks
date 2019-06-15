@@ -114,6 +114,45 @@
 
 \hi{General Definitions of Second and Third Normal Forms}
     \par In general, partial and transitive dependencies should be avoided because they cause the update anomalies.
+    \par General definition of \tb{prime attribute}: an attribute that is part of any candidate key.
+    \par Partial and full functional dependencies and transitive dependencies is considered with respect to all candidate keys of a relation in this section.
 
   \hii{General Definition of 2NF}
     \par \tb{General definition of 2NF}: A relation schema $R$ is in 2NF if every nonprime attribute $A$ in $R$ is not partially dependent on any key of $R$.
+    \par \tb{Example}:
+    \img[width=12cm]{img/2nf-02.png}{}
+    \par The \ilc{LOTS} relation schema violates the general definition of 2NF because \ilc{Tax_rate} is partially dependent on the candidate key
+    \par Solution: Decompose the relation as follows:
+    \img[width=14cm]{img/2nf-03.png}{}
+
+  \hii{General Definition of Third Normal Form}
+    \par \tb{General definition of 3NF}: A relation schema $R$ is in 3NF if: whenever a \tb{nontrivial functional dependency} $X \to R$ holds in $R$, either:
+    \begin{itemize}
+      \item $X$ is a superkey of $R$.
+      \item $A$ is a prime attribute of $R$.
+    \end{itemize}
+    \par \tb{Example}:
+    \img[width=14cm]{img/3nf-02.png}{}
+    \par Here, \ilc{LOTS1} violates 3NF because:
+    \begin{itemize}
+      \item \ilc{Area} is not a superkey
+      \item \ilc{Price} is not a prime attribute
+    \end{itemize}
+    \par Solution:
+    \img[width=14cm]{img/3nf-03.png}{}
+    \par Here, both \ilc{LOTS1a} and \ilc{LOTS1b} are in 3NF.
+    \par Note that:
+    \begin{itemize}
+      \item \ilc{LOTS1} violates 3NF because \ilc{Price} is transitively dependent on each of the candidate keys of \ilc{LOTS1} via the nonprime attribute \ilc{Area}.
+      \item If a schema is in 3NF, it is certainly in 2NF.
+    \end{itemize}
+
+  \hii{Interpreting the General Definition of Third Normal Form}
+    \par \tb{Alternative Definition of 3NF}: A relation schema $R$ is in 3NF if every nonprime attribute of $R$ meets both of the following conditions:
+    \begin{itemize}
+      \item It is fully functionally dependent on every key of $R$.
+      \item It is nontransitively dependent on every key of $R$.
+    \end{itemize}
+
+  \hii{Boyce-Codd Normal Form}
+    \par
