@@ -1,0 +1,82 @@
+% \newsavebox\MeBox
+% \sbox\MeBox{$\left(
+%         \AxiomC{$\phi$}
+%         \noLine
+%         \UnaryInfC{$\vdots$}
+%         \noLine
+%         \UnaryInfC{$\psi$}
+%     \DisplayProof
+% \right)$%
+% }
+
+% =======================================
+\newsavebox\ImplIntroAssump
+\sbox\ImplIntroAssump{
+  \fbox{
+    \AxiomC{$\phi$}
+    \noLine
+    \UnaryInfC{$\vdots$}
+    \noLine
+    \UnaryInfC{$\psi$}
+    \DisplayProof
+  }
+}
+
+\begin{center}
+        \AxiomC{\usebox\ImplIntroAssump}
+        \RightLabel{$\limpl i$}
+        \UnaryInfC{$\phi \limpl \psi$}
+    \DisplayProof
+\end{center}
+%========================================
+
+% \newsavebox\MeBox
+% \sbox\MeBox{\fbox{
+%         \AxiomC{$\phi$}
+%         \noLine
+%         \UnaryInfC{$\vdots$}
+%         \noLine
+%         \UnaryInfC{$\psi$}
+%     \DisplayProof
+% }
+% }
+
+% \begin{center}
+%         \AxiomC{\usebox\MeBox}
+%         \UnaryInfC{$C$}
+%     \DisplayProof
+% \end{center}
+
+
+% \newsavebox{\mebox}
+% \sbox\mebox{
+%   $\left(
+%     \AxiomC{$\phi$}
+%     \noline
+%     \UnaryInfC{$\vdots$}
+%     \noline
+%     \UnaryInfC{$\psi$}
+%     \DisplayProof
+%   \right)$
+% }
+
+% \begin{center}
+%   \AxiomC{$\usebox\mebox$}
+%   \RightLabel{$\limpl i$}
+%     \alwaysSingleLine
+%   \UnaryInfC{$\phi \limpl \psi$}
+%   \DisplayProof
+% \end{center}
+
+
+
+% \begin{center}
+%     \alwaysNoLine
+%   \AxiomC{$\phi$}
+%   \UnaryInfC{$\vdots$}
+%   \UnaryInfC{$\psi$}
+%   \RightLabel{$\limpl i$}
+%     \alwaysSingleLine
+%   \UnaryInfC{$\phi \limpl \psi$}
+%   \DisplayProof
+% \end{center}

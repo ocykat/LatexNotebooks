@@ -16,15 +16,15 @@
         \item \tb{heap}: memory section that is dynamically allocated during
           process run time.
       \end{itemize}
-    \par \ti{Distinguishing between a program and a process}:
+    \par \tb{Distinguishing between a program and a process}:
       \begin{itemize}
-        \item A \ti{program} is a passive entity, such as a file containing a
+        \item A \tb{program} is a passive entity, such as a file containing a
           list of instructions stored on disk, often called an executable file.
-        \item A \ti{process} is an active entity, with a program counter
+        \item A \tb{process} is an active entity, with a program counter
           specifying the next instruction to execute and a set of associated
           resources.
       \end{itemize}
-  
+
   \hii{Process State}
     \par As a process executes, it changes \tb{state}. A process may be in one
       of the following states:
@@ -36,7 +36,7 @@
         \item \tb{Ready}: The process is waiting to be assigned to a processor
         \item \tb{Terminated}: The process has finished execution.
       \end{itemize}
-
+    \par  Only one process can be running on any processor at any instant, while many processes maybe ready and waiting.
     \img[width=12cm]{img/process-state.png}
 
   \hii{Process Control Block (PCB)}
@@ -45,8 +45,8 @@
     \par A PCB contains information associated with a specific process,
     including:
       \begin{itemize}
-        \item \tb{Process state}
-        \item \tb{Program counter (PC)}
+        \item \tb{Process state}: new/ready/running/waiting/halted
+        \item \tb{Program counter (PC)}: indicates the address of the next instruction to be executed for this process
         \item \tb{CPU registers}
         \item \tb{CPU-scheduling information}
         \item \tb{Memory-management information}
@@ -88,23 +88,130 @@
         carried out by the appropriate \tb{scheduler}.
       \par Types of scheduler:
       \begin{itemize}
-        \item \tb{Long-term scheduler/Job scheduler}: In a batch system, more
-          processes are submitted than can be executed immediately. These
-          processes are sent to a mass-storage device (typically a disk), where
-          they are kept for later execution.
-        \item \tb{Short-term scheduler/CPU scheduler}: A CPU scheduler selects
-          from among the processes that are ready to execute and allocates the
-          CPU to one of them.
+        \item \tb{Long-term scheduler/Job scheduler}: In a batch system, more processes are submitted than can be executed immediately. These processes are sent to a mass-storage device (typically a disk), where they are kept for later execution. The long-term scheduler selects processes from this pool and loads them into memory for execution.
+        \item \tb{Short-term scheduler/CPU scheduler}: A CPU scheduler selects from among the processes that are ready to execute and allocates the CPU to one of them.
       \end{itemize}
-      \par The \tb{short-term scheduler} executes much more frequently than a
-        \tb{long-term scheduler}.
+      \par The \tb{short-term scheduler} executes much more frequently than a \tb{long-term scheduler}.
 
     \hiii{Types of Processes}
-      \par Most processes can be described as either I/O bound or CPU bound:
+      \par Most processes can be described as either \tb{I/O bound} or \tb{CPU bound}:
       \begin{itemize}
         \item An \tb{I/O-bound process} is one that spends more of its time
           doing I/O than it spends doing computations.
         \item A \tb{CPU-bound process}, in contrast, generates I/O request
           infrequently, using more of its time doing computations.
       \end{itemize}
+      \par Long-term scheduler selects a balanced mix between IO-bound processes and CPU-bound processes.
+      \par On some systems, the long-term scheduler may be absent or minimal (UNIX and Windows).
+      \par Some operating systems, such as time-sharing systems, may introduce an additional, intermediate level of scheduling in a \tb{medium-term scheduler}.
 
+  \hii{Context Switch}
+    \par Switching the CPU to another process requires performing a state save of the current process and a state restore of a different process. This task is known as a context switch. When a context switch occurs, the kernel saves the context of the old process in its PCB and loads the saved context of the new process scheduled to run. Context-switch time is pure overhead, because the system does no useful work while switching.
+
+\hi{Operations on Processes}
+  \hii{Process Creation}
+    \par A process may create several new processes, via a create-process system call, during the course of execution.
+    \begin{itemize}
+      \item The creating process is called a parent process, and the new processes are called the children of that process.
+    \end{itemize}
+    \par Each of these new processes may in turn create other processes, forming a tree of processes.
+    \par A process is identified by a unique process identifier (or pid), typically an integer number.
+    \par When a process creates a new process:
+    \begin{itemize}
+      \item In terms of execution, there are 2 possibilities:
+        \begin{itemize}
+          \item The parent continues to execute concurrently with its children.
+          \item The parent waits until some or all of its children have terminated.
+        \end{itemize}
+        \item In terms of the address space of the new process, there are 2 possibilities:
+          \begin{itemize}
+            \item The child process is a duplicate of the parent process (it has the same
+      program and data as the parent).
+            \item The child process has a new program loaded into it.
+          \end{itemize}
+    \end{itemize}
+    \par Some UNIX system calls:
+    \begin{itemize}
+      \item \lstinline{fork()}: Create a new (child) process $C$ consisting of \tb{a copy of the address space} of the current (parent) process $P$ - meaning that $P$ and $C$ have two completely different address space.. $P$ and $C$ can communicate. Both $P$ and $C$ continue execution at the instruction after the \lstinline{fork()}. The return code is:
+        \begin{itemize}
+          \item 0 for $C$
+          \item $pid(C)$ for $P$
+        \end{itemize}
+      \item \lstinline{exec()}: Loads a binary file into memory (destroying the memory image of the program containing the exec() system call) and starts its execution. Typically used after a \lstinline{fork()} by either $P$ or $C$ to replace the process's memory space with a new program, meaning that $P$ and $C$ are able to communicate and then go their separate ways.
+      \item \lstinline{wait()}: Move the current process $P$ off the ready queue until the termination of the child $C$.
+    \end{itemize}
+
+  \hii{Process Termination}
+    \par A process terminates under these circumstances:
+    \begin{enumerate}
+      \item When it finishes executing its final statement and asks the operating system to delete it by using the \lstinline{exit()} system call \fnmark{}: when $C$ terminates, it returns a status value (typically an integer) to $P$ via the \lstinline{wait()} system call.  All the resources of $C$ — including physical and virtual memory, open files, and I/O buffers—are deallocated by the operating system.
+        \fntext{In C, the \lstinline{exit()} system call can be called either by the \lstinline{exit} function, or \lstinline{return 0;} in the \lstinline{main} function}.
+      \item When it is terminated by its parent.
+      \item When the user kills it.
+    \end{enumerate}
+    \par A parent may terminate the execution of one of its children for a variety of
+reasons, such as:
+    \begin{itemize}
+      \item The child has exceeded its usage of some of the resources that it has been
+allocated. (To determine whether this has occurred, the parent must have
+a mechanism to inspect the state of its children.)
+      \item The task assigned to the child is no longer required.
+      \item The parent is exiting, and the operating system does not allow a child to
+continue if its parent terminates.
+    \end{itemize}
+    \par In UNIX:
+      \begin{itemize}
+        \item \tb{Case 1}: A parent process $P$ waits for the termination of a child process $C_i$ by using the \lstinline{wait()} system call. The \lstinline{wait()} system call returns the process identifier of a terminated child so that the parent can tell which of its children has terminated.
+        \item \tb{Case 2}: The parent process $P$ terminates before it children. All children process will be assign a new parent - the \lstinline{init} process - to collect their status annd execution statistics.
+      \end{itemize}
+
+\hi{Interprocess Communication}
+  \par Processes executing concurrently in the operating system may be either
+\tb{independent processes} or \tb{cooperating processes}.
+  \begin{itemize}
+    \item \tb{Independent process}: cannot affect or be affected by the other processes executing in the system. Any process that does not share data with any other process is independent.
+    \item \tb{Coorperating process}: can affect or be affected by the other processes executing in the system. Any process that shares data with other processes is a cooperating process.
+  \end{itemize}
+  \par Process coorperation is used for:
+    \begin{itemize}
+      \item \tb{Information sharing}: for example: multiple users accessing the same file.
+      \item \tb{Computation speedup}: a task is broken down into subtasks, each of which will be executed parallel with the others.
+      \item \tb{Modularity}: divide the system functions into separate processes or threads.
+      \item \tb{Convenience}.
+    \end{itemize}
+  \par There are two fundamental models of \tb{interprocess communication}:
+  \begin{itemize}
+    \item \tb{shared memory}:  a region of memory that is shared by cooperating processes is established. Processes can then exchange information by reading and writing data to the shared region.
+    \item \tb{message passing}: communication takes place by means of messages exchanged between the cooperating processes.
+  \end{itemize}
+  \par Advantages of each model:
+  \begin{itemize}
+    \item \tb{Message passing}:
+      \begin{itemize}
+        \item Useful for exchanging smaller amounts of data because no conflicts need be avoided.
+        \item Easier to implement.
+      \end{itemize}
+    \item \tb{Shared memory}: faster than message passing, as message passing systems are typically implemented using systemcalls and thus require the more time-consuming task of kernel intervention. In contrast, in shared memory systems, system calls are required only to establish shared memory regions.
+  \end{itemize}
+
+  \hii{Shared-Memory System}
+    \par Typically, a shared-memory region resides in the address space of the process creating the shared-memory segment. Other processes that wish to communicate using this shared-memory segment must attach it to their address space.
+    \par Normally, the operating system tries to prevent one process from accessing another process’s memory. Shared memory requires that two or more processes agree to remove this restriction. They can then exchange information by reading and writing data in the shared areas.
+    \par The form of the data and the location are determined by these processes and are not under the operating system’s control.The processes are also responsible for ensuring that they are not writing to the same location simultaneously.
+    \par In a shared-memory system, a \tb{producer} process produces information that is consumed by a \tb{consumer} process. To allow producer and consumer processes to run concurrently, we must have available a buffer of items that can be filled by the producer and emptied by the consumer. This buffer will reside in a region of memory that is shared by the producer and consumer processes.  The producer and consumer must be synchronized, so that the consumer does not try to consume an item that has not yet been produced.
+    \par Two types of buffers can be used:
+    \begin{itemize}
+      \item \tb{The unbounded buffer} places no practical limit on the size of the buffer. The consumer may have to wait for new items, but the producer can always produce new items.
+      \item \tb{The bounded buffer} assumes a fixed buffer size. In this case, the consumer must wait if the buffer is empty, and the producer must wait if the buffer is full.
+    \end{itemize}
+
+  \hii{Message-Passing Systems}
+    \par A message-passing facility provides at least two operations: send (message) and receive (message).
+    \par Messages sent by a process can be of either fixed or variable size. If only fixed-sized messages can be sent, the system-level implementation is straightforward. This restriction, however, makes the task of programming more difficult. Conversely, variable-sized messages require a more complex system-level implementation, but the programming task becomes simpler.
+    \par Ifprocesses $P$ and $Q$ want to communicate,they must send messages to and receive messages from each other; a communication link must exist between them.This link can be implemented in a variety of ways.
+    \par Methods for logically implementing a link and the \lstinline{send()} / \lstinline{receive()} operations:
+    \begin{itemize}
+      \item Direct or indirect communication
+      \item Synchronous or asynchronous communication
+      \item Automatic or explicit buffering
+    \end{itemize}

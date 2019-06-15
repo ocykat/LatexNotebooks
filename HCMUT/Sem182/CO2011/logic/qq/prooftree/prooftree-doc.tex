@@ -1,0 +1,198 @@
+\documentstyle{article}
+\input prooftree
+\title{Build proof tree for Natural Deduction, Sequent Calculus, etc.}
+\author{Paul Taylor\\
+Department of Computing,\\
+Imperial College,\\
+London SW7 2BZ\\
++44 71 589 5111 {\em ext\/} 5057\\
+{\tt<pt@doc.ic.ac.uk>}}
+\def\X{x}
+\let\imp\Rightarrow
+\def\T{{\rm t\!t}}\def\F{{\rm f\!f}}
+\def\P#1{p#1}%
+\def\Q#1{q#1}%
+\def\E#1#2{\exists#2.\X_{#2}={#1}}
+\def\A#1#2{\exists#1.\left(\left(\E{#1}{#2}\right)\land\Q{#1}\right)}
+\def\B#1#2{\forall#1.\left(\left(\E{#1}{#2}\right)\imp\P{#1}\right)}
+\def\C#1#2{\exists#1.\P{#1}\land\left(\left(\left(\E{#1}{#2}\right)\land\Q{#1}\right)\right)}
+\overfullrule0pt
+\begin{document}
+\maketitle
+Using my Proof Tree macros, you can produce
+{\small
+$$\begin{prooftree}
+\[ \[ [(\A y n)\land(\B w n)]_\alpha
+      \andelim1
+      \A y n
+   \]
+   \kern-26em
+   \[ \[ \[ \[ \[ [(\A y n)\land(\B w n)]_\alpha
+                  \andelim2 \shiftright60pt
+                  \B w n
+               \]
+               \allelim
+               (\E y n)\imp\P y
+            \]
+            \[
+               [(\E y n)\land\Q y]_\beta
+               \andelim1
+               \E y n   
+            \]
+            \impelim \shiftright50pt
+            \P y
+         \]
+         \kern-25pt
+         [(\E y n)\land\Q y]_\beta
+         \andintro
+         \P y\land((\E y n)\land\Q y)
+      \]
+      \existsintro
+      \C z n
+   \]
+   \existselim\beta
+   \C z n
+\]
+\impintro\alpha
+(\A yn)\land(\B w n)\imp(\C z n)
+\end{prooftree}$$}
+using the \TeX\ or \LaTeX\ code
+\begin{verbatim}
+\input prooftree
+$$
+\begin{prooftree}
+\[ \[ [(\A y n)\land(\B w n)]_\alpha
+      \andelim1
+      \A y n
+   \]
+   \kern-26em
+   \[ \[ \[ \[ \[ [(\A y n)\land(\B w n)]_\alpha
+                  \andelim2 \shiftright60pt
+                  \B w n
+               \]
+               \allelim
+               (\E y n)\imp\P y
+            \]
+            \[
+               [(\E y n)\land\Q y]_\beta
+               \andelim1
+               \E y n   
+            \]
+            \impelim \shiftright50pt
+            \P y
+         \]
+         \kern-25pt
+         [(\E y n)\land\Q y]_\beta
+         \andintro
+         \P y\land((\E y n)\land\Q y)
+      \]
+      \existsintro
+      \C z n
+   \]
+   \existselim\beta
+   \C z n
+\]
+\impintro\alpha
+(\A yn)\land(\B w n)\imp(\C z n)
+\end{prooftree}$$
+\end{verbatim}
+
+
+
+In fact the commands \verb/\allintro/, {\it etc.,} are not primitive;
+the basic form is
+\begin{verbatim}
+\[
+	A\quad
+	B
+\justifies
+	A \land B
+\thickness=0.08em
+\shiftright 2em
+\using
+	{\land}{\cal I}
+\]
+\end{verbatim}
+which gives
+$$\begin{prooftree}
+	A\quad
+	B
+\justifies
+	A \land B
+\thickness=0.08em
+\shiftright 2em
+\using
+	{\land}{\cal I}
+\end{prooftree}$$
+The hypotheses may themselves be proof trees (enclosed in
+\verb/\[/\ldots\verb/\]/)
+and the purpose of the macros is to adjust
+the length of the horizontal ``deduction'' line. When the hypotheses
+are proof trees, suitable space is put between them, but of course
+this must be supplied by hand for simple formulae. The \verb/\thickness/
+and \verb/\shiftright/ commands are, of course, optional; they apply to
+the horizontal line and to the positioning of the conclusion relative to
+it. For a double line, use \verb/\Justifies/ instead of \verb/\justifies/.
+
+Notice the overloading of the \verb/\[/\ldots\verb/\]/; the outermost proof
+tree must be enclosed with \verb/\begin{prooftree}/ and \verb/\end{prooftree}/
+or \verb/\prooftree/ and \verb/\endprooftree/.
+
+To get a vertical string of dots instead of the proof rule, do
+\begin{verbatim}
+\[
+	[A]
+\using
+	\pi
+\proofdotseparation=1.2ex
+\proofdotnumber=4
+\leadsto
+	B
+\]
+\end{verbatim}
+to get
+\prooftree
+	[A]
+\using
+	\pi
+\proofdotseparation=1.2ex
+\proofdotnumber=4
+\leadsto
+	B
+\endprooftree
+
+All of of the keywords except \verb/\prooftree/ and \verb/\endprooftree/
+are optional and may appear in any order. They may also be combined in
+\verb/\newcommand/s, for example
+\begin{verbatim}
+\newcommand\Cut{\using\sf cut\thickness.08em\justifies}
+\end{verbatim}
+with the abbreviation
+\begin{verbatim}
+\[ A \vdash B \qquad
+   B \vdash C
+  \Cut
+   A \vdash C
+\]
+\end{verbatim}
+
+\verb/\thickness/ specifies the breadth of the rule in any units, although
+font-relative units such as ex or em are preferable.
+It may optionally be followed by =.
+\verb/\proofrulebreadth=.08em/ or \verb/\setlength\proofrulebreadth{.08em}/
+may also be used either in place of \verb/\thickness/ or globally; the
+default is 0.04em. \verb/\proofdotseparation/ and \verb/\proofdotnumber/
+control the size of the string of dots.
+
+If proof trees and formulae are mixed, some explicit spacing is needed,
+but don't put anything to the left of the left-most (or the right of
+the right-most) hypothesis, or put it in braces, because this will cause
+the indentation to be lost.
+
+By default the conclusion is centered wrt the left-most and right-most
+immediate hypotheses (not their proofs); \verb/\shiftright/ or
+\verb/\shiftleft/ moves it relative to this position.
+(Not sure about this specification or how
+it should affect spreading of proof tree.)
+
+\end{document}

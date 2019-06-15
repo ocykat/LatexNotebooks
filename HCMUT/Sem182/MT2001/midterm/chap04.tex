@@ -19,3 +19,109 @@
     \end{itemize}
 
 \end{multicols*}
+
+\begin{multicols}{3}
+\hi{Confidence Intervals}
+
+  \hii{Definitions and Terminology}
+    \hiii{Terminology}
+      \begin{itemize}
+        \item A \tb{population} is a collection of objects about which information is sought.
+        \item A \tb{sample} is a part of the population that is observed.
+        \item A \tb{parameter} is a numerical characteristic of a population.
+        \item A \tb{statistics} is a numerical function of the sampled data, used to estimate an unknown parameter
+      \end{itemize}
+
+    \hiii{Mean}
+      \begin{itemize}
+      \item \tb{Population Mean}: denoted $\mu$, is the average of all values in the \tb{entire population}.
+      \item \tb{Sample Mean}: denoted $\hat{\mu} = \bar{X}$, is the average value of a \tb{sample}. For a sample with $n$ values:
+        \[
+          \hat{\mu} = \bar{X} = \frac{x_1 + \ldots + x_n}{n}
+        \]
+      \end{itemize}
+
+    \hiii{Median}
+      \par List all data values in sorted order from smallest to largest. For a sample with $n$ values:
+      \begin{itemize}
+        \item If $n \not \mid 2$: the mean is one single value at the middle position.
+        \item If $n \mid 2$: the mean is the average of two values at the middle positions.
+      \end{itemize}
+
+    \hiii{Variance}
+      \par The \tb{sample variance}, denoted $s^2$, is the approximation of the \tb{population variance} $\sigma^2$.
+      \[
+        s^2 = \frac{\sum (x_i - \bar{X})^2}{n - 1} = \frac{\sum (x_i - \hat{\mu})^2}{n - 1}
+      \]
+      where $n - 1$ is called the \tb{degree of freedom}.
+
+    \hiii{Confidence Level and Significance Level}
+      \begin{itemize}
+        \item \tb{Confidence level} $\gamma$ is the measure of the degree of reliability of the interval.
+        \item \tb{Significance level} $\alpha$ is the probability we allow ourselves to be wrong when we are estimating a parameter with a confidence interval.
+      \end{itemize}
+      \[
+        \gamma + \alpha = 1
+      \]
+
+  \hii{Case 1: Normal Population with Known Standard Deviation}
+    \hiii{Confidence Interval of the Population Mean}
+    \par If $x_1, \ldots, x_n$ are independent and identically distributed (i.i.d.), following a normal distribution $N(\mu, \sigma^2)$ and $\alpha = 1 - \gamma$, then the \tb{confidence interval of the population mean} is:
+    \[
+      \mu = \hat{\mu} \pm z_{\alpha / 2} \times \frac{\sigma}{\sqrt{n}}
+    \]
+
+    \hii{Sample Size According to Maximum Error}
+      \par If $\bar{X}$ is used to estimate $\mu$, then we can be $100(1 - a)\%$ confident that the error will not exceed a specified amount $\epsilon$ when the sample size is:
+      \[
+        n = \bigg\lceil \frac{\sigma z_{\alpha/2}}{\epsilon} \bigg\rceil^2
+      \]
+
+    \hii{One-Sided Convidence Interval of the Population Mean}
+      \begin{itemize}
+        \item A $100(1 - \alpha)\%$ upper-confidence bound for $\mu$ is
+        \[
+          \mu \leq \hat{\mu} + z_{\alpha} \times \frac{\sigma}{\sqrt(n)}
+        \]
+        \item A $100(1 - \alpha)\%$ lower-confidence bound for $\mu$ is
+        \[
+          \mu \geq \hat{\mu} - z_{\alpha} \times \frac{\sigma}{\sqrt(n)}
+        \]
+      \end{itemize}
+
+  \hii{Case 2: Normal Population with Unknown Standard Deviation}
+    \hiii{Confidence Interval of the Population Mean}
+     \par If $x_1, \ldots, x_n$ are independent and identically distributed (i.i.d.) then the \tb{confidence interval of the population mean} is:
+     \[
+      \mu = \hat{\mu} \pm t_{n - 1, \alpha / 2} \times \frac{s}{\sqrt(n)}
+     \]
+    \hiii{Confidence Interval of the Population Variance}
+      \begin{itemize}
+        \item \tb{Two-sided Confidence Interval}
+        \par Choose $c_1$ and $c_2$ so that the area in each tail of $\chi_{n - 1}^2$ distribution is $\alpha / 2$. Then the $\gamma$-confidence interval
+        for the unknown variance $\sigma^2$ is:
+        \[
+          \frac{(n - 1)s^2}{c_2} \leq \sigma^2 \leq \frac{(n - 1)s^2}{c_1}
+        \]
+        \item \tb{One-sided Confidence Interval}
+        \par Choose $c_1$ and $c_2$ so that the area in each tail of $\chi_{n - 1}^2$ distribution is $\alpha$. Then the $\gamma$-confidence interval
+        for the unknown variance $\sigma^2$ are:
+        \[
+          \sigma^2 \geq \frac{(n - 1)s^2}{c_2}
+        \]
+        and
+        \[
+          \sigma^2 \leq \frac{(n - 1)s^2}{c_1}
+        \]
+      \end{itemize}
+
+    \hii{Case 3: Large Sample Size}
+      \hiii{Confidence Interval of the Population Mean}
+      \par If $x_1, \ldots, x_n$ are independent and identically distributed (i.i.d.) and $n$ is large, then:
+        \[
+          \mu = \hat{\mu} \pm z_{\alpha / 2} \times \frac{s}{\sqrt(n)}
+        \]
+
+\end{multicols}
+
+\clearpage

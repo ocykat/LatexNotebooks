@@ -1,0 +1,187 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{bussproofs}
+
+\title{Rules for natural deduction}
+\author{INF3170/4171}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Conjunction}
+
+The rules for $\land$ are 
+\AxiomC{$A$}
+\AxiomC{$B$}
+\RightLabel{\scriptsize{$\land I$}}
+\BinaryInfC{$A \land B$}
+\DisplayProof, 
+\AxiomC{$A \land B$}
+\RightLabel{\scriptsize{$\land E$}}
+\UnaryInfC{$A$}
+\DisplayProof and
+\AxiomC{$A \land B$}
+\RightLabel{\scriptsize{$\land E$}}
+\UnaryInfC{$B$}
+\DisplayProof.
+
+\subsection*{Implication}
+
+The rules for $\to$ are
+
+\begin{prooftree}
+\AxiomC{$[A]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$B$}
+\RightLabel{\scriptsize{$\to I^n$}}
+\UnaryInfC{$A \to B$}
+\end{prooftree}
+
+\noindent and
+
+\begin{prooftree}
+\AxiomC{$A \to B$}
+\AxiomC{$A$}
+\RightLabel{\scriptsize{$\to E$}}
+\BinaryInfC{$B$}
+\end{prooftree}
+
+
+
+
+\subsection*{Disjunction}
+
+The rules for $\lor$ are 
+\AxiomC{$A$}
+\RightLabel{\scriptsize{$\lor I$}}
+\UnaryInfC{$A \lor B$}
+\DisplayProof,
+\AxiomC{$B$}
+\RightLabel{\scriptsize{$\lor I$}}
+\UnaryInfC{$A \lor B$}
+\DisplayProof
+and
+\begin{prooftree}
+\AxiomC{$A \lor B$}
+
+\AxiomC{$[A]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$C$}
+
+\AxiomC{$[B]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$C$}
+
+\RightLabel{\scriptsize{$\lor E^n$}}
+\TrinaryInfC{$C$}
+\end{prooftree}
+
+\subsection*{Negation}
+
+The rules for $\neg$ are
+
+\begin{prooftree}
+\AxiomC{$[A]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$\bot$}
+\RightLabel{\scriptsize{$\neg I^n$}}
+\UnaryInfC{$\neg A$}
+\end{prooftree}
+
+\noindent and
+
+\begin{prooftree}
+\AxiomC{$\neg A$}
+\AxiomC{$A$}
+\RightLabel{\scriptsize{$\neg E$}}
+\BinaryInfC{$\bot$}
+\end{prooftree}
+
+\subsection*{Additional rules}
+The rule for $\top$ is \AxiomC{}
+\RightLabel{\scriptsize{$\top I$}}
+\UnaryInfC{$\top$}
+\DisplayProof and the rule for $\bot$ is 
+\AxiomC{$\bot$}
+\RightLabel{\scriptsize{$\bot E$}}
+\UnaryInfC{$C$}
+\DisplayProof
+
+\subsection*{Rule for classical logic}
+
+For classical logic we also have at least one of
+\AxiomC{$\neg \neg A$}
+\RightLabel{\scriptsize{$\neg \neg C$}}
+\UnaryInfC{$A$}
+\DisplayProof,
+\AxiomC{}
+\RightLabel{\scriptsize{$XM$}}
+\UnaryInfC{$A \lor \neg A$}
+\DisplayProof and
+\begin{prooftree}
+\AxiomC{$[\neg A]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$\bot$}
+\RightLabel{\scriptsize{$\bot^n_C$}}
+\UnaryInfC{$A$}
+\end{prooftree}
+
+
+\subsection*{Universal quantifier}
+
+The rules for $\forall$ are
+\AxiomC{$A[x \backslash a]$}
+\RightLabel{\scriptsize{$\forall I_{*}$}}
+\UnaryInfC{$\forall x A$}
+\DisplayProof
+and
+\AxiomC{$\forall x A$}
+\RightLabel{\scriptsize{$\forall E$}}
+\UnaryInfC{$A[x \backslash t]$}
+\DisplayProof
+
+\noindent Here $a$ must not occur in any undischarged assumption in the proof of $A[x \backslash a]$ or in $\forall x A$ when $\forall I_{*}$ is applied. $t$ can be any term in the language.
+
+\subsection*{Existential quantifier}
+
+The rules for $\exists$ are
+\AxiomC{$A[x \backslash t]$}
+\RightLabel{\scriptsize{$\exists I$}}
+\UnaryInfC{$\exists x A$}
+\DisplayProof and
+
+\begin{prooftree}
+\AxiomC{$\exists x A$}
+
+\AxiomC{$[A[x \backslash a]]^n$}
+\noLine
+\UnaryInfC{\vdots}
+\noLine
+\UnaryInfC{$C$}
+
+\RightLabel{\scriptsize{$\exists E^n$}}
+\BinaryInfC{$C$}
+\end{prooftree}
+
+\noindent Here $t$ is any term in the language, and $a$ must not occur in $\exists x A$, $C$ or any assumption used to derive $C$.
+
+
+
+
+\end{document}

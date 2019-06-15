@@ -1,0 +1,349 @@
+% Symbols for logic
+% Paul Taylor, 7 June 2003
+
+%=========================================================================
+\makeatletter
+
+\ifx\@ptsize\undefined
+   \setbox0\hbox{A}%
+   % 10pt 6.83331pt
+   % 11pt 7.48248pt
+   % 12pt 8.2pt
+   \ifdim     \ht0>8pt\def\@ptsize{2}%
+   \else\ifdim\ht0>7pt\def\@ptsize{1}%
+   \else              \def\@ptsize{0}%
+\fi\fi\fi
+
+\ifx\mathfrak\undefined\else\def\frak{\mathfrak}\fi
+
+%=========================================================================
+% make  < > ;  behave appropriately for logicians' use
+\mathcode`\;="203B  % make ; a binary operator & bold (for composition)
+\mathcode`\<="4268  % = \langle
+\mathcode`\>="5269  % > = \rangle
+\mathchardef\gt="313E
+\mathchardef\lt="313C
+\mathchardef\hyph="702D % text-style hyphen within maths mode
+\mathchardef\semicolon="603B % the original
+
+%=========================================================================
+% The missing Greek letters (same as Roman)
+\mathchardef\omicron="006F      % o
+\mathchardef\Alpha="0041        % A
+\mathchardef\Beta="0042         % B
+\mathchardef\Epsilon="0045      % E
+\mathchardef\Zeta="005A         % Z
+\mathchardef\Eta="0048          % H
+\mathchardef\Iota="0049         % I
+\mathchardef\Kappa="004B        % K
+\mathchardef\Mu="004D           % M
+\mathchardef\Nu="004E           % N
+\mathchardef\Omicron="004F      % O
+\mathchardef\Rho="0050          % P % \!
+\mathchardef\Tau="0054          % T % \!
+\mathchardef\Chi="0058          % X
+
+%=========================================================================
+\def\Z@font{\mathcal}%   \A..\Z     are caligraphic
+\def\z@font{\mathfrak}%  \a..\z     are fraktur
+\def\ZZ@font{\mathsf}%   \AA..\ZZ   are sansserif
+\def\zz@font{\mathbf}%   \aa..\zz   are bold
+\def\ZZZ@font{\mathbb}%  \AAA..\ZZZ are blackboard bold
+\def\zzz@font{\mathrm}%  \aaa..\zzz are roman
+%
+
+\ifx\mathcal\undefined\def\mathcal{\cal}\fi
+
+\def\saveaccent#1#2{\ifx#2\undefined\let#2#1\fi}
+
+\saveaccent \H \Hungarian@umlaut
+\saveaccent \L \Polish@L
+\saveaccent \O \Danish@OO
+\saveaccent \P \paragraph@symbol
+\saveaccent \S \section@symbol
+
+\def\A{{\Z@font A}}\def\B{{\Z@font B}}\def\C{{\Z@font C}}\def\D{{\Z@font D}}
+\def\E{{\Z@font E}}\def\F{{\Z@font F}}\def\G{{\Z@font G}}
+\def\H{{\relax\ifmmode\Z@font H\else\aftergroup\Hungarian@umlaut\fi}}
+\def\I{{\Z@font I}}\def\J{{\Z@font J}}\def\K{{\Z@font K}}%
+\def\L{{\relax\ifmmode\Z@font L\else\Polish@L\fi}}
+\def\M{{\Z@font M}}\def\N{{\Z@font N}}
+\def\O{{\relax\ifmmode\Z@font O\else\Danish@OO\fi}}
+\def\P{{\relax\ifmmode\Z@font P\else\paragraph@symbol\fi}} % \!
+\def\Q{{\Z@font Q}}\def\R{{\Z@font R}}
+\def\S{{\relax\ifmmode\Z@font S\else\section@symbol\fi}}
+\def\T{{\Z@font T}}\def\U{{\Z@font U}}\def\V{{\Z@font V}}\def\W{{\Z@font W}}
+\def\X{{\Z@font X}}\def\Y{{\Z@font Y}}\def\Z{{\Z@font Z}}
+
+\saveaccent \AA \Scandinavian@AA
+
+\def\AA{{\relax\ifmmode\ZZ@font A\else\Scandinavian@AA\fi}}%
+
+\def\BB{{\ZZ@font B}}\def\CC{{\ZZ@font C}}\def\DD{{\ZZ@font D}}
+\def\EE{{\ZZ@font E}}\def\FF{{\ZZ@font F}}\def\GG{{\ZZ@font G}}
+\def\HH{{\ZZ@font H}}\def\II{{\ZZ@font I}}\def\JJ{{\ZZ@font J}}
+\def\KK{{\ZZ@font K}}\def\LL{{\ZZ@font L}}\def\MM{{\ZZ@font M}}
+\def\NN{{\ZZ@font N}}\def\OO{{\ZZ@font O}}\def\PP{{\ZZ@font P}}
+\def\QQ{{\ZZ@font Q}}\def\RR{{\ZZ@font R}}\def\SS{{\ZZ@font S}}
+\def\TT{{\ZZ@font T}}\def\UU{{\ZZ@font U}}\def\VV{{\ZZ@font V}}
+\def\WW{{\ZZ@font W}}\def\XX{{\ZZ@font X}}\def\YY{{\ZZ@font Y}}
+\def\ZZ{{\ZZ@font Z}}
+
+\def\AAA{{\ZZZ@font A}}
+\def\BBB{{\ZZZ@font B}}\def\CCC{{\ZZZ@font C}}\def\DDD{{\ZZZ@font D}}
+\def\EEE{{\ZZZ@font E}}\def\FFF{{\ZZZ@font F}}\def\GGG{{\ZZZ@font G}}
+\def\HHH{{\ZZZ@font H}}\def\III{{\ZZZ@font I}}\def\JJJ{{\ZZZ@font J}}
+\def\KKK{{\ZZZ@font K}}\def\LLL{{\ZZZ@font L}}\def\MMM{{\ZZZ@font M}}
+\def\NNN{{\ZZZ@font N}}\def\OOO{{\ZZZ@font O}}\def\PPP{{\ZZZ@font P}}
+\def\QQQ{{\ZZZ@font Q}}\def\RRR{{\ZZZ@font R}}\def\SSS{{\ZZZ@font S}}
+\def\TTT{{\ZZZ@font T}}\def\UUU{{\ZZZ@font U}}\def\VVV{{\ZZZ@font V}}
+\def\WWW{{\ZZZ@font W}}\def\XXX{{\ZZZ@font X}}\def\YYY{{\ZZZ@font Y}}
+\def\ZZZ{{\ZZZ@font Z}}
+
+\saveaccent \a \tabbing@a
+\saveaccent \b \under@bar
+\saveaccent \c \@cedilla
+\saveaccent \d \under@dot
+\saveaccent \i \dotless@i
+\saveaccent \j \dotless@j
+\saveaccent \l \Polish@l
+\saveaccent \o \Danish@oo
+\saveaccent \r \over@circle
+\saveaccent \u \cup@accent
+\saveaccent \v \check@accent
+
+\def\iacute{\'\dotless@i}
+\def\igrave{\`\dotless@i}
+
+%\def\a{{\relax\ifmmode\frak a\else\aftergroup\tabbing@a\fi}}
+%\def\a{{\frak a}}
+
+\def\b{{\relax\ifmmode\frak b\else\aftergroup\under@bar\fi}}
+\def\c{{\relax\ifmmode\frak c\else\aftergroup\@cedilla\fi}}
+\def\d{{\relax\ifmmode\frak d\else\aftergroup\under@dot\fi}}
+
+\def\e{{\frak e}}\def\f{{\frak f}}\def\g{{\frak g}}\def\h{{\frak h}}
+
+%\def\i{{\relax\ifmmode\frak i\else\dotless@i\fi}}
+\def\j{{\relax\ifmmode\frak j\else\dotless@j\fi}}
+
+\def\k{{\frak k}}
+
+\def\l{{\relax\ifmmode\frak l\else\Polish@l\fi}}
+
+\def\m{{\frak m}}\def\n{{\frak n}}
+
+\def\o{{\relax\ifmmode\frak o\else\Danish@oo\fi}}
+
+\def\p{{\frak p}}\def\q{{\frak q}}
+
+\def\r{{\relax\ifmmode\frak r\else\aftergroup\over@circle\fi}}
+
+\def\s{{\frak s}}
+
+\def\t{{\relax\ifmmode\frak t\else\aftergroup\tie@accent\fi}}
+\def\u{{\relax\ifmmode\frak u\else\aftergroup\cup@accent\fi}}
+\def\v{{\relax\ifmmode\frak v\else\aftergroup\check@accent\fi}}
+
+\def\w{{\frak w}}\def\x{{\frak x}}\def\y{{\frak y}}\def\z{{\frak z}}
+
+\saveaccent \aa \Scandinavian@aa
+\saveaccent \ss \German@ss
+\saveaccent \tt \tt@font
+
+\def\aa{{\relax\ifmmode\zz@font a\else\Scandinavian@aa\fi}}
+
+\def\bb{{\zz@font b}}\def\cc{{\zz@font c}}
+\def\dd{{\zz@font d}}\def\ee{{\zz@font e}}\def\ff{{\zz@font f}}
+
+%\def\gg{{\zz@font{g}}}% much greater than
+
+\def\hh{{\zz@font h}}\def\ii{{\zz@font i}}
+\def\jj{{\zz@font j}}\def\kk{{\zz@font k}}
+
+%\def\ll{{\zz@font{l}}}% much less than
+
+\def\mm{{\zz@font m}}\def\nn{{\zz@font n}}\def\oo{{\zz@font o}}
+\def\pp{{\zz@font p}}
+
+%\def\qq{{\zz@font{q}}}% Quine quotes
+
+\def\rr{{\zz@font{r}}}
+
+\def\ss{{\relax\ifmmode\zz@font{s}\else\German@ss\fi}}
+\def\tt{{\relax\ifmmode\zz@font{t}\else\aftergroup\tt@font\fi}}% typewriter
+
+\def\uu{{\zz@font u}}\def\vv{{\zz@font v}}\def\ww{{\zz@font w}}
+\def\xx{{\zz@font x}}\def\yy{{\zz@font y}}\def\zz{{\zz@font z}}
+
+\def\aaa{{\zzz@font a}}
+\def\bbb{{\zzz@font b}}\def\ccc{{\zzz@font c}}\def\ddd{{\zzz@font d}}
+\def\eee{{\zzz@font e}}\def\fff{{\zzz@font f}}\def\ggg{{\zzz@font g}}
+\def\hhh{{\zzz@font h}}\def\iii{{\zzz@font i}}\def\jjj{{\zzz@font j}}
+\def\kkk{{\zzz@font k}}\def\lll{{\zzz@font l}}\def\mmm{{\zzz@font m}}
+\def\nnn{{\zzz@font n}}\def\ooo{{\zzz@font o}}\def\ppp{{\zzz@font p}}
+\def\qqq{{\zzz@font q}}\def\rrr{{\zzz@font r}}\def\sss{{\zzz@font s}}
+\def\ttt{{\zzz@font t}}\def\uuu{{\zzz@font u}}\def\vvv{{\zzz@font v}}
+\def\www{{\zzz@font w}}\def\xxx{{\zzz@font x}}\def\yyy{{\zzz@font y}}
+\def\zzz{{\zzz@font z}}
+
+%=========================================================================
+
+\def\@qq#1#2{%
+  % #1 = \displaystyle or \textstyle or \scriptstyle or \scriptscriptstyle
+  % #2 = the text
+  \begingroup
+  \setbox1\hbox{$#1\ulcorner$}% the corners
+  \setbox2\hbox{$#1\urcorner$}%
+  %
+  % kern the corners horizontally into the text
+  \setbox0\hbox{\kern-.5\wd1$#1#2$\kern-.5\wd1}%
+  %
+  % how much to raise the corners for the height of the text
+  \dimen0\ht0\advance\dimen0.5\wd1\advance\dimen0-\ht1
+  %
+  % trim a bit off the height of the corners
+  % to reduce the growth in height of nested \qq formulae
+  \dimen1\ht1\advance\dimen1-.25\wd1\ht1\dimen1\ht2\dimen1
+  %
+  % only raise the corners if we have to do so by a significant amount
+  \ifdim\dimen0>.2\wd1
+      % then do so by a uniform amount
+      \ifdim\dimen0>.7\wd1
+      \else\dimen0=.5\wd1
+      \fi
+      \raise\dimen0\box1\box0\raise\dimen0\box2
+  \else
+      \box1\box0\box2
+  \fi
+  \endgroup
+}
+
+\def\qq{\mathpalette\@qq}%
+
+\def\qq#1{%
+  \mathchoice{\@qq\displaystyle{#1}}%
+             {\@qq\textstyle{#1}}%
+             {\@qq\scriptstyle{#1}}%
+             {\@qq\scriptscriptstyle{#1}}%
+}
+
+%=========================================================================
+\def\Quantifier#1#2.{\@quantifier{#1}#2::.}
+
+\def\@quantifier#1#2:#3:#4.{{{#1}{#2}\def\next{#3}%
+   \ifx\next\empty{.}\mkern4mu
+   \else\mkern1mu{\colon}\mkern1mu{#3}\mkern.5mu{.}\mkern6mu
+   \fi}}%
+
+\def\All     {\Quantifier\forall}
+\def\Function{\Quantifier\lambda}
+\def\Greatest{\Quantifier\nu}
+\def\Lamb    {\Quantifier\lambda}
+\def\Least   {\Quantifier\mu}
+\def\Product {\Quantifier\Pi}
+\def\Some    {\Quantifier\exists}
+\def\Sum     {\Quantifier\Sigma}
+\def\TheOne  {\Quantifier\iota}
+
+%=========================================================================
+%  directed unions, joins and intersections
+%  (maybe add meets and square symbols)
+
+% #1=narrowing @10pt #2=@11pt #3=@12pt #4=raising #5=character
+\ifcase\@ptsize
+   \def\dir@arr#1#2#3#4#5{\mkern-#1mu\raise#4ex\rlap{\tenln\char'#5}\mkern#1mu}
+\or\def\dir@arr#1#2#3#4#5{\mkern-#2mu\raise#4ex\rlap{\tenln\char'#5}\mkern#2mu}
+\or\def\dir@arr#1#2#3#4#5{\mkern-#3mu\raise#4ex\rlap{\tenln\char'#5}\mkern#3mu}
+\fi
+
+\def\dirunion{\mathop{{\bigcup}%
+  \mathchoice{\dir@arr{2.2}{2.0}{1.7}{0.3}{66}}% display
+             {\dir@arr{2.0}{1.8}{1.6}{-.2}{66}}% text
+             {\dir@arr{2.0}{2.1}{2.2}{-.3}{66}}% script
+             {\dir@arr{2.0}{2.2}{2.4}{-.4}{66}}}% scriptscript
+  \displaylimits}
+
+\def\dirsup{\mathop{{\bigvee}%
+  \mathchoice{\dir@arr{6.0}{5.3}{5.0}{0.3}{27}}% display
+             {\dir@arr{6.0}{5.3}{5.0}{-.2}{27}}% text
+             {\dir@arr{6.5}{6.8}{7.0}{-.3}{27}}% script
+             {\dir@arr{7.0}{7.3}{7.5}{-.4}{27}}}% scriptscript
+  \displaylimits}
+
+\def\dirinter{\mathop{{\bigcap}%
+  \mathchoice{\dir@arr{2.0}{2.0}{2.0}{-1.5}{77}}% display
+             {\dir@arr{2.0}{2.0}{2.0}{-.75}{77}\mkern2mu}% text
+             {\dir@arr{2.5}{2.5}{2.5}{-1.0}{77}\mkern2mu}% script
+             {\dir@arr{3.0}{3.0}{3.0}{-1.0}{77}\mkern2mu}}% scriptscript
+  \displaylimits}
+
+\def \upN{{{\mathsf N}\dir@arr{1.4}{1.4}{1.4}{-.3}{66}}} % up=66
+\def \downN{{\dir@arr{1.4}{1.4}{1.4}{-.3}{77}{\mathsf N}}} % down=77
+
+%=========================================================================
+% It seems that nobody ever bothered to parametrise this
+% for 11, 12pt in LaTeX.   What disgusting code anyway!
+\ifcase\@ptsize
+     \def\big#1{{\hbox{$\left#1\vbox to8.5pt{}\right.\n@space$}}}
+\or  \def\big#1{{\hbox{$\left#1\vbox to9.5pt{}\right.\n@space$}}}
+\else\def\big#1{{\hbox{$\left#1\vbox to10.5pt{}\right.\n@space$}}}
+\fi
+
+%=========================================================================
+\def\setof#1{{\left\{#1\right\}}}
+\def\listof#1%
+{{\left\{\mkern-1.7\thinmuskip\left|{#1}\right|\mkern-1.7\thinmuskip\right\}}}
+
+\def\collect#1#2{{\{{#1}\mid{#2}\}}}
+\def\denote#1{{[\![{#1}]\!]}}
+
+\def\blank{{({-})}}
+\def\Blank{{({=})}}
+
+\def\biproves{\mathrel{{\dashv}{\vdash}}}
+\def\ddown{\mathop{\lower 2pt\hbox to 0pt{$\downarrow$\hss}{\downarrow}}}
+\def\upup {\mathop{\raise.3ex\rlap{$\uparrow$}{\uparrow}}\nolimits}
+\def\displayto{\mathrel{{-}\!\!{-}\!{\triangleright}}}% display L over R
+\def\mapsfrom{\mathrel{\leftarrow\joinrel\mapstochar\,}}%
+\def\relto{\mathrel{\leftharpoondown\mkern-18mu\rightharpoonup}}%
+
+\def\disjoint{\mathrel{\not\joinrel\cap}}
+
+\def\opp#1{{{#1}^{\mathsf{op}}}}
+
+\let\Impliedby\Leftarrow
+\let\Implies\Rightarrow
+
+\let\adjoint\dashv
+\let\biimplies\Leftrightarrow
+\let\commacat\downarrow
+\let\equiva\simeq
+\let\from\leftarrow
+\let\implies\Rightarrow
+\let\into\hookrightarrow
+\let\isomo\cong
+\let\onfrom\twoheadleftarrow
+\let\onto\twoheadrightarrow
+\let\openinto\hookrightarrow
+\let\partto\rightharpoonup
+\let\proves\vdash
+\let\realises\Vdash
+\let\red\leadsto
+\let\retract\triangleleft
+
+\def\number@font{\mathbf}
+\def\zero {{\number@font0}}
+\def\one  {{\number@font1}}
+\def\two  {{\number@font2}}
+\def\three{{\number@font3}}
+\def\four {{\number@font4}}
+\def\five {{\number@font5}}
+\def\six  {{\number@font6}}
+\def\seven{{\number@font7}}
+\def\eight{{\number@font8}}
+\def\nine {{\number@font9}}
+
+
+%=========================================================================
+\makeatother
