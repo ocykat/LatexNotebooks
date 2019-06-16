@@ -1,63 +1,147 @@
 \chapter{Disk Storage, Basic Structures, Hashing, and Modern Storage Architectures}
 
 \hi{Introduction}
-%  \hii{Storage Hierarchy}
-    %\begin{itemize}
-      %\item{Primary storage}:
-      %\begin{itemize}
-        %\item Storage media that can be operated on directly by the computer’s
-        %central processing unit (CPU).
-        %\item Provides fast access to data but is of limited storage capacity.
-      %\end{itemize}
-      %\item \tb{Secondary storage}
-      %\item \tb{Tertiary storage}
-        %\par Optical disks (CD-ROMs, DVDs, and other similar storage media) and
-        %tapes.
-    %\end{itemize}
-
   \hii{Memory Hierarchies and Storage Devices}
     \hiii{Memory Hierarchies}
       \begin{itemize}
-        \item \tb{Primary Storage Level}
-          \begin{itemize}
-            \item Cache memory (SRAM): used to speed up execution
-            \item Main memory (DRAM): low cost but volatile and lower speed
-              compared to cache, where a program resides and executes.
-          \end{itemize}
-        \item \tb{Second and Tertiary Storage Level}: includes
-          \begin{itemize}
-            \item magnetic disks
-            \item mass storage in the form of CD-ROM (compact disk read-only
-              memory) and DVD (digital video disk) devices
-            \item tapes
-          \end{itemize}
-      \end{itemize}
-      \par \tb{Main memory database}: the case where the entire database can be kept in main memory
-  (with a backup copy on magnetic disk).
-
-    \hiii{Other Storage Devices}
-      \begin{itemize}
-        \item Flash Memory
-        \item Optical Drives
-        \item Magnetic Tapes
+        \item \tb{Primary Storage Level}:
+          \par Primary storage: storage media that can be operated on directly by the computer’s CPU
+          \par Properties:
+            \begin{itemize}
+              \item can be operated on directly by the computer’s CPU
+              \item provide fast access
+              \item limited storage capacity
+              \item violatile (content of memory is lost in case the machine is turned off, power failure, or system crash)
+            \end{itemize}
+          \par Storage devices:
+            \begin{itemize}
+              \item Cache memory (SRAM): used to speed up execution
+              \item Main memory (DRAM): low cost but volatile and lower speed
+                compared to cache, where a program resides and executes.
+            \end{itemize}
+          \par \tb{Main memory database}: the entire database can be kept in main memory (with a backup copy on magnetic disk).
+        \item \tb{Second and Tertiary Storage Level}:
+          \par Storage devices:
+            \begin{itemize}
+              \item Secondary storage level:
+              \begin{itemize}
+                \item magnetic disks
+                \item flash memory (SSD): nonvolatile, high-density high-performance
+              \end{itemize}
+              \item Tertiary storage level:
+              \begin{itemize}
+                \item CD-ROM (compact disk read-only memory) and DVD (digital video disk) devices
+                \item magnetic tapes: used for archiving and backup storage of data. Tape jukeboxes contains a bank of tapes that are catalogued and can be automatically loaded onto tape drives are popular as tertiary storage.
+              \end{itemize}
+            \end{itemize}
       \end{itemize}
 
   \hii{Storage Organization and Databases}
+    \hiii{Types of Data}
     \begin{itemize}
       \item \tb{Persistent data}: data that must persist over long periods of time
       \item \tb{Transient data}: data that persist for only a limited time during program execution
     \end{itemize}
-    \par \tb{Most databases are stored permanently (or persistently) on magnetic disk secondary storage} for the following reasons:
+
+    \hiii{The use of Secondary Storage}
+      \par \tb{Most databases are stored permanently (or persistently) on magnetic disk secondary storage} for the following reasons:
+        \begin{itemize}
+          \item Databases are too large to fit entirely in main memory.
+          \item Data loss occurs less often thanks to the \tb{nonvolatile} nature of magnetic disks.
+          \item Cost of storage per unit of secondary storage is less than primary storage.
+        \end{itemize}
+      \par Newer technologies such as SSD will be alternatives for magnetic disks in the future. However, magnetic disks will continue to be the primary medium of choice for large database.
+
+    \hiii{The use of Magnetic Tapes}
+      \par \tb{Magnetic tapes} are used for \tb{backing up} because storage on tape costs much less than storage on disk.
+    
+    \hiii{How data is stored an access on disk}
+      \par Typical database applications need only a small portion of the database at a time for processing. Whenever a certain portion of the data is needed, it must be located on disk, copied to main memory for processing, and then rewritten to the disk if the data is changed.
+      \par The data stored on disk is organized as \tb{files of records}. Each record is a collection of data values that can be interpreted as facts about entities, their attributes, and their relationships.
+    
+    \hiii{File Organization}
+      \par There are several primary \tb{file organizations}.
+      \par File organizations determine how the file records are physically placed on the disk, and hence, how the records can be accessed.
+      \begin{itemize}
+        \item A heap file (or unordered file): places the records on disk in no particular order by appending new records at the end of the file.
+        \item A sorted file (or sequential file) keeps the records ordered by the value of a particular field (called the sort key).
+        \par A hashed file uses a hash function applied to a particular field (called the hash key) to determine a record’s placement on disk.
+        \par Other primary file organizations, such as B-trees, use tree structures.
+      \end{itemize}
+
+\hi{Secondary Storage Device}
+  \par This section discusses some characteristics of magnetic disk and magnetic tape stoage devices.
+
+  \hii{Hardware Description of Disk Devices}
+    \hiii{Disk Devices}
+      \begin{itemize}
+        \item \tb{hard disk drive (HDD)}: the device that holds the disks
+        \item \tb{capacity} (of a disk): the number of bytes it can store
+        \item \tb{single-side/double-side} disk: a disk that store information on only one surface/both surfaces
+        \item \tb{disk pack}: disks are assembled into disk pack, including many disks, to increase storage capacity
+        \item \tb{track}: a circle on a disk that has a distinct diameter - information is stored on a disk in these concentric circles
+        \item \tb{cylinder}: tracks with the same diameter on the various surfaces
+        \item \tb{sector}: arc of a track (arc = part of a circle) - because tracks hold large amount of information, they are divided into sectors. The division of track into sectors is hard-coded on the disk surface and cannot be changed.
+        \item \tb{disk-blocks/pages}: also divisions of a track, but is set by the OS during formatting (or initialization), size is fixed during initialization and cannot be changed dynamically, typical size is from 512 to 8192 bytes. 
+      \end{itemize}
+      \par A disk is a \tb{random access addressable device}.
+      \begin{itemize}
+        \item \tb{hardware address of a block}: combination of cylinder number, track number (within the cyliner), and block number (within the track).
+      \end{itemize}
+
+  \hiii{Buffers}
     \begin{itemize}
-      \item Databases are too large to fit entirely in main memory.
-      \item Data loss occurs less often thanks to the \tb{nonvolatile} nature of magnetic disks.
-      \item Cost of storage per unit of secondary storage is less than primary storage.
+      \item \tb{buffer}: a contiguous reserved area in main storage that holds one disk block
+      \item \tb{cluster}: a group of contiguous disk blocks
+      \item \tb{read command}: the contents of disk block/cluster are copied into the buffer
+      \item \tb{write command}: the contents of buffer are copied into the disk block/cluster
     \end{itemize}
-    \par Typical database applications need only a small portion of the database at a time for processing. Whenever a certain portion of the data is needed, it must be located on disk, copied to main memory for processing, and then rewritten to the disk if the data is changed. The data stored on disk is organized as files of records. Each record is a collection of data values that can be interpreted as facts about entities, their attributes, and their relationships.
-    \par There are several primary file organizations, which determine how the file records are physically placed on the disk, and hence how the records can be accessed.
+
+  \hii{Making Data Access More Efficient on Disk}
+    \par Techniques to speed-up data access.
     \begin{itemize}
-      \item A heap file (or unordered file): places the records on disk in no
-        particular order by appending new records at the end of the file.
-      \item A sorted file (or sequential file) keeps the records ordered by the value of a particular field (called the sort key). A hashed file uses a hash function applied to a particular field (called the hash key) to determine a record’s placement on disk. Other primary file organizations, such as B-trees, use tree structures.
+      \item \tb{Buffering of data}: New data is held waiting in a buffer while old data is processed by an application. This helps dealing with the incompatibility of speeds between CPU and electromechanical devices such as HDD.
+      \item \tb{Proper organization of data on disk}: Keep related data on contiguous blocks and contiguous cylinders to minimize unnecessary movement of read/write arm and related seek time.
+      \item \tb{Reading data ahead of request}: When a block is read into the buffer, other blocks of the same track is also read although not requested. This strategy works if the application is likely to need consecutive blocks.
+      \item \tb{Proper scheduling of I/O requests}
+      \item \tb{Use of log disks to temporarily hold writes}
+      \item \tb{Use of SSDs or flash memory for recovery purposes}
     \end{itemize}
-    \par \tb{Primary file organization} determines how the file records are
+  
+  \hii{Solid State Device (SSD) Storage}
+    \par \tb{SSD storage} is based on \tb{flash memory technology}, therefore it is also known as \tb{flash storage}.
+    \par \tb{Properties}
+    \begin{itemize}
+      \item No moving parts, run silently
+      \item Faster access time and higher transfer rates compares to HDD
+      \item No restriction on placement of data because any address is directly addressable (unlide HDD where related data from the same relation must be placed on contiguous blocks). This also results in no fragmentation.
+    \end{itemize}
+  
+  \hii{Magnetic Tape Storage Device}
+    \par \tb{Magnetic Tapes} are \tb{sequential access devices}, meaning that, to access the $n$th block on the tape, the preceding $n - 1$ blocks must be scanned first.
+  
+\hi{Buffering of Blocks}
+  \par While one buffer is being read/written under the control of a disk I/O processor, the CPU can process data in another buffer.
+
+\hi{Placing File Records on Disk}
+  \hii{Records and Record Types}
+    \par Data is stored in the form of \tb{records}.
+    \begin{itemize}
+      \item A \tb{record} corresponds to an entity (or a row in the table).
+      \item A record consists of a collection of related data \tb{values} or \tb{items}, each value corresponds to a particular \tb{field} of the record.
+      \item Each record has a \tb{record type} or \tb{record format} which comprises of field names and their corresponding data types.
+      \item The \tb{data type} of a fields specifies the types of values a field can take. There are these types of data type:
+      \begin{itemize}
+        \item standard data type: number, string, boolean, date, time, etc.
+        \item \tb{BLOBs} (binary large objects): complex data items that consist of large unstructured objects, typically stored separately from its record in a pool of disk blocks, and a pointer to the BLOB is included in the record.
+      \end{itemize}
+    \end{itemize}
+
+\hi{Files, Fixed-Length Records and Variable-Length Records}
+  \par A \tb{file} is a sequence of records.
+  \begin{itemize}
+    \item If every record in the file has exactly the same size (in bytes), the file is said to be made up of \tb{fixed-length records}.
+    \item If different records in the file have different size (in bytes), the file is said to be made up of \tb{variable-length records}.
+  \end{itemize}
+
+\hi{Record Blocking and Spanned versus Unspanned Records}

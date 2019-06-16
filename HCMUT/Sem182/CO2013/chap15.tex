@@ -64,16 +64,16 @@
 
       \hiii{Equivalent Set of FDs}
         \par Two sets of FDs $E$ and $F$ are \tb{equivalent} if $E^+ = F^+$.
-  
+
   \hii{Minimal Sets of Functional Dependencies}
     \hiii{Extraneous Attribute}
       \par An attribute in a functional dependency is considered an extraneous attribute if we can remove it without changing the closure of the set of dependencies.
-    
+
     \hiii{Canonical Form of Set of FDs}
       \par An FD is said to be in \tb{canonical form} if it only has a single attribute on the right-hand side.
       \par A set of FDs $F$ is said to be in \tb{canonical form} if for every FD in $F$, there is only a single attribute on the right-hand side.
       \par Example: If $X \to YZ \in F$, then $F$ is not in canonical form.
-    
+
     \hiii{Minimal Set of FDs}
       \par A set of FDs $F$ is said to be \tb{minimal} if it satisfies the following conditions:
       \begin{itemize}
@@ -82,7 +82,7 @@
         \item We cannot remove any dependency from $F$ and still have a set of dependencies that is equivalent to $F$.
       \end{itemize}
       \par In short, a minimal set of dependencies must be in \tb{standard} or \tb{canonical form} (condition 1) and has \tb{no redundancies} (conditions 2 and 3).
-    
+
     \hiii{Minimal Cover}
       \par A \tb{minimal cover} of a set of functional dependencies $E$ is a \tb{minimal set of dependencies} that is equivalent to $E$. We can always find \tb{at least one} minimal cover $F$ for any set of dependencies $E$ using the following algorithm:
         \begin{algorithm}[H]
@@ -134,3 +134,7 @@
     \[
       \bigcup\limits_{i = 1}^{m} R_i = R
     \]
+    \par Apart from the attribute preservation condition, another goal is to have each individual relation $R_i$ in $D$ be in BCNF or 3NF. However, this condition does not guarantee a good database design on its own.
+
+  \hii{Dependency Preservation Property of a Decomposition}
+
