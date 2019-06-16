@@ -54,11 +54,11 @@
 
     \hiii{The use of Magnetic Tapes}
       \par \tb{Magnetic tapes} are used for \tb{backing up} because storage on tape costs much less than storage on disk.
-    
+
     \hiii{How data is stored an access on disk}
       \par Typical database applications need only a small portion of the database at a time for processing. Whenever a certain portion of the data is needed, it must be located on disk, copied to main memory for processing, and then rewritten to the disk if the data is changed.
       \par The data stored on disk is organized as \tb{files of records}. Each record is a collection of data values that can be interpreted as facts about entities, their attributes, and their relationships.
-    
+
     \hiii{File Organization}
       \par There are several primary \tb{file organizations}.
       \par File organizations determine how the file records are physically placed on the disk, and hence, how the records can be accessed.
@@ -82,7 +82,7 @@
         \item \tb{track}: a circle on a disk that has a distinct diameter - information is stored on a disk in these concentric circles
         \item \tb{cylinder}: tracks with the same diameter on the various surfaces
         \item \tb{sector}: arc of a track (arc = part of a circle) - because tracks hold large amount of information, they are divided into sectors. The division of track into sectors is hard-coded on the disk surface and cannot be changed.
-        \item \tb{disk-blocks/pages}: also divisions of a track, but is set by the OS during formatting (or initialization), size is fixed during initialization and cannot be changed dynamically, typical size is from 512 to 8192 bytes. 
+        \item \tb{disk-blocks/pages}: also divisions of a track, but is set by the OS during formatting (or initialization), size is fixed during initialization and cannot be changed dynamically, typical size is from 512 to 8192 bytes.
       \end{itemize}
       \par A disk is a \tb{random access addressable device}.
       \begin{itemize}
@@ -107,7 +107,7 @@
       \item \tb{Use of log disks to temporarily hold writes}
       \item \tb{Use of SSDs or flash memory for recovery purposes}
     \end{itemize}
-  
+
   \hii{Solid State Device (SSD) Storage}
     \par \tb{SSD storage} is based on \tb{flash memory technology}, therefore it is also known as \tb{flash storage}.
     \par \tb{Properties}
@@ -116,10 +116,10 @@
       \item Faster access time and higher transfer rates compares to HDD
       \item No restriction on placement of data because any address is directly addressable (unlide HDD where related data from the same relation must be placed on contiguous blocks). This also results in no fragmentation.
     \end{itemize}
-  
+
   \hii{Magnetic Tape Storage Device}
     \par \tb{Magnetic Tapes} are \tb{sequential access devices}, meaning that, to access the $n$th block on the tape, the preceding $n - 1$ blocks must be scanned first.
-  
+
 \hi{Buffering of Blocks}
   \par While one buffer is being read/written under the control of a disk I/O processor, the CPU can process data in another buffer.
 
@@ -144,4 +144,103 @@
     \item If different records in the file have different size (in bytes), the file is said to be made up of \tb{variable-length records}.
   \end{itemize}
 
-\hi{Record Blocking and Spanned versus Unspanned Records}
+\hi{Record Blocking, Spanned versus Unspanned Records}
+  \hii{Record Blocking}
+    \par Records of a file must be allocated to \tb{disk blocks} because \tb{a block is the unit of data transfer} between disk and memory.
+    \par Let $B$ be the size of a block and $R$ be the size of a record (in bytes).
+    \par If $B \geq R$, then we can fit $bfr = \floor{B / R}$ records per block.
+    \begin{itemize}
+      \item The number $bfr$ is the \tb{blocking factor} for the file
+      \item If $R$ not divides $B$, then the size of the unused space is equal to $B - bfr * R$.
+    \end{itemize}
+
+  \hii{Spanned vs Unspanned Records}
+    \par There are two different record organizations: \tb{spanned} and \tb{unspanned}.
+
+    \img[width=12cm]{img/16-spanned-unspanned}{Unspanned (above) and Spanned (below) organizations}
+
+    \hiii{Spanned Records}
+      \par With \tb{spanned} organization, to utilize the unused space at the end of a block, we can store part of a record on one block and the rest on another. A \tb{pointer} at the end of the first block points to the block containing the remainder of the record in case it is not the next consecutive block on disk.
+      \par If a record is larger than a block ($R > B$), then we \tb{must} use spanned organization.
+      \par For variable-length records using spanned organization, each block store a different number of records. In this case, the blocking factor $bfr$ represents the average number of records per block for the file. We can use $bfr$ to calculate the number of blocks $b$ needed for a file of $r$ records:
+      \[
+        b = \ceil{r / bfr}
+      \]
+
+    \hiii{Unspanned Records}
+      \par With \tb{unspanned organization}, records are not allowed to cross block boundaries. This is used with fixed-length records having $B > R$ because it makes each record starts at a known location in the block, simplifying record processing.
+
+  \hii{Allocating File Blocks on Disk}
+    \par There are several standard techniques for allocating the blocks of a file on disk:
+    \begin{itemize}
+      \item In \tb{contiguous allocation}, the file blocks are allocated to consecutive disk blocks. This makes reading the whole file very fast using double buffering, but it makes expanding the file difficult.
+      \item In \tb{linked allocation}, each file block contains a pointer to the next file block. This makes it easy to expand the file but makes it slow to read the whole file.
+      \item In \tb{indexed allocation}, one or more index blocks contain pointers to the actual file blocks.
+    \end{itemize}
+
+  \hii{File Headers}
+    \par A \tb{file header} or \tb{file descriptor} contains information about a file that is needed by the system programs that access the file records.
+
+
+\hi{Operations on Files}
+  \par Operations on files are usually grouped into
+    \begin{itemize}
+      \item \tb{Retrieval operations}: do not change any data in the file, but only locate certain records so that their field values can be examined and processed
+      \item \tb{Update operations}: change the file by insertion or deletion of records or by modification of field values.
+    \end{itemize}
+  \par In either case, we may have to \tb{select} one or more records based on a \tb{selection condition} or \tb{filtering condition}.
+  \par A \tb{simple selection condition} involve an \tb{equality comparison} on some field of value. More complex conditions can involved other types of comparison operators, such as $\leq$ or $<$.
+  \par \tb{Search operations} on files are generally based on \tb{simple selection conditions}.
+  \par Steps of searching with a complex condition:
+    \begin{itemize}
+      \item A simple condition (with equality comparison) is extracted from the complex condition.
+      \item The simple condition is used to locate the records on disk.
+      \item Each located record is checked to determine whether it satisfies the full selection condition.
+    \end{itemize}
+  \par When several file records satisfy a search condition, the first record — with respect to the physical sequence of file records — is initially located and designated the \tb{current record}. Subsequent search operations commence from this record and locate the next record in the file that satisfies the condition.
+
+\hi{Files of Unordered Records (Heap Files)}
+  \par In \tb{heap files} or \tb{pile files}, records are placed in the file in the order in which they are inserted, so new records are inserted at the end of the file.
+  \par Operations:
+  \begin{itemize}
+    \item \tb{Inserting a record}: very efficient.
+    \item \tb{Searching a record}: linear search, which is expensive. For a file of $b$ block, on average it is required to search $b / 2$ blocks.
+    \item \tb{Deleting a record}: a program must first find its block, copy the block into a buffer, delete the record from the buffer, and finally rewrite the block back to the disk. This leaves unused space in the disk block. Another technique used for record deletion is to have \tb{deletion marker} stored with each record. Search programs use the markers to consider only valid records in a block when conducting their search. Both of these deletion techniques require periodic reorganization of the file to reclaim the unused space of deleted records.
+    \item \tb{Read all records in order of the values of some field}: expensive, requires creating a sorted copy of the file
+  \end{itemize}
+
+
+\hi{Files of Ordered Records (Sorted Files)}
+  \par The records of a file on disk can be ordered based on the values of one of their fields called the \tb{ordering field}. This leads to an \tb{ordered} or \tb{sequential file}.
+  \par Operations:
+  \begin{itemize}
+    \item \tb{Reading the records in order of the ordering key}: extremely efficient because no sorting is required
+    \item \tb{Finding the next record from the current one in order of the ordering key}: requires no additional block accesses because the next record is in the same block as the current one (unless the current record is the last one in the block)
+    \item \tb{Searching with condition based on the value of an ordering key}: binary search can be used which is faster than linear search
+    \item \tb{Accessing records based on values of the nonordering fields}: expensive, requires linear search
+    \item \tb{Read all records in order of the values of a nonordering field}: expensive, requires creating a sorted copy of the file
+    \item \tb{Inserting and Deleting records}: expensive because the records must remain physically ordered
+  \end{itemize}
+  \par Ordered files are rarely used in database applications unless an additional access path, called \tb{primary index}, is used. This results in an \tb{indexed-sequential file}.
+  \par If the ordering attribute is not a key, the file is called a \tb{clustered file}.
+
+
+\hi{Hashing Techniques}
+  \par A \tb{hash file} provides very fast access to records under certain search conditions through hashing.
+  \par The \tb{search condition} \tb{must be an equality condition on a single field} called the \tb{hash field}. In most cases, the hash field is also a key field of the file, in which case it is called the \tb{hash key}.
+  \par Hashing requires a \tb{hash function} or \tb{randomized function} $h$, which is applied to the hash field value of a record and yields the address of the disk block in which the record is stored. For most records, we need only \tb{a single-block access} to retrieve that record.
+
+  \hii{Internal Hashing}
+    \hiii{Hash Table And Hash Function}
+      \par For internal files, hashing is typically implemented as a \tb{hash table} through the use of \tb{an array of records}.
+      \par Suppose that the array has $M$ slots, then the hash function transforms the \tb{hash field value} $K$ into an integer between $0$ and $M - 1$.
+      \par One common hash function is $h(K) = K mod M$. Noninteger hash field values can be transformed into integers before the mod function is applied.
+      \par The problem with most hashing functions is that they do not guarantee that distinct values will hash to distinct addresses, because the \tb{hash field space} - the number of possible values a hash field can take—is usually much larger than the \tb{address space} - the number of available addresses for records.
+
+    \hiii{Collisions}
+      \par A \tb{collision} occurs when the hash field value of a record that is being inserted hashes to an address that already contains a different record. In this situation, we must insert the new record in some other position. The process of finding another position is called \tb{collision resolution}.
+      \par Methods for collision resolution:
+      \begin{itemize}
+        \item \tb{Open addressing}: from the occupied position specified by the hash address, the program checks the subsequent positions in order until an unused (empty) position is found.
+        \item \tb{Chaining}: 
+      \end{itemize}

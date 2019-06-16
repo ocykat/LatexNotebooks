@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{SELECT} \PYG{n}{E}\PYG{p}{.}\PYG{n}{Fname}\PYG{p}{,} \PYG{n}{E}\PYG{p}{.}\PYG{n}{Lname}\PYG{p}{,} \PYG{n}{S}\PYG{p}{.}\PYG{n}{Fname}\PYG{p}{,} \PYG{n}{S}\PYG{p}{.}\PYG{n}{Lname}
+\PYG{k}{FROM} \PYG{n}{EMPLOYEE} \PYG{k}{AS} \PYG{n}{E}\PYG{p}{,} \PYG{n}{EMPLOYEE} \PYG{k}{AS} \PYG{n}{S}
+\PYG{k}{WHERE} \PYG{n}{E}\PYG{p}{.}\PYG{n}{Super\PYGZus{}ssn} \PYG{o}{=} \PYG{n}{S}\PYG{p}{.}\PYG{n}{Ssn}\PYG{p}{;}
+\end{Verbatim}

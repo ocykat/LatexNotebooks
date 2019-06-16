@@ -1,0 +1,3 @@
+SELECT Fname, Lname
+FROM   EMPLOYEE
+WHERE  Address LIKE ‘%Houston,TX%’;
