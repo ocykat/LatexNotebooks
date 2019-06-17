@@ -241,6 +241,45 @@
       \par A \tb{collision} occurs when the hash field value of a record that is being inserted hashes to an address that already contains a different record. In this situation, we must insert the new record in some other position. The process of finding another position is called \tb{collision resolution}.
       \par Methods for collision resolution:
       \begin{itemize}
-        \item \tb{Open addressing}: from the occupied position specified by the hash address, the program checks the subsequent positions in order until an unused (empty) position is found.
-        \item \tb{Chaining}: 
+        \item \tb{Open addressing}: From the occupied position specified by the hash address, the program checks the subsequent positions in order until an unused (empty) position is found.
+        \item \tb{Chaining}: \tu{In short}: each entry in the hash table is extended with a linked-list. \tu{According to the book}: various overflow locations are kept, usually by extending the array with a number of overflow positions. Additionally, a pointer field is added to each record location. A collision is resolved by placing the new record in an unused overflow location and setting the pointer of the occupied hash address location to the address of that overflow location. A linked list of overflow records for each hash address is thus maintained.
+        \item \tb{Multiple hashing}: The program applies a second hash function if the first results in a collision. If another collision results, the program uses open addressing or applies a third hash function and then uses open addressing if necessary.
       \end{itemize}
+
+  \hii{External Hashing for Disk Files - Static Hashing}
+    \par Hashing for disk files is called \tb{external hashing}.
+    \par The target address space is made of \tb{buckets}, each of which holds multiple records. A bucket is either one disk block or a cluster of contiguous disk blocks. The hashing function maps a key into a relative bucket number rather than assigning an absolute block address to the bucket. A table maintained in the file header converts the bucket number into the corresponding disk block address.
+    \par The collision problem is less severe with buckets, because as many records as will fit
+in a bucket can hash to the same bucket without causing problems. However, when the bucket is filled to capacity and new inserted record is hashed into that bucket, we can use a variation of \tb{chaining} to resolve collision.
+      \img[width=12cm]{img/16-bucket-01.png}{}
+      \img[width=12cm]{img/16-bucket-02.png}{}
+    \par The hashing scheme described so far is called \tb{static hashing} because a fixed number of buckets $M$ is allocated.
+    \par Generally, the ordering of records is not preserved after hashing, although some hash functions called \tb{order preserving functions} do preserve the ordering.
+    \par The drawback of static hashing is the number of buckets $M$ is fixed, therefore the number of records can be stored is fixed. Thus, it is difficult to expand or shrink the file dynamically.
+
+  \hii{Hashing Techniques That Allow Dynamic File Expansion}
+    \begin{itemize}
+      \item \tb{Extendible Hashing}
+      \item \tb{Dynamic Hashing}
+      \item \tb{Linear Hashing}
+    \end{itemize}
+
+    \hiii{Extendible Hashing}
+      \par In \tb{extendible hashing}, an array of $2^d$ bucket addresses is maintained, where $d$ is called the \tb{global depth} of the directory.
+      \href{https://www.youtube.com/watch?v=TtkN2xRAgv4}{link}
+
+    \hiii{Dynamic Hashing}
+
+    \hiii{Linear Hashing}
+
+\hi{Other Primary File Organizations}
+  \hii{Files of Mixed Records}
+    \par To retrieve field values from two related records, we must retrieve one of the records first, then use its connecting field value to retrieve the related record in the other file. The relationships are implemented by \tb{logical field references}.
+    \par \tb{Physical clustering} is useed to hold records of more than one type in an area of the disk so that the system can retrieve related records more efficiently.
+    \par In data warehousee, data are collected into an \tb{operation data store (ODS)} where records of multiple types are kept together. It is passed on to a data warehouse after \tb{ETL (extract, transform and load)} processing operations.
+
+  \hii{B-Trees and Other Data Structures as Primary Organization}
+
+\hi{Parallelizing Disk Access Using RAID Technology}
+  \par \tb{RAID (redundant arrays of inexpensive disks)} is used to even out the widely different rate of performance improvement of disks against those in memory and microprocessors.
+  \par \tb{Solution}: large array of small independent disks acting as a single higher performance logical disk. The concept of \tb{data striping} is used, in which data is distributed transparently over multiple disks to make them appear as a single large, fast disk.

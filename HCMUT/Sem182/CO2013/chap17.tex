@@ -1,0 +1,63 @@
+\chapter{Indexing Structures for Files and Physical Database Design}
+
+\par In this chapter, we assume that a file already exists with some primary organization such as the unordered, ordered, or hashed organizations.
+\par \tb{Indexes} are additional auxiliary \tb{access structure} that are used to speed up the retrieval of records under certain search conditioins, providing \tb{secondary access path} that does not affect the physical placement of records in the primary data file on disk.
+\par Efficient access to records is based on the \tb{indexing fields} that are used to construct the index. Any field of the file can be used to create an index. Also, multiple indexes on different fields or indexes on multiple fields can be created within a file.
+
+\hi{Types of Single-Level Ordered Indexes}
+  \par The idea behind an ordered index is similar to that behind the index used in a textbook, which lists important terms at the end of the book in alphabetical order along with a list of page numbers where the term appears in the book.
+  \par An index access structure is usually defined on a single field of a file, called an indexing field (or indexing attribute). The index typically stores each value of the index field along with a list of pointers to all disk blocks that contain records with that field value. The values in the index are ordered so that we can do a binary search on the index. If both the data file and the index file are ordered, and since the index file is typically much smaller than the data file, searching the index using a binary search is a better option.
+  \par Types of ordered indexes:
+  \begin{itemize}
+    \item A \tb{primary index} is specified on the \tb{ordering key field} of an ordered file of records.
+    \item If numerous records in the file \tb{have the same value for the ordering field}, then \tb{clustering index} is used.
+    \item A \tb{secondary index} can be specified on any \tb{nonordering field} of a file.
+  \end{itemize}
+
+  \hii{Primary Indexes}
+    \par A \tb{primary index} is an \tb{ordered file} whose records are of fixed length with two fields:
+    \begin{itemize}
+      \item The first field is of the same data type as the ordering key field - called the \tb{primary key} - of the data file.
+      \item The second field is a pointer to a disk block (a block address)
+    \end{itemize}
+    \par The two field values of index entry $i$ can be denoted as $\pair{K(i), P(i)}$.
+    \img[width=14cm]{img/primary-index.png}{}
+    \par In the figure, the \ilc{Name} field is the primary key because it is the \tb{ordering key field} of the file with the assumption that each value is unique. Each entry in the index has a \ilc{Name} value and a pointer.
+    \par The total number of entries in the index is the same as the number of disk blocks in the ordered data file.
+    \par The first record in each block of the data file is called the \tb{anchor record} of the block, or the \tb{block anchor}.
+    \par Indexes can also be characterized as dense or sparse. A dense index has an index entry for every search key value (and hence every record) in the data file. A sparse (or nondense) index, on the other hand, has index entries for only some of the search values.
+
+  \hii{Clustering Indexes}
+    \par If file records are \tb{physically ordered on a nonkey field} which does not have a distinct value for each record, that field is called the \tb{clustering field} and the data file is called a \tb{clustered file}. We can create a different type of index, called a clustering index, to speed up retrieval of all the records that have the same value for the clustering field.
+
+    \par A clustering index is \tb{an ordered file} with two fields:
+    \begin{itemize}
+      \item The first field is of the same type as the clustering field of the data file
+      \item The second field is a disk block pointer
+    \end{itemize}
+    \par There is \tb{one entry} in the clustering index \tb{for each distinct value} of the clustering field, and it contains the value and a pointer to the first block in the data file that has a record with that value for its clustering field.
+    \par To alleviate the problem of insertion (and deletion), it is common to reserve a whole block (or a cluster of contiguous blocks) for each value of the clustering field.
+
+  \hii{Secondary Indexes}
+    \par A \tb{secondary index} provides a secondary means of accessing a data file for which some primary access already exists. The data file records could be ordered, unordered, or hashed. The secondary index may be created on a field that is a candidate key and has a unique value in every record, or on a nonkey field with duplicate values.
+    \par The index is an \tb{ordered file} with two fields:
+    \begin{itemize}
+      \item The first field is of the same data type as some \tb{nonordering field} of the data file that is an indexing field.
+      \item The second field is either a block pointer or a record pointer.
+    \end{itemize}
+    \par Many secondary indexes (and hence, indexing fields) can be created for the same file - each represents an additional means of accessing that file based on some specific field.
+    \par A secondary index provides a \tb{logical ordering} on the records by the indexing field. If we access the records in order of the entries in the secondary index, we get them in order of the indexing field. The primary and clustering indexes assume that the field used for \tb{physical ordering} of records in the file is the same as the indexing field.
+
+\hi{Multilevel Indexes}
+  \par In the indexing schemas described so far, \tb{binary search} is applied to the index to locate pointers to a disk block or to a record (or records) in the file having a specific index field value. Binary search requires approximately $\log_2(b_i)$ block accesses for an index with $b_i$ blocks.
+  \par The idea behind \tb{multilevel index} is to reduce the part of the index that we continue to search by the blocking factor index $bfr_i > 2$, which reduces the search space much faster. The value $bfr_i$ is called the \tb{fan-out} of the multilevel index, denoted by $fo$.
+  \par Whereas we divide the record search space into two halves at each step during a binary search, we divide it n-ways (where $n = fo$) at each search step using the multilevel index. Searching a multilevel index requires approximately $log_{fo} b_i$ block accesses
+  \img[width=14cm]{img/multilevel-index.png}{}
+  \par The first level - the primary index for the data - is an ordered file with a distinct value for each $K(i)$. The second level is the primary index for the first level. The third level is the primary index for the second level, and so on.
+
+\hi{Dynamic Multilevel Indexes Using B-Trees and B$^{+}$ Trees}
+
+\hi{Other Types of Indexes}
+  \hii{Hash Indexes}
+    \par The hash index is a secondary structure to access the file by using hashing on a search key other than the one used for the primary data file organization.
+
