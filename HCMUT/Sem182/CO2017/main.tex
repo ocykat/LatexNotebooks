@@ -121,6 +121,19 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
+<<<<<<< HEAD
+% IMAGES
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\newcommand{\img}[2][]
+  {
+    \begin{figure}[H]
+      \centering
+      \includegraphics[#1]{#2}
+    \end{figure}
+  }
+=======
 % === IMAGES ===
 \usepackage{graphicx}
 \usepackage{caption}
@@ -135,6 +148,7 @@
   \end{figure}
 }
 % Usage: \img[width=...]{<path_to_img>}{<caption>}
+>>>>>>> 1e234b50466565419c4ad4e031a6c35c5df2379d
 
 % PSEUDOCODE
 \usepackage{algorithm}
@@ -198,7 +212,6 @@
   mathescape=false
 }
 
-%
 \usepackage{varwidth}
 \newenvironment{fboxenv}
   {
@@ -218,6 +231,7 @@
 \input{chap01}
 \setcounter{chapter}{2}
 \input{chap03}
+
 \input{chap04}
 \setcounter{chapter}{7}
 \input{chap08}

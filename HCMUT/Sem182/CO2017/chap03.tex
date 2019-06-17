@@ -37,7 +37,6 @@
         \item \tb{Terminated}: The process has finished execution.
       \end{itemize}
     \par  Only one process can be running on any processor at any instant, while many processes maybe ready and waiting.
-
     \img[width=12cm]{img/process-state.png}
 
   \hii{Process Control Block (PCB)}
@@ -47,7 +46,7 @@
     including:
       \begin{itemize}
         \item \tb{Process state}: new/ready/running/waiting/halted
-        \item \tb{Program counter (PC)}: indicates the addressof the next instruction to be executed for this process
+        \item \tb{Program counter (PC)}: indicates the address of the next instruction to be executed for this process
         \item \tb{CPU registers}
         \item \tb{CPU-scheduling information}
         \item \tb{Memory-management information}
@@ -74,36 +73,27 @@
       \begin{itemize}
         \item \tb{Job queue}: The queue of all processes in the system.
         \item \tb{Ready queue}: The list of  processes that are residing in main
-          memory and are ready and waiting to execute; generally stored as a linked list: contains pointers to the first and final PCB s in the list, and each PCB includes a pointer field that points to the next PCB in the ready queue.
-        \item \tb{Device queue}: Suppose the process makes an I/O request to a shared device, such as a disk. Since there are many processes in the system, the disk may be busy with the I/O request of some other process. The process therefore may have to wait for the disk. The list of processes waiting for a particular I/O device is called a device queue.
+          memory and are ready and waiting to execute.
+        \item \tb{Device queue}: The list of processes waiting for a particular
+          I/O device. Each device has its own device queue.
       \end{itemize}
     \par A new process is initially put in the ready queue. It waits there
-      until it is selected for execution, or is \tb{dispatched}.  Once the process is allocated the CPU and is executing, one of several events could occur:
-      \begin{itemize}
-        \item The process could issue an I/O request and then be placed in an I/O queue.
-        \item The process could create a new subprocess and wait for the subprocess’s termination.
-        \item The process could be removed forcibly from the CPU , as a result of an interrupt, and be put back in the ready queue.
-      \end{itemize}
-    \par A common representation of process scheduling is a \tb{queueing diagram}.
-    \img[width=14cm]{img/queueing-diagram.jpg}{Queueing Diagram}
+      until it is selected for execution, or is \tb{dispatched}.
 
   \hii{Schedulers}
+    \hiii{Types of Schedulers}
       \par A process migrates among various scheduling queues throughout its
         lifetime. The operating system must select, for scheduling purposes,
         processes from these queues in some fashion. The selection process is
         carried out by the appropriate \tb{scheduler}.
       \par Types of scheduler:
       \begin{itemize}
-        \item \tb{Long-term scheduler/Job scheduler}: In a batch system, more
-          processes are submitted than can be executed immediately. These
-          processes are sent to a mass-storage device (typically a disk), where
-          they are kept for later execution. The long-term scheduler selects processes from this pool and loads them into memory for execution.
-        \item \tb{Short-term scheduler/CPU scheduler}: A CPU scheduler selects
-          from among the processes that are ready to execute and allocates the
-          CPU to one of them.
+        \item \tb{Long-term scheduler/Job scheduler}: In a batch system, more processes are submitted than can be executed immediately. These processes are sent to a mass-storage device (typically a disk), where they are kept for later execution. The long-term scheduler selects processes from this pool and loads them into memory for execution.
+        \item \tb{Short-term scheduler/CPU scheduler}: A CPU scheduler selects from among the processes that are ready to execute and allocates the CPU to one of them.
       \end{itemize}
-      \par The \tb{short-term scheduler} executes much more frequently than a
-        \tb{long-term scheduler}.
+      \par The \tb{short-term scheduler} executes much more frequently than a \tb{long-term scheduler}.
+
+    \hiii{Types of Processes}
       \par Most processes can be described as either \tb{I/O bound} or \tb{CPU bound}:
       \begin{itemize}
         \item An \tb{I/O-bound process} is one that spends more of its time

@@ -88,6 +88,7 @@
 
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
+\newcommand{\pair}[1]{\langle #1 \rangle}
 
 % Derivatives
 \newcommand{\dif}[2]{\dfrac{d #1}{d #2}}
@@ -174,6 +175,7 @@
 \newcommand{\RETURN}[1]{\State \Return{#1}}
 \newcommand{\SHIFTLEFT}{\ll}
 \newcommand{\SHIFTRIGHT}{\gg}
+\newcommand{\Input}[1]{\hspace*{\algorithmicindent} \textbf{Input}: #1}
 
 % FRENCH CONVENTION FOR VERTICAL ARITHMETIC
 \usepackage{xlop}
@@ -215,6 +217,8 @@
 %     },emphstyle={\color{red}\bfseries\underbar}%
 % }%
 
+\newcommand{\ilc}{\lstinline}
+
 \usepackage[cache=false]{minted}
 
 %
@@ -249,7 +253,11 @@
 \input{chap06}
 \input{chap07}
 \input{chap08}
+\setcounter{chapter}{13}
 \input{chap14}
+\input{chap15}
+\input{chap16}
+\input{chap17}
 
 \begin{appendices}
 
