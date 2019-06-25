@@ -1,18 +1,18 @@
 \chapter{Propositional Logic}
 
-\hi{Proposition/Declarative Sentences}
-  \hii{Definition}
+\section{Proposition/Declarative Sentences}
+  \subsection{Definition}
   \par A \tb{proposition} or a \tb{declarative sentence} is a sentence that is either \tb{True} or \tb{False} but not both.
 
-  \hii{Atomic Declarative Sentence and Notation}
+  \subsection{Atomic Declarative Sentence and Notation}
   \par Usually, \tb{atomic} or \tb{indecomposable} sentences are considered.
   \par Each \tb{atomic declarative sentence} is assign a symbol $p$, $q$, $r$, etc.
 
-\hi{Logical Connectives}
+\section{Logical Connectives}
   \par \tb{Logical Connective }
   \par Let $p$, and $q$ be propositions (or declarative sentences).
 
-  \hii{Negation}
+  \subsection{Negation}
     \hiii{Definition}
       \begin{itemize}
         \item The \tb{negation} of $p$, denoted by $\lnot p$, is the statement ``It is not the case that $p$".
@@ -32,7 +32,7 @@
         \end{tabular}
       \end{center}
 
-  \hii{Conjunction}
+  \subsection{Conjunction}
     \hiii{Definition}
       \begin{itemize}
         \item The \tb{conjunction} of $p$ and $q$, denoted by $p \land q$, is the proposition ``$p$ and $q$".
@@ -57,7 +57,7 @@
         \end{tabular}
       \end{center}
 
-  \hii{Disjunction}
+  \subsection{Disjunction}
     \hiii{Definition}
       \begin{itemize}
         \item Let $p$ and $q$ be propositions. The \tb{disjunction}
@@ -82,7 +82,7 @@
         \end{tabular}
       \end{center}
 
-  \hii{Exclusive Disjunction}
+  \subsection{Exclusive Disjunction}
     \hiii{Definition}
       \begin{itemize}
         \item The \tb{exclusive disjunction} of $p$ and $q$, denoted by $p \lxor q$, is the proposition that is \tb{True} when
@@ -106,7 +106,7 @@
       \end{tabular}
     \end{center}
 
-  \hii{Implication}
+  \subsection{Implication}
     \hiii{Definition}
       \begin{itemize}
         \item Let $p$ and $q$ be propositions. The conditional statement $p \limpl q$ is the proposition ``if p, then q".
@@ -133,7 +133,7 @@
         \end{tabular}
       \end{center}
 
-  \hii{Biconditional}
+  \subsection{Biconditional}
     \hiii{Definition}
       \begin{itemize}
         \item Let $p$ and $q$ be propositions. The \tb{biconditional statement}
@@ -159,7 +159,7 @@
       \end{tabular}
     \end{center}
 
-  \hii{Logical Equivalences}
+  \subsection{Logical Equivalences}
     \begin{center}
       \begin{tabular}{|c|c|}
         \hline
@@ -223,16 +223,16 @@
       \end{tabular}
     \end{center}
 
-\hi{Binding Priority and Association}
+\section{Binding Priority and Association}
   \par The binding priority from high to low is as follows:
     \begin{itemize}
       \item Negation $\lnot$
       \item Conjunction $\land$ and Disjunction $\lor$
-      \item Implication $\land$
+      \item Implication $\limpl$
     \end{itemize}
   \par Implication is right-associative, meeaning that $p \limpl q \limpl r$ is equivalent to $p \limpl (q \limpl r)$.
 
-\hi{Premises, Conclusion and Sequent}
+\section{Premises, Conclusion and Sequent}
     \par Suppose we have:
     \begin{itemize}
       \item a set of formulas $\phi_1, \ldots, \phi_n$ called \tb{premises}.
@@ -245,7 +245,7 @@
     \par The expression is called a \tb{sequent}.
     \par A \tb{sequent} is \tb{valid} if a proof for it can be found.
 
-\hi{Natural Deduction}
+\section{Natural Deduction}
   \par A natural deduction can be denoted by:
   \begin{center}
     \AxiomC{$\phi_1$}
@@ -257,7 +257,7 @@
     \DisplayProof
   \end{center}
 
-  \hii{Rules for Conjunction (AND)}
+  \subsection{Rules for Conjunction (AND)}
     \begin{enumerate}[a.]
       \item \tb{Introduction Rule} is denoted by $\land i$ and read \tb{``and-introduction"}.
         \begin{center}
@@ -291,7 +291,7 @@
         q \land r & $\land i$ 3, 2
       \end{logicproof}
 
-  \hii{Rules for Double Negation}
+  \subsection{Rules for Double Negation}
     \begin{enumerate}[a.]
       \item \tb{Introduction Rule} is denoted by $\lnotnot i$.
         \begin{center}
@@ -323,7 +323,7 @@
       \end{logicproof}
       % =================================== ]]]
 
-  \hii{Rules for Implication}
+  \subsection{Rules for Implication}
     \begin{enumerate}[a.]
       \item \tb{Elimination Rule} is denoted by $\limpl e$ and read \tb{``implies-elimination"}. A, also known as \tb{modus ponens}.
         % ================================= [[[
@@ -348,6 +348,16 @@
         % ================================= ]]]
 
         \par \tb{Example}: Prove that $p \limpl (q \limpl r), p, \lnot r \lprove \lnot q$
+      % =================================== [[[
+        \begin{logicproof}{1} % 1 = maximum number of subproofs
+          p \limpl (q \limpl r) & premise \\
+          p                     & premise \\
+          \lnot r                & premise \\
+          q \limpl r            & $\limpl e$ 2, 1 \\
+          \lnot q               & MT 4, 3
+        \end{logicproof}
+        % =================================== ]]]
+
 
       \item \tb{Introduction Rule} is denoted by $\limpl i$ and read \tb{``implies-introduction"}.
         % ================================= [[[
@@ -371,10 +381,24 @@
         \end{center}
         % ================================= ]]]
 
-        \par Here, to prove $\phi \limpl \psi$, we need to make a temporary \tb{assumption} $\theta$. \tb{A box} is opened when \tb{an assumption} is made. When the proof no longer depends on the assumption, the box is closed.
+        \par Here, to prove $\phi \limpl \psi$, we need to make a temporary \tb{assumption} $\phi$. \tb{A box} is opened when \tb{an assumption} is made. When the proof no longer depends on the assumption, the box is closed.
     \end{enumerate}
 
-  \hii{Rules for Disjunction (OR)}
+    \snote{Example page 11}
+      % =================================== [[[
+        \begin{logicproof}{1} % 1 = maximum number of subproofs
+          p \limpl q             & premise \\
+
+          \begin{subproof}
+            \lnot q & assumption \\
+            \lnot p & MT 1, 2
+          \end{subproof}
+
+          \lnot q \limpl \lnot p & $\limpl i$ 2, 3
+        \end{logicproof}
+      % =================================== ]]]
+
+  \subsection{Rules for Disjunction (OR)}
 
     \begin{enumerate}[a.]
       \item \tb{Introduction Rule} is denoted by $\lor i$.
@@ -408,20 +432,20 @@
         \end{center}
     \end{enumerate}
 
-\hii{Rules for Contradiction}
-  \par A \tb{contradiction} is an expression of the form
-  \[
-  \phi \land \lnot \phi
-  \]
-  where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
-  \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
-    \begin{center}
-      \AxiomC{$\lcontrad$}
-      \UnaryInfC{$\phi$}
-      \DisplayProof
-    \end{center}
+  \subsection{Rules for Contradiction}
+    \par A \tb{contradiction} is an expression of the form
+    \[
+    \phi \land \lnot \phi
+    \]
+    where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
+    \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
+      \begin{center}
+        \AxiomC{$\lcontrad$}
+        \UnaryInfC{$\phi$}
+        \DisplayProof
+      \end{center}
 
-\hii{Rules for Negation}
+\subsection{Rules for Negation}
     \begin{enumerate}[a.]
       \item \tb{Introduction Rule} is denoted by $\lnot i$.
         \begin{center}
@@ -445,8 +469,8 @@
         \end{center}
     \end{enumerate}
 
-\hi{Derived Rules}
-  \hii{Modus Tollens}
+\section{Derived Rules}
+  \subsection{Modus Tollens}
     \begin{center}
       \AxiomC{$\phi \limpl \psi$}
       \AxiomC{$\lnot \psi$}
@@ -455,7 +479,7 @@
       \DisplayProof
     \end{center}
 
-  \hii{Proof By Contradiction (PCB)}
+  \subsection{Proof By Contradiction (PCB)}
     \begin{center}
       \alwaysNoLine
       \AxiomC{$\lnot \phi$}
@@ -467,7 +491,7 @@
       \DisplayProof
     \end{center}
 
-  \hii{Law of the Excluded Middle (LEM)}
+  \subsection{Law of the Excluded Middle (LEM)}
     \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
     \begin{center}
       % \AxiomC{$\phi$}
@@ -478,5 +502,5 @@
       \DisplayProof
     \end{center}
 
-\hi{Provable Equivalence}
+\section{Provable Equivalence}
   \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say that $\phi$ and $\psi$ are provably equivalent iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.
