@@ -281,9 +281,9 @@
           \DisplayProof
         \end{center}
     \end{enumerate}
-  
+
     \par \tb{Example}: Prove that $p \land q, r \lprove q \land r$.
-    \snote{Example 1.4, page 6}
+    \snoteb{Example 1.4, page 6}
       \begin{logicproof}{1} % 1 = maximum number of subproofs
         p \land q & premise \\
         r         & premise \\
@@ -311,7 +311,7 @@
     \end{enumerate}
 
     \par \tb{Example}: Prove the sequent $p, \lnotnot (q \land r) \lprove \lnotnot p \land r$.
-    \snote{Example 1.5, page 8}
+    \snoteb{Example 1.5, page 8}
       % =================================== [[[
       \begin{logicproof}{1} % 1 = maximum number of subproofs
         p                    & premise \\
@@ -358,7 +358,6 @@
         \end{logicproof}
         % =================================== ]]]
 
-
       \item \tb{Introduction Rule} is denoted by $\limpl i$ and read \tb{``implies-introduction"}.
         % ================================= [[[
         \newsavebox\ImplIntroAssump
@@ -384,7 +383,7 @@
         \par Here, to prove $\phi \limpl \psi$, we need to make a temporary \tb{assumption} $\phi$. \tb{A box} is opened when \tb{an assumption} is made. When the proof no longer depends on the assumption, the box is closed.
     \end{enumerate}
 
-    \snote{Example page 11}
+    \snoteb{Example page 11}: Prove that: $p \limpl q \lprove \lnot q \limpl \lnot p$
       % =================================== [[[
         \begin{logicproof}{1} % 1 = maximum number of subproofs
           p \limpl q             & premise \\
@@ -394,9 +393,33 @@
             \lnot p & MT 1, 2
           \end{subproof}
 
-          \lnot q \limpl \lnot p & $\limpl i$ 2, 3
+          \lnot q \limpl \lnot p & $\limpl i$ 2-3
         \end{logicproof}
       % =================================== ]]]
+
+    \snoteb{Example 1.9, page 13}: Prove that: $\lnot q \limpl \lnot p \lprove p \limpl \lnotnot q$
+      % =================================== [[[
+        \begin{logicproof}{1} % 1 = maximum number of subproofs
+          \lnot q \limpl \lnot p & premise \\
+
+          \begin{subproof}
+            p          & assumption \\
+            \lnotnot p & $\lnotnot i$ 2 \\
+            \lnotnot q & MT 1, 3
+          \end{subproof}
+
+          p \limpl \lnotnot q & $\limpl i$ 2-4
+        \end{logicproof}
+      % =================================== ]]]
+
+    \par $\lprove p \limpl p$ express that: \tb{the argumentation for} $p \limpl p$ does not depend on any premises at all.
+
+    \snoteb{Definition 1.10, page 13}: Logical formulas $\phi$ with valid sequent $\lprove \phi$ are \tb{theorems}.
+
+    \par \tb{Note}: To prove a sequent with the consequence having an implication $p \to q$, we need to make the assumption $p$.
+
+    \par If $P \lprove Q$ and $Q \lprove P$ are both correct, then we can write $P \lproveeq Q$.
+
 
   \subsection{Rules for Disjunction (OR)}
 
@@ -416,50 +439,96 @@
 
       \item \tb{Elimination Rule} is denoted by $\lor e$.
         \begin{center}
+          \newsavebox\DisjElimAssumpI
+          \sbox\DisjElimAssumpI{
+            \fbox{
+              \AxiomC{$\phi$}
+              \noLine
+              \UnaryInfC{$\vdots$}
+              \noLine
+              \UnaryInfC{$\chi$}
+              \DisplayProof
+            }
+          }
+
+          \newsavebox\DisjElimAssumpII
+          \sbox\DisjElimAssumpII{
+            \fbox{
+              \AxiomC{$\psi$}
+              \noLine
+              \UnaryInfC{$\vdots$}
+              \noLine
+              \UnaryInfC{$\chi$}
+              \DisplayProof
+            }
+          }
+
           \AxiomC{$\phi \lor \psi$}
-            \alwaysNoLine
-            \AxiomC{$\phi$}
-            \UnaryInfC{$\vdots$}
-            \UnaryInfC{$\chi$}
-            \alwaysNoLine
-            \AxiomC{$\psi$}
-            \UnaryInfC{$\vdots$}
-            \UnaryInfC{$\chi$}
+          \AxiomC{\usebox\DisjElimAssumpI}
+          \AxiomC{\usebox\DisjElimAssumpII}
           \RightLabel{$\lor e$}
-          \alwaysSingleLine
           \TrinaryInfC{$\chi$}
           \DisplayProof
         \end{center}
     \end{enumerate}
 
+    \snoteb{Example 1.16, page 18}: Prove the sequent $q \limpl r \lprove p \lor q \limpl p \lor r$ is valid.
+      % =================================== [[[
+        \begin{logicproof}{3} % 3 = maximum number of subproofs
+          q \limpl r & premise \\
+          \begin{subproof}
+            p \lor q & assumption \\
+
+            \begin{subproof}
+              p        & assumption \\
+              p \lor r & $\lor i_1$ 3
+            \end{subproof}
+
+            \begin{subproof}
+              q        & assumption \\
+              r        & $\limpl e$ 1, 5 \\
+              p \lor r & $\lor i_2$ 6
+            \end{subproof}
+
+            p \lor r & $\lor e$ 2, 3-4, 5-7
+          \end{subproof}
+
+          p \lor q \limpl p \lor r
+        \end{logicproof}
+      % =================================== ]]]
+
+  \subsection{Copy Rule}
+    \par The \tb{copy rule} allows repeating something that is known already, \ti{unless it belongs to a temporary assumption whose box has already been closed}.
+    \snoteb{Example page 20}: Prove the sequent $\lprove p \limpl (q \limpl p)$
+    \begin{logicproof}{2}
+      \begin{subproof}
+        p & assumption \\
+        \begin{subproof}
+          q & assumption \\
+          p & copy 1
+        \end{subproof}
+        q \limpl p & $\limpl i$ 2-3
+      \end{subproof}
+      q \limpl (q \limpl p) & $\limpl i$ 1-4
+    \end{logicproof}
+
   \subsection{Rules for Contradiction}
-    \par A \tb{contradiction} is an expression of the form
+    \par A \tb{contradiction} is an expression in either of the two forms
     \[
-    \phi \land \lnot \phi
+      \phi \land \lnot \phi \qquad \lnot \phi \land \phi
     \]
     where $\phi$ is any formula. A contradiction is denoted by $\lcontrad$.
     \par \tb{Elimination Rule}: This rule says that: \ti{a contradiction can prove anything}.
       \begin{center}
         \AxiomC{$\lcontrad$}
+        \RightLabel{$\lcontrad e$}
         \UnaryInfC{$\phi$}
         \DisplayProof
       \end{center}
 
-\subsection{Rules for Negation}
+  \subsection{Rules for Negation}
     \begin{enumerate}[a.]
-      \item \tb{Introduction Rule} is denoted by $\lnot i$.
-        \begin{center}
-          \alwaysNoLine
-          \AxiomC{$\phi$}
-          \UnaryInfC{$\ldots$}
-          \UnaryInfC{$\psi$}
-          \RightLabel{$\lnot i$}
-          \alwaysSingleLine
-          \UnaryInfC{$\phi \lnot \psi$}
-          \DisplayProof
-        \end{center}
-
-      \item \tb{Elimination Rule} is denoted by $\lnot e$.
+      \item \tb{Elimination Rule} is denoted by $\lnot e$ and read \tb{``not-elimination"}.
         \begin{center}
           \AxiomC{$\phi$}
           \AxiomC{$\lnot \phi$}
@@ -467,40 +536,264 @@
           \BinaryInfC{$\lcontrad$}
           \DisplayProof
         \end{center}
+
+      \snoteb{Example 1.20, page 21}: Prove the sequent: $\lnot p \lor q \lprove p \limpl q$
+        \begin{logicproof}{4}
+          \lnot p \lor q & premise \\
+          \begin{subproof}
+            \lnot p & assumption \\
+
+            \begin{subproof}
+              p         & assumption \\
+              \lcontrad & $\lnot e$ 3, 2 \\
+              q         & $\lcontrad e$ 4
+            \end{subproof}
+
+            p \limpl q  & $\limpl i$ 3-5
+          \end{subproof}
+
+          \begin{subproof}
+            q & assumption \\
+            \begin{subproof}
+              p & assumption \\
+              q & copy 7
+            \end{subproof}
+
+            p \limpl q & $\limpl i$ 8-9
+          \end{subproof}
+
+          p \limpl q & $\lor e$ 1, 2-6, 7-10
+        \end{logicproof}
+
+      \item \tb{Introduction Rule} is denoted by $\lnot i$.
+        \begin{center}
+          \newsavebox\NegaIntrAssump
+          \sbox\NegaIntrAssump{
+            \fbox{
+              \AxiomC{$\phi$}
+              \noLine
+              \UnaryInfC{$\vdots$}
+              \noLine
+              \UnaryInfC{$\lcontrad$}
+              \DisplayProof
+            }
+          }
+
+          \AxiomC{\usebox\NegaIntrAssump}
+          \RightLabel{$\lnot i$}
+          \UnaryInfC{$\lnot \phi$}
+          \DisplayProof
+        \end{center}
     \end{enumerate}
 
-\section{Derived Rules}
-  \subsection{Modus Tollens}
-    \begin{center}
-      \AxiomC{$\phi \limpl \psi$}
-      \AxiomC{$\lnot \psi$}
-      \RightLabel{MT}
-      \BinaryInfC{$\lnot \phi$}
-      \DisplayProof
-    \end{center}
+    \snoteb{Example 1.21, page 22}: Prove the sequent: $p \limpl q, p \limpl \lnot q \lprove \lnot p$
+    \begin{logicproof}{1}
+      p \limpl q       & premise \\
+      p \limpl \lnot q & premise \\
+      \begin{subproof}
+        p         & assumption \\
+        q         & $\limpl e$ 1, 3 \\
+        \lnot q   & $\limpl e$ 2, 3 \\
+        \lcontrad & $\lnot e$ 4, 5
+      \end{subproof}
+      \lnot p & $\lnot i$ 3-6
+    \end{logicproof}
 
-  \subsection{Proof By Contradiction (PCB)}
-    \begin{center}
-      \alwaysNoLine
-      \AxiomC{$\lnot \phi$}
-      \UnaryInfC{$\vdots$}
-      \UnaryInfC{$\lcontrad$}
-      \RightLabel{PBC}
-      \alwaysSingleLine
-      \UnaryInfC{$\phi$}
-      \DisplayProof
-    \end{center}
+  \hii{Derived Rules}
+    \hiii{Modus Tollens}
+      \begin{center}
+        \AxiomC{$\phi \limpl \psi$}
+        \AxiomC{$\lnot \psi$}
+        \RightLabel{MT}
+        \BinaryInfC{$\lnot \phi$}
+        \DisplayProof
+      \end{center}
 
-  \subsection{Law of the Excluded Middle (LEM)}
-    \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
-    \begin{center}
-      % \AxiomC{$\phi$}
-      % \AxiomC{$\lnot \phi$}
-      \AxiomC{}
-      \RightLabel{LEM}
-      \UnaryInfC{$\phi \lor \lnot \phi$}
-      \DisplayProof
-    \end{center}
+    \hiii{Proof By Contradiction (PCB)}
+      \begin{center}
+        \newsavebox\PCBAsump
+        \sbox\PCBAsump{
+          \fbox{
+            \AxiomC{$\lnot \phi$}
+            \noLine
+            \UnaryInfC{$\vdots$}
+            \noLine
+            \UnaryInfC{$\lcontrad$}
+            \DisplayProof
+          }
+        }
 
-\section{Provable Equivalence}
-  \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say that $\phi$ and $\psi$ are provably equivalent iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.
+        \AxiomC{\usebox\PCBAsump}
+        \RightLabel{PBC}
+        \UnaryInfC{$\phi$}
+        \DisplayProof
+      \end{center}
+
+    \hiii{Law of the Excluded Middle (LEM)}
+      \par This rule says that: \ti{the statement $\phi \lor \lnot \phi$ is always \tb{True}}.
+      \begin{center}
+        % \AxiomC{$\phi$}
+        % \AxiomC{$\lnot \phi$}
+        \AxiomC{}
+        \RightLabel{LEM}
+        \UnaryInfC{$\phi \lor \lnot \phi$}
+        \DisplayProof
+      \end{center}
+
+  \hiii{Provable Equivalence}
+    \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say that $\phi$ and $\psi$ are \tb{provably equivalent} iff (we write ``iff" for ``if, and only if" in the sequel) the sequents $\phi \lprove \psi$ and $\psi \lprove \phi$ are valid; that is, there is a proof of $\psi$ from $\phi$ and another one going the other way around. As seen earlier, we denote that $\phi$ and $\psi$ are provably equivalent by $\phi \lproveeq \psi$.
+
+\hi{Propositional Logic as a Formal Language}
+  \snoteb{Definition 1.27, page 32-33}: The \tb{well-formed} formulas of propositional logic are those which we obtain by using the construction rules below (and only those) finitely many times:
+  \begin{itemize}
+    \item \tb{atom}: every propositional atom $p, q, r, \ldots$ and $p_1, \ldots$  is a well-formed formula
+    \item $\lnot$: If $\phi$ is a well-formed formula, then so is $\lnot \phi$.
+    \item $\land$: If $\phi$ and $\psi$ are well-formed formulas, then so is $\phi \land \psi$.
+    \item $\lor$: If $\phi$ and $\psi$ are well-formed formulas, then so is $\phi \land \psi$.
+    \item $\limpl$: If $\phi$ and $\psi$ are well-formed formulas, then so is $\phi \land \psi$.
+  \end{itemize}
+
+  \par The above definition can be written in a defining grammar called \tb{Backus Naur form (BNF)}. In that form, the definition reads more compactly as:
+    \[
+      \phi ::= p | (\lnot \phi) | (\phi \land \psi) | (\phi \lor \psi) | (\phi \limpl \psi)
+    \]
+    where
+    \begin{itemize}
+      \item $p$ stands for \tb{any atomic proposition}
+      \item every occurence of $\phi$ to the right of $::=$ stands for any already constructed formula.
+    \end{itemize}
+
+  \par To verify if a formula is well-formed or not, we can draw a syntax tree.
+
+\hi{Semantics of Propositional Logic}
+  \hii{The meaning of logical connectives}
+  \snoteb{Definition 1.28, page 37}:
+    \begin{itemize}
+      \item The set of truth values contains two elements: True $\lT$ and False $\lF$.
+      \item A \tb{valuation} of \tb{model} of a formula $\phi$ is an assignment of each propositional atom in $\phi$ to a truth value.
+    \end{itemize}
+%  \par Notation:
+    %\[
+      %\phi_1, \ldots, \phi_n \models \psi
+    %\]
+
+  \hii{Mathematical Induction}
+    \begin{itemize}
+      \item \tb{Base case}: The natural number 1 has property $M$, i.e. we have a proof of $M(1)$.
+      \item \tb{Inductive step}: If $n$ is a natural number which we assume to have property $M(n)$, then we can show that $n + 1$ has property $M(n + 1)$; i.e. we have a proof of $M(n) \limpl M(n + 1)$.
+    \end{itemize}
+    \par The assumption of $M(n)$ in the inductive step is called the induction hypothesis.
+
+    \par \tb{Course-of-values induction}: A variant of mathematical induction in which the induction hypothesis for proving $M(n + 1)$ is not just $M(n)$, but the conjunction $M(1) \land M(2) \land \ldots \land M(n)$. In that variant, called course-of-values induction, there doesn't have to be an explicit base case at all – everything can be done in the inductive step.
+
+    \snoteb{Definition 1.32, page 44}: Given a well-formed formula $\phi$, we define its height to be
+1 plus the length of the longest path of its parse tree.
+    \snoteb{Theorem 1.33, page 45}: For every well-formed propositional logic formula, the number of left brackets is equal to the number of right brackets.
+
+  \hii{Soundness of Propositional Logic}
+    \snoteb{Definition 1.34, page 46}: If, for all valuations in which all $\phi_1, \ldots, \phi_n$ evaluate to $\lT$, $\psi$ evaluates to $\lT$ as well, we say that:
+    \[
+      \phi_1, \phi_2, \ldots, \phi_n \models \psi
+    \]
+    holds and call $\models$ the \tb{semantic entailment} relation.
+
+    \snoteb{Theorem 1.35, page 46}: \tb{Soundness}: Let $\phi_1, \ldots, \phi_n$ and $\psi$ be propositional logic formulas. If $\phi_1, \ldots, \phi_n \lprove \psi$ is valid, then $\phi_1, \ldots, \phi_n \models \psi$
+
+    \par The soundness of propositional logic is useful in ensuring the non-existence of a proof for a given sequent.
+
+  \hii{Completeness of Propositional Logic}
+    \par Whenever $\phi_1, \ldots, \phi_n \models \psi$ holds, then there exists a natural deduction proof for the sequent $\phi_1, \ldots, \phi_n \lprove \psi$. Combined with the soundness result, we obtain:
+    \[
+      \phi_1, \ldots, \phi_n \lprove \psi \text{ is valid iff } \phi_1, \ldots, \phi_n \models \psi \text{holds}
+    \]
+    \snoteb{Definition 1.36}: A formula of propositional logic $\phi$ is called a \tb{tautology} iff it evaluates to $\lT$ under all its valuations, i.e. iff $\models \phi$.
+    \snoteb{Theorem 1.37}: If $\models \eta$ holds, then $\lprove \eta$ is valid. In other words, if $\eta$ is a tautology, then $\eta$ is a theorem.
+    \snoteb{Corollary 1.39}: \tb{Soundness and Completeness}: Let $\phi_1, \ldots, \phi_n, \psi$ be formulas of propositional logic. Then $\phi_1, \ldots, \phi_n \models \psi$ holds iff the sequent $\phi_1, \ldots, \phi_n \lprove \psi$ is valid.
+
+
+\hi{Normal Forms}
+  \hii{Semantic equivalence, satisfiability and validity}
+    \par Let $\phi$ and $\psi$ be formulas of propositional logic. We say that $\phi$ and $\psi$ are semantically equivalent iff $\phi$ ? $\psi$ and $\psi$ ? $\phi$ hold. In that case we write $\phi \equiv \psi$. Further, we call $\phi$ valid if $\models \phi$ holds.
+    \snoteb{Lemma 1.41, page 55}:  Given formulas $\phi_1, \ldots, \phi_n$ and $\psi$ of propositional logic. $\phi_1, \ldots, \phi_n \models \psi$ holds iff $\models \phi_1 \limpl (\phi_2 \limpl \ldots \limpl (\phi_n \limpl \psi))$ holds.
+
+    \par \tb{Proof}:
+      \begin{itemize}
+        \item \tb{Step 1}: Suppose that $\phi_1, \ldots, \phi_n \models \psi$ holds.
+          \par We need to verify that $\models \phi_1 \limpl (\phi_2 \limpl \ldots \limpl (\phi_n \limpl \psi))$ is a tautology. This formula evaluates to $\lF$ only if $\phi_1, \ldots, \phi_n$ all evaluate to $\lT$ and $\psi$ evaluates to $\lF$. But this contradicts the fact that $\phi_1, \ldots, \phi_n \models \psi$ holds. Thus, $\models \phi_1 \limpl (\phi_2 \limpl \ldots \limpl (\phi_n \limpl \psi))$ holds.
+        \item \tb{Step 2}: Suppose that $\models \phi_1 \limpl (\phi_2 \limpl \ldots \limpl (\phi_n \limpl \psi))$.
+          \par If $\phi_1 ,\phi_2, \ldots, \phi_n$ are all true under some valuation, then $\psi$ has to be true as well for that same valuation. Therefore, $\phi_1, \ldots, \phi_n \models \psi$ holds.
+      \end{itemize}
+
+    \par In some cases, we want to transform formulas into ones which:
+      \begin{itemize}
+        \item don't contain $\limpl$ at all
+        \item the occurrences of $\land$ and $\lor$ are confined to separate layers such that validity checks are easy.
+      \end{itemize}
+
+    \par This can be done by:
+    \begin{itemize}
+      \item using the equivalence $\phi \limpl \psi \equiv \lnot \phi \lor \psi$ to remove all occurrences of $\limpl$ from a formula.
+      \item specifying an algorithm that takes a formula without any $\limpl$ into a \tb{normal form} (still without $\limpl$) for which checking validity is easy.
+    \end{itemize}
+
+    \snoteb{Definition 1.42, page 56}: A formula $C$ is in \tb{conjunctive normal form} (CNF) if it is a conjunction of clauses, where:
+      \begin{itemize}
+        \item each literal $L$ is either an atom $p$ or the negation of an atom $\lnot p$.
+        \item each clause $D$ is a disjunction of literals.
+      \end{itemize}
+      \begin{align*}
+        L &::= p | \lnot p \\
+        D &::= L | L \lor D \\
+        C &::= D | D \land C \\
+      \end{align*}
+
+      \snote{Example}:
+      \begin{itemize}
+        \item The formula $(\lnot q \lor p \lor r) \land (\lnot p \lor r) \land q$ is in CNF.
+        \item The formula $(\lnot (q \lor p) \lor r) \land (q \lor r)$ is not in CNF, since $q \lor p$ is not a literal.
+      \end{itemize}
+
+    \snoteb{Lemma 1.43, page 56}: A \ti{disjunction of literals} $L_1 \lor \ldots \lor L_m$ is valid iff there are $1 \leq i, j \leq m$ such that $L_i$ is $\lnot L_j$.
+
+    \snoteb{Definition 1.44, page 57}: Given a formula $\phi$ in propositional logic. We say that $\phi$ is \tb{satisfiable} if it has a \ti{valuation} in which it evaluates to $\lT$.
+
+    \snoteb{Proposition 1.45, page 57}: Let $\phi$ be a formula of propositional logic. Then $\phi$ is satisfiable iff $\lnot \phi$ is not valid.
+
+    \snoteb{Theorem - Transformation to CNF}: Every formula in the propositional calculus can be transformed into an equivalent formula in CNF.
+
+    \snoteb{Transforming Truth Table to CNF}:
+      \begin{itemize}
+        \item \tb{Step 1}: Find all rows in the truth table that evaluate to $\lF$.
+        \item \tb{Step 2}: With each row that we found in step 1, construct a disjunction.
+        \item \tb{Step 3}: The CNF is the conjunction of all disjunctions in step 2.
+      \end{itemize}
+
+  \hii{Conjunctive normal forms and validity}
+
+  \hii{Extra: Algorithm for CNF Transformation}
+    \begin{itemize}
+      \item \tb{Step 1}: Eliminate implication, using:
+        \[
+          \phi_1 \limpl \phi_2 \equiv \lnot \phi_1 \lor \phi_2
+        \]
+      \item \tb{Step 2}: Push all negations inward using De Morgan's law:
+        \[
+          \lnot (\phi_1 \land \phi_2) \equiv (\lnot \phi_1 \lor \lnot \phi_2)
+        \]
+        \[
+          \lnot (\phi_1 \lor \phi_2) \equiv (\lnot \phi_1 \land \lnot \phi_2)
+        \]
+      \item \tb{Step 3}: Eliminate double negations using the equivalence:
+        \[
+          \lnotnot \phi_1 \equiv \phi_1
+        \]
+      \item \tb{Step 4}: Use distributive laws to eliminate conjunctions within disjunctions:
+        \[
+          \phi_1 \lor (\phi_2 \land \phi_3) \equiv (\phi_1 \lor \phi_2) \land (\phi_1 \lor \phi_3)
+        \]
+        \[
+          (\phi_1 \land \phi_2) \lor \phi_3 \equiv (\phi_1 \lor \phi_3) \land (\phi_2 \lor \phi_3)
+        \]
+    \end{itemize}
+
+  \hii{Horn clauses and satisfiability}

@@ -1,9 +1,59 @@
-\documentclass[12pt, a4paper]{report}
-
+\documentclass[9pt, landscape, a4paper]{article}
 
 % === MARGINS ===
-\usepackage[margin=0.75in]{geometry}
+\usepackage{geometry}
+\geometry{top=0.75cm,bottom=0.75cm,left=1cm,right=1cm,includehead,includefoot}
 
+% === FONT ===
+% \renewcommand{\familydefault}{\sfdefault}
+
+% LINE SPACING
+% \setlength{\parskip}{6pt}
+
+% === HEADER % FOOTER ===
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[L]{HCM City University of Technology}
+\fancyhead[R]{Chapter \thesection}
+\fancyhead[L]{Probability \& Statistics}
+% \fancyfoot[R]{Dept. of Computer Science \& Technology}
+% \fancyfoot[R]{\thepage}
+
+% \fancypagestyle{plain}
+% {
+% \fancyhf{} % clear all header and footer fields
+% \fancyhead[L]{HCM City University of Technology}
+% \fancyhead[R]{Dept. of Computer Science \& Technology}
+% \fancyfoot[L]{Nhat M. Nguyen}
+% % \fancyfoot[C]{}
+% % \fancyfoot[R]{\thepage}
+% }
+
+% === MULTICOLUMN ===
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{0.2pt}
+\newcommand{\colbreak}{\vfill\null\columnbreak}
+
+% === TOC ===
+% Create clickable hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+% \usepackage{tocloft}
+% \renewcommand*{\ttdefault}{pcr}
+% \renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
+% \renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
+% \renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
+% \renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
+% \renewcommand\cftsecafterpnum{\vspace{-1ex}}
+% \renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
 
 % === HEADINGS ===
 \setcounter{secnumdepth}{4}
@@ -14,26 +64,11 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-
 % === INDENTATION ===
 \usepackage{indentfirst}
 
-
-% === TABLE OF CONTENTS ===
-% links
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks,
-  citecolor=black,
-  filecolor=black,
-  linkcolor=black,
-  urlcolor=black
-}
-
-
-% === APPENDICES ===
-\usepackage[toc, page]{appendix}
-
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
 
 % === TEXT ===
 % Bold, italic, underlined text
@@ -42,13 +77,18 @@
 \newcommand{\tbi}[1]{\textbf{\textit{#1}}}
 \newcommand{\tu}[1]{\underline{#1}}
 \newcommand{\tbu}[1]{\textbf{\underline{#1}}}
-\newcommand{\smf}[1]{\small #1 \normalsize}
-\newenvironment{smfont}{\small}{\normalsize}
 
+% === TEXTBOX ===
+\usepackage{varwidth}
+\newenvironment{fboxenv}
+  {
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+  }
+  {
+    \end{minipage}
+  }
 
-% === ENUMERATE ===
-\usepackage[shortlabels]{enumitem}
-% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
+\newcommand{\textbox}[1]{\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\itshape #1 }}}
 
 
 % === MATH ===
@@ -116,6 +156,22 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
+% Hand-written-like fonts
+\usepackage{eucal}
+
+% Superscript+subscript
+\newcommand{\spc}[2]{{#1}^{#2}}
+\newcommand{\sbc}[2]{{#1}_{#2}}
+\newcommand{\ssc}[3]{{#1}^{#2}_{#3}}
+
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{10pt}{5pt}
+\titlespacing{\subsection}{0pt}{10pt}{3pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{3pt}
+\titlespacing{\subsubsubsection}{0pt}{10pt}{3pt}
+% \usepackage[parfill]{parskip}           % For compact enumerations
+
+% Logic ================= {{{
 % Logic
 \usepackage{bussproofs} % prooftree
 \usepackage{logicproof}
@@ -133,99 +189,23 @@
 \newcommand{\lprove}{\vdash}
 \newcommand{\lproverev}{\dashv}
 \newcommand{\lproveeq}{\dashv \vdash}
-\newcommand{\Ra}{\Rightarrow}
+% ======================= }}}
 
 
 
-% === FOOTNOTE ===
-%   one foot note stays on one page
-\interfootnotelinepenalty=10000
-
-\newcommand{\fnmark}{\footnotemark}
-\newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
-\newcommand{\fntext}{\footnotetext}
-
-
-% === IMAGES ===
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{float}
-\newcommand{\img}[3][]
-{
-  \begin{figure}[H]
-    \centering
-    \includegraphics[#1]{#2}
-    \caption*{#3}
-  \end{figure}
-}
-% Usage: \img[width=...]{<path_to_img>}{<caption>}
-
-
-% === PSEUDOCODE ===
-\usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage[noend]{algpseudocode}
-\usepackage{caption}
-
-\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
-
-\newcommand*\Let[2]{\State #1 $\gets$ #2}
-\algrenewcommand\algorithmicrequire{\textbf{Input:}}
-\algrenewcommand\algorithmicensure{\textbf{Output:}}
-\newcommand{\INPUT}[1]{\Require{#1} \Statex}
-\newcommand{\OUTPUT}[1]{\Ensure{#1} \Statex}
-\newcommand{\INPUTOUTPUT}[2]{\Require{#1} \Ensure{#2} \Statex}
-\newcommand{\LET}[2]{\Let{$#1$}{$#2$}}
-\newcommand{\FOR}[2]{\For{$#1 \gets #2$}}
-\newcommand{\ENDFOR}{\EndFor}
-\newcommand{\TO}{\textrm{ \tb{to} }}
-\newcommand{\DOWNTO}{\textrm{ \tb{downto} }}
-\newcommand{\AND}{\textrm{ \tb{and} }}
-\newcommand{\OR}{\textrm{ \tb{or} }}
-\newcommand{\XOR}{\textrm{ \tb{xor} }}
-\newcommand{\GETS}{\gets}
-\newcommand{\IF}[1]{\If{$#1$}}
-\newcommand{\ELSEIF}[1]{\ElsIf{$#1$}}
-\newcommand{\ELSE}{\Else}
-\newcommand{\ENDIF}{\EndIf}
-\newcommand{\WHILE}[1]{\While{$#1$}}
-\newcommand{\ENDWHILE}{\EndWhile}
-\newcommand{\FUNCTION}[2]{\Function{#1}{$#2$}}
-\newcommand{\ENDFUNCTION}{\EndFunction}
-\newcommand{\PROCEDURE}[2]{\Procedure{#1}{$#2$}}
-\newcommand{\ENDPROCEDURE}{\EndProcedure}
-\newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
-\newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
-\newcommand{\RETURN}[1]{\State \Return{#1}}
-
-% === TABLE ===
-\usepackage{multirow}
-
-% === CODE ===
-\usepackage{listings}
-\usepackage{inconsolata}
-\lstset
-{
-  basicstyle=\ttfamily,
-}
-
-
-% === BOOK SECTION MARKER ===
-\newcommand{\snote}[1]{\par {\footnotesize #1}}
-\newcommand{\snoteb}[1]{\par \textbf{{\footnotesize #1}}}
-\newcommand{\booktitle}{}
-\newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
-
+% INFO
+\title{\vspace{-4ex}\Large{Probability \& Statistics - Cheat Sheet}}
+% \author{Nhat M. Nguyen - ID: 1752039}
+\date{June 2019}
 
 \begin{document}
-\tableofcontents
+  \maketitle
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
 
-\input{chap01}
-\input{chap02}
-
-\begin{appendices}
-
-\end{appendices}
-
+  \clearpage
+  \input{chap01}
+  % \input{terms}
+  % \input{appendix01}
 \end{document}

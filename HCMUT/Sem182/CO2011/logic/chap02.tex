@@ -1,0 +1,351 @@
+\chapter{Predicate Logic}
+
+\hi{The need for a richer language}
+  \hii{Predicates}
+  \par The logic tools in chapter 1 cannot deal with modifiers like: \ti{there exists}, \ti{all}, \ti{among}, and \ti{only}.
+
+  \par To express \tb{properties}, or something about \ti{being a student, being an instructor}, or \ti{being younger than somebody else}, we can use \tb{predicates}.
+
+  \snoteb{Example 1}: \ti{Every student is younger than some instructor.}
+
+  \par We can write:
+  \begin{itemize}
+    \item $S(andy)$ to denote that Andy is a student
+    \item $I(paul)$ to denote that Paul is an instructor
+    \item $Y(andy, paul)$ to denote that Andy is younger than Paul
+  \end{itemize}
+
+  \par To avoid having to explicity write the name of students or instructors, we can replace them with \tb{variables}:
+  \begin{itemize}
+    \item $S(x)$: $x$ is a student
+    \item $I(y)$ $y$ is an instructor
+    \item $Y(x, y)$: $x$ is younger than $y$
+  \end{itemize}
+
+  \hii{Quantifiers}
+    \par \tb{Quantifiers}:
+    \begin{itemize}
+      \item $\forall$: for all
+      \item $\exists$: exists
+    \end{itemize}
+
+    \par Now, the sentence can be written as:
+      \[
+        \forall x (S(x) \limpl (\exists y (I(y) \land Y(x, y))))
+      \]
+
+    \snoteb{Example 2}: \ti{Not all birds can fly}.
+      \par Predicates:
+      \begin{itemize}
+        \item $B(x)$: $x$ is a bird
+        \item $F(x)$: $x$ can fly
+      \end{itemize}
+      \par The sentence can be coded as:
+        \[
+          \lnot (\forall x(B(x) \limpl F(x)))
+        \]
+      \par An alternative form is:
+        \[
+          \exists x (B(x) \land \lnot F(x))
+        \]
+
+    \snoteb{Example 3}: \ti{Every child is younger than its mother}.
+      \par Predicates:
+      \begin{itemize}
+        \item $C(x)$: $x$ is a child
+        \item $M(y, x)$: $y$ is $x$'s mother
+        \item $Y(x, y)$: $x$ is younger than $y$
+      \end{itemize}
+      \par The sentence can be coded as:
+        \[
+          \forall x \forall y (C(x) \land M(y, x) \limpl Y(x, y))
+        \]
+      \par Here, it is not very elegant to say 'any of x’s mothers', since we know that every individual has one and only one mother.
+
+    \snoteb{Example 4}: \ti{Andy and Paul have the same maternal grandmother}.
+      \par Variables:
+        \begin{itemize}
+          \item $a$: Andy
+          \item $p$: Paul
+        \end{itemize}
+      \par Predicates:
+        \begin{itemize}
+          \item $M(y, x)$: $y$ is $x$'s mother
+        \end{itemize}
+      \[
+        \forall x \forall y \forall u \forall v (M(x, y) \land M(y, a) \land M(y, v) \land M(v, p) \limpl x = u)
+      \]
+      \par In this example, there is a special predicate: $x = y$.
+
+  \hii{Function Symbols}
+      \par We can simplify the expression with function symbol. For example: $m(y)$ means $y$'s mother. $m$ is a function symbol, which takes one argument and returns the mother of that argument.
+      \par However, function symbols can be used only in situations in which we want to \ti{denote a single object}. For example: a function symbol $b(y)$ which denotes brothers of $y$ does not make sense.
+
+
+\hi{Predicate Logic as a Formal Language}
+  \hii{Elements of Predicate Logic Formula}
+    \par There are 2 \ti{sort of things} involved in a predicate logic formula
+    \begin{itemize}
+      \item The first sort denotes \tb{objects}. Expressions of this kind are called \tb{terms}, including:
+        \begin{itemize}
+          \item Variables: $a$ refers to Andy, $p$ refers to Paul
+          \item Function symbols: $m(a)$ denotes mother of $a$
+        \end{itemize}
+      \item The second sort denotes \tb{truth values}. Expressions of this kind are called \tb{formulas}.
+        \par For example: $Y(x, m(x))$ is a formula, though $x$ and $m(x)$ are terms.
+    \end{itemize}
+
+  \hii{Sets of Vocabulary}
+    \par The predicate vocabulary consists of three sets:
+    \begin{itemize}
+      \item a set of predicate symbols $\mathcal{P}$
+      \item a set of function symbols $\mathcal{F}$
+      \item a set of constant symbols $\mathcal{C}$
+    \end{itemize}
+    \par Each predicate symbol and each function symbol comes with an \tb{arity}, the number of arguments it expects.
+    \par Constants can be thought as 0-arity/nullary functions. Therefore, we can drop the set $\mathcal{C}$ and put conostants into $\mathcal{F}$.
+
+  \hii{Terms}
+    \snoteb{Definition 2.1, page 99}: \tb{Terms} are defined as follows:
+    \begin{itemize}
+      \item Any variable is a term.
+      \item If $c \in \mathcal{F}$ is a nullary function, then $c$ is a term.
+      \item If $t_1, \ldots, t_n$ are terms and $f \in \mathcal{F}$ has arity $n > 0$, then $f(t_1, \ldots, t_n)$ is a term.
+      \item Nothing else is a term.
+    \end{itemize}
+    \par \tb{Backus Naur form}:
+      \[
+        t := x | c | f(t, \ldots, t)
+      \]
+
+    \snoteb{Example 2.2, page 100}:
+      \par Suppose that:
+      \begin{itemize}
+        \item $n$ is a \ti{nulllary} function symbol
+        \item $f$ is a \ti{unary} function symbol
+        \item $g$ is a \ti{binary} function symbol
+      \end{itemize}
+      \par Then:
+      \begin{itemize}
+        \item $g(f(n), n)$ is a term.
+        \item $f(g(f(n), n))$ is a term.
+        \item $g(n)$ is NOT a term, because it violates the arity.
+        \item $f(n, g(n))$ is NOT a term, because it violates the arity.
+      \end{itemize}
+
+  \hii{Formulas}
+    \snoteb{Definition 2.3}: The set of \tb{formulas} over $(\mathcal{F}, \mathcal{P})$ is defined as follows:
+      \begin{itemize}
+        \item If $P \in \mathcal{P}$ is a predicate symbol of arity $n \leq 1$, and if $t_1, \ldots, t_n$ are terms over $\mathcal{F}$, then $P(t_1, \ldots t_n)$ is a formula.
+        \item If $\phi$ is a formula, then so is $\lnot \phi$.
+        \item If $\phi$ and $\psi$ are formulas, then so are $\phi \land \psi$, $\phi \lor \psi$, $\phi \limpl \psi$.
+        \item If $\phi$ is a formula and $x$ is a variable, then $\forall x \phi$ and $\exists x \phi$ are formulas.
+        \item Nothing else is a formula.
+      \end{itemize}
+    \par \tb{Backus Naur form}:
+      \[
+        \phi ::= P(t_1, t_2, \ldots, t_n)
+          | (\lnot \phi)
+          | (\phi \land \phi)
+          | (\phi \lor \phi)
+          | (\phi \limpl \phi)
+          | (\forall x \phi)
+          | (\exists x \phi)
+      \]
+    \snoteb{Convention 2.4}: \tb{Binding Priority}: from high to low
+      \begin{itemize}
+        \item $\lnot$, $\forall$ and $\exists$ bind most tightly
+        \item $\lor$ and $\land$
+        \item $\limpl$, which is \tb{right-associative}
+      \end{itemize}
+    \par Predicate logic formulas can be represented by \tb{parse trees}.
+
+  \hii{Free and bound variables}
+    \snoteb{Definition 2.6, page 103}:
+      \begin{itemize}
+        \item Let $\phi$ be a formula in predicate logic. An occurrence of $x$ in $\phi$ is free in $\phi$ if it is a leaf node in the parse tree of $\phi$ such that there is no path upwards from that node $x$ to a node $\forall x$ or $\exists x$. Otherwise, that occurrence of $x$ is called bound.
+        \item For $\forall x \phi$, or $\exists x \phi$, we say that $\phi$ – minus any of $\phi$’s subformulas $\exists x \phi$, or $\forall x$ – is the scope of $\forall x$, respectively $\exists x$.
+      \end{itemize}
+
+    \img[width=12cm]{img/free-and-bound.JPG}
+
+  \hii{Substitution}
+    \snoteb{Definition 2.7, page 105}:  Given a variable $x$, a term $t$ and a formula $\phi$ we define $\phi[t/x]$ to be the formula obtained by replacing each \tb{free occurrence} of variable $x$ in $\phi$ with $t$.
+    \par \tb{Note}:
+      \begin{itemize}
+        \item An equivalent notation of $\phi[t/x]$ is $[x \Ra t]\phi$
+      \end{itemize}
+
+    \img[width=12cm]{img/parse-tree-substitute.JPG}{}
+
+    \par \tb{Note}: When doing substitution, we need to avoid undesired variable captures. For example: in the substitution $[x \Ra t] \phi$, $t$ contains a variable $t$, and the free occurences of $x$ in $\phi$ are under the scope of $\forall y$ or $\exists y$ in $\phi$. This binding capture overrides the context specification of the concrete value of $y$.
+
+    \snoteb{Definition 2.8, page 106}: Given a term $t$. A variable $x$ and a formula $\phi$. We say that $t$ is free for $x$ in $\phi$ if no free $x$ leaf in $\phi$ occurs in the scope of $\forall y$ or $\exists y$ for any variable $y$ occurring in $t$.
+
+    \img[width=12cm]{img/capture-substitution.JPG}{}
+
+
+\hi{Proof theory of predicate logic}
+  \hii{Proof Rules for Equality}
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule}:
+        \begin{center}
+          \AxiomC{}
+          \RightLabel{$= i$}
+          \UnaryInfC{$\phi \lor \psi$}
+          \DisplayProof
+        \end{center}
+
+        \par This rule is an \tb{axiom}, (which does not depend on any premises).
+        \par This rule may be invoked only if $t$ \tb{is a term}.
+
+      \item \tb{Elimination Rule}:
+        \begin{center}
+          \AxiomC{$t_1 = t_2$}
+          \AxiomC{$[x \Ra t_1]\phi$}
+          \RightLabel{$= i$}
+          \BinaryInfC{$[x \Ra t_2]\phi$}
+          \DisplayProof
+        \end{center}      
+
+        \snoteb{Convention 2.10, page 108}: when we write $[x \Ra t] \phi$, we implicitly assume that $t$ is free for $x$ in $\phi$.
+    \end{enumerate}
+
+  \hii{Proof Rules for Universal Quantification}
+    \begin{enumerate}[a.]
+      \item \tb{Elimination Rule}:
+        \begin{center}
+          \AxiomC{$\forall x \phi$}
+          \RightLabel{$\forall x$ e}
+          \UnaryInfC{$[x \Ra t]\phi$}
+          \DisplayProof
+        \end{center}
+        \par This rule says that: if $\forall x$, $\phi$ is $\lT$, then we can replace $x$ by \ti{any} term $t$ and conclude that $[x \Ra t]\phi$ is true as well.
+
+      \item \tb{Introduction Rule}:
+        \begin{center}
+          \newsavebox\QuanIntroBox
+          \sbox\QuanIntroBox{
+            \fbox{
+              \AxiomC{$x_0$}
+              \noLine
+              \UnaryInfC{$\vdots$}
+              \noLine
+              \UnaryInfC{$[x \Ra x_0]\phi$}
+              \DisplayProof
+            }
+          }
+          \AxiomC{\usebox\QuanIntroBox}
+          \RightLabel{$\forall x$ i}
+          \UnaryInfC{$\forall x \phi$}
+          \DisplayProof
+        \end{center}
+
+        \par Here, $x_0$ is a \tb{fresh variable}, meaning that it \ti{does not occur anywhere outside of the box}.
+        \par \tb{Intuition of the rule}: If we come up with the proof wihout using any \ti{specific} value of $x$, but a \ti{random} value of $x$, then the proof is legitimate.
+
+        \snoteb{Example page 111}: Prove the sequent $\forall x(P(x) \limpl Q(x)), \forall x P(x) \lprove \forall x Q(x)$.
+        \begin{logicproof}{1}
+          \quad \quad \forall x (P(x) \limpl Q(x)) & premise \\
+          \quad \quad \forall x (P(x_0))           & premise \\
+          \begin{subproof}
+            x_0 \quad P(x_0) \limpl Q(x_0) & $\forall x$ e 1 \\
+                \quad P(x_0)               & $\forall x$ e 2 \\
+                \quad Q(x_0)               & $\limpl e$ 3, 4
+          \end{subproof}
+          \quad \quad \forall x Q(x)               & $\forall x$ i 3-5
+        \end{logicproof}
+    \end{enumerate}
+
+  \hii{Proof Rule for Existential Quantification}
+
+    \begin{enumerate}[a.]
+      \item \tb{Introduction Rule}:
+        \begin{center}
+          \AxiomC{$[x \Ra t] \phi$}
+          \RightLabel{$\exists x$ i}
+          \UnaryInfC{$\exists x \phi$}
+          \DisplayProof
+        \end{center}
+
+      \item \tb{Elimination Rule}:
+        \begin{center}
+          \newsavebox\ExistElimBox
+          \sbox\ExistElimBox{
+            \fbox{
+              \AxiomC{$x_0 \quad [x \Ra x_0]$}
+              \noLine
+              \UnaryInfC{$\quad \quad \vdots$}
+              \noLine
+              \UnaryInfC{$\quad \quad \chi$}
+              \DisplayProof
+            }
+          }
+
+          \AxiomC{$\exists x \phi$}
+          \AxiomC{\usebox\ExistElimBox}
+          \RightLabel{$\exists x$ e}
+          \BinaryInfC{$\chi$}
+          \DisplayProof
+        \end{center}
+
+
+        \snoteb{Example page 114}: Prove the sequent $\forall x(P(x) \limpl Q(x)), \exists x P(x) \lprove \exists x Q(x)$.
+        \begin{logicproof}{1}
+          \quad \quad \forall x (P(x) \limpl Q(x)) & premise \\
+          \quad \quad \exists x (P(x_0))           & premise \\
+          \begin{subproof}
+            x_0 \quad P(x_0)               & assumption \\
+                \quad P(x_0) \limpl Q(x_0) & $\forall x$ e 1 \\
+                \quad Q(x_0)               & $\limpl e$ 4, 3 \\
+                \quad \exists x Q(x)       & $\exists x$ i 5
+          \end{subproof}
+          \quad \quad \exists x Q(x)               & $\exists x$ e 2, 3-6
+        \end{logicproof}
+    \end{enumerate}
+
+  \hii{Quantifier Equivalences}
+    \snoteb{Theorem 2.13, page 118}: Let $\phi$ and $\psi$ be formulas of predicate logic. Then we have the following equivalences:
+      \begin{enumerate}[1.]
+        \item
+        \begin{enumerate}[(a)]
+          \item $\lnot \forall x \phi \lproveeq \exists x \phi$
+          \item $\lnot \exists x \phi \lproveeq \forall x \phi$
+        \end{enumerate}
+        \item Assume that $x$ is \tb{not free} in $\psi$
+        \begin{enumerate}[(a)]
+          \item $\forall x \phi \land \psi \lproveeq \forall x (\phi \land \psi)$
+          \item $\forall x \phi \lor \psi \lproveeq \forall x (\phi \lor \psi)$
+          \item $\exists x \phi \land \psi \lproveeq \exists x (\phi \land \psi)$
+          \item $\exists x \phi \lor \psi \lproveeq \exists x (\phi \lor \psi)$
+          \item $\forall x (\psi \limpl \phi) \lproveeq \psi \limpl (\forall x \phi)$
+          \item ...
+        \end{enumerate}
+      \end{enumerate}
+
+\hi{Semantics of Predicate Logic}
+  \par We now use $\Gamma$ as a shorthand for $\phi_1, \ldots, \phi_n$.
+  \par To show that there is a proof for $\Gamma \lprove \psi$ is rather simple. Question: How to show that \ti{there is no proof for} $\Gamma \lprove \psi$?
+  \par To show that $\psi$ is not a \tb{consequence} of $\Gamma$ is easier: find a model in which all $\phi_i$ is correct but $\psi$ isn't. However, showing that $\psi$ is a consequence of $\Gamma$ is harder.
+
+  \hii{Models}
+    \snoteb{Definition 2.14, page 124}: Let $\mathcal{F}$ be a set of function symbols and $\mathcal{P}$ a set of predicate symbols, each symbol with a fixed number of required arguments. A model $\mathcal{M}$ of the pair $(\mathcal{F}, \mathcal{P})$ consists of the following set of data:
+    \begin{enumerate}[1.]
+      \item A non-empty set $A$, the universe of concrete values.
+      \item For each nullary function symbol $f \in \mathcal{F}$, a concrete element $f^{\mathcal{M}} \in A$.
+      \item For each $f \in \mathcal{F}$ with arity $n > 0$, a concrete function $f^{\mathcal{M}}: A^n \to A$ from $A^n$, a set of $n$-tuples over $A$, to $A$.
+      \item For each $P \in \mathcal{P}$ with arity $n > 0$, a subset $P^{\mathcal{M}} \subseteq A^n$ of $n$-tuples over $A$.
+    \end{enumerate}
+
+    \par \tb{Dealing with free variables}: Given a formula $\forall x \phi$ or $\exists x \phi$, we intend to check whether $\phi$ holds for all/some value $a$ in our model. Currently, we have no way of expressing this in our syntax, since $\phi$ usually has $x$ as a free variable. We are forced to interpret formulas \tb{relative to an environment}, or \tb{look-up table} that maps the set of variables to the set of values $A$ under the underlying model.
+
+    \snoteb{Definition 2.17, page 127}: A look-up table or environment for a universe $A$ of concrete values is a function $l: \text{\tb{var}} \to A$ from the set of variables \tb{var} to $A$. For such $l$, we denote by $l[x \mapsto a]$ the look-up table which maps $x$ to a and any other variable $y$ to $l(y)$.
+
+    \snoteb{Definition 2.18, page 128}: Given a model $\mathcal{M}$ for a pair $(\mathcal{F}, \mathcal{P})$ and given and environment $l$, we define the \tb{satisfaction relation} $M \models_{l} \phi$ for each logical formula over the pair $(\mathcal{F}, \mathcal{P})$ and look-up table $l$ by structural induction on $\phi$. If $\mathcal{M} \models_{l} \phi$ holds, we say that $\phi$ computes to $lT$ in the model $\mathcal{M}$ with respect to the environment $l$.
+    \par ...
+    \par We denote $\mathcal{M} \not \models_{l} \phi$ to denoted that $\mathcal{M} \models_{l} \phi$ does not hold.
+
+    \par In particular if $\phi$ has \tb{no free variables} at all, we call $\phi$ a \tb{sentence}. In this case, $\mathcal{M} \models_{l} \phi$ holds or not \tb{does not depend} on the choice of $l$.
+
+  \hii{Semantic Entailment}
+    

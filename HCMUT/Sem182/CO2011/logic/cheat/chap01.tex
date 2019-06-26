@@ -1,0 +1,54 @@
+\hi{Logic}
+
+\hii{Natural Deduction Rules}
+
+% AndIntroduction
+\newsavebox\AndIntro
+\sbox\AndIntro{
+  \AxiomC{$\phi$}
+  \AxiomC{$\psi$}
+  \RightLabel{$\land i$}
+  \BinaryInfC{$\phi \land \psi$}
+  \DisplayProof
+}
+
+% AndElimination
+\newsavebox\AndElim
+\sbox\AndElim{
+  \AxiomC{$\phi \land \psi$}
+  \RightLabel{$\land e_1$}
+  \UnaryInfC{$\phi$}
+  \DisplayProof
+  \hskip 1cm
+  \AxiomC{$\phi \land \psi$}
+  \RightLabel{$\land e_2$}
+  \UnaryInfC{$\psi$}
+  \DisplayProof
+}
+
+% Double-Negation Introduction
+\newsavebox\DNegIntro
+\sbox\DNegIntro{
+  \AxiomC{$\phi$}
+  \RightLabel{$\lnotnot i$}
+  \UnaryInfC{$\lnotnot \phi$}
+  \DisplayProof
+}
+
+% Double-Negation Elimination 
+\newsavebox\DNegElim
+\sbox\DNegElim{
+  \AxiomC{$\lnotnot \phi$}
+  \RightLabel{$\lnotnot e$}
+  \UnaryInfC{$\phi$}
+  \DisplayProof
+}
+
+% 
+
+\begin{tabular}{|c|c|c|}
+  \hline
+  Rule              & Introduction      & Elimination      \\ \hline
+  Conjunction (AND) & \usebox\AndIntro  & \usebox\AndElim  \\ \hline
+  Double Negation   & \usebox\DNegIntro & \usebox\DNegElim \\ \hline
+\end{tabular}
