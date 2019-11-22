@@ -13,19 +13,21 @@
 % === HEADER % FOOTER ===
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[L]{HCM City University of Technology}
-\fancyhead[R]{Dept. of Computer Science \& Technology}
-\fancyfoot[L]{Nhat M. Nguyen - 1752039}
-\fancyfoot[R]{\thepage}
+\fancyfoot[L]{HCM City University of Technology}
+\fancyhead[R]{Chapter \thesection}
+\fancyhead[L]{Probability \& Statistics}
+% \fancyfoot[R]{Dept. of Computer Science \& Technology}
+% \fancyfoot[R]{\thepage}
 
-\fancypagestyle{plain}
-{
-\fancyhead[L]{HCM City University of Technology}
-\fancyhead[R]{Dept. of Computer Science \& Technology}
-\fancyfoot[L]{Nhat M. Nguyen}
-\fancyfoot[C]{}
-\fancyfoot[R]{\thepage}
-}
+% \fancypagestyle{plain}
+% {
+% \fancyhf{} % clear all header and footer fields
+% \fancyhead[L]{HCM City University of Technology}
+% \fancyhead[R]{Dept. of Computer Science \& Technology}
+% \fancyfoot[L]{Nhat M. Nguyen}
+% % \fancyfoot[C]{}
+% % \fancyfoot[R]{\thepage}
+% }
 
 % === MULTICOLUMN ===
 \usepackage{multicol}
@@ -35,13 +37,13 @@
 
 % === TOC ===
 \usepackage{tocloft}
-%\renewcommand*{\ttdefault}{pcr}
-%\renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
-%\renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
-%\renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
-%\renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
-%\renewcommand\cftsecafterpnum{\vspace{-1ex}}
-%\renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
+% \renewcommand*{\ttdefault}{pcr}
+% \renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
+% \renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
+% \renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
+% \renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
+% \renewcommand\cftsecafterpnum{\vspace{-1ex}}
+% \renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
 
 % === HEADINGS ===
 \setcounter{secnumdepth}{4}
@@ -160,14 +162,15 @@
 % \usepackage[parfill]{parskip}           % For compact enumerations
 
 % INFO
-\title{\vspace{-4ex}\Large{Probability \& Statistics - Midterm}}
-\author{Nhat M. Nguyen - ID: 1752039}
-\date{April 2019}
+\title{\vspace{-4ex}\Large{Probability \& Statistics - Cheat Sheet}}
+\author{Nhat M. Nguyen - nhat.nguyen.cs17@gmail.com}
+\date{June 2019}
 
 \begin{document}
 
   \maketitle
 
+  \par \tb{Disclaimer: I am not 100\% sure that everything in this cheat sheet is correct. If you find a formula suspicious, you should recheck your own materials. :) }
   \begin{multicols}{2}
     \tableofcontents
   \end{multicols}
@@ -178,6 +181,10 @@
   \input{chap02}
   \input{chap03}
   \input{chap04}
+  \input{chap05}
+  \input{chap06}
+  \input{chap07}
+  \input{chap08}
   % \input{terms}
-  \input{appendix01}
+  % \input{appendix01}
 \end{document}

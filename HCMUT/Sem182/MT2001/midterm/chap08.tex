@@ -1,0 +1,150 @@
+\clearpage
+\begin{multicols}{3}
+
+\hi{Linear Regression}
+
+\hii{Simple Linear Regression}
+  \par The line to predict:
+    \[
+      y = \alpha + \beta x
+    \]
+  \par The regression line:
+    \[
+      \hat{y_i} = a + bx_i
+    \]
+  \par The least-squares estimates of the \tb{slope} $b$:
+    \[
+      b = \frac{S_{xy}}{S_{xx}}
+    \]
+  \par The least-squares estimates of the \tb{intercept} $a$:
+    \[
+      a = \bar{y} - \bar{x}
+    \]
+  \par Formulas (use the \ti{second formula of each quantity} for quick computation):
+    \[
+      S_{xx} = \sum\limits_{i = 1}^{n} (x_i - \bar{x})^2
+             = \sum\limits_{i = 1}^{n} x_i^2 - n(\bar{x})^2
+    \]
+    \[
+      S_{xy} = \sum\limits_{i = 1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+             = \sum\limits_{i = 1}^{n} x_i y_i - \frac{1}{n}
+                             \bigg(\sum\limits_{i = 1}^{n} x_i \bigg)
+                             \bigg(\sum\limits_{i = 1}^{n} y_i \bigg)
+    \]
+    \[
+      S_{yy} = \sum\limits_{i = 1}^{n} (y_i - \bar{y})^2
+             = \sum\limits_{i = 1}^{n} y_i^2 - n(\bar{y})^2
+    \]
+
+\hii{Error}
+  \par The regression line:
+    \[
+      \hat{y_i} = a + bx_i
+    \]
+  \par Each pair of observation satisfies the relationship:
+    \[
+      y_i = a + bx_i + e_i
+    \]
+    where $e_i = y_i - \hat{y_i}$ is the \tb{residual}.
+  \par Some quantities:
+    \begin{itemize}
+      \item Sum of squares of the residuals
+    \[
+      \text{SSE} = \sum (y_i - \hat{y_i})^2
+    \]
+      \item Sum of squares of the response variable
+    \[
+      \text{SST} = \sum (y_i - \bar{y})^2
+    \]
+      \item Sum of squares for regression
+    \[
+      \text{SSR} = \sum (\hat{y_i} - \bar{y})^2
+    \]
+    \end{itemize}
+  \par Computational formula:
+    \[
+      \text{SST} = S_{yy}
+    \]
+    \[
+      \text{SSR} = bS_{xy}
+    \]
+    \[
+      \text{SSE} = S_{yy} - bS_{xy}
+    \]
+  \par Fundamental Identity:
+    \[
+      \text{SST} = \text{SSE} + \text{SSR}
+    \]
+  \par Expected value of SSE:
+    \[
+      E(\text{SSE}) = (n - 2)\sigma^2
+    \]
+  \par An unbiased estimator of $\sigma^2$:
+    \[
+      S^2 = \frac{\text{SSE}}{n - 2}
+    \]
+  \par Coefficient of determination:
+    \[
+      r^2 = 1 - \frac{SSE}{SST}
+    \]
+
+\hii{Properties of the Least Squares Estimator}
+  \hiii{Slope Properties}
+    \par \tb{Mean and Variance}
+      \[
+        E(b) = \beta \qquad V(b) = \sigma_b^2 = \frac{\sigma^2}{S_{xx}}
+      \]
+    \par \tb{Standard error}
+      \[
+        S_b = \frac{S}{S_{xx}}
+      \]
+    \par Also:
+      \[
+        T = \frac{b - \beta}{S_b} \sim t(n - 2)
+      \]
+    \par \tb{Confidence interval}:
+      \[
+        b \pm t_{v / 2, n - 2} \times S_b
+      \]
+    \par \tb{Hypothesis Testing}:
+      \[
+        T = \frac{b - \beta_0}{S_b}
+      \]
+      with
+      \[
+              H_1: \beta \neq \beta_0,
+        \quad H_1: \beta < \beta_0, 
+        \quad H_1: \beta > \beta_0
+      \]
+
+  \hiii{Intercept Properties}
+    \par \tb{Mean and Variance}
+      \[
+        E(a) = \alpha \qquad V(a) = \sigma_{a}^2 = \frac{\mu^2 \mu_{xx}}{S_{xx}}
+      \]
+      where $\mu_{xx} = \dfrac{1}{n} \sum x_i^2$
+    \par \tb{Standard error}
+      \[
+        S_a = S \sqrt{\mu_{xx}/S_{xx}} = S \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}}
+      \]
+    \par Also:
+      \[
+        T = \frac{a - \alpha}{S_a} \sim t(n - 2)
+      \]
+    \par \tb{Confidence interval}:
+      \[
+        a \pm t_{v / 2, n - 2} \times S_a
+      \]
+    \par \ti{here, the symbol $v$ is the significant level; it is just used to replace $\alpha$ since the symbol $\alpha$ is used for the intercept of the line to predict}
+    \par \tb{Hypothesis Testing}:
+      \[
+        T = \frac{a - \alpha_0}{S_a}
+      \]
+      with
+      \[
+              H_1: \alpha \neq \alpha_0,
+        \quad H_1: \alpha < \alpha_0, 
+        \quad H_1: \alpha > \alpha_0
+      \]
+
+\end{multicols}

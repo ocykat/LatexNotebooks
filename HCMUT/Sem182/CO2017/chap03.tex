@@ -106,24 +106,36 @@
       \par Some operating systems, such as time-sharing systems, may introduce an additional, intermediate level of scheduling in a \tb{medium-term scheduler}.
 
   \hii{Context Switch}
-    \par Switching the CPU to another process requires performing a state save of the current process and a state restore of a different process. This task is known as a context switch. When a context switch occurs, the kernel saves the context of the old process in its PCB and loads the saved context of the new process scheduled to run. Context-switch time is pure overhead, because the system does no useful work while switching.
+    \par Switching the CPU to another process requires performing:
+      \begin{itemize}
+        \item a state save of the current process
+        \item a state restore of a different process
+      \end{itemize}
+    \par This task is known as a \tb{context switch}. When a context switch occurs, the kernel saves the context of the old process in its PCB and loads the saved context of the new process scheduled to run.
+    \par Context-switch time is pure \tb{overhead}, because the system does no useful work while switching.
 
 \hi{Operations on Processes}
   \hii{Process Creation}
     \par A process may create several new processes, via a create-process system call, during the course of execution.
     \begin{itemize}
-      \item The creating process is called a parent process, and the new processes are called the children of that process.
+      \item The creating process is called a \tb{parent process}
+      \item The new processes are called the \tb{children} of the parent process.
     \end{itemize}
-    \par Each of these new processes may in turn create other processes, forming a tree of processes.
-    \par A process is identified by a unique process identifier (or pid), typically an integer number.
+    \par Each of the new processes may in turn create other processes, forming a \tb{tree of processes}.
+    \par A process is identified by a \tb{unique process identifier} (or pid), typically an integer number.
+    \par A process needs certain \tb{resources} (CPU time, memory, files, I/O devices) to accomplish its task. When a process creates a subprocess, there are some possibilities:
+    \begin{itemize}
+      \item the subprocess may be able to obtain its resources directly from the operating system
+      \item the subprocess may be constrained to a subset of the resources of the parent process
+    \end{itemize}
     \par When a process creates a new process:
     \begin{itemize}
-      \item In terms of execution, there are 2 possibilities:
+      \item In terms of \tb{execution}, there are 2 possibilities:
         \begin{itemize}
           \item The parent continues to execute concurrently with its children.
           \item The parent waits until some or all of its children have terminated.
         \end{itemize}
-        \item In terms of the address space of the new process, there are 2 possibilities:
+      \item In terms of the \tb{address space} of the new process, there are 2 possibilities:
           \begin{itemize}
             \item The child process is a duplicate of the parent process (it has the same
       program and data as the parent).
@@ -132,7 +144,7 @@
     \end{itemize}
     \par Some UNIX system calls:
     \begin{itemize}
-      \item \lstinline{fork()}: Create a new (child) process $C$ consisting of \tb{a copy of the address space} of the current (parent) process $P$ - meaning that $P$ and $C$ have two completely different address space.. $P$ and $C$ can communicate. Both $P$ and $C$ continue execution at the instruction after the \lstinline{fork()}. The return code is:
+      \item \lstinline{fork()}: Create a new (child) process $C$ consisting of \tb{a copy of the address space} of the current (parent) process $P$ - meaning that $P$ and $C$ have two completely different address space. $P$ and $C$ can communicate. Both $P$ and $C$ continue execution at the instruction after the \lstinline{fork()}. The return code is:
         \begin{itemize}
           \item 0 for $C$
           \item $pid(C)$ for $P$
@@ -142,23 +154,21 @@
     \end{itemize}
 
   \hii{Process Termination}
-    \par A process terminates under these circumstances:
+    \par A process \tb{terminates} under these circumstances:
     \begin{enumerate}
       \item When it finishes executing its final statement and asks the operating system to delete it by using the \lstinline{exit()} system call \fnmark{}: when $C$ terminates, it returns a status value (typically an integer) to $P$ via the \lstinline{wait()} system call.  All the resources of $C$ — including physical and virtual memory, open files, and I/O buffers—are deallocated by the operating system.
         \fntext{In C, the \lstinline{exit()} system call can be called either by the \lstinline{exit} function, or \lstinline{return 0;} in the \lstinline{main} function}.
       \item When it is terminated by its parent.
       \item When the user kills it.
     \end{enumerate}
-    \par A parent may terminate the execution of one of its children for a variety of
-reasons, such as:
+    \par A parent may terminate the execution of one of its children for a variety of reasons, such as:
     \begin{itemize}
-      \item The child has exceeded its usage of some of the resources that it has been
-allocated. (To determine whether this has occurred, the parent must have
-a mechanism to inspect the state of its children.)
+      \item The child has exceeded its usage of some of the resources that it has been allocated. (To determine whether this has occurred, the parent must have a mechanism to inspect the state of its children.)
       \item The task assigned to the child is no longer required.
       \item The parent is exiting, and the operating system does not allow a child to
 continue if its parent terminates.
     \end{itemize}
+    \par Some system does not allow a child process to exist if its parent has terminated. This phenomenon is called \tb{cascading termination} and is initiated by the operating system.
     \par In UNIX:
       \begin{itemize}
         \item \tb{Case 1}: A parent process $P$ waits for the termination of a child process $C_i$ by using the \lstinline{wait()} system call. The \lstinline{wait()} system call returns the process identifier of a terminated child so that the parent can tell which of its children has terminated.
@@ -166,8 +176,7 @@ continue if its parent terminates.
       \end{itemize}
 
 \hi{Interprocess Communication}
-  \par Processes executing concurrently in the operating system may be either
-\tb{independent processes} or \tb{cooperating processes}.
+  \par Processes executing concurrently in the operating system may be either \tb{independent processes} or \tb{cooperating processes}.
   \begin{itemize}
     \item \tb{Independent process}: cannot affect or be affected by the other processes executing in the system. Any process that does not share data with any other process is independent.
     \item \tb{Coorperating process}: can affect or be affected by the other processes executing in the system. Any process that shares data with other processes is a cooperating process.
@@ -194,11 +203,13 @@ continue if its parent terminates.
     \item \tb{Shared memory}: faster than message passing, as message passing systems are typically implemented using systemcalls and thus require the more time-consuming task of kernel intervention. In contrast, in shared memory systems, system calls are required only to establish shared memory regions.
   \end{itemize}
 
+  \img[width=12cm]{img/interprocess.jpg}{}
+
   \hii{Shared-Memory System}
     \par Typically, a shared-memory region resides in the address space of the process creating the shared-memory segment. Other processes that wish to communicate using this shared-memory segment must attach it to their address space.
     \par Normally, the operating system tries to prevent one process from accessing another process’s memory. Shared memory requires that two or more processes agree to remove this restriction. They can then exchange information by reading and writing data in the shared areas.
     \par The form of the data and the location are determined by these processes and are not under the operating system’s control.The processes are also responsible for ensuring that they are not writing to the same location simultaneously.
-    \par In a shared-memory system, a \tb{producer} process produces information that is consumed by a \tb{consumer} process. To allow producer and consumer processes to run concurrently, we must have available a buffer of items that can be filled by the producer and emptied by the consumer. This buffer will reside in a region of memory that is shared by the producer and consumer processes.  The producer and consumer must be synchronized, so that the consumer does not try to consume an item that has not yet been produced.
+    \par In a shared-memory system, a \tb{producer} process produces information that is consumed by a \tb{consumer} process. To allow producer and consumer processes to run concurrently, we must have available a \tb{buffer of items} that can be filled by the producer and emptied by the consumer. This buffer will reside in a region of memory that is shared by the producer and consumer processes.  The producer and consumer must be synchronized, so that the consumer does not try to consume an item that has not yet been produced.
     \par Two types of buffers can be used:
     \begin{itemize}
       \item \tb{The unbounded buffer} places no practical limit on the size of the buffer. The consumer may have to wait for new items, but the producer can always produce new items.
@@ -208,7 +219,7 @@ continue if its parent terminates.
   \hii{Message-Passing Systems}
     \par A message-passing facility provides at least two operations: send (message) and receive (message).
     \par Messages sent by a process can be of either fixed or variable size. If only fixed-sized messages can be sent, the system-level implementation is straightforward. This restriction, however, makes the task of programming more difficult. Conversely, variable-sized messages require a more complex system-level implementation, but the programming task becomes simpler.
-    \par Ifprocesses $P$ and $Q$ want to communicate,they must send messages to and receive messages from each other; a communication link must exist between them.This link can be implemented in a variety of ways.
+    \par If processes $P$ and $Q$ want to communicate,they must send messages to and receive messages from each other; a communication link must exist between them.This link can be implemented in a variety of ways.
     \par Methods for logically implementing a link and the \lstinline{send()} / \lstinline{receive()} operations:
     \begin{itemize}
       \item Direct or indirect communication

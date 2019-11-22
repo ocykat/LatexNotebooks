@@ -1,0 +1,73 @@
+\clearpage
+
+\begin{multicols}{2}
+
+\hi{Goodness of Fit Test (Chi-squared Test)}
+
+\hii{Goodness of Fit Test}
+  \par Given a sample of size $n$ with \tb{unknown distribution} and two lists of values describing  $m$ class intervals:
+    \begin{itemize}
+      \item $O_1, \ldots, O_m$, where $O_j$ is the \tb{observed frequency} in the $j$-th class interval.
+      \item $E_1, \ldots, E_m$, where $E_j$ is the \tb{expected frequency} in the $j$-th class interval.
+    \end{itemize}
+
+  \par The \tb{test statistic} is:
+    \[
+      \chi^2 = \sum\limits_{j = 1}^{m} \frac{(O_j - E_j)^2}{E_j}
+             = \sum\limits_{j = 1}^{m} \frac{O_j^2}{E_j} - n
+    \]
+  
+  \par If $p_j$ is given instead of $E_j$: $E_j = p_j \times n$ where $n$ is the sample size.
+
+  \par To test the hypothesis: compare $\chi^2$ with $\chi^2_{\alpha, \text{df}}$.
+    \begin{itemize}
+      \item The \tb{degree of freedom} is:
+        \[
+          \text{df} = m - 1 - k
+        \]
+        where $k$ is the number of estimated parameters (for Poisson distribution, $k = 1$ ($\lambda$); for Normal distribution, $k = 2$ ($\mu$, $\sigma^2$))
+    \end{itemize}
+  \par If $\chi^2 > \chi^2_{\alpha, \textbf{df}}$, then we reject $H_0$.
+
+
+\hii{Contingency Table}
+  \par $n$ elements of a sample is classified according to two different criteria.
+    \begin{itemize}
+      \item A row $i$ has $n_i$ elements.
+      \item A column $j$ has $n_j$ elements.
+    \end{itemize}
+  \par \tb{$H_0$: The two methods of classification are statistically independent}.
+  \par If $H_0$ is true, then $p_{ij} = u_i v_j$, where:
+    \begin{itemize}
+      \item $p_{ij}$: the probability that a randomly selected element falls in the $ij^{th}$ cell.
+      \item $u_{i}$: the probability that a randomly selected element falls in the row class $i$.
+      \item $v_{j}$: the probability that a randomly selected element falls in the column class $j$.
+    \end{itemize}
+  \par The estimators of $u_i$ and $v_j$ are (assuming independence):
+    \[
+      u_i = \frac{n_i}{n} \qquad v_j = \frac{n_j}{n}
+    \]
+  \par The \tb{expected frequency} $E_{ij}$ of the $ij^{th}$ cell is:
+    \[
+      E_{ij} = \frac{n_i n_j}{n} = u_i v_j n
+    \]
+  \par The \tb{test statistic} is:
+    \[
+      \chi^2 = \sum\limits_{i = 1}^{I} \sum\limits_{j = 1}^{J} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+    \]
+  \par The \tb{computational formula} for the test statistic:
+    \[
+      \chi^2 = n \bigg[
+        \sum\limits_{i = 1}^{I} \sum\limits_{j = 1}^{J} \frac{n_{ij}^2}{n_i n_j} - 1
+        \bigg]
+    \]
+  \par The \tb{degree of freedom} is: 
+    \[
+      \text{df} = (I - 1)(J - 1)
+    \]
+    where $I$ is the number of rows and $J$ is the number of columns.
+  \par If $\chi^2 > \chi^2_{\alpha, \textbf{df}}$, then we reject $H_0$, meaning that the two methods are not statistically independent.
+  \par \ti{Note}: before doing the calculation with the above formulas, the first step is to assume that $H_0$ is true.
+
+
+  \end{multicols}

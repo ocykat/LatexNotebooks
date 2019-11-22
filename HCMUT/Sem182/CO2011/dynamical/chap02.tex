@@ -1,0 +1,242 @@
+\chapter{Differential Equations}
+
+\hi{Population Growth}
+  \hii{Exponential Growth (Malthusian Model)}
+    \par \tb{Problem}: Given the population $P_0$ at time $t = t_0$, predict the population $P$ at some future time $t = t_1$.
+    \par \tb{Assumption}: Factors that affect population growth are \tb{birthrate} and \tb{deathrate}. During a period of time $\Delta t$, a percentage $b$ of the population is newly born, and a percentage $c$ dies.
+    \par \tb{Input}:
+      \begin{itemize}
+        \item $P_0$ and $t_0$
+        \item $b$ and $c$
+        \item $t_1$
+      \end{itemize}
+    \par \tb{Output}: $P(t_1)$
+    \begin{flalign*}
+      & P(t + \Delta t) = P(t) (1 + b - c)    & \\
+      & P(t) + \Delta P = P(t) + (b - c) P(t) & \\
+      & \Delta P        = (b - c) P(t) = kP   &
+    \end{flalign*}
+    \par Using the instantaneous rate of change to approximate the average rate of change, we have the following differential equation model:
+    \[
+      \dif{P}{t} = kP, \quad P(t_0) =  P_0, \quad t_0 \leq t \leq t_1
+    \]
+    \par \tb{Solving the model}:
+    \begin{itemize}
+      \item move $P$ and $dP$ to one side, $t$ and $dt$ to the other
+        \[\frac{dP}{P} = kdt\]
+      \item integrate both side
+        \[\ln(P) = kt + C \qquad (1) \]
+      \item substitute $P_0$ and $t_0$ into the equation
+        \[\ln(P_0) = kt_0 + C\]
+      \item calculate $C$
+        \[C = kt_0 - \ln(P_0)\]
+      \item substitute $C$ into $(1)$:
+        \[\ln(P) = kt + \ln(P_0) - kt_0\]
+        \[\ln{frac{P}{P_0}} = k(t - t_0)\]
+      \item exponentiate both sides and multiply by $P_0$:
+        \[P = P_0 e^{k(t - t_0)}\]
+    \end{itemize}
+  
+  \hii{Limited Growth}
+    \par Given the maximum population $M$.
+    \par $k$ is not a constant, but a function of the population:
+      \[
+        k = r(M - P), \quad r = const > 0
+      \]
+    \par The differential equation model of exponential growth:
+    \[
+      \dif{P}{t} = kP, \quad P(t_0) =  P_0, \quad t_0 \leq t \leq t_1
+    \]
+    \par Substitute $k$:
+    \[
+      \dif{P}{t} = r(M - P) P
+    \]
+    \[
+      \frac{dP}{P(M - P)} = rdt \qquad (1)
+    \]
+    \par We have:
+      \[
+        \frac{1}{P(M - P)} = \frac{1}{M} \bigg(\frac{1}{P} + \frac{1}{M - P}\bigg)
+      \]
+    \par Substitute into $(2)$:
+      \[
+      \frac{dP}{P} + \frac{dP}{M - P} = rMdt
+      \]
+    \par Integrate both side:
+      \[
+        \ln(P) - \ln\abs{M - P} = rMt + C \qquad (2)
+      \]
+    \par Evaluate $C$ (in case $P < M$):
+      \[
+        C = \ln\frac{P_0}{M - P_0} - rMt_0 \qquad (3)
+        \]
+    \par Substitute $(3)$ into $2$ and simplify:
+      \[
+        \ln\frac{M - P_0}{P_0(M - P)} = rM(t - t_0)
+        \]
+    \par Exponentiate both sides:
+      \[
+        \frac{P(M - P_0)}{P_0(M - P)} = e^{rM(t - t_0)}
+        \]
+    \par Simplify:
+      \begin{align*}
+        P(M - P_0) = P_0(M - P) e^{rM(t - t_0)} \\
+        P(M - P_0) = P_0 M e^{rM(t - t_0)} - P_0 P e^{rM(t - t_0)} \\
+        P (M - P_0 + P_0 e^{rM(t - t_0)}) = P_0 M e^{rM(t - t_0)} \\
+        P(t) = \frac{P_0 M e^{rM(t - t_0)}}{M - P_0 + P_0 e^{rM(t - t_0)}}
+      \end{align*}
+
+\hi{Prescribing Drug Dosage}
+  \hii{Drug Concentration}
+    \par Define $C(t)$ as the \tb{concentration of drug} in the blood stream at time $t$.
+    \par Assumption:
+      \[
+        C'(t) = -kC(t)
+      \]
+      where $k$ is the \tb{elimination constant} of the drug.
+    \par Let $L$ and $H$ be the minimum and maximum drug concentration, respectively. Assume that the drug concentration for a single dose is:
+    \[
+      C_0 = H - L
+    \]
+    \par Also, assume that at $t = 0$, $C = C_0$, then we have the model:
+    \[
+      \dif{C}{t} = -kC, \qquad C(0) = C_0
+      \]
+    \par Solve the model similar to the Exponential Population Growth model, we obtain:
+      \[
+        C(t) = C_0 e^{-kt}
+      \]
+  
+  \hii{Drug Accumulation with Repeated Doses}
+    \par Assume that the rise in concentration when drug is administrated is instantaneous, meaning that the graph is \ti{vertical}.
+    \par Suppose that the first dose is administrated at $t = 0$.
+    \par The \tb{residual} of drug after $T$ hours:
+      \[
+        R_1 = C_0 e^{-kT}
+        \]
+    \par The second dose is administrated. The level of concentration instantaneously jumps to:
+      \[
+        C_1 = C_0 + R_1 = C_0 + C_0 e^{-kT}
+        \]
+    \par After another $T$ hours, the residual of drug is:
+      \[
+        R_2 = C_1 e^{-kT} = C_0 e^{-kT} + C_0 e^{-2kT}
+        \]
+    \par In general, let $r = e^{-kT}$, the residual of drug after $n$ doses is:
+      \[
+        R_n = C_0 e^{-kT} (1 + r + r^2 + \ldots + r^{n - 1}) \qquad (1)
+        \]
+    \par Sum of the geometric sequence:
+      \[
+        1 + r + r^2 + \ldots + r^{n - 1} = \frac{1 - r^n}{1 - r}
+        \]
+    \par Substitute into $(1)$:
+      \[
+        R_n = \frac{C_0 e^{-kT} (1 - r)}{1 - r} = \frac{C_0 e^{-kT} (1 - e^{-nkT})}{1 - e^{-kT}}
+        \]
+    \par $e^{-nkT}$ is close to 0 when $n$ is large. Therefore, the sequence $R_n$ has a limiting value (upper bound) called $R$:
+      \[
+        R = \lim\limits_{n \to \infty} R_n
+        = \frac{C_0 e^{-kT}}{1 - e^{-kT}}
+        = \frac{C_0}{e^{kT} - 1}
+        \]
+  
+  \hii{Determine the dose schedule}
+    \par The concentration $C_{n - 1}$ at the beginning of the $n$th interval is given by:
+      \[
+        C_{n - 1} = C_0 + R_{n - 1}
+        \]
+    \par If the dosage level is required to approach $H$, then we want $C_{n - 1}$ to approach $H$ as $n$ become large:
+      \[
+        H = \lim\limits_{n \to \infty} C_{n - 1} = \lim\limits_{n \to \infty} (C_0 + R_{n - 1}) = C_0 + R
+        \]
+    \par Combine with $C_0 = H - L$ yields:
+      \[
+        R = L
+      \]
+    \par \tb{Case 1}: $T$ is large
+    \par Define a ratio (see the previous subsection of concentration accumulation):
+      \[
+        \frac{R}{C_0} = \frac{1}{e^{kT} - 1}
+        \]
+    \par This equation states that the ratio will be close to $0$ if $T$ is long enough to make $e^{kT} - 1$ sufficiently large. Also, from the previous subsection, we have:
+      \[
+        0 < R_n < R \qquad \forall n
+        \]
+    \par This means that if $T$ is large enough, the residual is always close to $0$.
+    \par \tb{Case 2}: $T$ is small
+    \par If $T$ is small, then $\frac{R}{C_0}$ is large. $R_n$ becomes larger, meaning that $C_n$ become larger after each dose.
+    \par Suppose that the concentration can be slightly above $H$ or below $L$ without harming the patient. We can opt for the strategy of maximizing the time between drug doses by setting $R = L$ and $C_0 = H - L$. Substitute into the equation of the previous subsection:
+      \[
+        R = \frac{C_0}{e^{kT} - 1}
+      \]
+      we have:
+      \[
+        R = \frac{H - L}{e^{kT - 1}}
+        \]
+    \par Solve for $e^{kT}$:
+      \[
+        e^{kT} = \frac{H}{L}
+        \]
+    \par Take the logarithm of both sides and divide the result by $k$:
+    \[
+      T = \frac{1}{k} \ln\frac{H}{L}
+      \]
+
+\hi{Braking Distance}
+  \par Let $m$ be the mass of the car.
+  \par Assume that the braking system is designed in such a way that the maximum braking force increases in proportion to the mass of the car.
+  \par Under a panic stop, the maximum braking force $F$ is applied continuously:
+  \[
+    F = -km
+  \]
+  where $k$ is a positive constant.
+  \par $F$ is the only force applied on the car.
+    \[
+      ma = m \dif{v}{t} = -km      
+      \]
+    \[
+      \dif{v}{t} = -k
+      \]
+  \par Integrate:
+      \[
+        v = -kt + C_1
+        \]
+  \par Denote $v_0$ as the velocity as $t = 0$, then $C_1 = v_0$.
+      \[
+        v = -kt + v_0 \qquad (1)
+      \]
+  \par Let $t_s$ be the time taken for the car to stop after the brakes have been applied. At $t = t_s$, $v = 0$. Substitute into $(1)$ gives:
+      \[
+        t_s = \frac{v_0}{k} \qquad (2)
+        \]
+  \par Let $x$ represents the distance traveled by the car after the brakes are applied. Then $x$ is the integral of $v = \dif{x}{t}$. From $(1)$:
+    \[
+      x = -\frac{1}{2} kt^2 + v_0 t + C_2
+      \]
+  \par When $t = 0$, $x = 0$, so:
+  \[
+    x = -\frac{1}{2} kt^2 + v_0 t \quad (3)
+  \]
+  \par Let $d_b$ be the braking distance: $x = d_b$ when $t = t_s$. Substitute into $(3)$ yields:
+  \[
+    d_b = -\frac{1}{2} k t_s^2 + v_0 t_s \quad (4)
+  \]
+  \par Substitute $(2)$ into $(4)$:
+  \[
+    d_b = \frac{v_0^2}{2k} + \frac{v_0^2}{k} = \frac{v_0^2}{2k}
+  \]
+
+\hi{Graphical Solutions of Autonomous Differential Equations}
+  \par So far in this chapter, we deal with differential equations of the form:
+    \[
+      \dif{y}{x} = g(x, y)
+      \]
+  \par \tb{Autonomous differential equation}: differential equation for which $\dif{y}{x}$ is a function of $y$ only.
+  \par \tb{Defintion}: if $\dif{y}{x} = g(y)$ is an autonomous differential equation, then the values of $y$ for which $\dif{y}{x} = 0$ are called \tb{equilibrium values} or \tb{rest points}.
+  \par \ti{Example}: Rest point of $\dif{y}{x} = (y + 1)(y - 2)$ are $y = -1$ and $y = 2$.
+
+  \hii{Stable and Unstable Equilibria}
+    \href{https://www.youtube.com/watch?v=DYi8KTt8688}{\tu{link: MIT OpenCourseware}}
+
+  

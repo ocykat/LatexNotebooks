@@ -1,0 +1,17 @@
+\hi{XOR}
+  \par Properties:
+    \begin{itemize}
+      \item \tb{Commutative}: $A \lxor B = B \lxor A$
+      \item \tb{Associative}: $(A \lxor B) \lxor C = A \lxor (B \lxor C)$
+      \item \tb{Identity}: $A \lxor 0 = A$
+      \item \tb{Self-inverse}: $A \lxor A = 0$
+    \end{itemize}
+  \par More properties:
+    \begin{enumerate}
+      \item $A \lxor B = C \limpl (A = C \lxor B) \land (B = C \lxor A)$ 
+    \end{enumerate}
+    \begin{flalign*}
+      & S = b_1 \lxor \ldots \lxor b_l \lxor \ldots \lxor b_r && \\
+      &= (b_1 \lxor \ldots b_{l - 1}) \lxor (b_l \lxor \ldots \lxor b_r) && \\
+      &= (b_1 \lxor \ldots b_{l - 1}) \lxor (b_l \lxor \ldots \lxor b_r) &&
+    \end{flalign*}

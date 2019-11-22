@@ -19,11 +19,10 @@
         \end{itemize}
 
       \par \tb{Creating a schema}:
-      % \begin{lstlisting}[style=SQL]
-% \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-\begin{lstlisting}
+
+        \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 CREATE SCHEMA `schema_name' AUTHORIZATION `author_name'
-\end{lstlisting}
+        \end{minted}
 
   \hii{Catalog}
     \par A \tb{catalog} is a named collection of schemas.
@@ -70,12 +69,11 @@ allow two identical members; rather, it is a multiset (sometimes called a bag) o
     \par The SELECT statement of SQL \ti{is not the same} as the SELECT operation of relational algebra.
 
   \hii{The SELECT-FROM-WHERE Structure of Basic SQL Queries}
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT <attribute_list>
 FROM <table_list>
 WHERE <condition>;
-    \end{lstlisting}
+    \end{minted}
       where
     \begin{itemize}
       \item \lstinline{<attribute list>} is a list of attribute names whose values are to be retrieved by the query.
@@ -96,12 +94,11 @@ WHERE <condition>;
     \par In SQL, the same name can be used for many attributes as long as they are in different tables. If this is the case, and a multitable query refers to two or more attributes with the same name, we must qualify the attribute name with the relation name to prevent ambiguity. This is done by prefixing the relation name to the attribute name and separating the two by a period.
     \par The ambiguity of attribute names also arises in the case of queries that refer to the
 same relation twice (recursive ?). In this case, we are required to declare alternative relation names E and S , called aliases or tuple variables, for the EMPLOYEE relation. An alias can follow the keyword AS.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT E.Fname, E.Lname, S.Fname, S.Lname
 FROM EMPLOYEE AS E, EMPLOYEE AS S
 WHERE E.Super_ssn = S.Ssn;
-      \end{lstlisting}
+      \end{minted}
     \par It is also possible to rename the relation \tb{attributes} within the query in SQL by giving them aliases.
 
   \hii{Unspecified WHERE Clause and Use of the Asterisk}
@@ -120,46 +117,42 @@ theory, which are also part of relational algebra: set union (UNION), set differ
 
   \hii{Substring Pattern Matching and Arithmetic Operators}
     \par \tb{Example}: Retrieve all employees whose address is in Houston, Texas.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+
 SELECT Fname, Lname
 FROM   EMPLOYEE
-WHERE  Address LIKE ‘%Houston,TX%’;
-      \end{lstlisting}
+WHERE  Address LIKE '%Houston,TX%';
+      \end{minted}
     \par \tb{Example}: Find all employees who were born during the 1950s.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT Fname, Lname
 FROM EMPLOYEE
-WHERE Bdate LIKE ‘_ _ 5 _ _ _ _ _ _ _’;
-      \end{lstlisting}
+WHERE Bdate LIKE '_ _ 5 _ _ _ _ _ _ _';
+      \end{minted}
 
   \hii{Ordering of Query Results}
     \par SQL allows the user to order the tuples in the result of a query by the values of one or more of the attributes that appear in the query result.
     \par \tb{Example}: Retrieve a list of employees and the projects they are working on, ordered by department and, within each department, ordered alphabetically by last name, then first name.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT D.Dname, E.Lname, E.Fname, P.Pname
 FROM DEPARTMENT AS D, EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P
 WHERE  D.Dnumber = E.Dno AND E.Ssn = W.Essn AND W.Pno = P.Pnumber
 ORDER BY D.Dname, E.Lname, E.Fname;
-      \end{lstlisting}
+      \end{minted}
     \par Ascending and Descending:
-       % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-       \begin{lstlisting}
+       \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
     ORDER BY D.Dname DESC, E.Lname ASC, E.Fname ASC
-      \end{lstlisting}
+      \end{minted}
 
 \hi{INSERT, DELETE, and UPDATE Statements in SQL}
   \hii{The INSERT Command}
 
     \par In its simplest form, INSERT is used to add a single tuple (row) to a relation (table). We must specify the relation name and a list of values for the tuple. The values should be listed in the same order in which the corresponding attributes were specified in the CREATE TABLE command.
 
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 INSERT INTO EMPLOYEE
-VALUES ( 'Richard', 'K', 'Marini', '653298653', '1962-12-30', '98 Oak Forest, Katy, TX', 'M', 37000, ‘653298653’, 4 );
-      \end{lstlisting}
+VALUES ( 'Richard', 'K', 'Marini', '653298653', '1962-12-30', '98 Oak Forest, Katy, TX', 'M', 37000, '653298653', 4 );
+      \end{minted}
 
     \par A second form of the INSERT statement allows the user to specify explicit attribute
     names that correspond to the values provided in the INSERT command. This is use-
@@ -168,11 +161,10 @@ VALUES ( 'Richard', 'K', 'Marini', '653298653', '1962-12-30', '98 Oak Forest, Ka
     NULL specification and no default value. Attributes with NULL allowed or DEFAULT
     values are the ones that can be left out.
 
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 INSERT INTO EMPLOYEE(Fname, Lname, Dno, Ssn)
-VALUES (‘Richard’, ‘Marini’, 4, ‘653298653’);
-      \end{lstlisting}
+VALUES ('Richard', 'Marini', 4, '653298653');
+      \end{minted}
 
     \par A DBMS that fully implements SQL should support and enforce all the integrity
 constraints that can be specified in the DDL.
@@ -180,25 +172,23 @@ constraints that can be specified in the DDL.
   \hii{The DELETE Command}
     \par The DELETE command removes tuples from a relation. It includes a WHERE clause, similar to that used in an SQL query, to select the tuples to be deleted. Tuples are explicitly deleted from only one table at a time. However, the deletion may propagate to tuples in other relations if referential triggered actions are specified in the referential integrity constraints of the DDL.
     \par A missing WHERE clause specifies that all tuples in the relation are to be deleted; however, the table remains in the database as an empty table. We must use the DROP TABLE command to remove the table definition.
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 DELETE FROM EMPLOYEE
-WHERE Lname = ‘Brown’;
-    \end{lstlisting}
+WHERE Lname = 'Brown';
+    \end{minted}
 
   \hii{The UPDATE Command}
     \par The UPDATE command is used to modify attribute values of one or more selected tuples. As in the DELETE command, a WHERE clause in the UPDATE command selects the tuples to be modified from a single relation. However, updating a primary key value may propagate to the foreign key values of tuples in other relations if such a referential triggered action is specified in the referential integrity constraints of the DDL.
     \par An additional SET clause in the UPDATE command specifies the attributes to be modified and their new values.
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 UPDATE PROJECT
-SET Plocation = ‘Bellaire’, Dnum = 5
+SET Plocation = 'Bellaire', Dnum = 5
 WHERE Pnumber = 10;
 
 UPDATE EMPLOYEE
 SET Salary = Salary * 1.1
 WHERE Dno = 5;
-    \end{lstlisting}
+    \end{minted}
 
 \hi{Aggregate Functions}
   \par \tb{Purpose}: summarize information from multiple tuples into a single-tuple summary.
@@ -221,11 +211,11 @@ WHERE Dno = 5;
         \item set/multiset of numeric values
       \end{itemize}
 
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+
         SELECT SUM(attribute_name)
         FROM   table_name;
-      \end{lstlisting}
+      \end{minted}
 
     \hiii{MAX and MIN}
       \begin{itemize}

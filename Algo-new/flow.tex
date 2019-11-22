@@ -1,0 +1,162 @@
+\chapter{Flow}
+
+\hi{Concepts}
+  \hii{Flow network}
+    \par A \tb{flow network} $G = (V, E)$ is a directed graph in which each edge $(u, v) \in E$ has a nonnegative \tb{capacity} $c(u, v) \geq 0$. If $(u, v) \not \in E$, then $c(u, v) = 0$.
+    \par \tb{Requirements}:
+      \begin{itemize}
+        \item $G$ has no \tb{antiparallel} edge, meaning that if $(u, v) \in E$, then $(v, u) \not \in E$.
+        \item \tb{Self-loops} are not allowed.
+      \end{itemize}
+    \par In a flow network, there are two special \tb{vertices}:
+      \begin{itemize}
+        \item a \tb{source} $s$
+        \item a \tb{sink} $t$
+      \end{itemize}
+    \par For each vertex $v \in V - \{s, t\}$, the flow network contains a path $s \leadsto v \leadsto t$.
+  
+  \hii{Flow}
+    \par A \tb{flow} in a flow network $G$ is a function $f: V \times V \to \mathbb{R}$ that satisfies the following properties:
+      \begin{itemize}
+        \item \tb{Capacity constraint}: 
+          \[
+            \forall u, v \in V: 0 \leq f(u, v) \leq c(u, v)
+          \]
+        \item \tb{Flow conservation}:
+          \[
+            \forall u \in V - \{s, t\}: \sum\limits_{v \in V} f(v, u) = \sum\limits_{v \in V} f(u, v)
+          \]
+      \end{itemize}
+    \par When $(u, v) \not \in E$, then there can be no flow from $u$ to $v$, and $f(u, v) = 0$.
+    \par The \tb{value} $|f|$ of a flow is defined as the flow out of the source minus the total flow into the source:
+      \[
+        |f| = \sum\limits_{v \in V} f(s, v) - \sum\limits_{v \in V} f(v, s)
+      \]
+    \par In the \tb{maximum-flow problem}, we are given a flow network $G$ with source $s$ and sink $t$, and we wish to find a flow of \tb{maximum value}.
+
+  \hii{Modeling Flow Problems}
+    \hiii{Flow network with antiparallel edges}
+      \par If a flow network $G$ initially contains both edges $(u, v)$ and $(v, u)$, then we replace $(v, u)$ with two new edges: $(v, t)$ and $(t, u)$, where:
+      \begin{itemize}
+        \item $t$ is a new vertex
+        \item $c(v, t) = c(t, u) = c(v, u)$
+      \end{itemize}
+
+    \hiii{Flow network with multiple sources and sinks}
+      \par A flow network may have:
+        \begin{itemize}
+          \item $n$ sources $\{s_1, s_2, \ldots, s_n\}$
+          \item $m$ sinks $\{t_1, t_2, \ldots, t_m\}$
+        \end{itemize}
+
+      \par To convert this flow network to an ordinary flow network with a single source and single sink, we introduce:
+      \begin{itemize}
+        \item a \tb{supersource} $s$ and a directed edge $(s, s_i)$ with $c(s, s_i) = \infty$ for every source $s_i$ in the initial flow network.
+        \item a \tb{supersink} $t$ and a directed edge $(t_i, t)$ with $c(t_i, t) = \infty$ for every sink $t_i$ in the initial flow network.
+      \end{itemize}
+
+  \hii{Residual Network}
+    \par The \tb{residual capacity} $c_f (u, v)$ is defined by:
+      \[
+        c_f (u, v) =
+          \begin{cases}
+            c(u, v) - f(u, v) & \text{if } (u, v) \in E \\
+            f(v, u)           & \text{if } (v, u) \in E \\
+            0                 & \text{otherwise}
+          \end{cases}
+      \]
+
+    \par There are 3 cases in the definition of the residual capacity. The explanation for the first 2 cases:
+      \begin{itemize}
+        \item \tb{Case 1}: An edge $(u, v) \in E$ can admit an amount of additional flow equal to the edge's capacity minus the flow on that edge.
+        \item \tb{Case 2}: An algorithm manipulating the flow may need to descrease the flow on a particular edge. In order to represent a posible decrease of a positive flow $f(u, v)$ on an edge $(u, v)$, we place an edge $(v, u)$ into $G_f$ with residual capacity $c_f(v, u) = f(u, v)$.
+      \end{itemize}
+
+    \par Given a flow network $G = (V, E)$ and a flow $f$, the \tb{residual network} $G$ induced by $f$ is $G_f = (V, E_f)$, where:
+      \[
+        E_f = \{(u, v) \in V \times V: c_f(u, v) > 0\}
+      \]
+    \par A flow in a residual network provides a roadmap for adding flow to the original flow network.
+
+    \par Given the flow $f$ in $G$ and the flow $f'$ in the corresponding residual network $G_f$. The \tb{augmentation} of flow $f$ by $f'$, denoted by $f \uparrow f'$ is a function $V \times V \to \mathbb{R}$, defined by:
+      \[
+        (f \uparrow f') (u, v) =
+          \begin{cases}
+            f(u, v) + f'(u, v) - f'(v, u) & \text{if } (u, v) \in E \\
+            0                             & \text{otherwise}
+          \end{cases}
+      \]
+
+    \par Intuition of the formula of the augmentation: a flow on $(u, v)$ can be increased by $f'(u, v)$ and can be decreased by $f'(v, u)$ by pushing flow on the reverse edge in the residual network. Pushing flow on the reverse edge in the residual network is also known as \tb{cancellation}.
+
+    \par \tb{Lemma 1}: The function $f \uparrow f'$ is a flow in $G$ with value $|f \uparrow f'| = |f| + |f'|$.
+
+    \hii{Augmenting Path}
+      \par Given a flow network $G = (V, E)$ and a flow $f$. An \tb{augmenting path} $p$ is a simple path from $s$ to $t$ in the residual network $G_f$.
+      \par The maximum amount by which we can increase the flow on each edge in an augmenting path $p$ is called the \tb{residual capacity} of $p$, given by:
+        \[
+          c_f(p) = min[c_f(u, v)], \forall (u, v) \in p
+        \]
+
+      \par \tb{Lemma 2}: Let $G = (V, E)$ be a flow network, let $f$ be a flow in $G$, and let $P$ be an augmenting path in $G_f$. Define a function $f_p: V \times V \to \mathbb{R}$ by:
+      \[
+        f_p (u, v) =
+          \begin{cases}
+            c_f(p) & \text{if } (u, v) \in p \\
+            0       & \text{otherwise}
+          \end{cases}
+      \]
+      Then, $f_p$ is a flow in $G_f$ with value $|f_p| = c_f(p) > 0$.
+
+      \par \tb{Corollary 3}: Suppose that we augment $f$ by $f_p$. Then the function $f \uparrow f_p$ is a flow in $G$ with value $|f \uparrow f_p| = |f| + |f_p| > |f|$.
+      \par Meaning: if we augment $f$ by $f_p$, we get another flow in $G$ whose value is closer to the maximum.
+
+    \hii{Cut}
+      \par A cut $(S, T)$ of flow network $G$ is a partition of $V$ into 2 sets $S$ and $T$ such that:
+      \begin{itemize}
+        \item $s \in S$
+        \item $t \in T$
+        \item $T = V - S$
+      \end{itemize}
+      \par The \tb{net flow} $f(S, T)$ across the cut $(S, T)$ is:
+        \[
+          f(S, T) = \sum\limits_{u \in S} \sum\limits_{v \in T} f(u, v)
+                  - \sum\limits_{u \in S} \sum\limits_{v \in T} f(v, u)
+        \]
+      \par The \tb{capacity} of the cut $(S, T)$ is:
+        \[
+          c(S, T) = \sum\limits_{u \in S} \sum\limits_{v \in T}
+        \]
+      \par The \tb{minimum cut} of a network is a cut whose capacity is minimum over all cuts of the network.
+
+      \par \tb{Lemma}: Let $f$ be a flow and $(S, T)$ be any cut in a flow network $G$. Then $|f| = f(S, T)$.
+
+      \par \tb{Corollary}: Let $f$ be a flow and $(S, T)$ be any cut in a flow network $G$. Then $|f| \leq c(S, T)$.
+
+      \par \tb{Max-flow min-cut theorem}: The following statements are equivalent:
+        \begin{enumerate}
+          \item $|f| = c(S, T)$ for some cut $(S, T)$
+          \item $f$ is a max flow in $G$
+          \item $G_f$ contains no augmenting paths
+        \end{enumerate}
+
+  \hii{Bipartite Matching}
+    \par Let $G = (V, E)$ be a \tb{bipartite graph}.
+    \par Let $M$ be the current matching. Initially, $M = \emptyset$.
+    \par Types of vertex:
+      \begin{itemize}
+        \item A \tb{free vertex} is a vertex that is not an endpoint of any edge in $M$.
+        \item A vertex that is not free is called a \tb{covered} or \tb{matched} vertex.
+      \end{itemize}
+    \par Types of edge:
+      \begin{itemize}
+        \item A \tb{matching edge} is an edge in $M$.
+        \item A \tb{free edge} is an edge not in $M$.
+      \end{itemize}
+    \par An \tb{augmenting path} is a path that:
+      \begin{itemize}
+        \item starts in a free node
+        \item ends in a free node
+        \item alternates between free and matching edge
+      \end{itemize}
+    \par \tb{Theorem}: A matching $M$ in $G(V,E)$ is maximal if and only if no augmenting paths exist. 

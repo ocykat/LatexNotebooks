@@ -1,0 +1,220 @@
+\begin{multicols}{3}
+
+\hi{Hypothesis Testing for Two Samples}
+
+\hii{Notations}
+  \begin{itemize}
+    \item $\mu$ is the mean of a population.
+    \item $\sigma$ is the variance of a population.
+    \item $\bar{X} = \hat{\mu_x}$ is the mean of a sample $X$.
+    \item $\hat{\sigma_x}$ is the variance of sample $X$.
+  \end{itemize}
+
+\hii{Two Independent Samples}
+  \par Assumptions:
+  \begin{itemize}
+    \item Let $X_1, \ldots, X_m$ be a random sample from a population with mean $\mu_1$ and variance $\sigma_1^2$.
+    \item Let $Y_1, \ldots, Y_n$ be a random sample from a population with mean $\mu_2$ and variance $\sigma_2^2$.
+    \item $X$ and $Y$ samples are independent from one another.
+  \end{itemize}
+  then,
+  \[
+    E(\bar{X} - \bar{Y}) = E(\bar{X}) - E(\bar{Y}) = \mu_1 - \mu_2
+  \]
+  \[
+    V(\bar{X} - \bar{Y}) = V(\bar{X}) + V(\bar{Y}) = \frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}
+  \]
+
+\hii{Case 1: Normal Population + Known $\sigma$ (Confidence Interval on a Different in Means)}
+ \par If $X$ and $Y$ are both \tb{normal}, then:
+    \[
+      \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\bar{\sigma}} \sim N(0, 1)
+    \]
+    where
+    \[
+      \bar{\sigma} = \sqrt{\frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}}
+    \]
+  \par A $100(1 - \alpha)\%$ confidence interval for $\mu_1 - \mu_2$ is:
+    \[
+      \mu_1 - \mu_2 = (\bar{X} - \bar{Y}) \pm z_{\alpha/2} \bar{\sigma}
+    \]
+  \par \tb{Hypothesis Testing}:
+    \begin{itemize}
+      \item \tb{Step 1}: Compute the statistic:
+        \[
+          z = \frac{(\bar{X} - \bar{Y}) - \Delta}{\bar{\sigma}}
+        \]
+        where
+        \[
+          \text{SE} = \bar{\sigma} = \sqrt{\frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}}
+        \]        
+      \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}              & \textbf{Rejection Region} \\ \hline
+          $\mu_1 - \mu_2 \neq \Delta$ & $|z| > z_{\alpha/2}$      \\ \hline
+          $\mu_1 - \mu_2 < \Delta$    & $z < -z_{\alpha}$         \\ \hline
+          $\mu_1 - \mu_2 > \Delta$    & $z > z_{\alpha}$          \\ \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+
+  \hii{Case 2: Normal Population + Unknown $\sigma$ + Equal Variances $\sigma$ (Confidence Interval on a Different in Means)}
+ \par If $X$ and $Y$ are both \tb{normal}, then:
+    \[
+      \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\bar{\sigma}} \sim t_{m + n - 2}
+    \]
+    where
+    \[
+      \bar{\sigma} = \hat{\sigma} \sqrt{\frac{1}{m} + \frac{1}{n}}
+    \]
+    \[
+      \hat{\sigma} = \sqrt{\frac{(m - 1)s_1^2 + (n - 1)s_2^2}{m + n - 2}}
+    \]
+  \par A $100(1 - \alpha)\%$ confidence interval for $\mu_1 - \mu_2$ is:
+    \[
+      \mu_1 - \mu_2 = (\bar{X} - \bar{Y}) \pm t_{\alpha/2} \bar{\sigma}
+    \]
+    \par \tb{Hypothesis Testing}:
+    \begin{itemize}
+      \item \tb{Step 1}: Compute the statistic:
+        \[
+          t = \frac{(\bar{X} - \bar{Y}) - \Delta}{\bar{\sigma}}
+        \]
+        where
+        \[
+          \text{SE} = \bar{\sigma} = \sqrt{\hat{\sigma}^2
+            \bigg(
+              \frac{1}{m} + \frac{1}{n}
+            \bigg)}
+        \]
+        \[
+          s^2 = \hat{\sigma}^2 = \frac{(m - 1)s_1^2 + (n - 1)s_2^2}{m + n - 2}
+        \]
+      \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{$H_1$}              & \textbf{Rejection Region} \\ \hline
+        $\mu_1 - \mu_2 \neq \Delta$ & $|t| > t_{\alpha/2, m + n - 2}$      \\ \hline
+        $\mu_1 - \mu_2 < \Delta$    & $t < -t_{\alpha, m + n - 2}$         \\ \hline
+        $\mu_1 - \mu_2 > \Delta$    & $t > t_{\alpha, m + n - 2}$          \\ \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+
+  \hii{Case 3: Normal Population + Unknown $\sigma$ + Unequal Variances Variances $\sigma$ (Confidence Interval on a Different in Means)}
+    \par \tb{Hypothesis Testing}:
+    \begin{itemize}
+      \item \tb{Step 1}: Compute the statistic:
+        \[
+          T = \frac{(\bar{X} - \bar{Y}) - \Delta_0}{
+                \sqrt{\dfrac{\hat{\sigma_x^2}}{m - 1}
+                    + \dfrac{\hat{\sigma_y^2}}{n - 1}}}
+        \]
+      \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{$H_1$}              & \textbf{Rejection Region} \\ \hline
+        $\mu_1 - \mu_2 \neq \Delta$ & $|t| > t_{\alpha/2, \nu}$ \\ \hline
+        $\mu_1 - \mu_2 < \Delta$    & $t < -t_{\alpha, \nu}$    \\ \hline
+        $\mu_1 - \mu_2 > \Delta$    & $t > t_{\alpha, \nu}$     \\ \hline
+        \end{tabular}
+      \end{center}
+      where the degree of freedom $\nu$ is calculated as follow:
+        \[
+          \nu = \frac{\bigg(\dfrac{s_x^2}{m} + \dfrac{s_y^2}{n}\bigg)^2}
+                     {
+                       \dfrac{1}{m - 1} \bigg(\dfrac{s_x^2}{m}\bigg)^2
+                      + \dfrac{1}{n - 1} \bigg(\dfrac{s_y^2}{n}\bigg)^2
+                     }
+        \]
+        \par \tb{Note}: In case $\nu$ is not an integer, just round it according to the normal rounding rule. (round-up if the integral part is $\geq 0.5$)
+    \end{itemize}
+
+  \hii{Paired Data - Normal Distribution (Hypothesis Tests on the Difference in Means)}
+    \hiii{Paired Data}
+    \par The data consists of $n$ independently selected pairs $(X_1, Y_1), \ldots, (X_n, Y_n)$. Let $D_i = X_i - Y_i$. Then,
+      \[
+        T = \frac{\bar{D} - \mu_{D}}{s_{D} / \sqrt{n}} \sim t_{n - 1}
+      \]
+      where
+      \[
+        \bar{D} = \frac{\sum\limits_{i = 1}^{n} D_i}{n}
+      \]
+      \[
+        s_D^2 = \frac{\sum\limits_{i = 1}^{n} (D_i - \bar{D})^2}{n - 1}
+      \]
+
+    \hiii{Correlation and Covariance}
+      \par Consider using the two-sample $t$ test on paired data.
+      \[
+        \bar{D} = \bar{X} - \bar{Y}
+      \]
+      \[
+        V(X \pm Y) = V(X) + V(Y) \pm Cov(X, Y)
+      \]
+      \[
+        \rho = Cor(X, Y) = \frac{Cov(X, Y)}{\sqrt{V(X)V(Y)}}
+      \]
+      \[
+        Var(X, Y) = \sigma_1^2 - \sigma_2^2 - 2 \rho \sigma_1 \sigma_2
+      \]
+      \[
+        Var(\bar{X}, \bar{Y}) = Var(\bar{D}) = \frac{Var(D_i)}{n} = \frac{\sigma_1^2 + \sigma_2^2 = \rho \sigma_1 \sigma_2}{n}
+      \]
+
+    \hiii{Hypothesis Testing}
+    \begin{itemize}
+      \item \tb{Step 1}: Compute the statistic:
+        \[
+          T = \frac{\bar{D} - \Delta_0}{s_{D} / \sqrt{n}}
+        \]
+      \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{$H_1$}              & \textbf{Rejection Region} \\ \hline
+        $\mu_D \neq \Delta_0$ & $|T| > t_{\alpha/2, n - 1}$ \\ \hline
+        $\mu_D < \Delta_0$    & $T < -t_{\alpha, n - 1}$    \\ \hline
+        $\mu_D > \Delta_0$    & $T > t_{\alpha, n - 1}$     \\ \hline
+        \end{tabular}
+      \end{center}
+    \end{itemize}
+
+  \hii{Inferences for Population Proportions (Large-Sample)}
+    \hiii{Distribution of the Difference in Proportions}
+      \par Let $\hat{p_1} = X/m$ and $\hat{p_2} = Y/n$, where $X \sim B(m, p_1)$ and $Y \sim B(n, p_2)$, and $X$ and $Y$ are independent.
+        \[
+          E(\hat{p_1} - \hat{p_2}) = p_1 - p_2
+        \]
+        \[
+          V(\hat{p_1} - \hat{p_2}) = \frac{p_1 q_1}{m} + \frac{p_2 q_2}{n}
+        \]
+    
+    \hiii{Hypothesis Testing}
+      \par Test statistic:
+        \[
+          Z = \frac{(\hat{p_1} - \hat{p_2}) - \Delta_0}
+          {\sqrt{\bar{p}\bar{q} \bigg(\dfrac{1}{m} + \dfrac{1}{n} \bigg)}}
+        \]
+      where $\bar{p} = \dfrac{m\hat{p_1} + n\hat{p_2}}{m + n}$
+      \par In simple cases, $\Delta_0 = 0$.
+      \par Decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}                 & \textbf{Rejection Region} \\ \hline
+          $\hat{p_1} - \hat{p_2} \neq 0$ & $|Z| > z_{\alpha/2}$ \\ \hline
+          $\hat{p_1} - \hat{p_2} < 0$    & $Z < -z_{\alpha}$    \\ \hline
+          $\hat{p_1} - \hat{p_2} > 0$    & $Z > z_{\alpha}$     \\ \hline
+          \end{tabular}
+        \end{center}
+
+    \hiii{Confidence Interval}
+      \[
+        p_1 - p_2 = (\hat{p_1} - \hat{p_2}) \pm z_{\alpha / 2} \sqrt{\frac{\hat{p_1}\hat{q_1}}{m} + \frac{\hat{p_2}\hat{q_2}}{n}}
+      \]
+\end{multicols}

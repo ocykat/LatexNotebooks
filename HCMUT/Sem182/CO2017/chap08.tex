@@ -4,17 +4,20 @@
 
 \hi{Background}
   \hii{Basic Hardware}
-    \par CPU can only directly access main memory and registers. If data are not in memory, they must be moved there before the CPU can operate on them.
-    \par CPU can decode instructions and perform operations on register contents at the rate of 1 or more operations per clock tick. Meanwhile, a memory access may take many cycles and the processor would need to \tb{stall} before it gets the data required for execution. One solution is to use cache.
-    \par Each process has a \ti{separate memory space}. The range of legal addresses that the process may access is determined by two registers:
-    \begin{itemize}
-      \item base register: holds the smallest legal physical memory address
-      \item limit register: specifies the size of the range of memory space
-    \end{itemize}
-    \par Example: base register is 300000, limit register is 123460, then program can legally access addresses from 300000 to 423459 (inclusive).
-    \par Protection of memory space is done by the CPU hardware compare every address generated in user mode with the register. Any illegal access results in a fatal error.
-    \par Base and limit registers can be loaded only by the OS with a special privileged. Privileged instructions can be executed only in kernel mode, and only the OS executes in kernel mode, therefore only the operating system can load the base and limit registers.
-    \par The OS is given unrestricted access to the OS memory and users' memory.
+    \hiii{CPU and Memory access}
+        \par CPU can only directly access \tb{main memory} and \tb{registers}. If data are not in memory, they must be moved there before the CPU can operate on them.
+        \par CPU can decode instructions and perform operations on register contents at the rate of 1 or more operations per clock tick. Meanwhile, a \tb{memory access} may take \tb{many cycles} and the processor would need to \tb{stall} before it gets the data required for execution. One solution is to use \tb{cache}.
+    
+    \hiii{Memory space of a Process}
+      \par Each process has a \tb{separate memory space}. The range of legal addresses that the process may access is determined by two registers:
+        \begin{itemize}
+          \item \tb{base register}: holds the smallest legal physical memory address
+          \item \tb{limit register}: specifies the size of the range of memory space
+        \end{itemize}
+      \par \tb{Example}: base register is 300000, limit register is 123460, then program can legally access addresses from 300000 to 423459 (inclusive).
+      \par \tb{Protection of memory space}: CPU hardware compare every address generated in user mode with the register. Any illegal access results in a fatal error.
+      \par Base and limit registers can be loaded only by the OS with a special privileged. Privileged instructions can be executed only in kernel mode, and only the OS executes in kernel mode, therefore only the operating system can load the base and limit registers.
+      \par The OS, executing in kernel mode, is given unrestricted access to the OS memory and users' memory.
 
   \hii{Address Binding}
     \par A \ti{program} resides on disk as a binary executable file. To be executed, the program must be brought into memory and placed within a \ti{process}.
@@ -22,22 +25,295 @@
     \par In most systems, a user process can reside in any part of the physical memory. (For example, the address space of a computer starts at 00000, but the first address of a user process need not be 00000).
     \par A user program goes through several steps before being executed. During these steps, addresses may be represented in different ways:
     \begin{itemize}
-      \item Addresses in the source program are generally symbolic address (symbolic addresses are addresses with name used in Assembly language).
-      \item The compiler will bind the symbolic addresses to relocatable addresses (changing names to number; for example, changing the name \texttt{count} to \texttt{14}).
-      \item The linkage editor or loader will bind the relocatable addresses to absolute addresses (74014, for example).
+      \item Addresses in the source program are generally \tb{symbolic address} (symbolic addresses are addresses with name used in Assembly language).
+      \item The \tb{compiler} will \tb{bind} the symbolic addresses to \tb{relocatable addresses} (changing names to numbers; for example, changing the name \texttt{count} to \texttt{14}).
+      \item The \tb{linkage editor} or \tb{loader} will bind the relocatable addresses to \tb{absolute addresses} (74014, for example).
     \end{itemize}
     \par Each \tb{binding} is a \ti{mapping} from one address space to another.
     \par The binding of instructions and data to memory addresses can be done at any of these steps:
     \begin{itemize}
-      \item \tb{Compile time}: if at compile time the location of the process in the memory is known, then \tb{absolute code} can be generated.
-      \item \tb{Load time}: if at compile time the location of the process is not known, then the compiler must generate \tb{relocatable code}. Binding is delayed until load time.
-      \item \tb{Execution time}:  if the process can be moved during its execution from one memory segment to another, then binding must be delayed until run time.
+      \item \tb{Compile time}: if \ti{at compile time the location of the process in the memory is known}, then \tb{absolute code} can be generated.
+      \item \tb{Load time}: if \ti{at compile time the location of the process is not known}, then the compiler must generate \tb{relocatable code}. Binding is delayed until load time.
+      \item \tb{Execution time}:  if \ti{the process can be moved during its execution from one memory segment to another}, then binding must be delayed until run time.
     \end{itemize}
 
+  \img[width=12cm]{img/execution-steps.jpg}{}
+
   \hii{Logical vs Physical Address Space}
-    \par A \tb{logical address} is an address generated by the CPU.
-    \par A \tb{physcial address} is the address seen by the memory unit, or the address loaded into the \tb{memory-address register} of the memory.
-    \par Compile-time and load-time address-binding methods generate identical logical and physical addresses. However, execution-time address-binding results in different logical and physical addresses. In this case, we refer to the logical address as a \tb{virtual address}. \ti{These two terms are used interchangeably in the book}.
+    \par \tb{Logical address} and \tb{Physical address}:
+    \begin{itemize}
+      \item A \tb{logical address} is an address generated by the CPU.
+      \item A \tb{physcial address} is the address seen by the memory unit, or the address loaded into the \tb{memory-address register} of the memory.
+    \end{itemize}
+    \par \tb{Compile-time} and \tb{load-time} address-binding methods generate identical logical and physical addresses. However, \tb{execution-time} address-binding results in different logical and physical addresses. In this case, we refer to the logical address as a \tb{virtual address}. \ti{These two terms are used interchangeably in the book}.
     \par The set of all logical addresses generated by a program is a \tb{logical address space}; the set of all physical addresses corresponding to these logical addresses is a \tb{physical address space}. Thus, in the execution-time address-binding scheme, the logical and physical address spaces differ.
-    \par The run-time mapping from logical to physical addresses is done by a hardware device called the \tb{memory-management unit} (MMU). The user program never sees the \ti{physical addresses} - it only operates on \ti{virtual/logical addresses}.
+    \par A hardware device called the \tb{memory-management unit} (MMU) maps the logical addresses to physical addresses. The user program never sees the \ti{physical addresses} - it only operates on \ti{virtual/logical addresses}.
     \par Example: a program may create a pointer at logical address 123. However, in the physical memory the real physical location is 10123, as the starting address of the process is 10000.
+    \par \tb{Example}: Dynamic relocation using a \tb{relocation register} - which is another name for the \tb{base register} in the base-register scheme.
+    \img[width=10cm]{img/dynamic-relocation.jpg}{}
+
+  \hii{Dynamic Loading}
+    \par With \tb{dynamic loading}, a routime is not loaded until it is called, thus results in better momory-space utilization.
+    \par \tb{How dynamic loading works}:
+    \begin{itemize}
+      \item All routines are kept on disk in a relocatable load format.
+      \item The main program is loaded into memory and is executed.
+      \item When a routine needs to call another routine, the calling routine first checks to see whether the other routine has been loaded. If it has not, the \ti{relocatable linking loader} is called to load the desired routine into memory and to update the program's address tables to reflect this change. Then control is passed to the newly loaded routine.
+    \end{itemize}
+      
+    \par Dynamic loading does not require special support from the operating system.
+
+  \hii{Dynamic Linking and Shared Libraries}
+    \begin{itemize}
+      \item \tb{Static Linking}: system language libraries are treated like any other object module and are combined by the \ti{loader} into the binary program image.
+      \item \tb{Dynamic Linking}: \ti{linking} is postponed until execution time.
+    \end{itemize}
+    \par Dynamic Linking is often used in a system called \tb{shared libraries}. In this system, more than one version of a library may be loaded into the memory, and each program uses its version information to decide which copy of the library to use.
+    \par Unlike dynamic loading, dynamic linking \tb{requires help from the operating system}.
+
+
+\hi{Swapping}
+  \hii{Swapping}
+    \par A process must be in memory to be executed. However, it can be \tb{swapped} temporarily out of memory to a \tb{backing store} and then brought back into memory for continued execution.
+
+  \hii{Variations of Swapping}
+  \par Swapping is controlled by the CPU scheduler. There are different variations of swapping, including:
+    \begin{itemize}
+      \item round-robin CPU-scheduling algorithm
+      \item priority-based scheduling algorithm: when a higher-priority process $H$ comes, the lower-priority process $L$ will be swapped out and when $H$ finishes, $L$ is swapped back in. This variation of swapping is called \tb{roll out, roll in}.
+    \end{itemize}
+
+  \hii{Memory Space}
+    \par Normally, a process that is swapped out will be swapped back into the same memory space it occupied previously. This restriction is dictated by the \tb{method of address binding}:
+    \begin{itemize}
+      \item  If binding is done at \ti{assembly or load time}, then the process cannot be easily moved to a different location.
+      \item If \ti{execution-time binding} is being used, then a process can be swapped into a different memory space, because the physical addresses are computed during execution time.
+    \end{itemize}
+
+  \hii{Backing Store}
+    \par \tb{Backing store} is commonly a fast disk. It must:
+    \begin{itemize}
+      \item be large enough to accommodate copies of all memory images for all users.
+      \item provide direct access to these memory images.
+    \end{itemize}
+
+  \hii{Context Switch Time with Swapping}
+    \par \tb{Example}: Given the transfer rate of 50 MB/s. The transfer of a 100 MB process to/from main memory takes $100 / 50 = 2$ seconds. Assuming that there is a latency of 8 milliseconds per transfer, then the total swap out and swap in time is 4016 milliseconds.
+    \par To reduce swap time, it is useful to know how much memory a process is \tb{really using}.
+    \par A process with dynamic memory reuqirement can issue system calls \lstinline{request memory} and \lstinline{release memory} to inform the operating system of its changing memory needs.
+
+
+\hi{Contiguous Memory Allocation}
+  {\footnotesize 
+  \par The memory is usually divided into two partitions: one for the resident operating system and one for the user processes.
+  \par We can place the operating system in either low memory or high memory. The major factor affecting this decision is the location of the interrupt vector. Since the interrupt vector is often in low memory, programmers usually place the operating system in low memory as well.
+  }
+
+  \par In \tb{contiguous memory allocation}, each process is contained in a single contiguous section of memory.
+
+  \hii{Memory Mapping and Protection}
+    \par Memory Mapping and Protection can be provided by using a \tb{relocation register} and a \tb{limit register}. Each logical address must be less than the limit register.
+    \par The MMU does the mapping \tb{dynamically} by adding the value in the relocation register.
+
+    \img[width=10cm]{img/relocation-register2.jpg}{}
+
+  \hii{Memory Allocation}
+    \hiii{Fixed-partition scheme}
+    \par Memory is to divided into several fixed-sized partitions. Each partition may contain exactly one process. Thus, \tb{the degree of multiprogramming} is bound by the number of partitions.
+    \par In this \tb{multiple-partition method}:
+    \begin{itemize}
+      \item When a partition is free, a process is selected from the input queue and is loaded into the free partition.
+      \item When the process terminates, the partition becomes available for another process.
+    \end{itemize}
+
+    \hiii{Variable-partition scheme}
+      \par The operating system keeps a table indicating which parts of memory are available and which are occupied.
+      \par A block of available memory is called a \tb{hole}. At a moment, memory contains a set of holes of various sizes.
+      \begin{itemize}
+        \item  When a process arrives and needs memory, the system searches the set for a hole that is large enough for this process. If the hole is too large, it is split into two parts: one part is allocated to the arriving process; the other is returned to the set of holes. 
+        \item When a process terminates, it releases its block of memory, which is then placed back in the set of holes. If the new hole is adjacent to other holes, these adjacent holes are merged to form one larger hole.
+      \end{itemize}
+      \par The \tb{dynamic storage-allocation problem}: how to satisfy a request of size $n$ from a list of free holes. Some notable strategies:
+      \begin{itemize}
+        \item \tb{First fit}: Allocate the first hole that is big enough. Searching can start either at the beginning of the set of holes or at the location where the previous first-fit search ended. Stop searching as soon as a free hole that is large enough is found.
+        \item \tb{Best fit}: Allocate the smallest hole that is big enough.
+        \item \tb{Worst fit}: Allocate the largest hole.
+      \end{itemize}
+      \par Simulations have shown that both first fit and best fit are better than worst fit in terms of decreasing time and storage utilization. Neither first fit nor best fit is clearly better than the other in terms of storage utilization, but first fit is generally faster.
+
+  \hii{Fragmentation}
+    \hiii{External Fragmentation}
+      \par \tb{External fragmentation}: there is enough total memory space to satisfy a request but the available spaces are not contiguous; storage is fragmented into a large number of small holes.
+      \par Both the first-fit and best-fit strategies for memory allocation suffer from external fragmentation.
+
+    \hiii{Internal Fragmentation}
+      \par \tb{Example}: Consider a multiple-partition allocation scheme with a hole of 18,464 bytes. Suppose that the next process requests 18,462 bytes.If we allocate exactly the requested block,
+we are leftwith a hole of 2 bytes.The overhead to keeptrack of this hole will be substantially larger than the hole itself. The general approach to avoiding this problem is to break the physical memory into \ti{fixed-sized blocks} and allocate memory in units based on block size. With this approach,the memory allocated to a process may be slightly larger than the requested memory. The difference between these two numbers is \tb{internal fragmentation} - unused memory that is internal to a partition.
+
+    \hiii{Solutions to External Fragmentation}
+      \par One solution is \tb{compaction}: The goal is to shuffle the memory contents so as to place all free memory together in one large block.
+      \par Compaction is only possible if relocation is dynamic and is done at execution time. If addresses are relocated dynamically, relocation requires only moving the program and data and then changing the base register to reflect the new base address. Compaction can be \tb{expensive}.
+      \par Another solution is to permit the logical address space of the processes to be noncontiguous. Two complementary techniques achieve this solution: \tb{paging} and \tb{segmentation}. These techniques can also be combined.
+
+
+\hi{Paging}
+  \par Paging is a memory-management scheme that permits the physical address space of a process to be \tb{noncontiguous}.
+  \par Paging avoids \tb{external fragmentation} and the need for \tb{compaction}. It also solves the considerable problem of fitting memory chunks of varying sizes onto the backing store: when some code fragments or data residing in main memory need to be swapped out, space must be found on the backing store. The backing store also suffers from fragmentation problems , but access is much slower, so compaction is impossible.
+  
+  \hii{Basic Method}
+    \hiii{Method}
+    \par Basic method for implementing paging involves:
+    \begin{itemize}
+      \item breaking \tb{physical memory} into fixed-sized blocks called \tb{frames}
+      \item breaking \tb{logical memory} into blocks of the same size called \tb{pages}.
+    \end{itemize}
+    \par When a process is to be executed, its pages are loaded into any available memory frames from their source (a file system or the backing store). The backing store is divided into fixed-sized
+blocks that are of \tb{the same size as the memory frames}.
+    \img[width=12cm]{img/paging-hardware.jpg}{}
+
+    \par Every address generated by the CPU is divided into two parts:
+    \begin{itemize}
+      \item A \tb{page number} $p$: used as an index into a page table.
+      \item A \tb{page offset} $d$
+    \end{itemize}
+    
+    \par The page table contains the base address of each page in physical memory. This base address is combined with the page offset to define the physical memory address that is sent to the memory unit.
+
+    \par The page size - defined by the hardware - is typically a power of 2, varying between 512 bytes and 16 MB per page, depending on the computer architecture.
+
+    \par If the size of the logical address space is $2^{m}$ and a page size is $2^{n}$ addressing units, then:
+    \begin{itemize}
+      \item The higher-order $m - n$ bits of a logical address designate the page number.
+      \item The lower-order $n$ bits designate the page offset.
+    \end{itemize}
+
+    \par \tb{Example}:
+    \img[width=12cm]{img/paging-example.jpg}{}
+
+    \par In the figure: $n = 2$ and $m = 4$, meaning that the page size is $2^n = 2^2 = 4$ bytes and the logical address space is $2^m = 2^4 = 16$ bytes with addresses from 0 to 15. The physical memory is 32 bytes (8 pages).
+
+    \hiii{Fragmentation}
+    \par When using paging, there is \tb{no external fragmentation}: any free frame can be allocated to a process that needs it. However, \tb{internal fragmentation} can occur.
+
+    \par \tb{Example}: Page size is 2048. A process with size 72766 needs 35 pages plus 1086 bytes. It will be allocated 36 frames, resulting in internal fragmentation of 2048 - 1086 = 962 bytes.
+
+    \hiii{View of Memory}
+    \par An important aspect of paging is the clear separation between the user's view of memory and the actual physical memory
+    \begin{itemize}
+      \item The user program views memory as one single space, containing only this one program. 
+      \item Reality: the user program is scattered throughout physical memory, which also holds other
+programs. The mapping is hidden from the user and is controlled by the operating system.
+    \end{itemize}
+
+    \hiii{Frame Table}
+    \par The operating system is aware of the allocation details of physical memory - which frames are allocated, which frames are available, how many total frames there are, and so on.  This information is generally kept in a data structure called a \tb{frame table}. The frame table has one entry for each physical page frame, indicating whether the latter is free or allocated and, if it is allocated, to which page of which process or processes.
+
+  \hii{Hardware Support}
+    \par The hardware implementation of the page table can be done in several ways.
+    
+      \par In the simplest case, the page table is implemented as a set of dedicated registers. The use of registers for the page table is satisfactory if the page table is reasonably small (for example, 256 entries). Otherwise, using fast registers to implement the page table is not feasible.
+
+    \par \tb{Page table} is kept in main memory.
+    \par There is a \tb{page-table base register (PTBR)} points to the page table. Changing page tables requires changing only this one register, substantially reducing context-switch time.
+
+    \par \tb{Problem}:  time required to access a user memory location. If we want to access location $i$:
+    \begin{itemize}
+      \item \tb{Step 1}: index into the page table, using the value in the PTBR offset by the page number for $i$. This task required 1 memory access.
+      \item \tb{Step 2}: the frame number obtained from step 1 is combined with the page offset to produce the actual address. 
+      \item \tb{Step 3}: Access the desired place in the memory according to the actual address calculated at step 2. This task requires 1 memory access.
+    \end{itemize}
+    \par Two memory accesses are required. Therfore, memory access is slowed by a factor of 2.
+    \par \tb{Solution}: A special, small, fast-lookup hardware cache, called a \tb{translation look-aside buffer (TLB)}.
+
+    \par The TLB contains only a few of the page-table entries. When a logical address is generated by
+the CPU, its page number is presented to the TLB.
+      \begin{itemize}
+        \item If the page number is found, its frame number is immediately available and is used to access memory.
+        \item If the page number is not in the TLB (known as a TLB miss), a memory reference to the page table must be made. When the frame number is obtained, we can use it to access memory. In addition, we add the page number and frame number tothe TLB , sothat they will be found quickly on the next reference. If the TLB is already full of entries, the operating system must select one for replacement.
+      \end{itemize}
+
+  \img[width=12cm]{img/tlb.jpg}{}
+
+    \par The percentage of times that a particular page number is found in the TLB is called the \tb{hit ratio}.
+    \par \tb{Effective memory-access time}:
+      \begin{align*}
+        EAT = \alpha \times (b + \epsilon) + (1 - \alpha) \times (2b + \epsilon)
+      \end{align*}
+      where
+      \begin{itemize}
+        \item $\alpha$: hit ratio
+        \item $b$: time taken to access memory
+        \item $\epsilon$: time taken to search the TLB
+      \end{itemize}
+
+  \hii{Protection}
+    \par Memory protection in a paged environment is accomplished by protection bits associated with each frame. Normally, these bits are kept in the page table.
+
+    \par One additional bit is generally attached to each entry in the page table: a valid–invalid bit.
+    \begin{itemize}
+      \item When this bit is set to "valid", the associated page is in the process's logical address space and is thus a legal (or valid) page.
+      \item When the bit is set to "invalid", the page is not in the process's logical address space.
+    \end{itemize}
+    \par Illegal addresses are trapped by use of the valid–invalid bit. The operating system sets this bit for each page to allow or disallow access to the page.
+
+  \hii{Shared Pages}
+    \par The sharing of memory among processes on a system is similar to the sharing of the address space of a task by threads
+    \img[width=12cm]{img/shared-page.jpg}{}
+
+\hi{Structure of the Page Table}
+
+  \hii{Hierarchical Paging}
+    \par Most modern computer systems support a large logical address space ($2^32$ to $2^64$). In such an environment, the page table itself becomes excessively large.
+    \par One way is to use a two-level paging algorithm, in which the page table itself is also paged.
+    \par A logical address has three parts:
+    \begin{itemize}
+      \item $p1$: an index into the outer page table
+      \item $p2$:  the displacement within the page of the outer page table.
+      \item $d$: the page offset
+    \end{itemize}
+    \img[width=12cm]{img/two-level-page.jpg}{}
+
+  \hii{Hashed Page Tables}
+    \par A common approach for handling address spaces larger than 32 bits is to use a \tb{hashed page table}, with the hash value being the virtual page number.
+    \par  Each entry in the hash table contains a linked list of elements that hash to the same
+location (to handle collisions). Each element consists of three fields: 
+      \begin{itemize}
+        \item the virtual page number
+        \item the value of the mapped page frame
+        \item a pointer to the next element in the linked list
+      \end{itemize}
+
+
+\hi{Segmentation}
+  \hii{Basic Method}
+    \par A logical address space is a collection of segments. Each segment has a name and a length. The user therefore specifies each address by two quantities: a segment name and an offset.
+    \par For simplicity of implementation, segments are numbered and are referred to by a segment number,rather than by a segment name.
+    \par A logical address consists of a two-tuple: \lstinline{<segment_number, offset>}
+
+  \hii{Hardware}
+    \par The mapping from two-dimensional address to the actual one-dimensional physical memory address is effected by a \tb{segment table}.
+    \par Each entry in the segment table has a:
+    \begin{itemize}
+      \item segment base: contains the \tb{starting physical address}
+      \item segment limit: specifies the length of the segment
+    \end{itemize}
+
+    \img[width=12cm]{img/segment-hardware.jpg}{}
+
+    \par In the figure: a \tb{logical address} consists of two parts:
+    \begin{itemize}
+      \item A \tb{segment number} $s$: used as an index to the segment table
+      \item An \tb{offset} to that segment $d$: must be between 0 and the segment limit
+    \end{itemize}
+
+    \img[width=12cm]{img/segment.jpg}{}
+
+    \par \tb{Example}:
+    \begin{itemize}
+      \item Segment 2 is 400 bytes long and begins at location 4300. Thus, a reference to byte 53 of segment 2 is mapped onto location $4300 +53 = 4353$.
+      \item A reference to segment 3, byte 852, is mapped to $3200 + 852 = 4052$, where 3200 is the base of segment 3.
+      \item A reference to byte 1222 of segment 0 would result in a trap to the operating system, as this segment is only 1000 bytes lon
+    \end{itemize}
+
+\hi{Segmentation with Paging}
+    \img[width=12cm]{img/segment-page.jpg}{}

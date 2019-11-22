@@ -1,0 +1,252 @@
+\chapter{Database Security}
+
+\hi{Introduction to Database Security Issues}
+  \hi{Types of Security}
+    \par \tb{Threats to Databases}
+      \begin{itemize}
+        \item \tb{Loss of integrity}: Integrity is lost if unauthorized changes are made to the data by
+        either intentional or accidental acts.
+        \item \tb{Loss of availability}: Loss of availability occurs when the user or program cannot access these objects.
+        \item \tb{Loss of confidentiality}: Database confidentiality refers to the protection of data from unauthorized disclosure.
+      \end{itemize}
+    \par A DBMS typically includes a \tb{database security and authorization
+    subsystem} that is responsible for ensuring the security of portions of a database
+    against unauthorized access.
+    \par Two types of \tb{database security mechanisms}:
+    \begin{itemize}
+      \item \tb{Discretionary security mechanisms}: used to grant privileges to users, including the capability to access specific data files, records, or fields in a specified mode (such as read, insert, delete, or update)
+      \item \tb{Mandatory security mechanisms}: used to enforce multilevel
+      security by classifying the data and users into various security classes (or levels) and then implementing the appropriate security policy of the organization.
+    \end{itemize}
+  
+  \hi{Control Measures}
+    \par There are \tb{four kinds of control measures}:
+    \begin{itemize}
+      \item \tb{Access Control}: handled by creating user accounts and passwords to control the login process
+      \item \tb{Inference Control}: related to the \tb{Statistical database security problem}: must ensure that information about individuals cannot be accessed
+      \item \tb{Flow Control}: prevents information from flowing in such a way that it reaches unauthorized users
+      \item \tb{Encryption}
+    \end{itemize}
+
+  \hii{Database Security and the DBA}
+    \par The DBA has a \tb{DBA account} in the DBMS, sometimes called a system or superuser account, which provides powerful capabilities that are not made available to regular database accounts and users.
+    \par \tb{DBA-privileged commands} include commands for:
+      \begin{itemize}
+        \item \tb{Account creation}: creates a new account and password for a user or a group of users to enable access to the DBMS
+        \item \tb{Privilege granting}: permits the DBA to grant certain privileges to certain accounts
+        \item \tb{Privilege revocation}: permits the DBA to revoke (cancel) certain privileges that were previously given to certain accounts
+        \item \tb{Security level assignment}: consists of assigning user accounts to the appropriate security clearance level
+      \end{itemize}
+
+  \hii{Access Control, User Accounts, and Database Audits}
+
+  \hii{Sensitive Data and Types of Disclosures}
+
+  \hii{Relationship between Information Security and Information Privacy}
+
+\hi{Discretionary Access Control Based on Granting and Revoking Privileges}
+  \hii{Types of Discretionary Privileges}
+    \par There are two levels for assigning privileges to use the database system:
+      \begin{itemize}
+        \item \tb{The account level}: At this level, the DBA specifies the particular privileges that each account holds independently of the relations in the database.
+          \par The privileges at this level include:
+            \begin{itemize}
+              \item \ilc{CREATE SCHEMA} or \ilc{CREATE TABLE} privilege
+              \item \ilc{CREATE VIEW} privilege
+              \item \ilc{ALTER} privilege
+              \item \ilc{DROP} privilege
+              \item \ilc{MODIFY} privilege
+              \item \ilc{SELECT} privilege
+            \end{itemize}
+        \item \tb{The relation (or table) level}: At this level, the DBA can control the privilege to access each individual relation or view in the database.
+          \par This level of privileges includes base relations and virtual (view) relations Privileges at the relation level specify for each \tb{user} the \tb{individual relations} on which each \tb{type of command} can be applied. Some privileges also refer to \tb{individual columns} (attributes) of relations.
+          \par The granting and revoking of privileges generally follow an authorization model for discretionary privileges known as the \tb{access matrix model}, where:
+          \begin{itemize}
+            \item The rows of a matrix $M$ represent subjects (users, accounts, programs)
+            \item The columns represents objects (relations, records, columns, views, operations).
+            \item Each position $M(i, j)$ in the matrix represents the types of privileges (read, write, update) that subject $i$ holds on object $j$.
+          \end{itemize}
+      \end{itemize}
+    \par To control the granting and revoking of relation privileges, each relation $R$ in a     database is assigned an \tb{owner account}, which is typically the account that was used when the relation was created in the first place. The owner of a relation is given all privileges on that relation. The owner account holder can pass privileges on any of the owned relations to other users by granting privileges to their accounts.
+    \par The following types of privileges can be granted on each individual relation $R$:
+    \begin{itemize}
+      \item \tb{SELECT (retrieval or read) privilege on $R$}:
+      \item \tb{Modification privileges on $R$}: gives the account the capability to modify the tuples of $R$. In SQL: \ilc{UPDATE}, \ilc{DELETE} and \ilc{INSERT}. Both \ilc{UPDATE} and \ilc{INSERT} can be specify that only certain attributes of R can be modified by the account.
+      \item \tb{References privilege on $R$}: gives the account the capability to reference (or refer to) a relation R when specifying integrity constraints. This privilege can also be restricted to specific attributes of $R$.
+    \end{itemize}
+    \par To create a \tb{view}, the account must have the SELECT privilege on all relations involved in the view definition.
+
+  \hii{Specifying Privileges through the Use of Views}
+    \par If the owner $A$ of a relation $R$ wants another account $B$ to be able to retrieve only some \tb{fields} of $R$, then $A$ can create a \tb{view} $V$ of $R$ that includes only those \tb{attributes} and then grant \ilc{SELECT} on $V$ to $B$.
+
+  \hii{Revoking of Privileges}
+    \par Revoke a privilege means taking it back/cancelling it.
+
+  \hii{Propagation of Privileges Using the GRANT OPTION}
+    \par Whenever the owner A of a relation R grants a privilege on R to another account B, the privilege can be given to B with or without the GRANT OPTION . If the GRANT OPTION is given, this means that B can also grant that privilege on R to other accounts. Suppose that B is given the GRANT OPTION by A and that B then grants the privilege on R to a third account C, also with the GRANT OPTION . In this way, privileges on R can propagate to other accounts without the knowledge of the owner of R. If the owner account A now revokes the privilege granted to B, all the privileges that B propagated based on that privilege should automatically be revoked by the system.
+
+  \hii{An Example to Illustrate Granting and Revoking of Privileges}
+    \par \tb{Grant create table privilege}
+    \par Suppose that the DBA creates four accounts - A1 , A2 , A3 , and A4 -and wants only A1 to be able to create base relations.
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+GRANT CREATETAB TO A1;
+\end{minted}
+
+    \par This privilege was part of earlier versions of SQL but is now left to each individual system implementation to define. In SQL2, the same effect can be accomplished by having the DBA issue a \ilc{CREATE SCHEMA} command:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE SCHEMA EXAMPLE AUTHORIZATION A1;
+\end{minted}
+
+    \par User account A1 can now create tables under the schema called \ilc{EXAMPLE}. 
+    \par Suppose that A1 creates the two base relations EMPLOYEE and DEPARTMENT; A1 is then the \tb{owner} of these two relations and hence has all the relation privileges on each of them.
+
+    \par \tb{Grant and Propagate privileges}
+    \par A1 wants to grant to account A2 the privilege to insert and delete tuples in both of these relations. However, A1 \tb{does not want A2 to be able to propagate} these privileges to additional accounts.
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+GRANT INSERT, DELETE ON EMPLOYEE , DEPARTMENT TO A2;
+\end{minted}
+    
+    \par Suppose that A1 wants to allow account A3 to retrieve information from either of the two tables and also to be able to propagate the SELECT privilege to other accounts.
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+GRANT SELECT ON EMPLOYEE , DEPARTMENT TO A3 WITH GRANT OPTION;
+\end{minted}
+    
+    \par Then,  A3 can grant the SELECT privilege on the EMPLOYEE relation to A4 by issuing the following command:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+GRANT SELECT ON EMPLOYEE TO A4;
+\end{minted}
+    
+    \par Notice that A4 cannot propagate the SELECT privilege to other accounts because the GRANT OPTION was not given to A4.
+
+    \par \tb{Revoke privileges}
+    \par Suppose that A1 decides to revoke the SELECT privilege on the EMPLOYEE relation from A3 ; A1 then can issue this command:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+REVOKE SELECT ON EMPLOYEE FROM A3;
+\end{minted}
+
+    \par The DBMS must now revoke the SELECT privilege on EMPLOYEE from A3 , and it must also automatically revoke the SELECT privilege on EMPLOYEE from A4.
+
+    \par \tb{Views}
+    \par Suppose that A1 wants to give back to A3 a limited capability to SELECT from the EMPLOYEE relation and wants to allow A3 to be able to propagate the privilege. The limitation is to retrieve only the Name , Bdate , and Address attributes and only for the tuples with \ilc{Dno = 5}. A1 then can create the following view:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE VIEW A3EMPLOYEE AS
+SELECT Name, Bdate, Address
+FROM EMPLOYEE
+WHERE Dno = 5;
+
+GRANT SELECT ON A3EMPLOYEE TO A3 WITH GRANT OPTION;
+\end{minted}
+
+    \par \tb{Privileges on specific attributes}
+    \par Suppose that A1 wants to allow A4 to update only the Salary attribute of EMPLOYEE; A1 can then issue the following command:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+GRANT UPDATE ON EMPLOYEE (Salary) TO A4;
+\end{minted}
+    
+    \par The UPDATE and INSERT privileges can specify particular attributes that may be updated or inserted in a relation.
+
+  \hii{Specifying Limits on Propagation of Privileges}
+    \par Techniques to limit the propagation of privileges have been developed, although they have not yet been implemented in most DBMSs and are not a part of SQL.
+    \par \tb{Limiting horizontal propagation} to an integer number $i$ means that an account $B$
+given the GRANT OPTION can grant the privilege to at most $i$ other accounts.
+    \par Granting a privilege with a \tb{vertical propagation} of 0 is equivalent to granting the privilege with no GRANT OPTION . If account A grants a privilege to account B with the vertical propagation set to an integer number $j > 0$, this means that the account B has the GRANT OPTION on that privilege, but B can grant the privilege to other accounts only with a vertical propagation less than $j$.
+
+  
+\hi{Mandatory Access Control and Role-Based Access Control for Multilevel Security}
+  \par \tb{Mandatory Access Control (MAC)} is a security policy that classifies data and users based on security classes.
+  \par Typical \tb{security classes} are:
+  \begin{itemize}
+    \item Top secret (\ilc{TS})
+    \item Secret (\ilc{S})
+    \item Confidential (\ilc{C})
+    \item Unclassified (\ilc{U})
+  \end{itemize}
+  where TS $\geq$ S $\geq$ C $\geq$ U.
+  \par The commonly used model for multilevel security, known as the \tb{Bell-LaPadula model}, classifies each subject (user, account, program) and object (relation, tuple, column, view, operation) into one of the security classifications TS, S, C, or U.
+  \par The \tb{clearance} or \tb{classification} of a subject $S$ is denoted $class(S)$ and of an object $O$ is denoted $class(O)$.
+  \par Two restrictions are enforced on data access based on the subject/object classifications:
+  \begin{itemize}
+    \item \tb{Simple Security Property}: A subject S is not allowed read access to an object O unless $class(S) \geq class(O)$.
+    \item \tb{Star Property}: A subject S is not allowed to write an object O unless $class(S) \leq class(O)$.
+  \end{itemize}
+
+  \par Violation of the second rule would allow information to flow from higher to lower classifications, which violates a basic tenet of multilevel security.
+
+  \par In the relational database model:
+  \begin{itemize}
+    \item Each attribute $A$ is associated with a classification attribute $C$, and each attribute value in a tuple is associated with a corresponding security classification.
+    \item In addition, in some models, a \tb{tuple classification attribute} $TC$ is added to the relation attributes to provide a classification for each tuple as a whole.
+  \end{itemize}
+  \par The security model which allows multiple levels of security like this is known as the \tb{multilevel model}.
+  \par A multilevel relation schema $R$ with $n$ attributes would be represented as:
+    \[
+      R(A_1, C_1 ,A_2, C_2, \ldots, A_n, C_n , TC)
+    \]
+  where each $C_i$ represents the classification attribute associated with attribute $A_i$.
+  \par The value of TC in each tuple $t$ is the \tb{highest of all attribute classification values} $C_i$ within $t$.
+  \par The \tb{apparent key} of a multilevel relation is the set of attributes that would have
+formed the primary key in a regular (single-level) relation. A multilevel relation will
+appear to contain different data to subjects (users) with different clearance levels.
+  \par \tb{Filtering}: the process of storing a single tuple in the relation at a higher classification level and produce the corresponding tuples at a lower-level classification.
+  \par If filtering is not possible, it is necessary to store two or more tuples at different classification levels with the same value for the \tb{apparent key}.
+  \par \tb{Polyinstantiation}: several tuples can have the same apparent key value but have different attribute values for users at different clearance levels.
+  \par \tb{Entity Integrity Rule for multilevel relations}: all attributes that are members of the apparent key
+  \begin{itemize}
+    \item \tb{must not be null}, and
+    \item \tb{must have the same security classification within each individual tuple}
+    \item All other attribute values in the tuple must have a security classification \tb{greater than or equal to that of the apparent key}. This constraint ensures that a user can see the key if the user is permitted to see any part of the tuple. 
+  \end{itemize}
+  \par \tb{Null Integrity and Interinstance Integrity}: ensure that if a tuple value at some security level can be filtered (derived) from a higher-classified tuple, then it is sufficient to store the higher-classified tuple in the multilevel relation.
+
+  \img[width=16cm]{img/mac.jpg}{}
+
+  \par \tb{Polyinstantiation example}: A user with clearance $C$ use the following query:
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+UPDATE EMPLOYEE
+SET Job_performance = 'Excellent'
+WHERE Name = 'Smith';
+\end{minted}
+
+  \par Since the view provided to users with security clearance C (see Figure 30.2(b)) permits such an update, the system should not reject it; otherwise, the user could infer that some nonnull value exists for the \ilc{Job_performance} attribute of `Smith' rather than the null value that appears. This is an example of inferring information through what is known as a \tb{covert channel}, which should not be permitted. However, the user should not be allowed to overwrite the existing value of \ilc{Job_performance} at the higher classification level. The solution is to create a polyinstantiation for the ‘Smith’ tuple at the lower classification level C, as shown in Figure 30.2(d).
+
+  \hii{Comparing Discretionary Access Control and Mandatory Access Control}
+    \begin{itemize}
+      \item \tb{DAC}:
+        \begin{itemize}
+          \item Pros: high degree of flexibility
+          \item Cons: vulnerability to malicious attacks, because discretionary authorization models do not impose any control on how information is propagated and used once it has been accessed by users authorized to do so
+        \end{itemize}
+      \item \tb{MAC}:
+        \begin{itemize}
+          \item Pros: ensure a high degree of protection—in a way, they prevent any illegal flow of information.
+          \item Cons: too rigid in that they require a strict classification of subjects and objects into security levels, and therefore they are applicable to few environments and place an additional burden of labeling every object with its security classification.
+        \end{itemize}
+    \end{itemize}
+    \par In many practical situations, discretionary policies are preferred because they offer a better tradeoff between security and applicability than mandatory policies.
+
+  \hii{Role-Based Access Control}
+  \hii{Label-Based Access Control}
+  \hii{XML Access Control}
+
+\hi{Introduction to Flow Control}
+  \hii{Flow and Flow Control}
+    \par A flow between object $X$ and object $Y$ occurs when a program reads values from $X$ and writes values into Y.
+    \par \tb{Flow controls} check that information contained in some objects does not flow explicitly or implicitly into less protected objects.
+    \par A \tb{flow policy} specifies the channels along which information is allowed to move. The simplest flow policy specifies just two classes of information—confidential ($C$) and nonconfidential ($N$)—and allows all flows except those from class $C$ to class $N$. 
+    \par Two types of flow can be distinguished: explicit flows, which occur as a consequence of assignment instructions, such as $Y:= f(X_1, X_n)$ and implicit flows, which are generated by conditional instructions, such as if $f(X_{m+1}, \ldots , X_n)$ then $Y:= f(X_1, X_m)$.
+
+  \hii{Convert Channels}
+    \par A \tb{covert channel} allows information to pass from a higher classification level to a lower classification level through improper means.
+    \begin{itemize}
+      \item \tb{Timing Channel}: the information is conveyed by the timing of events or processes
+      \item \tb{Storage Channel}: do not require any temporal synchronization, in that information is conveyed by accessing system information or what is otherwise inaccessible to the user.
+    \end{itemize}

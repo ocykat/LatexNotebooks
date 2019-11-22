@@ -1,0 +1,82 @@
+\chapter{System of Differential Equations}
+
+\hi{Modeling System of Differential Equations}
+  \hii{Autonomous Systems of First-Order Differential Equations}
+  \par The system:
+  \begin{align*}
+    \dif{x}{t} = f(x, y) \\
+    \dif{y}{t} = g(x, y)
+  \end{align*}
+  is called an \tb{autonomous system of differential equation}. In such a system, the independent
+  variable $t$ is absent.
+  \par A \tb{solution} is a pair of parametric equations:
+    \begin{align*}
+      x = x(t) \\
+      y = y(t)     
+    \end{align*}
+  \par The solution curve whose coordinates are $(x(t), y(t))$, as $t$ varies over time, is called a trajectory, path, or orbit of the system.
+  \par If $(x, y)$ is a point where \tb{both} $f(x, y) = 0$ and $g(x, y) = 0$, it is called a \tb{rest point}, or \tb{equilibrium point}, of the system.
+  \par The rest point $(x_0, y_0)$ is
+    \begin{itemize}
+      \item \tb{stable} if any trajectory that starts close to the point stays close to it for all future time.
+      \item \tb{asymptotically stable} if it is stable and if any trajectory that starts close to $(x_0, y_0)$ approaches that point as $t$ tends to infinity
+      If
+      \item \tb{unstable} it is not stable
+    \end{itemize}
+
+\hi{Competitive Hunter Model}
+  \par Let
+    \begin{itemize}
+      \item $x(t)$ be the population of trout
+      \item $y(t)$ be the population of bass
+    \end{itemize}
+  \par Assume that in isolation, the environment can support an unlimited amount of trout.
+  \[
+    \dif{x}{t} = ax \qquad a > 0
+  \]
+  \par Now we modify the model to take into account the competition of
+  the trout with the bass population.  The effect of the bass population is to decrease the growth rate of the trout population. This decrease is approximately proportional to the number of possible interactions between the two species, so one submodel is to assume that the decrease is proportional to the product of $x$ and $y$.
+  \par These considerations are modeled by the equation:
+    \[
+      \dif{x}{t} = ax - bxy = (a - by)x = kx
+    \]
+  \par The \tb{intrinsic growth rate} $k = a - by$  decreases as the level of the bass population increases.
+  \par $a$ and $b$ indicate the degrees of self-regulation of the trout population and its  competition with the bass population, respectively.
+  \par The situation for the bass population is analyzed in the same manner. Thus, we obtain
+  the following autonomous system of two first-order differential equations for our model:
+    \[
+      \dif{x}{t} = (a - by)x \qquad \dif{y}{t} = (m - nx)y
+    \]
+    where $x(0) = x_0$, $y(0) = y_0$, and $a$, $b$, $m$, $n$ are positive constants.
+
+\hi{The Predator-Prey Model}
+  \par \tb{Background}: The whale is the predator, the krill is the prey.
+  \par Denote:
+  \begin{itemize}
+    \item $x(t)$: the krill population at any time $t$
+    \item $y(t)$; the whale population at any time $t$
+  \end{itemize}
+  \par First, assume that the ocean can support an unlimited number of krill:
+    \[
+      \dif{x}{t} = ax \qquad a > 0
+    \]
+  \par Second, assume that the krills are eaten regularly by whales. Then the growth rate of the krill is diminished in a way that is proportional to the number of interactions between them and the whales.
+    \[
+      \dif{x}{t} = ax - bxy = (a - by) x
+    \]
+  \par The \tb{intrinsic growth rate} $k$ decreases as the level of whale population increases.
+  \par $a$ and $b$ indicate the degrees of self-regulation of the krill population and the predatoriness of the whales,respectively.
+  \par Consider the whale population $y(t)$. In the absence of krill the whales have no food, so we will assume that their population declines at a rate proportional to their
+  numbers. This assumption produces the exponential decay equation:
+    \[
+      \dif{y}{t} = -my \quad m > 0
+    \]
+  \par In the presence of krill the whale population increases at a rate proportional to the interactions between the whales and their krill food supply.
+  \[
+    \dif{y}{t} = -my + nxy = (-m + nx) y
+  \]
+  \par \tb{Predator-Prey Model}:
+    \begin{align*}
+      \dif{x}{t} = (a - by) x \\
+      \dif{y}{t} = (-m + nx) y
+    \end{align*}

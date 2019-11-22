@@ -1,0 +1,114 @@
+\begin{multicols*}{3}
+  
+\hi{Hypothesis Testing for One Sample}
+
+\hii{Terminology}
+  \begin{itemize}
+    \item \tb{null hypothesis}:  the claim that is initially assumed to be true, denoted by $H_0$
+    \item \tb{alternative hypothesis}: the assertion that is contradictory to $H_0$, denoted by $H_1$
+    \item \tb{test of hypotheses}: a method for using sample data to decide \tb{whether the null hypothesis should be rejected}.
+    \item \tb{significant level}: the probability of a type I error, denoted by $\alpha$
+  \end{itemize}
+
+\hii{Tips}
+  \begin{itemize}
+    \item The \tb{equal sign} only appears in the \tb{null hypothesis} $H_0$.
+    \item The thing we want to prove appears in the \tb{alternative hypothesis} $H_1$. 
+  \end{itemize}
+
+\hii{Case 1: Normal Population with Known Standard Deviation}
+  \hiii{Hypothesis Testing}
+  \begin{itemize}
+    \item \tb{Step 1}: Compute the statistic:
+      \[
+        z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+      \]
+    \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}   & \textbf{Rejection Region} \\ \hline
+          $\mu \neq \mu_0$ & $|z| > z_{\alpha/2}$      \\ \hline
+          $\mu < \mu_0$    & $z < -z_{\alpha}$         \\ \hline
+          $\mu > \mu_0$    & $z > z_{\alpha}$          \\ \hline
+        \end{tabular}
+      \end{center}
+  \end{itemize}
+
+    \hiii{Hypothesis Testing with Propotion}
+    \begin{itemize}
+      \item \tb{Step 1}: Compute the statistic:
+        \[
+          z = \frac{\hat{p} - p_0}{\sqrt{\hat{p}\hat{q}/n}}
+        \]
+      \item \tb{Step 2}: Apply the decision rule:
+        \begin{center}
+          \begin{tabular}{|c|c|}
+            \hline
+            \textbf{$H_1$}   & \textbf{Rejection Region} \\ \hline
+            $p \neq p_0$ & $|z| > z_{\alpha/2}$      \\ \hline
+            $p < p_0$    & $z < -z_{\alpha}$         \\ \hline
+            $p > p_0$    & $z > z_{\alpha}$          \\ \hline
+          \end{tabular}
+        \end{center}
+    \end{itemize}
+
+\hii{Case 2: Normal Population with Unknown Standard Deviation}
+
+\begin{itemize}
+  \item \tb{Step 1}: Compute the statistic:
+    \[
+      t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+    \]
+  \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}   & \textbf{Rejection Region}   \\ \hline
+          $\mu \neq \mu_0$ & $|t| > t_{\alpha/2, n - 1}$ \\ \hline
+          $\mu < \mu_0$    & $t < -t_{\alpha, n - 1}$    \\ \hline
+          $\mu > \mu_0$    & $t > t_{\alpha, n - 1}$     \\ \hline
+        \end{tabular}
+      \end{center}
+\end{itemize}
+
+\hii{Case 3: Any Distribution - Large Sample Size}
+
+\begin{itemize}
+  \item \tb{Step 1}: Compute the statistic:
+    \[
+      z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+    \]
+  \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}   & \textbf{Rejection Region} \\ \hline
+          $\mu \neq \mu_0$ & $|z| > z_{\alpha/2}$      \\ \hline
+          $\mu < \mu_0$    & $z < -z_{\alpha}$         \\ \hline
+          $\mu > \mu_0$    & $z > z_{\alpha}$          \\ \hline
+        \end{tabular}
+      \end{center}
+\end{itemize}
+
+\par \tb{Testing with Population Proportion - Large Sample Size}
+
+\begin{itemize}
+  \item \tb{Step 1}: Compute the statistic:
+    \[
+      z = \frac{\hat{p} - p_0}{\sqrt{p_0 q_0 / n}}
+    \]
+  \item \tb{Step 2}: Apply the decision rule:
+      \begin{center}
+        \begin{tabular}{|c|c|}
+          \hline
+          \textbf{$H_1$}   & \textbf{Rejection Region} \\ \hline
+          $p \neq p_0$ & $|z| > z_{\alpha/2}$      \\ \hline
+          $p < p_0$    & $z < -z_{\alpha}$         \\ \hline
+          $p > p_0$    & $z > z_{\alpha}$          \\ \hline
+        \end{tabular}
+      \end{center}
+\end{itemize}
+
+
+\end{multicols*}

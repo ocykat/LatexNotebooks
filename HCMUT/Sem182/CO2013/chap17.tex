@@ -57,7 +57,98 @@
 
 \hi{Dynamic Multilevel Indexes Using B-Trees and B$^{+}$ Trees}
 
+\hi{Indexes on Multiple Keys}
+
 \hi{Other Types of Indexes}
   \hii{Hash Indexes}
-    \par The hash index is a secondary structure to access the file by using hashing on a search key other than the one used for the primary data file organization.
+    \par The \tb{hash index} is a secondary structure to access the file by using hashing on a search key other than the one used for the primary data file organization.
 
+  \hii{Bitmap Indexes}
+    \par The \tb{bitmap index} is another popular data structure that facilitates \tb{querying on multiple keys}.
+    \par Bitmap indexing is used for relations that contain a \tb{large number of rows}. It creates an index for one or more columns, and each value or value range in those columns is indexed.
+    \par Typically, a bitmap index is created for those columns that contain \tb{a fairly small number of unique values}.
+    \par To build a bitmap index on a set of records in a relation, the records must be numbered from 0 to $n$ with an id (a record id or a row id) that can be mapped to a physical address made of a block
+number and a record offset within the block.
+    \par A bitmap index is built on one particular value of a particular field (the column in a relation) and is just an array of bits. Consider a bitmap index for the column $C$ and a value $V$ for that column. For a relation with $n$ rows, it contains $n$ bits. The $i$th bit is set to 1 if the row $i$ has the value $V$ for column $C$; otherwise it is set to a 0. If $C$ contains the valueset $\pair{v_1, v_2, \ldots, v_m}$ with $m$ distinct values, then $m$ bitmap indexes would be created for that column.
+    \img[width=12cm]{img/index-bitmap.jpg}{}
+    \par In the figure, there are only 2 values of \ilc{Sex} and 3 values of \ilc{Zipcode}. Therefore, using bitmap indexing makes a lot of sense. 2 bitmaps are created for \ilc{Sex} and 3 for \ilc{Zipcode}.
+
+  \hii{Function-Based Indexing}
+    \par \tb{Example 1}: A function-based index on the \ilc{EMPLOYEE} table based on an uppercase representation of the \ilc{Lname} column
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE INDEX upper_ix ON Employee (UPPER(Lname));
+\end{minted}
+    
+    \par The following query will use the index. Without the function-based index, an Oracle Database might perform a full table scan.
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+SELECT First_name, Lname
+FROM Employee
+WHERE UPPER(Lname)= "SMITH"
+\end{minted}
+
+    \par \tb{Example 2}: An index is being created on the sum of \ilc{salary} and \ilc{commission_pct}.
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE INDEX income_ix
+ON Employee(Salary + (Salary*Commission_pct));
+\end{minted}
+
+The query does use this index even though the order of attributes is reversed.
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+SELECT First_name, Lname
+FROM Employee
+WHERE ((Salary*Commission_pct) + Salary ) > 15000;
+\end{minted}
+
+
+\hi{Some General Issues Concerning Indexing}
+  \hii{Logical vs Physical Indexes}
+    \par An index entry $\pair{K, Pr}$ where $Pr$ is the physical pointer to a physical record address on disk is called a \tb{physical index}. The disadvantage is that the pointer must be changed if the record is moved to
+    another disk location.
+    \par A solution is \tb{logical address}, whose index entries are of the form $\pair{K, K_p}$, where $K$ is the secondary indexing field matched with the value $K_p$ of the field used for the primary file organization.
+  
+  \hii{Index Creation}
+    \par General form of the index creation query:
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE [ UNIQUE ] INDEX < index name >
+ON < table name > ( < column name > [ < order > ] { , < column name > [ < order > ] } )
+[ CLUSTER ] ;
+\end{minted}
+    \begin{itemize}
+      \item The keywords \ilc{UNIQUE} and \ilc{CLUSTER} are optional.
+      \item The keyword \ilc{CLUSTER} is used when the index to be created should also sort the data file records on the indexing attribute. Thus, specifying \ilc{CLUSTER} on a key (unique) attribute would create some variation of a primary index, whereas specifying \ilc{CLUSTER} on a nonkey (nonunique) attribute would create some variation of a clustering index.
+      \item The value for \ilc{<order>} can be either \ilc{ASC} (ascending) or \ilc{DESC} (descending), and it specifies whether the data file should be ordered in ascending or descending values of the indexing attribute. The default is ASC.
+    \end{itemize}
+
+    \par \tb{Index Creation Process}
+    \par \tb{Indexinng of Strings}
+
+  \hii{Tuning Indexes}
+
+  \hii{Additional Issues Related to Storage of Relations and Indexes}
+
+\hi{Physical Database Design in Relational Databases}
+  \hii{Factors That Influence Physical Database Design}
+    \begin{itemize}
+      \item Analyzing the Database Queries and Transactions
+      \item Analyzing the Expected Frequency of Invocation of Queries and
+      Transactions
+      \item Analyzing the Time Constraints of Queries and Transactions
+      \item Analyzing the Expected Frequencies of Update Operations
+      \item Analyzing the Uniqueness Constraints on Attributes
+    \end{itemize}
+  
+  \hii{Physical Database Design Decisions}
+    \begin{itemize}
+      \item Whether to index an attribute
+      \item What attribute or attributes to index on
+      \item Whether to set up a clustered index
+        \par \tb{Range queries} benefit a great deal from clustering.
+      \item Whether to use a hash index over a tree index
+        \par Hash indexes work well with equality conditions, particularly during joins to find a matching record(s), but they do not
+        support range queries.
+      \item Whether to use dynamic hashing for the file
+        \par \tb{Dynamic hashing} is used when files are very \tb{volatile}.
+    \end{itemize}

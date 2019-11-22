@@ -1,0 +1,117 @@
+\chapter{Process Synchronization}
+
+\hi{Background}
+  \par \tb{Race condition}: several processes access and manipulate the same data concurrently and the outcome of the execution depends on the particular order in which the access takes place.
+
+\hi{The Critical-Section Problem}
+  \hii{Problem}
+  \par Consider a system consisting of $n$ processes $\{P_0, P_1, \ldots, P_{n-1}\}$. Each process has a segment of code, called a \tb{critical section}.
+  \begin{itemize}
+    \item \tb{Constraint}: no two processes are executing in their critical sections at the same time.
+    \item Each process must request permission to enter its critical section. The section of code implementing this request is the \tb{entry section}.
+    \item The critical section may be followed by an \tb{exit section}. 
+    \item The remaining code is the \tb{remainder section}.
+  \end{itemize}
+
+  \par General structure of a typical process $P_i$.
+\begin{lstlisting}
+do {
+  entry section
+    critical section
+  exit section
+    remainder section
+} while (True);
+\end{lstlisting}
+
+  \hii{Requirements}
+    \begin{itemize}
+      \item \tb{Mutual exclusion}: If process $P_i$ is executing in its critical section, then no other processes can be executing in their critical sections.
+      \item \tb{Progress}:  If no process is executing in its critical section and some processes wish to enter their critical sections, then only those processes that are not executing in their remainder sections can participate in deciding which will enter its critical section next, and this selection cannot be postponed indefinitely.
+      \item \tb{Bounded waiting}: There exists a bound, or limit, on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
+    \end{itemize}
+
+\hi{Peterson's Solution}
+  \par Peterson's solution is restricted to \tb{two processes} that alternate execution between their critical sections and remainder sections.
+  \par Peterson's solution requires the two processes to share two data items:
+
+\begin{lstlisting}
+int turn;
+boolean flag[2];
+\end{lstlisting}
+
+  \begin{itemize}
+    \item The variable \lstinline{turn}: \lstinline{turn == i} means it is $P_i$'s turn to enter the critical section.
+    \item The \lstinline{flag} array: \lstinline{flag[i] == true} means $P_i$ is ready to enter the critical section.
+  \end{itemize}
+
+  \par Peterson's Solution:
+
+\begin{lstlisting}
+do {
+  flag[i] = true;
+  turn = j;
+  while (flag[j] && turn == j);
+    critical section
+  flag[i] = false;
+    remainder section
+} while (true);
+\end{lstlisting}
+
+  \par The solution is correct since it satisfies all 3 requirements.
+  \par  Peterson's solution is not guaranteed to work on modern computer architectures.
+
+\hi{Synchronization Hardware}
+  \par Utilize a lock: a process
+  \begin{itemize}
+    \item must acquire a lock before entering a critical section
+    \item must release the lock when it exits the critical section
+  \end{itemize}
+
+\begin{lstlisting}
+boolean TestAndSet(boolean *target) {
+boolean rv = *target;
+*target = TRUE;
+return rv;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+// mutual-exclusion implementation
+do {
+  while (TestAndSet(&lock))
+  ; // do nothing
+  // critical section
+  lock = FALSE;
+  // remainder section
+} while (TRUE);
+\end{lstlisting}
+
+\begin{lstlisting}
+// bounded-waiting mutual-exclusion implementation
+do {
+  waiting[i] = TRUE;
+  key = TRUE;
+
+  while (waiting[i] && key)
+    key = TestAndSet(&lock);
+
+  waiting[i] = FALSE;
+
+  // critical section
+  j = (i + 1) % n;
+
+  while ((j != i) && !waiting[j])
+    j = (j + 1) % n;
+
+  if (j == i)
+    lock = FALSE;
+  else
+    waiting[j] = FALSE;
+
+  // remainder section
+} while (TRUE);
+\end{lstlisting}
+
+  \hii{Deadlock and Starvation}
+    \par \tb{Deadlock}: where two or more processes are waiting indefinitely for an event that can be caused only by one of the waiting processes
+    \par \tb{Starvation} or \tb{Indefinite blocking}: processes wait indefinitely within the semaphore. Indefinite blocking may occur if we remove processes from the list associated with a semaphore in LIFO (last-in, first-out) order.

@@ -1,0 +1,97 @@
+\chapter{CPU Scheduling}
+
+\hi{Basic Concepts}
+  \hii{CPU–I/O Burst Cycle}
+     \par Processes alternate between these two states. Process execution begins with a CPU burst. That is followed by an I/O burst, which is followed by another CPU burst, then another I/O burst,and so on.
+
+  \hii{CPU Scheduler}
+    \par Whenever the CPU becomes idle, the operating system must select one of the processes in the ready queue to be executed. The selection process is carried out by the \tb{short-term scheduler} (or \tb{CPU scheduler}).
+
+  \hii{Preemptive Scheduling}
+    \par CPU -scheduling decisions may take place under the following four circumstances:
+    \begin{enumerate}[1.]
+      \item When a process switches from the running state to the waiting state
+      \item When a process switches from the running state to the ready state
+      \item When a process switches from the waiting state to the ready state
+      \item When a process terminates
+    \end{enumerate}
+
+    \par For situations 1 and 4, there is no choice in terms of scheduling.  There is a choice, however, for situations 2 and 3.
+    \par When scheduling takes place only under circumstances 1 and 4, we say that the scheduling scheme is \tb{nonpreemptive} or \tb{cooperative}. Otherwise, it is \tb{preemptive}.
+
+  \hii{Dispatcher}
+    \par The dispatcher is the module that gives control of the CPU to the process selected by the short-term scheduler. This function involves the following:
+    \begin{itemize}
+      \item Switching context
+      \item Switching to user mode
+      \item Jumping to the proper location in the user program to restart that program
+    \end{itemize}
+    \par The dispatcher should be as fast as possible, since it is invoked during every process switch. The time it takes for the dispatcher to stop one process and start another running is known as the \tb{dispatch latency}.
+
+\hi{Scheduling Criteria}
+  \begin{itemize}
+    \item \tb{CPU utilization (Maximize)}: We want to keep the CPU as busy as possible.
+    \item \tb{Throughput (Maximize)}: The number of processes that are completed per time unit
+    \item \tb{Turnaround time (Minimize)}: The interval from the time of submission of a process to the time of completion is the turnaround time. Turnaround time is the sum of the periods spent waiting to get into memory, waiting in the ready queue, executing on the CPU , and doing I/O.
+    \item \tb{Waiting time (Minimize)}: The sum of the periods spent waiting in the ready queue.
+    \item \tb{Response time (Minimize)}: The time it takes to start responding, not the time it takes to output the response.
+  \end{itemize}
+
+\hi{Scheduling Algorithms}
+  \hii{First-Come, First-Served Scheduling}
+    \begin{itemize}
+      \item \tb{Pros}: The code for FCFS scheduling is simple to write and understand.
+      \item \tb{Cons}: The average waiting time under the FCFS policy is often quite long.
+    \end{itemize}
+
+    \img[width=12cm]{img/fcfs-example.jpg}{}
+
+    \par \tb{Convoy effect}: all the other processes wait for the one big process to get off the CPU.
+    \par \tb{Preemptive/Nonpreemptive}: The FCFS scheduling algorithm is nonpreemptive. Once the CPU has been allocated to a process, that process keeps the CPU until it releases the CPU , either by terminating or by requesting I/O. 
+
+  \hii{Shortest-Job-First and Shortest-Remaining-Time First Scheduling}
+    \begin{itemize}
+      \item \tb{Pros}: Average waiting time is low
+      \item \tb{Cons}: There is no way to know the length of the next CPU burst.
+    \end{itemize}
+
+    \img[width=12cm]{img/sjf-example.jpg}{}
+
+    \par \tb{Preemptive/Nonpreemptive}: Can be either preemptive or nonpreemptive. The choice arises when a new process arrives at the ready queue while a previous process is still executing. The next CPU burst of the newly arrived process may be shorter than what is left of the currently executing process. A preemptive SJF algorithm will preempt the currently executing process, whereas a nonpreemptive SJF algorithm will allow the currently running process to finish its CPU burst. \tb{Preemptive SJF scheduling} is sometimes called \tb{shortest-remaining-time-first} scheduling.
+    \img[width=12cm]{img/srtf-example.jpg}{}
+    
+  \hii{Priority Scheduling}
+    \par \ti{There is no general agreement on whether 0 is the highest or lowest priority}
+    \begin{itemize}
+      \item \tb{Pros}:
+      \item \tb{Cons}: \tb{indefinite blocking}, or \tb{starvation}: a process with very low priority will never be executed. Solution: \tb{aging}.
+    \end{itemize}
+
+    \img[width=12cm]{img/priority.jpg}{}
+
+    \par \tb{Preemptive/Nonpreemptive}: Priority scheduling can be \tb{either} preemptive or nonpreemptive. When a process arrives at the ready queue, its priority is compared with the priority of the currently running process. A preemptive priority scheduling algorithm will preempt the CPU if the priority of the newly arrived process is higher than the priority of the currently running process. A nonpreemptive priority scheduling algorithm will simply put the new process at the head of the ready queue.
+
+  \hii{Round-Robin Scheduling}
+    \par The \tb{round-robin (RR) scheduling algorithm} is designed especially for \ti{time-sharing} systems. It is similar to FCFS scheduling, but preemption is added to enable the system to switch between processes. A small unit of time, called a \tb{time quantum} or \ti{time slice}, is defined.
+    \par If the CPU burst of the currently running process is longer than 1 time quantum, the timer will go off and will cause an interrupt to the operating system. A context switch will be executed, and the process will be put at the tail of the ready queue. The CPU scheduler will then select the next process in the ready queue.
+
+    \begin{itemize}
+      \item \tb{Pros}:
+      \item \tb{Cons}: The average waiting time under the RR policy is often long.
+    \end{itemize}
+
+    \img[width=12cm]{img/priority.jpg}{}
+
+    \par \tb{Preemptive/Nonpreemptive}: Preemptive
+
+  \hii{Multilevel Queue Scheduling}
+    \par A \tb{multilevel queue scheduling algorithm} partitions the ready queue into several separate queues.  Each queue has its own scheduling algorithm.
+
+  \hii{Multilevel Feedback Queue Scheduling}
+    \par The \tb{multilevel feedback queue scheduling algorithm} allows a process to move between queues.
+
+  \hii{Formulas}
+    \par \tb{Turn-around Time}:
+    \begin{align*}
+      \text{Turn-around Time} = \text{Completion Time} - \text{Arrival Time}
+    \end{align*}

@@ -49,7 +49,7 @@
           \exists x (B(x) \land \lnot F(x))
         \]
 
-    \snoteb{Example 3}: \ti{Every child is younger than its mother}.
+    \snoteb{Example 3a}: \ti{Every child is younger than its mother}.
       \par Predicates:
       \begin{itemize}
         \item $C(x)$: $x$ is a child
@@ -62,7 +62,7 @@
         \]
       \par Here, it is not very elegant to say 'any of x’s mothers', since we know that every individual has one and only one mother.
 
-    \snoteb{Example 4}: \ti{Andy and Paul have the same maternal grandmother}.
+    \snoteb{Example 4a}: \ti{Andy and Paul have the same maternal grandmother}.
       \par Variables:
         \begin{itemize}
           \item $a$: Andy
@@ -80,6 +80,14 @@
   \hii{Function Symbols}
       \par We can simplify the expression with function symbol. For example: $m(y)$ means $y$'s mother. $m$ is a function symbol, which takes one argument and returns the mother of that argument.
       \par However, function symbols can be used only in situations in which we want to \ti{denote a single object}. For example: a function symbol $b(y)$ which denotes brothers of $y$ does not make sense.
+      \snoteb{Example 3b}: \ti{Every child is younger than its mother}
+        \[
+          \forall x (C(x) \limpl Y(x, m(x)))
+        \]
+      \snoteb{Example 4b}: \ti{Andy and Paul have the same maternal grandmother}
+        \[
+          m(m(a)) = m(m(p))
+        \]
 
 
 \hi{Predicate Logic as a Formal Language}
@@ -348,4 +356,21 @@
     \par In particular if $\phi$ has \tb{no free variables} at all, we call $\phi$ a \tb{sentence}. In this case, $\mathcal{M} \models_{l} \phi$ holds or not \tb{does not depend} on the choice of $l$.
 
   \hii{Semantic Entailment}
-    
+    \snoteb{Definition 2.20, page 129}: Let $\Gamma$ be a (possibly infinite) set of formulas in predicate logic and $\psi$ a formula of predicate logic.
+    \begin{enumerate}[1.]
+      \item \tb{Semantic entailment}: $\Gamma \models \psi$ holds iff for all models $\mathcal{M}$ and look-up tables $l$, whenever $\mathcal{M} \models_l \phi$ holds for all $\phi \in \Gamma$, them $\mathcal{M}_l \psi$ holds as well.
+      \item \tb{Satifiability of predicate formula}: Formula $\psi$ is \tb{satisfiable} iff there is some model $\mathcal{M}$ and some environment $l$ such that $\mathcal{M} \models_l \psi$ holds.
+      \item \tb{Validity}: Formula $\psi$ is \tb{valid} iff $\mathcal{M}_l \psi$ holds for all models $\mathcal{M}$ and environment $l$ in which we can check $\psi$.
+      \item \tb{Consistency and satisfiablility of set of formulas}: The set $\Gamma$ is \tb{consistent} or \tb{satisfiable} iff there is a model $\mathcal{M}$ and a look-up table $l$ such that $\mathcal{M} \models_l \phi$ holds for all $\phi \in \Gamma$.
+    \end{enumerate}
+
+  \hii{The semantics of equality}
+
+\hi{Undecidability of Predicate Logic}
+  \par For a formula $\phi$ in \tb{propositional logic}, we can determine whether $\models \phi$ holds: if $\phi$ has $n$ propositional atoms, then the truth table of $\phi$ contains $2^n$ lines, and $\models \phi$ holds iff the column for $\phi$ (of length $2^n$) contains only $\lT$ entries.
+  \par Such procedure cannot be carried out in \tb{predicate logic}. The problem of determining whether a predicate logic formula is valid is known as a \tb{decision problem}.
+  \begin{center}
+    \ti{Given a logical formula $\phi$ in predicate logic, does $\models \phi$ hold, yes or no?}
+  \end{center}
+
+  \snoteb{Theorem 2.22, page 133}: The decision problem of validity in predicate logic is undecidable: no program exists which, given any $\phi$, decides whether $\models \phi$.

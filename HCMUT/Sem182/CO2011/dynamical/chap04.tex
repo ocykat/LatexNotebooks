@@ -1,0 +1,31 @@
+\chapter{Review}
+
+\hi{Logistic Model}
+  \hii{Logistic Model}
+    \par Logistic Population Model:
+      \[
+        \dif{P}{t} = kP\bigg(1 - \frac{P}{K}\bigg) \qquad P(0) = P_0
+      \]
+      where:
+      \begin{itemize}
+        \item $P(t)$: population at time $t$
+        \item $k$: relative growth rate coefficient
+        \item $K$: carrying capacity
+        \item $P_0$: initial population
+      \end{itemize}
+    \par Solve the differential equation, we obtain:
+      \[
+        P(t) = \frac{K}{1 + Ae^{-kt}} \qquad A = \frac{K - P_0}{P_0}
+      \]
+  
+  \hii{Modifications}
+    \par \tb{Populations that are subject to “harvesting”}: Sometimes a population can be taken
+    away or harvested at a constant rate.
+    \[
+      \dif{P}{t} = kP\bigg(1 - \frac{P}{K}\bigg) - c
+    \]
+    where $c$ represents the rate per time period the population is harvested
+    \par \tb{Population becomes extinct}: when the population falls below a minimum population $m$:
+    \[
+      \dif{P}{t} = kP\bigg(1 - \frac{P}{K}\bigg)\bigg(1 - \frac{m}{P}\bigg)
+    \]

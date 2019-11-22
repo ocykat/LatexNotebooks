@@ -1,0 +1,103 @@
+\chapter{SQL Exercises}
+
+\hi{Aggregate}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+SELECT   DNAME, COUNT(*)
+FROM     EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber
+GROUP BY DNAME
+HAVING   AVG(SALARY) > 30000
+
+SELECT   DNAME, DNUMBER, COUNT(*)
+FROM     EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber
+GROUP BY (DNAME, DNUMBER)
+HAVING   AVG(SALARY) > 30000
+\end{minted}
+
+\hi{View}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE VIEW viewc AS
+    SELECT   E.FNAME || ' ' || E.MINIT || ' ' || E.LNAME AS FULLNAME,
+             E.BDATE AS DATE_OF_BIRTH
+             E.SEX AS GENDER
+    FROM     EMPLOYEEE E
+    WHERE    EXTRACT(MONTH FROM E.BDATE) = 7
+    WITH     READ ONLY;
+\end{minted}
+
+\hi{Trigger}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE OR REPLACE TRIGGER check_under_18
+BEFORE INSERT OR UPDATE OF BDATE ON Employee
+FOR EACH ROW
+BEGIN
+  IF EXTRACT(Year from Sysdate) - EXTRACT(Year from :new.BDATE) < 18
+    raise_application_error(-20001, 'Employee must be older than 18');
+  END IF;
+END;
+\end{minted}
+
+
+\hi{Function}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE OR REPLACE FUCNTION GETSALARY(empID IN EMPLOYEEE.SSN%TYPE)
+RETURN NUMBER
+AS
+    res NUMBER;
+BEGIN
+    SELECT SALARY INTO res
+    FROM   EMPLOYEEE
+    WHERE  SSN=empID;
+
+    RETURN res;
+END;
+
+-- To check:
+SELECT GETSALARY('123456789')
+FROM dual;
+\end{minted}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE OR REPLACE FUNCTION Get_No_Of_Project (emp_id char)
+RETURN INT
+AS
+  No_Project INT := 0;
+
+BEGIN
+  SELECT COUNT(PNO) INTO No_Project
+  FROM WORKS_ON
+  WHERE ESSN = emp_id;
+  RETURN No_Project;
+END;
+\end{minted}
+
+
+\hi{Cursor}
+
+\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+CREATE OR REPLACE PROCEDURE Emp_Info
+AS
+  CURSOR c1 IS
+    SELECT SSN,
+           FName || ' ' || LName as Fullname,
+           DName,
+           Salary * 12 as Annual_Sal
+    FROM Employee, Department
+    WHERE Dno = DNumber;
+
+BEGIN
+  FOR rec_c1 in c1
+    LOOP
+      DBMS_OUTPUT.PUT_LINE (rec_c1.SSN || ' ' ||
+                            rec_c1.Fullname || ' ' ||
+                            rec_c1.Dname || ' ' ||
+                            rec_c1.Annual_Sal);
+    ENDLOOP;
+END;
+\end{minted}
+
+%\begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+%\end{minted}

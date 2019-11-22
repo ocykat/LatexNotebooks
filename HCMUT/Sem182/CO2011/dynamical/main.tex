@@ -1,15 +1,11 @@
 \documentclass[12pt, a4paper]{report}
 
-% MARGINS
+
+% === MARGINS ===
 \usepackage[margin=0.75in]{geometry}
 
-% FONT
-\renewcommand{\familydefault}{\sfdefault}
 
-% LINE SPACING
-\setlength{\parskip}{6pt}
-
-% HEADINGS
+% === HEADINGS ===
 \setcounter{secnumdepth}{4}
 \newcommand{\hi}{\section}
 \newcommand{\hii}{\subsection}
@@ -18,10 +14,12 @@
 \newcommand{\hiiiEND}{\end{enumerate}}
 \newcommand{\hiv}{\item\textbf}
 
-% INDENTATION
+
+% === INDENTATION ===
 \usepackage{indentfirst}
 
-% TABLE OF CONTENTS
+
+% === TABLE OF CONTENTS ===
 % links
 \usepackage{hyperref}
 \hypersetup{
@@ -32,10 +30,12 @@
   urlcolor=black
 }
 
-% APPENDICES
-\usepackage[toc,page]{appendix}
 
-% TEXT
+% === APPENDICES ===
+\usepackage[toc, page]{appendix}
+
+
+% === TEXT ===
 % Bold, italic, underlined text
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\ti}[1]{\textit{#1}}
@@ -45,7 +45,14 @@
 \newcommand{\smf}[1]{\small #1 \normalsize}
 \newenvironment{smfont}{\small}{\normalsize}
 
-% MATH
+
+% === ENUMERATE ===
+\usepackage[shortlabels]{enumitem}
+% Usage: \begin{enumerate}[a.] or [a)] or [(A)] etc.
+
+
+% === MATH ===
+% Basic packages
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{gensymb}
@@ -84,11 +91,9 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclarePairedDelimiter\set\{\}
 
 % Inner Product
 \newcommand{\iprod}[1]{\langle #1 \rangle}
-\newcommand{\pair}[1]{\langle #1 \rangle}
 
 % Derivatives
 \newcommand{\dif}[2]{\dfrac{d #1}{d #2}}
@@ -97,8 +102,8 @@
 \newcommand{\diff}[2]{\dfrac{d}{d #2} #1}
 \newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
 \newcommand{\pdds}[2]{\dfrac{\partial^{2} #1}{\partial #2^{2}}}
-\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
 \newcommand{\pddsi}[2]{{\partial^{2} #1} / {\partial #2^{2}}}
+\newcommand{\pdd}[3]{\dfrac{\partial^{2} #1}{\partial #2 \partial #3}}
 \newcommand{\pddi}[3]{{\partial^{2} #1} / {\partial #2 \partial #3}}
 
 % Integrals
@@ -111,13 +116,28 @@
 % Ratios
 \newcommand{\ratio}[3]{\dfrac{#1_{#2}}{#1_{#3}}}
 
-% Manual equation number
-\newcommand{\eqnumber}[1]{\qquad\mbox{\tb{{(#1)}}}}
+% Logic
+\usepackage{bussproofs} % prooftree
+\usepackage{logicproof}
 
-% Script fonts
-\usepackage[mathscr]{euscript}
+% Logical operators
+\newcommand{\lnotnot}{\lnot \lnot}
+\newcommand{\lxor}{\oplus}
+\newcommand{\limpl}{\rightarrow}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lT}{\mathbf{T}}
+\newcommand{\lF}{\mathbf{F}}
+\newcommand{\lyeild}{\vdash}
+\newcommand{\deduce}{\Rightarrow}
+\newcommand{\lcontrad}{\perp}
+\newcommand{\lprove}{\vdash}
+\newcommand{\lproverev}{\dashv}
+\newcommand{\lproveeq}{\dashv \vdash}
+\newcommand{\Ra}{\Rightarrow}
 
-% FOOTNOTE
+
+
+% === FOOTNOTE ===
 %   one foot note stays on one page
 \interfootnotelinepenalty=10000
 
@@ -125,19 +145,24 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
-% IMAGES
+
+% === IMAGES ===
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\newcommand{\img}[2][]
-  {
-    \begin{figure}[H]
-      \centering
-      \includegraphics[#1]{#2}
-    \end{figure}
-  }
+\newcommand{\img}[3][]
+{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[#1]{#2}
+    \caption*{#3}
+  \end{figure}
+}
+% Usage: \img[width=...]{<path_to_img>}{<caption>}
 
-% PSEUDOCODE
+
+% === PSEUDOCODE ===
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage[noend]{algpseudocode}
@@ -173,102 +198,36 @@
 \newcommand{\CALLFUNC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\CALLPROC}[2]{\State \Call{#1}{$#2$}}
 \newcommand{\RETURN}[1]{\State \Return{#1}}
-\newcommand{\SHIFTLEFT}{\ll}
-\newcommand{\SHIFTRIGHT}{\gg}
-\newcommand{\Input}[1]{\hspace*{\algorithmicindent} \textbf{Input}: #1}
 
-% FRENCH CONVENTION FOR VERTICAL ARITHMETIC
-\usepackage{xlop}
+% === TABLE ===
+\usepackage{multirow}
 
-% CODE
+% === CODE ===
 \usepackage{listings}
-%\makeatletter
-%\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
-%\@empty\z@\@empty
-%\makeatother
 \usepackage{inconsolata}
-% \lstset{
-%   language=[x86masm]Assembler,
-%   aboveskip=1mm,
-%   belowskip=1mm,
-%   numbers=left,
-%   frame=tb,
-%   % language=[mips]Assembler,
-%   basicstyle=\ttfamily
-%   \footnotesize,
-%   breaklines=true,
-%   mathescape=false
-% }
-% \lstdefinestyle{SQL}{
-% \lstset{
-%    language=SQL,
-%    showspaces=false,
-%    basicstyle=\ttfamily,
-%    numbers=left,
-%    numberstyle=\tiny,
-%    commentstyle=\color{gray}
-%    frame=tb,
-%    breaklines=true,
-%    mathescape=false
-%    aboveskip=1mm,
-%    belowskip=1mm,
-%   emph={%
-%     AUTHORIZATION%
-%     },emphstyle={\color{red}\bfseries\underbar}%
-% }%
+\lstset
+{
+  basicstyle=\ttfamily,
+}
 
-\newcommand{\ilc}{\lstinline}
-\usepackage[cache=false]{minted}
-% \newenvironment{sqlx}
-%   {
-%     \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-%   }
-%   {
-%     \end{minted}
-%   }
 
-%
-\usepackage{varwidth}
-\newenvironment{fboxenv}
-  {
-    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
-  }
-  {
-    \end{minipage}
-  }
+% === BOOK SECTION MARKER ===
+\newcommand{\snote}[1]{\par {\footnotesize #1}}
+\newcommand{\snoteb}[1]{\par \textbf{{\footnotesize #1}}}
+\newcommand{\booktitle}{}
+\newcommand{\booksection}[1]{\smf{\ti{Section #1 - \booktitle}}}
 
-% SOURCE
-%\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\refsource}[1]{Source: {#1}}
-
-\newcommand{\fieldname}[1]{\langle \mbox{#1} \rangle}
-
-\def\ojoin{\setbox0=\hbox{$\bowtie$}%
-  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
-\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
-\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
-\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
 
 \begin{document}
 \tableofcontents
 
-%\input{chap01}
-%\input{chap02}
-%\setcounter{chapter}{4}
-%\input{chap05}
-%\input{chap06}
-%\input{chap07}
-%\input{chap08}
-\setcounter{chapter}{13}
-\input{chap14}
-\input{chap15}
-\input{chap16}
-\input{chap17}
-\setcounter{chapter}{29}
-\input{chap30}
+\input{chap01}
+\input{chap02}
+\input{chap03}
+\input{chap04}
 
 \begin{appendices}
-  \input{app01}
+
 \end{appendices}
 
 \end{document}

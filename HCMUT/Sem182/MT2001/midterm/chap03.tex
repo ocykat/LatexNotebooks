@@ -1,4 +1,4 @@
-\begin{multicols*}{3}
+\begin{multicols}{3}
 
 \hi{Distributions}
   \hii{Discrete Distributions}
@@ -147,5 +147,66 @@
         \end{itemize}
     \end{itemize}
 
+  \hii{Joint Distribution}
+    \hiii{Joint Probability Mass Function}
+      \[
+        f(u, v) = P(X = u, Y = v)
+      \]
+    \hiii{Marginal Probability Mass Function}
+      \[
+        f_x(u) = P(X = u) \qquad f_y(v) = P(Y = v)
+      \]
+    \hiii{Mean, Variance and Covariance}
+      \[
+        E(X + Y) = E(X) + E(Y)
+      \]
+      \[
+        E(X + Y) = \sum\bigg[(u + v) P(X = u, Y = v)\bigg]
+      \]
+      \[
+        E(XY) = \sum\bigg[(uv) P(X = u, Y = v)\bigg]
+      \]
+      \[
+        V(X) = E[(X - E(X))^2] = E[(X - E(X))(X - E(X))]
+      \]
+      \[
+        Cov(X, Y) = \sum\bigg((u - E(X)) (v - E(Y)) P(X = u, Y = v)\bigg)
+      \]
+      \par \tb{Computational formulas}:
+        \[
+          E[(X - E(X))(Y - E(Y))] = E(XY) - E(X) E(Y)
+        \]
+      \par Given $W = (X, Y, Z)$
+        \[
+          Cov(W) =
+          \begin{bmatrix}
+            V(X)      & Cov(X, Y) & Cov(X, Z) \\
+            Cov(Y, X) & V(Y)      & Cov(Y, Z) \\
+            Cov(Z, X) & Cov(Z, Y) & V(Z)
+          \end{bmatrix}
+        \]
+    \hiii{Independence}
+      \par $X$ and $Y$ are independent iff:
+        \[
+          P(X = u, Y = v) = P(X = u) P(Y = v)
+        \]
+\end{multicols}
 
-\end{multicols*}
+\begin{multicols}{2}
+  \hii{Appendix: Integral Formulas}
+    \begin{itemize}
+      \item \[\int x^n dx = \frac{1}{n + 1} x^{n + 1} + C \]
+      \item \[\int \frac{1}{x} dx = \ln|x| + C \]
+      \item \[\int \frac{1}{t^2} dx = - \frac{1}{t} + C\]
+      \item \[\int e^x dx = e^x + C\]
+      \item \[\int a^x dx = \frac{a^x}{\ln(a)} + C\]
+      \item \[\int e^{ax} dx = \frac{e^{ax}}{a} + C\]
+      \item \[\int x e^x dx = (x - 1)e^x + C\]
+      \item \tb{Integration by parts}:
+        \[
+          \int udv = uv - v \int du
+        \]
+        \par Choose $u$ in this order: log - algebraic - trig - exp
+    \end{itemize}
+  \end{multicols}
+    \clearpage

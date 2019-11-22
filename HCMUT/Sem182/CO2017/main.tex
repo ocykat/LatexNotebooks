@@ -121,19 +121,6 @@
 \newcommand{\fnmarksame}{\footnotemark[\value{footnote}]}
 \newcommand{\fntext}{\footnotetext}
 
-<<<<<<< HEAD
-% IMAGES
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{float}
-\newcommand{\img}[2][]
-  {
-    \begin{figure}[H]
-      \centering
-      \includegraphics[#1]{#2}
-    \end{figure}
-  }
-=======
 % === IMAGES ===
 \usepackage{graphicx}
 \usepackage{caption}
@@ -148,7 +135,6 @@
   \end{figure}
 }
 % Usage: \img[width=...]{<path_to_img>}{<caption>}
->>>>>>> 1e234b50466565419c4ad4e031a6c35c5df2379d
 
 % PSEUDOCODE
 \usepackage{algorithm}
@@ -221,6 +207,8 @@
     \end{minipage}
   }
 
+\usepackage[shortlabels]{enumitem}
+
 % SOURCE
 %\newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\refsource}[1]{Source: {#1}}
@@ -233,6 +221,8 @@
 \input{chap03}
 
 \input{chap04}
+\input{chap05}
+\input{chap06}
 \setcounter{chapter}{7}
 \input{chap08}
 

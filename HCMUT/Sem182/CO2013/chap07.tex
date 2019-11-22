@@ -10,28 +10,26 @@
       \end{itemize}
     \par In general, each individual NULL value is considered to be different from every other NULL value in the various database records. When a record with NULL in one of its attributes is involved in a comparison operation, the result is considered to be UNKNOWN.
     \par SQL allows queries that check whether an attribute value is NULL. Rather than using = or <> to compare an attribute value to NULL , SQL uses the comparison operators IS or IS NOT . This is because SQL considers each NULL value as being distinct from every other NULL value, so equality comparison is not appropriate.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT Fname, Lname
 FROM EMPLOYEE
 WHERE Super_ssn IS NULL;
-      \end{lstlisting}
+      \end{minted}
 
   \hii{Nested Queries, Tuples, and Set/Multiset Comparisons}
     \par Some queries require that existing values in the database be fetched and then used in a comparison condition. Such queries can be conveniently formulated by using nested queries, which are complete select-from-where blocks within another SQL query. That other query is called the outer query. These nested queries can also appear in the WHERE clause or the FROM clause or the SELECT clause or other SQL clauses as needed.
     \par If a nested query returns a single attribute and a single tuple, the query result will be a single (scalar) value. In such cases, it is permissible to use = instead of IN for the comparison operator. In general, the nested query will return a table (relation), which is a set or multiset of tuples. SQL allows the use of tuples of values in comparisons by placing them within
     parentheses and allowing the IN operator.
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT DISTINCT Essn
 FROM WORKS_ON
 WHERE (Pno, Hours) IN
                   (
                     SELECT Pno, Hours
                     FROMWORKS_ON
-                    WHERE Essn = ‘123456789’
+                    WHERE Essn = '123456789'
                   );
-    \end{lstlisting}
+    \end{minted}
     \par In addition to the IN operator, a number of other comparison operators can be used to compare a single value v (typically an attribute name) to a set or multiset v (typically a nested query). The = ANY (or = SOME ) operator returns TRUE if the value v is equal to some value in the set V and is hence equivalent to IN . The two keywords ANY and SOME have the same effect. Other operators that can be combined with ANY (or SOME ) include >, >=, <, <=, and <>. The keyword ALL can also be combined with each of these operators.
 
   \hii{Correlated Nested Queries}
@@ -43,60 +41,56 @@ WHERE (Pno, Hours) IN
     \par The EXISTS function in SQL is used to check whether the result of a nested query is empty (contains no tuples) or not. The result of EXISTS is a Boolean value TRUE if the nested query result contains at least one tuple, or FALSE if the nested query result contains no tuples.
     \par EXISTS and NOT EXISTS are typically used in conjunction with a correlated nested
 query.
-      % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-      \begin{lstlisting}
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT Fname, Lname
 FROM EMPLOYEE
-WHERE NOT EXISTS (
-                  SELECT *
-                  FROM DEPENDENT
-                  WHERE Ssn = Essn
-                  );
-      \end{lstlisting}
+WHERE NOT EXISTS
+  (
+    SELECT *
+    FROM DEPENDENT
+    WHERE Ssn = Essn
+  );
+      \end{minted}
 \par There is another SQL function, UNIQUE ( Q ), which returns TRUE if there are no
 duplicate tuples in the result of query Q ; otherwise, it returns FALSE . This can be
 used to test whether the result of a nested query is a set (no duplicates) or a multiset
 (duplicates exist).
 
 \hi{Explicit Sets and Renaming in SQL}
-\par We have seen several queries with a nested query in the WHERE clause. It is also possible to use an explicit set of values in the WHERE clause, rather than a nested query. Such a set is enclosed in parentheses in SQL.
+  \par We have seen several queries with a nested query in the WHERE clause. It is also possible to use an explicit set of values in the WHERE clause, rather than a nested query. Such a set is enclosed in parentheses in SQL.
 
-% \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-\begin{lstlisting}
+  \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT DISTINCT Essn
 FROM WORKS_ON
 WHERE Pno IN (1, 2, 3);
-\end{lstlisting}
+  \end{minted}
 
 \hi{Aggregate Functions in SQL}
   \hii{GROUP BY}
-    \par \lstinline{GROUP BY} is followed by \tb{an attribute}.
+    \par \ilc{GROUP BY} is followed by \tb{an attribute}.
     \par \tb{Example}: For each department, retrieve the department number, the number of employees in the department, and their average salary.
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 SELECT   Dno, COUNT (*), AVG (Salary)
 FROM     EMPLOYEE
 GROUP BY Dno;
-    \end{lstlisting}
+    \end{minted}
   \hii{HAVING}
 
   \hii{HAVING}
-  \par \lstinline{HAVING} is followed by \tb{a condition}.
-  \par \tb{Example}: For each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
-SELECT     Pnumber, Pname, COUNT (*)
-FROM       PROJECT, WORKS_ON
-WHERE      Pnumber = Pno
-GROUP BY   Pnumber, Pname
-HAVING     COUNT (*) > 2;
-    \end{lstlisting}
+    \par \ilc{HAVING} is followed by \tb{a condition}.
+    \par \tb{Example}: For each project on which more than two employees work, retrieve the project number, the project name, and the number of employees who work on the project.
+      \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
+  SELECT     Pnumber, Pname, COUNT (*)
+  FROM       PROJECT, WORKS_ON
+  WHERE      Pnumber = Pno
+  GROUP BY   Pnumber, Pname
+  HAVING     COUNT (*) > 2;
+      \end{minted}
 
 
 \hi{Assertions and Triggers}
   \hii{Specifying Constraints as Assertions}
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 CREATE ASSERTION SALARY_CONSTRAINT
 CHECK (
   NOT EXISTS (
@@ -107,17 +101,16 @@ CHECK (
           AND D.Mgr_ssn = M.Ssn
   )
 );
-    \end{lstlisting}
+    \end{minted}
 
   \hii{Specifying Actions as Triggers}
-  \par A \tb{trigger} has 3 components:
-  \begin{itemize}
-    \item The \tb{event}
-    \item The \tb{condition}
-    \item The \tb{action}
-  \end{itemize}
-    % \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
-    \begin{lstlisting}
+    \par A \tb{trigger} has 3 components:
+    \begin{itemize}
+      \item The \tb{event}
+      \item The \tb{condition}
+      \item The \tb{action}
+    \end{itemize}
+    \begin{minted}[linenos,tabsize=2,breaklines]{SQL}
 CREATE TRIGGER SALARY_VIOLATION
 BEFORE INSERT OR UPDATE OF SALARY, SUPERVISOR_SSN ON EMPLOYEE
 FOR EACH ROW
@@ -129,5 +122,5 @@ FOR EACH ROW
     )
   )
   INFORM_SUPERVISOR(NEW.Supervisor_ssn, NEW.Ssn);
-    \end{lstlisting}
-  \par \lstinline{INFORM_SUPERVISOR} is the action.
+    \end{minted}
+    \par \ilc{INFORM_SUPERVISOR} is the action.
